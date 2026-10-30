@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon, ArrowRight01Icon, ArrowUpRight01Icon, CheckmarkCircle02Icon, Clock01Icon, Flag01Icon, Refresh01Icon, Target01Icon } from "@hugeicons/core-free-icons";
@@ -25,6 +25,7 @@ export default function DailyDrillPage(){
  const [seconds,setSeconds]=useState(12*60);
  const [showExplanation,setShowExplanation]=useState(false);
  const current=questions[index];
+ useEffect(()=>{if(submitted||seconds<=0)return;const timer=window.setInterval(()=>setSeconds(v=>Math.max(0,v-1)),1000);return()=>window.clearInterval(timer)},[submitted,seconds]);
  const attempted=Object.keys(answers).length;
  const score=useMemo(()=>questions.reduce((sum,q)=>sum+(answers[q.id]===q.answer?1:0),0),[answers]);
  const choose=(option:number)=>{if(!submitted){setAnswers(v=>({...v,[current.id]:option}));setShowExplanation(false)}};
