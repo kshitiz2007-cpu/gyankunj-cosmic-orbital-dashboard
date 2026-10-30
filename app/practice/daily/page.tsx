@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowLeft01Icon, ArrowRight01Icon, ArrowUpRight01Icon, CheckmarkCircle02Icon, Clock01Icon, Flag01Icon, Refresh01Icon, Target01Icon } from "@hugeicons/core-free-icons";
+import { ArrowLeft01Icon, ArrowRight01Icon, ArrowUpRight01Icon, Clock01Icon, Flag01Icon, Refresh01Icon } from "@hugeicons/core-free-icons";
 
 type Question = { id:number; subject:string; topic:string; prompt:string; options:string[]; answer:number; explanation:string; };
 const questions:Question[] = [
