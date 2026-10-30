@@ -48,21 +48,22 @@ function Icon({icon,size=22}: {icon: typeof Home01Icon;size?:number}) {
 }
 
 function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:number;reduceMotion:boolean;onSelect:(item:NodeItem)=>void}) {
-  return <motion.button
-    type="button" aria-label={item.title+" "+item.subtitle}
-    className={"orb-node orb-node--"+item.id} style={{"--node":item.color,"--i":index} as React.CSSProperties}
-    initial={reduceMotion?false:{opacity:0,scale:.72,y:18}}
-    animate={{opacity:1,scale:1,y:0}}
-    transition={{delay:.16+index*.07,duration:.7,ease:[.2,.8,.2,1]}}
-    whileHover={reduceMotion?undefined:{scale:1.045,y:-4}}
-    whileTap={{scale:.96}}
-    onClick={()=>item.id==="drill"?window.location.assign(item.href):onSelect(item)}
-  >
+  const content = <>
     <span className="orb-node__icon"><Icon icon={item.icon} size={31}/></span>
     <span className="orb-node__title">{item.title}<br/>{item.subtitle}</span>
     <span className="orb-node__sub">{item.id==="drill"?"PRACTICE · IMPROVE":item.id==="editorial"?"ANALYSE · CONNECT":item.id==="recall"?"REVISE · RETAIN":item.id==="library"?"NOTES · PYQ · TESTS":item.id==="progress"?"TRACK · GROW":item.id==="live"?"LEARN · INTERACT":item.id==="ai"?"PLAN · SOLVE · EXPLAIN":"MAP · MASTER"}</span>
     <span className="orb-node__arrow"><Icon icon={ArrowUpRight01Icon} size={17}/></span>
-  </motion.button>;
+  </>;
+  const style={"--node":item.color,"--i":index} as React.CSSProperties;
+  const animation={
+    initial:reduceMotion?false:{opacity:0,scale:.72,y:18},
+    animate:{opacity:1,scale:1,y:0},
+    transition:{delay:.16+index*.07,duration:.7,ease:[.2,.8,.2,1] as const},
+    whileHover:reduceMotion?undefined:{scale:1.045,y:-4},
+    whileTap:{scale:.96}
+  };
+  if(item.id==="drill") return <motion.a {...animation} href="/practice/daily" aria-label="Open Daily Drill quiz" className="orb-node orb-node--drill" style={style}>{content}</motion.a>;
+  return <motion.button {...animation} type="button" aria-label={item.title+" "+item.subtitle} className={"orb-node orb-node--"+item.id} style={style} onClick={()=>onSelect(item)}>{content}</motion.button>;
 }
 
 export default function Dashboard() {
