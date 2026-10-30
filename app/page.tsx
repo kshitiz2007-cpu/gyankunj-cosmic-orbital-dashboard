@@ -19,7 +19,7 @@ type NodeItem = {
 const nodes: NodeItem[] = [
   { id:"drill", title:"DAILY", subtitle:"DRILL", color:"#f7bd66", icon:Notebook01Icon, href:"/practice/daily", angle:-90 },
   { id:"editorial", title:"DAILY", subtitle:"EDITORIAL", color:"#ff817b", icon:NewspaperIcon, href:"/current-affairs", angle:-135 },
-  { id:"recall", title:"TOPPER", subtitle:"RECALL", color:"#70cfff", icon:BookOpen01Icon, href:"/recall", angle:-45 },
+  { id:"mock", title:"FULL-LENGTH", subtitle:"MOCK TEST", color:"#70cfff", icon:BookOpen01Icon, href:"/mock-test", angle:-45 },
   { id:"library", title:"STUDY", subtitle:"LIBRARY", color:"#76e2bd", icon:Layers01Icon, href:"/library", angle:180 },
   { id:"progress", title:"MY", subtitle:"PROGRESS", color:"#d48cff", icon:ChartLineData01Icon, href:"/progress", angle:0 },
   { id:"live", title:"LIVE", subtitle:"CLASSES", color:"#63d8f5", icon:UserGroupIcon, href:"/live", angle:135 },
@@ -51,7 +51,7 @@ function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:nu
   const content = <>
     <span className="orb-node__icon"><Icon icon={item.icon} size={31}/></span>
     <span className="orb-node__title">{item.title}<br/>{item.subtitle}</span>
-    <span className="orb-node__sub">{item.id==="drill"?"PRACTICE · IMPROVE":item.id==="editorial"?"ANALYSE · CONNECT":item.id==="recall"?"REVISE · RETAIN":item.id==="library"?"NOTES · PYQ · TESTS":item.id==="progress"?"TRACK · GROW":item.id==="live"?"LEARN · INTERACT":item.id==="ai"?"PLAN · SOLVE · EXPLAIN":"MAP · MASTER"}</span>
+    <span className="orb-node__sub">{item.id==="drill"?"PRACTICE · IMPROVE":item.id==="editorial"?"ANALYSE · CONNECT":item.id==="mock"?"EXAM · EVALUATE":item.id==="library"?"NOTES · PYQ · TESTS":item.id==="progress"?"TRACK · GROW":item.id==="live"?"LEARN · INTERACT":item.id==="ai"?"PLAN · SOLVE · EXPLAIN":"MAP · MASTER"}</span>
     <span className="orb-node__arrow"><Icon icon={ArrowUpRight01Icon} size={17}/></span>
   </>;
   const style={"--node":item.color,"--i":index} as React.CSSProperties;
@@ -62,7 +62,7 @@ function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:nu
     whileHover:reduceMotion?undefined:{scale:1.045,y:-4},
     whileTap:{scale:.96}
   };
-  if(item.id==="drill") return <motion.a {...animation} href="/practice/daily" aria-label="Open Daily Drill quiz" className="orb-node orb-node--drill" style={style}>{content}</motion.a>;
+  if(item.id==="drill" || item.id==="mock") return <motion.a {...animation} href={item.href} aria-label={"Open "+item.title+" "+item.subtitle} className={"orb-node orb-node--"+item.id} style={style}>{content}</motion.a>;
   return <motion.button {...animation} type="button" aria-label={item.title+" "+item.subtitle} className={"orb-node orb-node--"+item.id} style={style} onClick={()=>onSelect(item)}>{content}</motion.button>;
 }
 
