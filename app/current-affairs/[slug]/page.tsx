@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import {useParams} from "next/navigation";
 import {useState} from "react";
 import {HugeiconsIcon} from "@hugeicons/react";
 import {ArrowLeft01Icon,ArrowUpRight01Icon,Clock01Icon,Bookmark01Icon,CheckmarkCircle02Icon} from "@hugeicons/core-free-icons";
@@ -9,8 +10,9 @@ const content={
  "green-hydrogen":{category:"ENVIRONMENT",date:"28 OCT 2026",title:"राष्ट्रीय हरित हाइड्रोजन मिशन",subtitle:"ऊर्जा संक्रमण और औद्योगिक डीकार्बोनाइजेशन",read:"07 MIN READ",intro:"हरित हाइड्रोजन नवीकरणीय ऊर्जा से प्राप्त बिजली द्वारा जल के विद्युत अपघटन के माध्यम से उत्पादित किया जाता है। यह कठिन-से-घटाए जाने वाले उत्सर्जन वाले क्षेत्रों में उपयोगी विकल्प हो सकता है।",sections:[["उपयोगिता","इस्पात, उर्वरक, रिफाइनरी, भारी परिवहन और ऊर्जा भंडारण में इसकी संभावित भूमिका है।"],["चुनौतियाँ","उत्पादन लागत, नवीकरणीय बिजली की उपलब्धता, जल, भंडारण, परिवहन और सुरक्षा मानक महत्त्वपूर्ण चुनौतियाँ हैं।"],["नीतिगत प्राथमिकताएँ","अनुसंधान, मांग निर्माण, मानकीकरण, घरेलू इलेक्ट्रोलाइज़र निर्माण और हरित ऊर्जा विस्तार पर ध्यान आवश्यक है।"]],takeaways:["हरित हाइड्रोजन का स्रोत नवीकरणीय बिजली है।","यह सभी क्षेत्रों का सार्वभौमिक समाधान नहीं; क्षेत्र-विशिष्ट उपयोग महत्त्वपूर्ण है।","लागत और अवसंरचना विस्तार प्रमुख बाधाएँ हैं।"],mains:"भारत के ऊर्जा संक्रमण में हरित हाइड्रोजन की संभावनाओं और सीमाओं की चर्चा कीजिए।"},
  "digital-public-infrastructure":{category:"ECONOMY",date:"27 OCT 2026",title:"डिजिटल पब्लिक इंफ्रास्ट्रक्चर",subtitle:"डिजिटल समावेशन, नवाचार और सार्वजनिक सेवा वितरण",read:"09 MIN READ",intro:"डिजिटल पब्लिक इंफ्रास्ट्रक्चर खुले, परस्पर-संचालनीय डिजिटल प्लेटफॉर्म और प्रणालियों का समूह है, जो बड़े पैमाने पर सेवाओं और नवाचार को सक्षम बनाता है।",sections:[["मुख्य घटक","डिजिटल पहचान, भुगतान प्रणालियाँ और डेटा-साझाकरण ढाँचे इसके प्रमुख उदाहरण हैं।"],["अवसर","कम लागत वाले लेनदेन, वित्तीय समावेशन, सेवा वितरण और नए उद्यमों के लिए मंच तैयार हो सकता है।"],["जोखिम और सुरक्षा","गोपनीयता, साइबर सुरक्षा, डिजिटल विभाजन, सहमति और जवाबदेही को केंद्र में रखना आवश्यक है।"]],takeaways:["इंटरऑपरेबिलिटी DPI की प्रमुख विशेषता है।","डिजिटल समावेशन के लिए कनेक्टिविटी और डिजिटल साक्षरता जरूरी हैं।","डेटा संरक्षण और जवाबदेही के मजबूत प्रावधान आवश्यक हैं।"],mains:"भारत के डिजिटल पब्लिक इंफ्रास्ट्रक्चर मॉडल के अवसरों और शासन संबंधी चुनौतियों का मूल्यांकन कीजिए।"}
 };
-export default function EditorialDetail({params}:{params:{slug:string}}){
+export default function EditorialDetail(){
  const [saved,setSaved]=useState(false);
+ const params=useParams<{slug:string}>();
  const article=content[params.slug as keyof typeof content];
  if(!article)return <main className="editorial-detail-app"><Link href="/current-affairs">← Back to editorials</Link><h1>Editorial not found</h1></main>;
  return <main className="editorial-detail-app">
