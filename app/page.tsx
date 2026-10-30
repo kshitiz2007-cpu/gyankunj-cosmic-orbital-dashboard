@@ -58,7 +58,7 @@ function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:nu
     whileTap={{scale:.96}}
     onClick={()=>{}}
   >
-    <span className="orb-node__icon" id={item.id==="ai"||item.id==="live"?item.id:undefined}><Icon icon={item.icon} size={31}/></span>
+    <span className="orb-node__icon"><Icon icon={item.icon} size={31}/></span>
     <span className="orb-node__title">{item.title}<br/>{item.subtitle}</span>
     <span className="orb-node__sub">{item.id==="drill"?"PRACTICE · IMPROVE":item.id==="editorial"?"ANALYSE · CONNECT":item.id==="recall"?"REVISE · RETAIN":item.id==="library"?"NOTES · PYQ · TESTS":item.id==="progress"?"TRACK · GROW":item.id==="live"?"LEARN · INTERACT":item.id==="ai"?"PLAN · SOLVE · EXPLAIN":"MAP · MASTER"}</span>
     <span className="orb-node__arrow"><Icon icon={ArrowUpRight01Icon} size={17}/></span>
