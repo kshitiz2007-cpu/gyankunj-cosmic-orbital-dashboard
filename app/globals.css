@@ -52,7 +52,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #f4c8
 .orb-node__title{font:600 clamp(10px,1.2vw,16px)/1.1 "Playfair Display",serif;text-align:center;color:#fff;letter-spacing:.025em}
 .orb-node__sub{margin-top:7px;font:8px "Space Grotesk",sans-serif;letter-spacing:.11em;color:#c4d0e1;text-align:center}
 .orb-node__arrow{display:grid;place-items:center;width:29px;height:29px;margin-top:10px;border:1px solid color-mix(in srgb,var(--node) 85%,transparent);border-radius:50%;color:var(--node)}
-.orb-node:nth-of-type(5){--x:50%;--y:8%}.orb-node:nth-of-type(6){--x:20%;--y:23%}.orb-node:nth-of-type(7){--x:80%;--y:23%}.orb-node:nth-of-type(8){--x:12%;--y:50%}.orb-node:nth-of-type(9){--x:88%;--y:50%}.orb-node:nth-of-type(10){--x:20%;--y:77%}.orb-node:nth-of-type(11){--x:50%;--y:90%}.orb-node:nth-of-type(12){--x:80%;--y:77%}
+.orb-node:nth-of-type(1){--x:50%;--y:8%}.orb-node:nth-of-type(2){--x:20%;--y:23%}.orb-node:nth-of-type(3){--x:80%;--y:23%}.orb-node:nth-of-type(4){--x:12%;--y:50%}.orb-node:nth-of-type(5){--x:88%;--y:50%}.orb-node:nth-of-type(6){--x:20%;--y:77%}.orb-node:nth-of-type(7){--x:50%;--y:90%}.orb-node:nth-of-type(8){--x:80%;--y:77%}
 .planet{position:absolute;width:17px;height:17px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#fff,#8ea5c6 22%,#182c4a 72%);box-shadow:0 0 18px #92b5dc66}
 .planet--a{left:12%;top:36%}.planet--b{right:12%;top:38%;width:22px;height:22px}.planet--c{left:48%;bottom:5%;width:10px;height:10px}
 .hero-caption{align-self:end;margin-bottom:75px;font:10px/2 "Space Grotesk",sans-serif;letter-spacing:.25em;color:#c7d3e5}
