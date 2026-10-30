@@ -734,3 +734,129 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #f4c8
  .editorial-article-body section p{font-size:13px}
  .editorial-next{flex-direction:column}
 }
+
+/* Digital Study Library */
+.library-app{min-height:100vh;padding:0 22px 45px;color:#edf2fb;background:radial-gradient(ellipse at 80% 8%,rgba(76,122,139,.2),transparent 35%),radial-gradient(ellipse at 5% 60%,rgba(52,108,90,.12),transparent 35%),#050914}
+.library-top{height:72px;max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(174,197,229,.14);color:#9eacc1;font:600 9px "Space Grotesk",sans-serif;letter-spacing:.16em}
+.library-back{display:flex;align-items:center;gap:9px;color:#f2d49c;text-decoration:none}
+.library-top-count{color:#8ddac0}
+.library-wrap{max-width:1120px;margin:auto}
+.library-hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:25px;padding:54px 0 45px}
+.library-kicker{color:#d9bd88;font:600 9px "Space Grotesk",sans-serif;letter-spacing:.2em}
+.library-hero h1,.library-subject-hero h1{margin:18px 0 14px;font:600 clamp(48px,7vw,78px)/.98 "Space Grotesk",sans-serif;letter-spacing:-.075em}
+.library-hero h1 em,.library-subject-hero h1 em,.library-section-head h2 em{font-family:"Playfair Display",serif;color:#8edbc2;font-weight:500}
+.library-hero-copy>p,.library-subject-hero>p{max-width:580px;color:#aebbd0;font:14px/1.9 "Noto Sans Devanagari",sans-serif}
+.library-stats{display:flex;gap:36px;margin-top:28px}
+.library-stats div{display:grid;gap:5px}
+.library-stats strong{color:#f2d49c;font:500 29px "Space Grotesk",sans-serif}
+.library-stats span{color:#8190a7;font:8px "Space Grotesk",sans-serif;letter-spacing:.17em}
+.library-hero-art{position:relative;display:grid;place-items:center;min-height:290px;overflow:hidden;border:1px solid #8ddac022;border-radius:30px;background:radial-gradient(circle at 50% 50%,#8ddac022,transparent 45%),linear-gradient(145deg,#14283a,#08111e)}
+.library-hero-art:before,.library-hero-art:after{content:"";position:absolute;width:230px;height:230px;border:1px solid #8ddac033;border-radius:50%;box-shadow:0 0 0 30px #8ddac00a,0 0 0 60px #8ddac008}
+.library-hero-art:after{width:310px;height:310px;border-style:dashed}
+.library-book-stack{position:relative;z-index:1;display:grid;place-items:center;width:145px;height:175px;transform:rotate(-9deg);border:1px solid #b3e6d477;border-radius:12px;background:linear-gradient(145deg,#345c5b,#10272e 65%,#09151e);box-shadow:18px 22px 45px #0009,inset 0 0 25px #b3e6d422}
+.library-book-stack:before{content:"";position:absolute;left:10px;top:0;bottom:0;width:7px;background:#d8bf82;border-radius:5px}
+.library-book-stack i{position:absolute;left:25px;right:18px;height:1px;background:#d6c18a66}
+.library-book-stack i:nth-child(1){top:40px}.library-book-stack i:nth-child(2){top:48px}.library-book-stack i:nth-child(3){bottom:36px}
+.library-book-stack b{color:#f1d39a;font:500 52px "Playfair Display",serif}
+.library-hero-art>span{position:absolute;bottom:20px;color:#8eb9b1;font:600 8px "Space Grotesk",sans-serif;letter-spacing:.2em}
+.library-tools{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:8px 0 35px}
+.library-tools label{display:flex;align-items:center;gap:11px;flex:1;max-width:620px;padding:13px 16px;border:1px solid #ffffff20;border-radius:15px;background:#101a2b;color:#91a4b7}
+.library-tools input{width:100%;border:0;outline:0;background:transparent;color:#eef3ff;font:12px "DM Sans",sans-serif}
+.library-tools>span{color:#8190a7;font:8px "Space Grotesk",sans-serif;letter-spacing:.14em}
+.library-subject-section,.library-recent,.library-topic-section{padding:20px 0 35px}
+.library-section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:20px}
+.library-section-head h2{margin:8px 0 0;font:600 36px "Space Grotesk",sans-serif;letter-spacing:-.06em}
+.library-section-head>small,.library-recent-label{color:#8190a7;font:8px "Space Grotesk",sans-serif;letter-spacing:.15em}
+.library-subject-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.library-subject-card{position:relative;overflow:hidden;min-height:250px;padding:21px;border:1px solid color-mix(in srgb,var(--subject-color) 25%,transparent);border-radius:22px;background:radial-gradient(circle at 100% 0,color-mix(in srgb,var(--subject-color) 12%,transparent),transparent 42%),linear-gradient(145deg,#152137,#09111f);box-shadow:inset 0 1px 0 #ffffff09;transition:transform .25s,border-color .25s}
+.library-subject-card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--subject-color) 60%,transparent)}
+.library-subject-card-top{display:flex;align-items:center;justify-content:space-between}
+.library-subject-icon{display:grid;place-items:center;width:46px;height:46px;border:1px solid color-mix(in srgb,var(--subject-color) 45%,transparent);border-radius:15px;background:color-mix(in srgb,var(--subject-color) 10%,transparent);color:var(--subject-color)}
+.library-subject-index{color:#74859d;font:8px "Space Grotesk",sans-serif;letter-spacing:.13em}
+.library-subject-card h3{margin:19px 0 3px;font:600 19px "Space Grotesk",sans-serif}
+.library-subject-card h4{margin:0;color:var(--subject-color);font:600 13px "Noto Sans Devanagari",sans-serif}
+.library-subject-card p{min-height:40px;color:#9eacc1;font:10px/1.7 "Noto Sans Devanagari",sans-serif}
+.library-subject-meta{display:flex;gap:13px;padding:12px 0;border-top:1px solid #ffffff16;color:#8796aa;font:8px "Space Grotesk",sans-serif;letter-spacing:.1em}
+.library-subject-card>a{display:flex;align-items:center;gap:8px;color:var(--subject-color);text-decoration:none;font:600 10px "Space Grotesk",sans-serif}
+.library-empty{padding:25px;border:1px dashed #ffffff25;border-radius:18px;color:#9eacc1;text-align:center}
+.library-resource-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.library-resource-card{padding:20px;border:1px solid #ffffff19;border-radius:20px;background:linear-gradient(145deg,#142137,#09111f)}
+.library-resource-type{color:#d9bd88;font:600 8px "Space Grotesk",sans-serif;letter-spacing:.18em}
+.library-resource-icon{display:grid;place-items:center;width:43px;height:43px;margin:18px 0 12px;border-radius:14px;background:#e5c17f15;color:#e5c17f}
+.library-resource-card h3{font:600 15px/1.6 "Noto Sans Devanagari",sans-serif}
+.library-resource-card p{color:#8e9db2;font:10px/1.6 "Noto Sans Devanagari",sans-serif}
+.library-resource-card>div:last-child{display:flex;justify-content:space-between;align-items:center;margin-top:15px;padding-top:12px;border-top:1px solid #ffffff16;color:#8190a7;font:8px "Space Grotesk",sans-serif}
+.library-resource-card button{display:grid;place-items:center;width:32px;height:32px;border:1px solid #ffffff20;border-radius:50%;background:transparent;color:#9eacc1}
+.library-resource-card button.saved{border-color:#e5c17f;color:#e5c17f;background:#e5c17f15}
+.library-footer{display:flex;justify-content:space-between;margin-top:30px;color:#62718a;font:8px "Space Grotesk",sans-serif;letter-spacing:.18em}
+.library-footer span{color:#8ddac0}
+.library-subject-hero{padding:54px 0 35px}
+.library-subject-hero h1{font-size:clamp(40px,6vw,66px)}
+.library-subject-hero h1 em{font:600 clamp(24px,4vw,42px) "Noto Serif Devanagari",serif;letter-spacing:0}
+.library-path{display:flex;gap:12px;align-items:center;margin-top:23px;color:#8c9bb0;font:8px "Space Grotesk",sans-serif;letter-spacing:.14em}
+.library-path b{color:#d9bd88}
+.library-topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.library-topic-card{display:grid;grid-template-columns:38px minmax(0,1fr) 34px;gap:13px;align-items:start;padding:20px;border:1px solid #ffffff1c;border-radius:20px;background:linear-gradient(145deg,#152137,#09111f)}
+.library-topic-number{color:#8ddac0;font:500 22px "Playfair Display",serif}
+.library-topic-card>div:nth-child(2)>span{color:#d9bd88;font:600 8px "Space Grotesk",sans-serif;letter-spacing:.14em}
+.library-topic-card h3{margin:8px 0 5px;font:600 17px "Noto Serif Devanagari",serif}
+.library-topic-card p{margin:0;color:#8f9db1;font:10px/1.7 "Noto Sans Devanagari",sans-serif}
+.library-topic-resources{display:flex;gap:12px;margin-top:13px}
+.library-topic-resources span{display:flex;align-items:center;gap:4px;color:#8293a9;font:7px "Space Grotesk",sans-serif;letter-spacing:.08em}
+.library-topic-card>a{display:grid;place-items:center;width:34px;height:34px;border:1px solid #ffffff25;border-radius:50%;color:#8ddac0;text-decoration:none}
+.library-save{display:flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid #ffffff25;border-radius:99px;background:transparent;color:#aebbd0;font:600 8px "Space Grotesk",sans-serif;letter-spacing:.1em}
+.library-save.saved{border-color:#8ddac0;color:#8ddac0;background:#8ddac015}
+.library-reader{max-width:850px;margin:0 auto}
+.library-reader-head{padding:58px 0 36px;text-align:center}
+.library-reader-head h1{margin:20px 0 12px;color:#f3f1eb;font:700 clamp(32px,6vw,57px)/1.4 "Noto Serif Devanagari",serif;letter-spacing:-.04em}
+.library-reader-head>p{color:#aebbd0;font:14px/1.8 "Noto Sans Devanagari",sans-serif}
+.library-reader-actions{display:flex;justify-content:center;gap:22px;margin-top:20px;color:#8e9db2;font:8px "Space Grotesk",sans-serif;letter-spacing:.14em}
+.library-reader-body{max-width:740px;margin:auto}
+.library-reader-lead{padding:24px 27px;border-left:3px solid #8ddac0;border-radius:0 16px 16px 0;background:linear-gradient(110deg,#8ddac013,transparent);color:#d4dce8;font:15px/2 "Noto Sans Devanagari",sans-serif}
+.library-reader-body section{padding:26px 0;border-bottom:1px solid #ffffff17}
+.library-reader-body section>span{color:#d9bd88;font:600 8px "Space Grotesk",sans-serif;letter-spacing:.18em}
+.library-reader-body section h2{margin:10px 0;color:#9fe0ca;font:600 23px "Noto Serif Devanagari",serif}
+.library-reader-body section p{margin:0;color:#b7c3d4;font:14px/2 "Noto Sans Devanagari",sans-serif}
+.library-recall{margin:27px 0;padding:24px;border:1px solid #8ddac044;border-radius:20px;background:linear-gradient(135deg,#8ddac012,#142037)}
+.library-recall>span{color:#8ddac0;font:600 8px "Space Grotesk",sans-serif;letter-spacing:.2em}
+.library-recall h2{margin:10px 0 15px;font:600 22px "Space Grotesk",sans-serif}
+.library-recall p{display:flex;gap:9px;color:#c4cfdd;font:12px/1.8 "Noto Sans Devanagari",sans-serif}
+.library-recall svg{flex:0 0 auto;margin-top:3px;color:#8ddac0}
+.library-pyq{margin:27px 0;padding:24px;border:1px solid #70cfff35;border-radius:20px;background:#70cfff0b}
+.library-pyq>span{color:#8bcfff;font:600 8px "Space Grotesk",sans-serif;letter-spacing:.17em}
+.library-pyq h2{margin:10px 0;font:600 22px "Space Grotesk",sans-serif}
+.library-pyq p{color:#d0d9e6;font:14px/1.9 "Noto Sans Devanagari",sans-serif}
+.library-pyq small{color:#8bbbd6;font:600 8px "Space Grotesk",sans-serif;letter-spacing:.15em}
+.library-reader-bottom{display:flex;justify-content:space-between;gap:15px;margin:30px 0}
+.library-reader-bottom a{display:flex;align-items:center;gap:7px;color:#8ddac0;text-decoration:none;font:600 10px "Space Grotesk",sans-serif}
+@media(max-width:760px){
+ .library-app{padding:0 15px 32px}
+ .library-top{height:62px;font-size:7px;letter-spacing:.07em}
+ .library-hero{grid-template-columns:1fr;gap:22px;padding:38px 0 30px}
+ .library-hero h1{font-size:54px}
+ .library-hero-copy>p,.library-subject-hero>p{font-size:12px}
+ .library-hero-art{min-height:220px}
+ .library-book-stack{width:112px;height:138px}
+ .library-stats{gap:25px}
+ .library-stats strong{font-size:25px}
+ .library-tools{align-items:stretch;flex-direction:column;margin-bottom:22px}
+ .library-tools>span{font-size:7px}
+ .library-subject-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .library-subject-card{min-height:245px;padding:15px}
+ .library-subject-card h3{font-size:16px}
+ .library-subject-card h4{font-size:11px}
+ .library-subject-card p{font-size:9px}
+ .library-subject-meta{gap:8px;font-size:7px}
+ .library-resource-grid{grid-template-columns:1fr}
+ .library-section-head h2{font-size:30px}
+ .library-topic-grid{grid-template-columns:1fr}
+ .library-subject-hero{padding:38px 0 25px}
+ .library-subject-hero h1{font-size:42px}
+ .library-reader-head{padding:40px 0 26px}
+ .library-reader-head h1{font-size:32px}
+ .library-reader-lead{padding:18px;font-size:13px}
+ .library-reader-body section p{font-size:13px}
+ .library-reader-bottom{flex-direction:column}
+ .library-footer{font-size:7px;letter-spacing:.08em}
+}
+@media(max-width:380px){.library-subject-grid{grid-template-columns:1fr}.library-subject-card{min-height:220px}}
