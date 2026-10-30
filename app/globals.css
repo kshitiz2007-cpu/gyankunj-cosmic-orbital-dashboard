@@ -860,3 +860,90 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #f4c8
  .library-footer{font-size:7px;letter-spacing:.08em}
 }
 @media(max-width:380px){.library-subject-grid{grid-template-columns:1fr}.library-subject-card{min-height:220px}}
+
+/* My Progress analytics module */
+.progress-app{min-height:100vh;padding:0 22px 40px;color:#edf2fb;background:radial-gradient(ellipse at 82% 7%,rgba(157,102,198,.2),transparent 36%),radial-gradient(ellipse at 4% 70%,rgba(83,91,145,.12),transparent 34%),#050914}
+.progress-top{height:72px;max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff19;color:#9eacc1;font:600 9px "Space Grotesk",sans-serif;letter-spacing:.16em}
+.progress-back{display:flex;align-items:center;gap:9px;color:#f2d49c;text-decoration:none}
+.progress-status{color:#d7a4f3}
+.progress-wrap{max-width:1120px;margin:auto}
+.progress-hero{display:grid;grid-template-columns:1fr 260px;align-items:center;gap:30px;padding:54px 0 35px}
+.progress-kicker{color:#d6a5f0;font:600 8px "Space Grotesk",sans-serif;letter-spacing:.2em}
+.progress-hero h1{margin:17px 0 12px;font:600 clamp(42px,6vw,70px)/1 "Space Grotesk",sans-serif;letter-spacing:-.07em}
+.progress-hero h1 em,.progress-heading h2 em,.progress-insight h2 em{font-family:"Playfair Display",serif;color:#d9a5f4;font-weight:500}
+.progress-hero>div:first-child>p{max-width:590px;color:#aebbd0;font:13px/1.9 "Noto Sans Devanagari",sans-serif}
+.progress-hero-actions{display:flex;align-items:center;gap:18px;margin-top:23px}
+.progress-hero-actions a,.progress-insight>a{display:flex;align-items:center;gap:9px;padding:12px 16px;border-radius:99px;background:linear-gradient(120deg,#e4c2f2,#b98bd4);color:#1b1421;text-decoration:none;font:700 10px "Space Grotesk",sans-serif}
+.progress-hero-actions>span{color:#8795aa;font:7px "Space Grotesk",sans-serif;letter-spacing:.13em}
+.progress-hero-ring{display:grid;place-items:center;min-height:220px;border:1px solid #d48cff2a;border-radius:28px;background:radial-gradient(circle at 50% 50%,#d48cff19,transparent 65%),linear-gradient(145deg,#182039,#0b1120)}
+.progress-ring{display:grid;place-items:center;width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--ring) calc(var(--value)*1%),#ffffff13 0);position:relative}
+.progress-ring:before{content:"";position:absolute;inset:12px;border-radius:50%;background:#111a2c;border:1px solid #ffffff13}
+.progress-ring>div{position:relative;z-index:1;display:grid;gap:4px;text-align:center}
+.progress-ring strong{color:#f0d8fc;font:600 35px "Space Grotesk",sans-serif}
+.progress-ring span{color:#9d8bab;font:600 7px "Space Grotesk",sans-serif;letter-spacing:.12em}
+.progress-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.progress-kpis article{padding:17px;border:1px solid #ffffff1b;border-radius:19px;background:linear-gradient(145deg,#172038,#0a1120)}
+.progress-kpis article>span{display:flex;align-items:center;gap:7px;color:#a99ab9;font:600 8px "Space Grotesk",sans-serif;letter-spacing:.1em}
+.progress-kpis article>span svg{color:#d7a4f3}
+.progress-kpis article>strong{display:block;margin:14px 0 3px;color:#f2e9f8;font:600 29px "Space Grotesk",sans-serif}
+.progress-kpis article>strong small{font-size:10px;color:#b2a0c1}
+.progress-kpis article>p{margin:0;color:#7f8da3;font:9px "DM Sans",sans-serif}
+.progress-main-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:13px}
+.progress-panel{padding:22px;border:1px solid #ffffff1b;border-radius:22px;background:linear-gradient(145deg,#151f35,#09111f)}
+.progress-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:21px}
+.progress-heading h2{margin:7px 0 0;font:600 26px "Space Grotesk",sans-serif;letter-spacing:-.05em}
+.progress-heading>span{color:#8190a7;font:8px "Space Grotesk",sans-serif;letter-spacing:.12em}
+.progress-subject{margin:18px 0}
+.progress-subject>div:first-child{display:flex;justify-content:space-between;margin-bottom:9px}
+.progress-subject b{color:#dbe2ee;font:600 11px "DM Sans",sans-serif}
+.progress-subject span{color:#b6c2d4;font:10px "Space Grotesk",sans-serif}
+.progress-subject span i{margin-left:7px;color:#83d8b4;font-style:normal;font-size:8px}
+.progress-bar{height:7px;overflow:hidden;border-radius:99px;background:#ffffff13}
+.progress-bar i{display:block;height:100%;border-radius:99px;box-shadow:0 0 13px currentColor}
+.progress-activity-panel .progress-heading select{padding:7px 9px;border:1px solid #ffffff25;border-radius:9px;background:#101a2b;color:#b8c5d6;font:8px "Space Grotesk",sans-serif}
+.progress-heatmap{display:grid;grid-template-columns:repeat(13,1fr);gap:7px}
+.progress-heatmap i,.progress-legend i{aspect-ratio:1;border-radius:4px;background:#ffffff10}
+.progress-heatmap i[data-level="1"],.progress-legend i[data-level="1"]{background:#51416a}
+.progress-heatmap i[data-level="2"],.progress-legend i[data-level="2"]{background:#79569b}
+.progress-heatmap i[data-level="3"],.progress-legend i[data-level="3"]{background:#a56fc7}
+.progress-heatmap i[data-level="4"],.progress-legend i[data-level="4"]{background:#d49af0}
+.progress-legend{display:flex;align-items:center;justify-content:flex-end;gap:5px;margin-top:14px;color:#78869b;font:7px "Space Grotesk",sans-serif}
+.progress-legend i{width:12px}
+.progress-activity-foot{display:flex;justify-content:space-between;margin-top:23px;padding-top:14px;border-top:1px solid #ffffff14;color:#8795aa;font:8px "Space Grotesk",sans-serif;letter-spacing:.1em}
+.progress-activity-foot span{display:flex;align-items:center;gap:6px}
+.progress-activity-foot b{color:#d6a5f0}
+.progress-lower{display:grid;grid-template-columns:1.2fr .8fr;gap:13px;margin-top:13px}
+.progress-recent{padding-bottom:10px}
+.progress-recent-row{display:grid;grid-template-columns:38px minmax(0,1fr) auto 16px;align-items:center;gap:12px;padding:13px 0;border-top:1px solid #ffffff13;color:inherit;text-decoration:none}
+.progress-recent-icon{display:grid;place-items:center;width:36px;height:36px;border:1px solid #d48cff33;border-radius:12px;background:#d48cff12;color:#d8a5f1}
+.progress-recent-row>span:nth-child(2){display:grid;gap:3px}
+.progress-recent-row small{color:#d4a2ef;font:600 7px "Space Grotesk",sans-serif;letter-spacing:.12em}
+.progress-recent-row b{font:600 11px "DM Sans",sans-serif}
+.progress-recent-row em{color:#8e9db2;font:9px "Noto Sans Devanagari",sans-serif;font-style:normal}
+.progress-recent-row>strong{color:#d6c4e2;font:600 9px "Space Grotesk",sans-serif}
+.progress-recent-row>svg{color:#8795aa}
+.progress-insight{display:flex;flex-direction:column;align-items:flex-start;background:radial-gradient(circle at 100% 0,#d48cff1c,transparent 50%),linear-gradient(145deg,#1b203a,#0a1120)}
+.progress-insight-icon{display:grid;place-items:center;width:54px;height:54px;margin:24px 0 12px;border:1px solid #d48cff55;border-radius:17px;color:#d9a5f4;background:#d48cff15}
+.progress-insight h2{margin:5px 0 10px;font:600 24px "Space Grotesk",sans-serif}
+.progress-insight p{flex:1;color:#aebbd0;font:11px/1.8 "Noto Sans Devanagari",sans-serif}
+.progress-insight>a{margin-top:18px}
+.progress-footer{display:flex;justify-content:space-between;margin-top:30px;color:#62718a;font:8px "Space Grotesk",sans-serif;letter-spacing:.17em}
+.progress-footer span{color:#a98bbd}
+@media(max-width:760px){
+ .progress-app{padding:0 15px 32px}
+ .progress-top{height:62px;font-size:7px;letter-spacing:.06em}
+ .progress-hero{grid-template-columns:1fr;gap:18px;padding:38px 0 25px}
+ .progress-hero h1{font-size:48px}
+ .progress-hero>div:first-child>p{font-size:12px}
+ .progress-hero-ring{min-height:185px}
+ .progress-ring{width:140px;height:140px}
+ .progress-kpis{grid-template-columns:repeat(2,1fr);gap:8px}
+ .progress-kpis article{padding:14px}
+ .progress-kpis article>span{font-size:7px}
+ .progress-kpis article>strong{font-size:25px}
+ .progress-main-grid,.progress-lower{grid-template-columns:1fr}
+ .progress-panel{padding:18px}
+ .progress-heatmap{grid-template-columns:repeat(13,1fr);gap:5px}
+ .progress-recent-row{grid-template-columns:34px minmax(0,1fr) auto 14px;gap:8px}
+ .progress-footer{font-size:7px;letter-spacing:.07em}
+}
