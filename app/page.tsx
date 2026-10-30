@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -47,7 +48,21 @@ function Icon({icon,size=22}: {icon: typeof Home01Icon;size?:number}) {
 }
 
 function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:number;reduceMotion:boolean;onSelect:(item:NodeItem)=>void}) {
-  return <motion.button
+  return item.id === "drill" ? <motion.a
+    href={item.href} aria-label={item.title+" "+item.subtitle}
+    className="orb-node" style={{"--node":item.color,"--i":index} as React.CSSProperties}
+    initial={reduceMotion?false:{opacity:0,scale:.72,y:18}}
+    animate={{opacity:1,scale:1,y:0}}
+    transition={{delay:.16+index*.07,duration:.7,ease:[.2,.8,.2,1]}}
+    whileHover={reduceMotion?undefined:{scale:1.045,y:-4}}
+    whileTap={{scale:.96}}
+    onClick={()=>{}}
+  >
+    <span className="orb-node__icon" id={item.id==="ai"||item.id==="live"?item.id:undefined}><Icon icon={item.icon} size={31}/></span>
+    <span className="orb-node__title">{item.title}<br/>{item.subtitle}</span>
+    <span className="orb-node__sub">{item.id==="drill"?"PRACTICE · IMPROVE":item.id==="editorial"?"ANALYSE · CONNECT":item.id==="recall"?"REVISE · RETAIN":item.id==="library"?"NOTES · PYQ · TESTS":item.id==="progress"?"TRACK · GROW":item.id==="live"?"LEARN · INTERACT":item.id==="ai"?"PLAN · SOLVE · EXPLAIN":"MAP · MASTER"}</span>
+    <span className="orb-node__arrow"><Icon icon={ArrowUpRight01Icon} size={17}/></span>
+  </motion.a> : <motion.button
     type="button" aria-label={item.title+" "+item.subtitle}
     className="orb-node" style={{"--node":item.color,"--i":index} as React.CSSProperties}
     initial={reduceMotion?false:{opacity:0,scale:.72,y:18}}
@@ -57,9 +72,9 @@ function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:nu
     whileTap={{scale:.96}}
     onClick={()=>onSelect(item)}
   >
-    <span className="orb-node__icon" id={item.id==="ai"||item.id==="live"?item.id:undefined}><Icon icon={item.icon} size={31}/></span>
+    <span className="orb-node__icon"><Icon icon={item.icon} size={31}/></span>
     <span className="orb-node__title">{item.title}<br/>{item.subtitle}</span>
-    <span className="orb-node__sub">{item.id==="drill"?"PRACTICE · IMPROVE":item.id==="editorial"?"ANALYSE · CONNECT":item.id==="recall"?"REVISE · RETAIN":item.id==="library"?"NOTES · PYQ · TESTS":item.id==="progress"?"TRACK · GROW":item.id==="live"?"LEARN · INTERACT":item.id==="ai"?"PLAN · SOLVE · EXPLAIN":"MAP · MASTER"}</span>
+    <span className="orb-node__sub">{item.id==="editorial"?"ANALYSE · CONNECT":item.id==="recall"?"REVISE · RETAIN":item.id==="library"?"NOTES · PYQ · TESTS":item.id==="progress"?"TRACK · GROW":item.id==="live"?"LEARN · INTERACT":item.id==="ai"?"PLAN · SOLVE · EXPLAIN":"MAP · MASTER"}</span>
     <span className="orb-node__arrow"><Icon icon={ArrowUpRight01Icon} size={17}/></span>
   </motion.button>;
 }
@@ -106,7 +121,7 @@ export default function Dashboard() {
         <button className="round-action" aria-label="Read today's editorial" onClick={()=>setSelected(nodes[1])}><Icon icon={ArrowUpRight01Icon}/></button>
       </motion.article>
       <motion.article className="drill-panel" id="practice" initial={reduceMotion?false:{opacity:0,y:22}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}}>
-        <div className="drill-heading"><span className="target-icon"><Icon icon={Target01Icon} size={27}/></span><span>TODAY&apos;S DRILL</span><button aria-label="Continue drill" onClick={()=>setSelected(nodes[0])}><Icon icon={ArrowUpRight01Icon}/></button></div>
+        <div className="drill-heading"><span className="target-icon"><Icon icon={Target01Icon} size={27}/></span><span>TODAY&apos;S DRILL</span><Link className="drill-open-link" aria-label="Continue drill" href="/practice/daily"><Icon icon={ArrowUpRight01Icon}/></Link></div>
         <div className="drill-stats"><div><strong>15 <small>/ 20</small></strong><span>Questions</span></div><div className="progress-ring"><span>75%</span></div></div>
         <div className="drill-foot"><span><Icon icon={CheckmarkCircle02Icon} size={15}/> DAILY PRACTICE</span><span>POLITY</span></div>
       </motion.article>
