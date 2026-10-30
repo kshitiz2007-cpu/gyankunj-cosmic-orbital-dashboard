@@ -48,21 +48,7 @@ function Icon({icon,size=22}: {icon: typeof Home01Icon;size?:number}) {
 }
 
 function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:number;reduceMotion:boolean;onSelect:(item:NodeItem)=>void}) {
-  return item.id === "drill" ? <motion.a
-    href={item.href} aria-label={item.title+" "+item.subtitle}
-    className="orb-node" style={{"--node":item.color,"--i":index} as React.CSSProperties}
-    initial={reduceMotion?false:{opacity:0,scale:.72,y:18}}
-    animate={{opacity:1,scale:1,y:0}}
-    transition={{delay:.16+index*.07,duration:.7,ease:[.2,.8,.2,1]}}
-    whileHover={reduceMotion?undefined:{scale:1.045,y:-4}}
-    whileTap={{scale:.96}}
-    onClick={()=>{}}
-  >
-    <span className="orb-node__icon"><Icon icon={item.icon} size={31}/></span>
-    <span className="orb-node__title">{item.title}<br/>{item.subtitle}</span>
-    <span className="orb-node__sub">{item.id==="drill"?"PRACTICE · IMPROVE":item.id==="editorial"?"ANALYSE · CONNECT":item.id==="recall"?"REVISE · RETAIN":item.id==="library"?"NOTES · PYQ · TESTS":item.id==="progress"?"TRACK · GROW":item.id==="live"?"LEARN · INTERACT":item.id==="ai"?"PLAN · SOLVE · EXPLAIN":"MAP · MASTER"}</span>
-    <span className="orb-node__arrow"><Icon icon={ArrowUpRight01Icon} size={17}/></span>
-  </motion.a> : <motion.button
+  return <motion.button
     type="button" aria-label={item.title+" "+item.subtitle}
     className="orb-node" style={{"--node":item.color,"--i":index} as React.CSSProperties}
     initial={reduceMotion?false:{opacity:0,scale:.72,y:18}}
@@ -70,11 +56,11 @@ function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:nu
     transition={{delay:.16+index*.07,duration:.7,ease:[.2,.8,.2,1]}}
     whileHover={reduceMotion?undefined:{scale:1.045,y:-4}}
     whileTap={{scale:.96}}
-    onClick={()=>onSelect(item)}
+    onClick={()=>item.id==="drill"?window.location.assign(item.href):onSelect(item)}
   >
     <span className="orb-node__icon"><Icon icon={item.icon} size={31}/></span>
     <span className="orb-node__title">{item.title}<br/>{item.subtitle}</span>
-    <span className="orb-node__sub">{item.id==="editorial"?"ANALYSE · CONNECT":item.id==="recall"?"REVISE · RETAIN":item.id==="library"?"NOTES · PYQ · TESTS":item.id==="progress"?"TRACK · GROW":item.id==="live"?"LEARN · INTERACT":item.id==="ai"?"PLAN · SOLVE · EXPLAIN":"MAP · MASTER"}</span>
+    <span className="orb-node__sub">{item.id==="drill"?"PRACTICE · IMPROVE":item.id==="editorial"?"ANALYSE · CONNECT":item.id==="recall"?"REVISE · RETAIN":item.id==="library"?"NOTES · PYQ · TESTS":item.id==="progress"?"TRACK · GROW":item.id==="live"?"LEARN · INTERACT":item.id==="ai"?"PLAN · SOLVE · EXPLAIN":"MAP · MASTER"}</span>
     <span className="orb-node__arrow"><Icon icon={ArrowUpRight01Icon} size={17}/></span>
   </motion.button>;
 }
