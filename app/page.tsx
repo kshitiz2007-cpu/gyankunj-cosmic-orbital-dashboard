@@ -103,9 +103,18 @@ export default function Dashboard() {
     </section>
 
     <section className="feature-row" id="study">
-      <motion.article className="editorial" initial={reduceMotion?false:{opacity:0,y:22}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}}>
-        <div className="editorial-art"><span className="editorial-kicker"><i/> TODAY&apos;S EDITORIAL</span><div className="editorial-copy"><h1>भारत का<br/>सेमीकंडक्टर मिशन</h1><p>आत्मनिर्भरता, वैश्विक आपूर्ति शृंखला और रणनीतिक क्षमता का विश्लेषण।</p><div className="editorial-meta"><span>◫ &nbsp;08 MIN READ</span><b>SCIENCE & TECHNOLOGY</b></div></div><div className="chip-art"><div className="chip-core"/></div></div>
-        <button className="round-action" aria-label="Read today's editorial" onClick={()=>setSelected(nodes[1])}><Icon icon={ArrowUpRight01Icon}/></button>
+      <motion.article className="editorial editorial-bento" initial={reduceMotion?false:{opacity:0,y:26}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}} transition={{duration:.7,ease:[.2,.8,.2,1]}}>
+        <div className="editorial-bento__top"><span><i/> DAILY CRUX / EDITION 001</span><span>GYANKUNJ EDITORIAL DESK <b>↗</b></span></div>
+        <div className="editorial-bento__body">
+          <div className="editorial-bento__copy">
+            <span className="editorial-bento__eyebrow">TODAY&apos;S EDITORIAL <i>·</i> SCIENCE & TECHNOLOGY</span>
+            <h1><motion.span initial={reduceMotion?false:{y:"105%"}} whileInView={{y:0}} viewport={{once:true}} transition={{duration:.8,delay:.12}}>भारत का</motion.span><motion.span initial={reduceMotion?false:{y:"105%"}} whileInView={{y:0}} viewport={{once:true}} transition={{duration:.8,delay:.22}}>सेमीकंडक्टर</motion.span><motion.span className="editorial-bento__accent" initial={reduceMotion?false:{y:"105%"}} whileInView={{y:0}} viewport={{once:true}} transition={{duration:.8,delay:.32}}>मिशन<span>.</span></motion.span></h1>
+            <p>आत्मनिर्भरता से रणनीतिक शक्ति तक — भारत की चिप क्षमता, वैश्विक आपूर्ति शृंखला और तकनीकी संप्रभुता का विश्लेषण।</p>
+            <div className="editorial-bento__bottom"><span>◷ &nbsp;08 MIN READ</span><span>UPSC · GS III</span><Link href="/current-affairs" className="editorial-bento__cta">READ THE EDITORIAL <b>↗</b></Link></div>
+          </div>
+          <div className="editorial-bento__visual" aria-hidden="true"><div className="editorial-bento__visual-grid"/><div className="editorial-bento__orbit editorial-bento__orbit--one"/><div className="editorial-bento__orbit editorial-bento__orbit--two"/><div className="editorial-bento__chip"><span>INDIA</span><b>Si</b><small>SEMICONDUCTOR<br/>ECOSYSTEM</small></div><div className="editorial-bento__serial">01 / 12</div><div className="editorial-bento__vertical">KNOWLEDGE IN MOTION</div></div>
+        </div>
+        <div className="editorial-bento__ticker"><span>READ · REFLECT · REVISE</span><span>DAILY CRUX <b>✳</b> DAILY CRUX <b>✳</b> DAILY CRUX</span></div>
       </motion.article>
       <motion.article className="drill-panel" id="practice" initial={reduceMotion?false:{opacity:0,y:22}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}}>
         <div className="drill-heading"><span className="target-icon"><Icon icon={Target01Icon} size={27}/></span><span>TODAY&apos;S DRILL</span><Link className="drill-open-link" aria-label="Continue drill" href="/practice/daily"><Icon icon={ArrowUpRight01Icon}/></Link></div>
