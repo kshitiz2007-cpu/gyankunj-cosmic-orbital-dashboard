@@ -8,7 +8,7 @@ import {
   Notebook01Icon, NewspaperIcon, BookOpen01Icon, Layers01Icon,
   ChartLineData01Icon, UserGroupIcon, Brain01Icon, Compass01Icon,
   ArrowUpRight01Icon, FireIcon, Target01Icon, SparklesIcon,
-  GraduationScrollIcon, Atom01Icon, Menu01Icon, CheckmarkCircle02Icon
+  GraduationScrollIcon, Atom01Icon, CheckmarkCircle02Icon
 } from "@hugeicons/core-free-icons";
 
 type NodeItem = {
@@ -102,11 +102,11 @@ export default function Dashboard() {
 
     <section className="feature-row" id="study">
       <motion.article className="editorial" initial={reduceMotion?false:{opacity:0,y:22}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}}>
-        <div className="editorial-art"><span className="editorial-kicker"><i/> TODAY'S EDITORIAL</span><div className="editorial-copy"><h1>भारत का<br/>सेमीकंडक्टर मिशन</h1><p>आत्मनिर्भरता, वैश्विक आपूर्ति शृंखला और रणनीतिक क्षमता का विश्लेषण।</p><div className="editorial-meta"><span>◫ &nbsp;08 MIN READ</span><b>SCIENCE & TECHNOLOGY</b></div></div><div className="chip-art"><div className="chip-core"/></div></div>
+        <div className="editorial-art"><span className="editorial-kicker"><i/> TODAY&apos;S EDITORIAL</span><div className="editorial-copy"><h1>भारत का<br/>सेमीकंडक्टर मिशन</h1><p>आत्मनिर्भरता, वैश्विक आपूर्ति शृंखला और रणनीतिक क्षमता का विश्लेषण।</p><div className="editorial-meta"><span>◫ &nbsp;08 MIN READ</span><b>SCIENCE & TECHNOLOGY</b></div></div><div className="chip-art"><div className="chip-core"/></div></div>
         <button className="round-action" aria-label="Read today's editorial" onClick={()=>setSelected(nodes[1])}><Icon icon={ArrowUpRight01Icon}/></button>
       </motion.article>
       <motion.article className="drill-panel" id="practice" initial={reduceMotion?false:{opacity:0,y:22}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}}>
-        <div className="drill-heading"><span className="target-icon"><Icon icon={Target01Icon} size={27}/></span><span>TODAY'S DRILL</span><button aria-label="Continue drill" onClick={()=>setSelected(nodes[0])}><Icon icon={ArrowUpRight01Icon}/></button></div>
+        <div className="drill-heading"><span className="target-icon"><Icon icon={Target01Icon} size={27}/></span><span>TODAY&apos;S DRILL</span><button aria-label="Continue drill" onClick={()=>setSelected(nodes[0])}><Icon icon={ArrowUpRight01Icon}/></button></div>
         <div className="drill-stats"><div><strong>15 <small>/ 20</small></strong><span>Questions</span></div><div className="progress-ring"><span>75%</span></div></div>
         <div className="drill-foot"><span><Icon icon={CheckmarkCircle02Icon} size={15}/> DAILY PRACTICE</span><span>POLITY</span></div>
       </motion.article>
@@ -119,7 +119,7 @@ export default function Dashboard() {
 
     <nav className="floating-dock" aria-label="Primary navigation">{nav.map((item)=><a key={item.name} href={item.href} onClick={()=>setActive(item.name)} className={active===item.name?"active":""}><span className={item.name==="AI"?"dock-ai":""}><Icon icon={item.icon} size={21}/></span><small>{item.name}</small></a>)}</nav>
 
-    <AnimatePresence>{notice&&<motion.div className="notice-pop" initial={{opacity:0,y:-8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}}><strong>You're all caught up.</strong><span>No new notifications right now.</span></motion.div>}</AnimatePresence>
+    <AnimatePresence>{notice&&<motion.div className="notice-pop" initial={{opacity:0,y:-8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}}><strong>You&apos;re all caught up.</strong><span>No new notifications right now.</span></motion.div>}</AnimatePresence>
     <AnimatePresence>{selected&&<motion.div className="modal-backdrop" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setSelected(null)}><motion.div className="route-modal" role="dialog" aria-modal="true" onClick={e=>e.stopPropagation()} initial={{y:20,scale:.96}} animate={{y:0,scale:1}} exit={{y:12,scale:.98}}><button className="modal-close" onClick={()=>setSelected(null)}>×</button><span className="eyebrow">GYANKUNJ / LEARNING SPACE</span><h2>{selected.title} {selected.subtitle}</h2><p>This destination is ready to connect to its dedicated learning module. Route: <code>{selected.href}</code></p><button className="modal-primary" onClick={()=>setSelected(null)}>Continue exploring <Icon icon={ArrowUpRight01Icon}/></button></motion.div></motion.div>}</AnimatePresence>
   </main>;
 }
