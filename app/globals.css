@@ -1014,3 +1014,67 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #f4c8
 .editorial-bento__ticker b{color:#a45d42;font-size:12px}
 @media(max-width:760px){.editorial-bento{min-height:0;border-radius:20px}.editorial-bento__top{padding:13px 15px;font-size:6px;letter-spacing:.1em}.editorial-bento__body{grid-template-columns:minmax(0,1fr) 125px;padding:9px 15px 16px;min-height:255px}.editorial-bento__copy h1{font-size:clamp(31px,7vw,43px)}.editorial-bento__eyebrow{font-size:6px;letter-spacing:.08em}.editorial-bento__copy>p{font-size:10px;line-height:1.7}.editorial-bento__visual{min-height:190px}.editorial-bento__chip{width:104px;border-radius:19px}.editorial-bento__chip>b{font-size:42px}.editorial-bento__chip:before{inset:9px}.editorial-bento__chip:after{inset:-6px}.editorial-bento__vertical{font-size:5px}.editorial-bento__bottom{gap:6px}.editorial-bento__bottom>span{font-size:6px;padding:6px 7px}.editorial-bento__cta{padding:9px 10px;font-size:6px;gap:7px}.editorial-bento__ticker{padding:10px 15px;font-size:6px;letter-spacing:.1em}}
 @media(max-width:420px){.editorial-bento__body{grid-template-columns:minmax(0,1fr) 92px;padding-left:12px;padding-right:10px}.editorial-bento__copy h1{font-size:30px}.editorial-bento__visual{min-height:170px}.editorial-bento__chip{width:83px}.editorial-bento__chip>b{font-size:35px}.editorial-bento__bottom{gap:5px}.editorial-bento__bottom>span{font-size:5px}.editorial-bento__cta{font-size:5px;padding:8px}.editorial-bento__top>span:last-child{font-size:5px}}
+
+
+/* Editorial art direction v2 — open magazine composition, not a rectangular card */
+.feature-row{grid-template-columns:minmax(0,1.7fr) minmax(275px,.8fr);gap:clamp(20px,3vw,42px);align-items:center}
+.editorial-bento{min-height:410px;overflow:visible;border:0;border-radius:0;background:transparent;box-shadow:none;color:#f1eee7}
+.editorial-bento:after{display:none}
+.editorial-bento__top{padding:0 4px 15px;border-bottom:1px solid #ffffff24;color:#aebbd0}
+.editorial-bento__top>span:first-child{color:#e6c58b}
+.editorial-bento__top i{background:#f17b70}
+.editorial-bento__top b{border-color:#e4c48b;color:#e4c48b}
+.editorial-bento__body{grid-template-columns:minmax(0,1.25fr) minmax(230px,.75fr);min-height:330px;padding:24px 0 20px;gap:0}
+.editorial-bento__copy{justify-content:center;padding:0 0 0 5px}
+.editorial-bento__eyebrow{color:#d5b980;font-size:8px}
+.editorial-bento__copy h1{position:relative;z-index:2;margin:22px 0 13px;color:#f2eee5;font-size:clamp(42px,5.4vw,76px);line-height:1.08;letter-spacing:-.07em;text-shadow:0 12px 40px #0006}
+.editorial-bento__copy h1>span{white-space:nowrap}
+.editorial-bento__accent{color:#e4bd7d}.editorial-bento__accent span{color:#f17b70}
+.editorial-bento__copy>p{max-width:470px;color:#aebbd0;font-size:13px;line-height:1.95}
+.editorial-bento__bottom{margin-top:19px;color:#8998ad}
+.editorial-bento__bottom>span{border:1px solid #ffffff25;color:#b8c5d8}
+.editorial-bento__cta{margin-left:5px;border:1px solid #e5c68d;background:#e5c68d;color:#111925;box-shadow:0 10px 30px #d8ad6422}
+.editorial-bento__cta:hover{background:#f2d9a8;color:#111925}
+.editorial-bento__visual{min-height:320px;overflow:visible;isolation:isolate}
+.editorial-bento__visual-grid{inset:0;background:radial-gradient(circle at 50% 50%,#e5b86c22,transparent 58%),repeating-linear-gradient(0deg,transparent 0 24px,#8ca4bc13 25px),repeating-linear-gradient(90deg,transparent 0 24px,#8ca4bc13 25px);mask-image:radial-gradient(ellipse,#000 5%,transparent 72%)}
+.editorial-bento__orbit{width:105%;border-color:#d9b77b70;transform:translate(-50%,-50%) rotate(-28deg) scaleY(.48)}
+.editorial-bento__orbit--two{width:128%;border-color:#7ab6d35c;transform:translate(-50%,-50%) rotate(42deg) scaleY(.62)}
+.editorial-bento__chip{width:clamp(145px,16vw,205px);border-radius:34% 66% 57% 43% / 43% 38% 62% 57%;transform:rotate(-12deg);background:radial-gradient(circle at 32% 24%,#40546a,#111d2c 65%,#080e18);box-shadow:0 25px 75px #000b,inset 0 0 0 8px #ffffff08,inset 0 0 55px #e0a65b30}
+.editorial-bento__chip:before{inset:13px;border-radius:32% 68% 55% 45% / 45% 40% 60% 55%}
+.editorial-bento__chip:after{inset:-18px;border-radius:42% 58% 49% 51% / 51% 44% 56% 49%;border-style:dashed;animation:editorial-orbit 28s linear infinite}
+.editorial-bento__chip>b{font-size:clamp(62px,7vw,88px);color:#f0d39b}
+.editorial-bento__chip>span{color:#9ec4d6}
+.editorial-bento__chip>small{color:#c0cbd7}
+.editorial-bento__serial{right:7%;bottom:2%;color:#8d9eb4}
+.editorial-bento__vertical{right:1%;color:#91a2b8}
+.editorial-bento__ticker{padding:12px 4px 0;border-top:1px solid #ffffff24;color:#8c9bb0}
+.editorial-bento__ticker>span:last-child{color:#b5c1d1}
+.editorial-bento__ticker b{color:#e7c58a}
+@keyframes editorial-orbit{to{transform:rotate(360deg)}}
+@media(max-width:760px){
+ .feature-row{grid-template-columns:1fr;gap:16px}
+ .editorial-bento{min-height:0;padding:4px 0 8px}
+ .editorial-bento__top{padding:0 1px 12px;font-size:6px}
+ .editorial-bento__body{grid-template-columns:minmax(0,1fr) 116px;min-height:260px;padding:20px 0 13px}
+ .editorial-bento__copy{padding-left:0}
+ .editorial-bento__copy h1{font-size:clamp(32px,8vw,48px);margin:17px 0 10px}
+ .editorial-bento__copy>p{font-size:10px;line-height:1.8}
+ .editorial-bento__visual{min-height:220px}
+ .editorial-bento__chip{width:100px;border-radius:34% 66% 57% 43% / 43% 38% 62% 57%}
+ .editorial-bento__chip>b{font-size:45px}
+ .editorial-bento__chip>small{font-size:5px}
+ .editorial-bento__chip:after{inset:-10px}
+ .editorial-bento__bottom{gap:5px}
+ .editorial-bento__bottom>span{font-size:5px;padding:6px}
+ .editorial-bento__cta{font-size:6px;padding:9px 10px;gap:7px}
+ .editorial-bento__vertical{font-size:5px}
+ .editorial-bento__ticker{padding:10px 0 0;font-size:6px}
+}
+@media(max-width:390px){
+ .editorial-bento__body{grid-template-columns:minmax(0,1fr) 88px}
+ .editorial-bento__copy h1{font-size:29px}
+ .editorial-bento__chip{width:78px}
+ .editorial-bento__chip>b{font-size:36px}
+ .editorial-bento__bottom>span{font-size:5px}
+ .editorial-bento__cta{font-size:5px;padding:8px}
+}
