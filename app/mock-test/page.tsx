@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import {useEffect,useState} from "react";
+import {useState} from "react";
 import {motion} from "motion/react";
 import {HugeiconsIcon} from "@hugeicons/react";
-import {ArrowLeft01Icon,ArrowUpRight01Icon,Clock01Icon,Notebook01Icon,CheckmarkCircle02Icon,Target01Icon} from "@hugeicons/core-free-icons";
+import {ArrowLeft01Icon,ArrowUpRight01Icon,Notebook01Icon,CheckmarkCircle02Icon,Target01Icon} from "@hugeicons/core-free-icons";
 
 const tests=[
  {id:"gs1",name:"UPSC CSE · General Studies Paper I",tag:"PRELIMS",questions:100,duration:"2 HOURS",marks:200,negative:"−⅓ mark",status:"Question bank setup"},
