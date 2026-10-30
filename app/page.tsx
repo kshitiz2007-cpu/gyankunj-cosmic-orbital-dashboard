@@ -57,7 +57,7 @@ function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:nu
     whileTap={{scale:.96}}
     onClick={()=>onSelect(item)}
   >
-    <span className="orb-node__icon"><Icon icon={item.icon} size={31}/></span>
+    <span className="orb-node__icon" id={item.id==="ai"||item.id==="live"?item.id:undefined}><Icon icon={item.icon} size={31}/></span>
     <span className="orb-node__title">{item.title}<br/>{item.subtitle}</span>
     <span className="orb-node__sub">{item.id==="drill"?"PRACTICE · IMPROVE":item.id==="editorial"?"ANALYSE · CONNECT":item.id==="recall"?"REVISE · RETAIN":item.id==="library"?"NOTES · PYQ · TESTS":item.id==="progress"?"TRACK · GROW":item.id==="live"?"LEARN · INTERACT":item.id==="ai"?"PLAN · SOLVE · EXPLAIN":"MAP · MASTER"}</span>
     <span className="orb-node__arrow"><Icon icon={ArrowUpRight01Icon} size={17}/></span>
@@ -78,10 +78,10 @@ export default function Dashboard() {
       <a className="brand" href="#home" aria-label="Gyankunj home">
         <span className="brand-mark">✳</span><span><strong>GYANKUNJ</strong><small>CIVILPREP · LEARN WITHOUT LIMITS</small></span>
       </a>
-      <label className="searchbox"><Icon icon={Search01Icon}/><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search topics, notes, tests..."/><Icon icon={SparklesIcon}/></label>
-      <div className="top-actions">
+      <label className="searchbox"><Icon icon={Search01Icon}/><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search subjects..."/><Icon icon={SparklesIcon}/></label>
+      <div className="top-actions" id="profile">
         <button className="icon-button" aria-label="Notifications" onClick={()=>setNotice(v=>!v)}><Icon icon={Notification01Icon}/><i/></button>
-        <button className="avatar" aria-label="Open profile">KV</button>
+        <button className="avatar" aria-label="Open profile" onClick={()=>setSelected({id:"profile",title:"STUDENT",subtitle:"PROFILE",color:"#f4c879",icon:UserCircleIcon,href:"/profile",angle:0})}>KV</button>
       </div>
     </header>
 
@@ -114,7 +114,7 @@ export default function Dashboard() {
 
     <section className="subject-section" id="library">
       <div className="section-heading"><span>EXPLORE YOUR TERRITORY</span><small>SUBJECTS / 05</small></div>
-      <div className="subject-strip">{filtered.map(subject=><button className="subject-pill" key={subject.name} style={{"--subject":subject.color} as React.CSSProperties}><Icon icon={subject.icon} size={20}/>{subject.name}</button>)}{filtered.length===0&&<span className="empty-search">No matching subjects</span>}</div>
+      <div className="subject-strip">{filtered.map(subject=><button className="subject-pill" key={subject.name} style={{"--subject":subject.color} as React.CSSProperties} onClick={()=>setSelected({id:subject.name.toLowerCase().replaceAll(" ","-"),title:subject.name.toUpperCase(),subtitle:"STUDY SPACE",color:subject.color,icon:subject.icon,href:"/subjects/"+subject.name.toLowerCase().replaceAll(" ","-"),angle:0})}><Icon icon={subject.icon} size={20}/>{subject.name}</button>)}{filtered.length===0&&<span className="empty-search">No matching subjects</span>}</div>
     </section>
 
     <nav className="floating-dock" aria-label="Primary navigation">{nav.map((item)=><a key={item.name} href={item.href} onClick={()=>setActive(item.name)} className={active===item.name?"active":""}><span className={item.name==="AI"?"dock-ai":""}><Icon icon={item.icon} size={21}/></span><small>{item.name}</small></a>)}</nav>
