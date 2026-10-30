@@ -358,3 +358,132 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #f4c8
   .orb-node:nth-of-type(5){left:88%!important}
   .orb-node:nth-of-type(8){left:79%!important}
 }
+
+
+/* Daily Drill dedicated learning workspace */
+.drill-open-link{margin-left:auto;display:grid;place-items:center;width:39px;height:39px;border:1px solid #748096;border-radius:50%;background:transparent;color:#fff;text-decoration:none;cursor:pointer;transition:transform .3s,background .3s}
+.drill-open-link:hover{transform:rotate(45deg);background:rgba(244,200,121,.12)}
+.drill-app{min-height:100vh;color:#edf2fb;background:radial-gradient(ellipse at 72% 8%,rgba(58,77,118,.3),transparent 34%),radial-gradient(ellipse at 8% 60%,rgba(33,94,98,.13),transparent 32%),#050914;padding:0 22px 40px}
+.drill-topbar{height:76px;max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(174,197,229,.14)}
+.drill-back{display:flex;align-items:center;gap:10px;color:#f2d49c;text-decoration:none;font:600 12px "Space Grotesk",sans-serif;letter-spacing:.16em}
+.drill-session-label{display:flex;align-items:center;gap:9px;color:#aebbd0;font:600 9px "Space Grotesk",sans-serif;letter-spacing:.2em}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#73d8ae;box-shadow:0 0 12px #73d8ae}
+.drill-timer{display:flex;align-items:center;gap:9px;padding:9px 13px;border:1px solid rgba(244,200,121,.25);border-radius:999px;color:#f4d18c;font:600 13px "Space Grotesk",sans-serif}
+.drill-wrap{max-width:1180px;margin:0 auto}
+.drill-intro{display:flex;justify-content:space-between;align-items:end;padding:48px 0 30px}
+.drill-kicker{font:600 9px "Space Grotesk",sans-serif;letter-spacing:.24em;color:#d9bd88}
+.drill-intro h1{margin:12px 0 5px;font:600 clamp(42px,7vw,72px)/1 "Space Grotesk",sans-serif;letter-spacing:-.075em}
+.drill-intro h1 em{font-family:"Playfair Display",serif;font-weight:500;color:#f3d08d}
+.drill-intro p{margin:12px 0 0;color:#9eacc1;font:14px/1.7 "Noto Sans Devanagari",sans-serif}
+.drill-intro-stat{text-align:right}
+.drill-intro-stat strong{font:500 44px "Space Grotesk",sans-serif;letter-spacing:-.06em}
+.drill-intro-stat small{font:20px "Playfair Display",serif;color:#8795aa}
+.drill-intro-stat span{display:block;margin-top:2px;color:#8795aa;font:8px "Space Grotesk",sans-serif;letter-spacing:.2em}
+.drill-progress-card{padding:18px 20px;border:1px solid rgba(170,193,227,.16);border-radius:18px;background:linear-gradient(120deg,rgba(23,36,57,.8),rgba(9,17,31,.72));box-shadow:inset 0 1px 0 #fff1}
+.drill-progress-meta,.drill-progress-foot{display:flex;justify-content:space-between;align-items:center}
+.drill-progress-meta{font:600 9px "Space Grotesk",sans-serif;letter-spacing:.18em;color:#aab8ce}
+.drill-progress-meta strong{color:#f4d18c;font-size:12px}
+.drill-progress-track{height:5px;margin:13px 0 10px;overflow:hidden;border-radius:99px;background:rgba(255,255,255,.09)}
+.drill-progress-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#bd965b,#f5d99e);box-shadow:0 0 14px #e6bd76;transition:width .35s}
+.drill-progress-foot{color:#8190a7;font:10px "Space Grotesk",sans-serif}
+.drill-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:18px;margin-top:18px;align-items:start}
+.question-card,.question-rail,.result-card{border:1px solid rgba(177,199,231,.18);border-radius:25px;background:radial-gradient(circle at 100% 0,rgba(91,112,153,.15),transparent 42%),linear-gradient(145deg,rgba(19,30,49,.96),rgba(7,13,25,.98));box-shadow:0 20px 60px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.06)}
+.question-card{padding:clamp(20px,4vw,36px)}
+.question-card-top{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.question-number{color:#c1ccdc;font:600 9px "Space Grotesk",sans-serif;letter-spacing:.18em}
+.question-number b{margin-left:7px;color:#f2cf8e;font-size:15px}
+.question-number small{color:#8190a7}
+.question-topic{padding:7px 10px;border:1px solid rgba(244,200,121,.2);border-radius:999px;color:#d9c59e;font:9px "Space Grotesk",sans-serif}
+.question-card h2{max-width:760px;margin:32px 0 27px;font:600 clamp(21px,3.3vw,31px)/1.55 "Noto Sans Devanagari",sans-serif;letter-spacing:-.025em;color:#f4f2ed}
+.option-list{display:grid;gap:10px}
+.answer-option{display:flex;align-items:center;gap:14px;width:100%;min-height:62px;padding:12px 15px;border:1px solid rgba(172,194,226,.15);border-radius:15px;background:rgba(8,17,31,.55);color:#c6d0df;text-align:left;font:500 14px/1.5 "Noto Sans Devanagari",sans-serif;cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
+.answer-option:hover{transform:translateX(3px);border-color:rgba(244,200,121,.42);background:rgba(244,200,121,.055)}
+.answer-option.selected{border-color:#e5c17f;background:linear-gradient(100deg,rgba(225,187,119,.16),rgba(225,187,119,.04));color:#fff}
+.option-letter{display:grid;place-items:center;flex:0 0 31px;width:31px;height:31px;border:1px solid rgba(175,195,226,.2);border-radius:10px;color:#9eacc1;font:600 11px "Space Grotesk",sans-serif}
+.answer-option.selected .option-letter{border-color:#e5c17f;background:rgba(244,200,121,.13);color:#f4d18c}
+.option-check{margin-left:auto;color:#f4d18c;font-size:18px}
+.question-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid rgba(172,194,226,.12)}
+.mark-button,.question-nav button{display:flex;align-items:center;gap:7px;border:0;background:transparent;color:#9eacc1;font:600 10px "Space Grotesk",sans-serif;cursor:pointer}
+.mark-button.marked{color:#f2c77f}
+.question-nav{display:flex;gap:9px}
+.question-nav button{padding:10px 13px;border:1px solid rgba(172,194,226,.18);border-radius:999px}
+.question-nav button:disabled{opacity:.35;cursor:not-allowed}
+.question-nav .next-question{border-color:#e3c17f;background:#e8c987;color:#121722}
+.question-rail{padding:22px}
+.rail-heading{display:flex;justify-content:space-between;gap:8px;color:#c5d0df;font:600 9px "Space Grotesk",sans-serif;letter-spacing:.14em}
+.rail-heading small{color:#8e9db2;font-size:8px}
+.question-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:20px 0}
+.question-grid button{width:100%;aspect-ratio:1;border:1px solid rgba(173,195,226,.2);border-radius:11px;background:rgba(5,12,23,.6);color:#aebbd0;font:600 12px "Space Grotesk",sans-serif;cursor:pointer}
+.question-grid button.current{outline:2px solid #f1cb82;outline-offset:2px;color:#f4d18c}
+.question-grid button.answered{border-color:#6ecba7;background:rgba(65,164,124,.13);color:#a8e4c9}
+.question-grid button.flagged{box-shadow:inset 0 -3px #e9a66e}
+.palette-legend{display:grid;gap:9px;padding:14px 0;border-top:1px solid rgba(172,194,226,.12);border-bottom:1px solid rgba(172,194,226,.12)}
+.palette-legend span{display:flex;align-items:center;gap:8px;color:#8e9db2;font:10px "Space Grotesk",sans-serif}
+.palette-legend i{width:8px;height:8px;border:1px solid #7c8ba1;border-radius:3px}
+.palette-legend .legend-current{border-color:#f1cb82;background:rgba(241,203,130,.2)}
+.palette-legend .legend-answered{border-color:#6ecba7;background:#6ecba7}
+.palette-legend .legend-flagged{border:0;border-radius:2px;background:#e9a66e}
+.rail-tip{display:flex;gap:10px;margin:17px 0;color:#aebbd0}
+.rail-tip>span{color:#f4d18c}
+.rail-tip p{margin:0;font:11px/1.65 "Noto Sans Devanagari",sans-serif}
+.submit-drill{display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:14px 16px;border:1px solid #e7c785;border-radius:999px;background:linear-gradient(120deg,#f0d59b,#c99e5e);color:#151a23;font:700 11px "Space Grotesk",sans-serif;cursor:pointer;box-shadow:0 10px 25px rgba(209,168,100,.16);transition:transform .2s,box-shadow .2s}
+.submit-drill:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(209,168,100,.23)}
+.answer-explanation{margin-top:20px;padding:17px 18px;border-left:3px solid #e7c785;border-radius:0 13px 13px 0;background:rgba(244,200,121,.07)}
+.answer-explanation strong{color:#f4d18c;font:600 9px "Space Grotesk",sans-serif;letter-spacing:.18em}
+.answer-explanation p{margin:8px 0 0;color:#b9c5d6;font:13px/1.8 "Noto Sans Devanagari",sans-serif}
+.result-card{display:grid;grid-template-columns:240px 1fr;gap:25px;padding:30px;margin-top:20px}
+.result-orbit{display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:1;border:1px solid rgba(244,200,121,.35);border-radius:50%;background:radial-gradient(circle,rgba(244,200,121,.14),rgba(10,18,32,.4) 68%);box-shadow:0 0 45px rgba(244,200,121,.08),inset 0 0 30px rgba(244,200,121,.08)}
+.result-orbit span,.result-orbit em{color:#c4b18e;font:600 8px "Space Grotesk",sans-serif;letter-spacing:.17em}
+.result-orbit strong{margin:8px 0;font:600 54px "Space Grotesk",sans-serif;color:#f6d99d}
+.result-orbit small{font-size:20px;color:#9aa8bd}
+.result-orbit em{font-style:normal}
+.result-copy{align-self:center}
+.result-copy h2{margin:12px 0 8px;font:600 29px "Playfair Display",serif}
+.result-copy p{color:#aebbd0;font:13px/1.7 "Noto Sans Devanagari",sans-serif}
+.result-stats{display:flex;gap:26px;margin:22px 0}
+.result-stats div{display:grid;gap:4px}
+.result-stats strong{font:600 24px "Space Grotesk",sans-serif;color:#f4d18c}
+.result-stats span{color:#8e9db2;font:9px "Space Grotesk",sans-serif}
+.result-copy .submit-drill{max-width:190px}
+.review-list{grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(172,194,226,.13)}
+.review-list h3{color:#c5d0df;font:600 9px "Space Grotesk",sans-serif;letter-spacing:.18em}
+.review-list button{display:flex;align-items:center;gap:12px;width:100%;padding:12px 0;border:0;border-bottom:1px solid rgba(172,194,226,.09);background:transparent;color:#aebbd0;text-align:left;font:11px "Space Grotesk",sans-serif;cursor:pointer}
+.review-list button svg{margin-left:auto}
+.review-correct,.review-wrong{display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:rgba(89,190,142,.13);color:#80d9b0}
+.review-wrong{background:rgba(229,126,117,.13);color:#f09289}
+.drill-footer{display:flex;justify-content:space-between;gap:15px;margin-top:36px;color:#62718a;font:8px "Space Grotesk",sans-serif;letter-spacing:.18em}
+@media(max-width:760px){
+ .drill-app{padding:0 15px 28px}
+ .drill-topbar{height:64px}
+ .drill-session-label{font-size:7px;letter-spacing:.12em}
+ .drill-back{font-size:10px}
+ .drill-timer{padding:8px 10px;font-size:11px}
+ .drill-intro{padding:34px 0 22px}
+ .drill-intro h1{font-size:48px}
+ .drill-intro p{max-width:260px;font-size:12px}
+ .drill-intro-stat strong{font-size:34px}
+ .drill-layout{grid-template-columns:1fr;gap:13px}
+ .question-card{padding:19px;border-radius:21px}
+ .question-card h2{margin:25px 0 20px;font-size:21px}
+ .answer-option{min-height:58px;font-size:13px}
+ .question-rail{padding:17px;border-radius:20px}
+ .question-grid{grid-template-columns:repeat(5,1fr);margin:14px 0}
+ .palette-legend{grid-template-columns:repeat(3,1fr);gap:5px}
+ .palette-legend span{font-size:8px}
+ .rail-tip{display:none}
+ .submit-drill{margin-top:15px}
+ .result-card{grid-template-columns:1fr;padding:20px;gap:18px}
+ .result-orbit{width:190px;margin:auto}
+ .result-copy h2{font-size:25px}
+ .review-list{grid-column:auto}
+ .drill-footer{font-size:7px;letter-spacing:.1em}
+}
+@media(max-width:390px){
+ .drill-session-label{display:none}
+ .drill-topbar{justify-content:space-between}
+ .question-topic{font-size:8px}
+ .question-card h2{font-size:19px}
+ .question-actions{align-items:flex-start;flex-direction:column}
+ .question-nav{width:100%;justify-content:flex-end}
+ .drill-footer span:last-child{display:none}
+}
