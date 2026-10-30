@@ -50,7 +50,7 @@ function Icon({icon,size=22}: {icon: typeof Home01Icon;size?:number}) {
 function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:number;reduceMotion:boolean;onSelect:(item:NodeItem)=>void}) {
   return <motion.button
     type="button" aria-label={item.title+" "+item.subtitle}
-    className="orb-node" style={{"--node":item.color,"--i":index} as React.CSSProperties}
+    className={"orb-node orb-node--"+item.id} style={{"--node":item.color,"--i":index} as React.CSSProperties}
     initial={reduceMotion?false:{opacity:0,scale:.72,y:18}}
     animate={{opacity:1,scale:1,y:0}}
     transition={{delay:.16+index*.07,duration:.7,ease:[.2,.8,.2,1]}}
