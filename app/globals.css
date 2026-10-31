@@ -1126,3 +1126,46 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:#d84e9b}
 .profile-form-panel input,.profile-form-panel select{background:#fffafd!important;border-color:#e7bfd6!important;color:#512044!important}
 .profile-goals a,.profile-footer a{color:#bd438b!important}
 .library-app,.drill-app,.mock-app,.progress-app,.syllabus-app{background:linear-gradient(135deg,#fff8fc,#f8e6f2)!important;color:#512044!important}
+
+/* Accessibility contrast pass — rose/magenta theme typography */
+:root{--ink:#35152f;--muted:#68465f;--gold:#a52f70;--bg:#fff7fb;--line:rgba(165,47,112,.2)}
+body{color:#35152f}
+.mock-app,.mock-preview-app{background:linear-gradient(145deg,#fff8fc 0%,#fbeaf3 58%,#f7e5f1 100%)!important;color:#35152f!important}
+.mock-top,.preview-top{color:#68465f!important;border-color:#e8c5d9!important}
+.mock-top a,.preview-top a,.preview-top b{color:#a52f70!important}
+.mock-live,.mock-tag{color:#963064!important;border-color:#dba4c3!important;background:#fff5fa}
+.mock-kicker,.mock-section-head,.mock-section-head small,.preview-qmeta{color:#87305f!important}
+.mock-hero h1,.preview-title h1{color:#421b39!important}
+.mock-hero h1 em,.preview-title h1 em{color:#a52f70!important}
+.mock-hero>p,.preview-title p{color:#68465f!important}
+.mock-hero-stats strong,.mock-metrics strong{color:#a52f70!important}
+.mock-hero-stats span,.mock-metrics span{color:#75566c!important}
+.mock-test-card{background:linear-gradient(145deg,#fffafd 0%,#f9e4f0 100%)!important;border:1px solid #e7bfd6!important;box-shadow:0 18px 42px rgba(139,48,99,.10)!important;color:#421b39!important}
+.mock-test-card h2{color:#552044!important}
+.mock-test-card>p{color:#68465f!important}
+.mock-index,.mock-card-foot>span{color:#75566c!important}
+.mock-card-icon{color:#a52f70!important;border-color:#e2b1cd!important;background:#fcebf4!important}
+.mock-metrics{border-color:#e8c9dc!important}
+.mock-card-foot button{border-color:#d99abb!important;color:#963064!important;background:#fff8fc!important}
+.mock-launch,.preview-submit{background:linear-gradient(110deg,#df78ad,#b93682)!important;color:#fff!important}
+.mock-footer,.mock-footer span{color:#75566c!important}
+.mock-modal{background:#fffafd!important;border-color:#e5b9d2!important;color:#421b39!important}
+.mock-modal>button{color:#87305f!important}.mock-modal p,.mock-modal>div span{color:#68465f!important}.mock-modal>div{border-color:#e8c9dc!important}
+.preview-question,.preview-palette,.preview-result{background:#fffafd!important;border-color:#e7bfd6!important;color:#421b39!important}
+.preview-question h2{color:#421b39!important}
+.preview-qmeta{color:#87305f!important}.preview-qmeta span{color:#a52f70!important}
+.preview-options button{background:#fff5fa!important;border-color:#e7bfd6!important;color:#512044!important}
+.preview-options button.chosen{background:#f7dce9!important;border-color:#bd438b!important}
+.preview-options i,.preview-options b{color:#a52f70!important;border-color:#dba4c3!important}
+.preview-controls{border-color:#e8c9dc!important}.preview-controls button{border-color:#d99abb!important;color:#963064!important;background:#fff8fc!important}
+.preview-palette button{background:#fff5fa!important;color:#512044!important;border-color:#e5bfd6!important}
+.preview-result h2,.preview-result strong{color:#421b39!important}.preview-result p,.preview-result small{color:#68465f!important}
+.admin-root{color:#421b39!important}.admin-hero h1,.admin-hero h1 em,.admin-builder-head h2{color:#421b39!important}
+.admin-hero h1 em,.admin-title-period,.admin-module-symbol,.admin-module-arrow{color:#a52f70!important}
+.admin-topbar,.admin-hero-copy,.admin-side-foot,.admin-section-label,.admin-kicker{color:#68465f!important}
+.admin-module strong,.admin-metric-label,.admin-table-wrap td{color:#512044!important}
+.admin-warning p,.admin-builder label,.admin-schedule-info small,.admin-question-list small{color:#68465f!important}
+.profile-identity h1,.profile-panel h2,.profile-form-panel h2{color:#421b39!important}
+.profile-identity h1 em,.profile-panel h2 em,.profile-form-panel h2 em,.profile-goals h2 em{color:#a52f70!important}
+.utility-page h1,.utility-panel strong{color:#421b39!important}
+.utility-page section>p{color:#68465f!important}
