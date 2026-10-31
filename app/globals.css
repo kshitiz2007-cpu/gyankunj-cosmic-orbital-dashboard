@@ -1318,3 +1318,18 @@ body{color:#35152f}
 .app-shell .subject-strip .subject-pill svg{color:#87305f!important}
 .app-shell .editorial-bento__ticker,.app-shell .editorial-bento__ticker span{color:#80516f!important;opacity:1!important}
 .app-shell .editorial-bento__ticker b{color:#bd438b!important}
+
+/* Hindi headline overflow fix — featured editorial card */
+.editorial-featured{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)!important}
+.editorial-featured-copy{min-width:0;max-width:100%;overflow:hidden}
+.editorial-featured-copy h2{max-width:100%;min-width:0;font-size:clamp(24px,3.2vw,36px)!important;line-height:1.55!important;letter-spacing:0!important;overflow-wrap:anywhere;word-break:normal;hyphens:none;white-space:normal}
+.editorial-featured-copy>p{min-width:0;overflow-wrap:anywhere;word-break:normal}
+@media(max-width:700px){
+ .editorial-featured{grid-template-columns:minmax(0,1fr)!important}
+ .editorial-featured-art{min-height:175px!important;padding:18px 22px!important}
+ .editorial-featured-copy{padding:24px 22px!important;overflow:visible}
+ .editorial-featured-copy h2{font-size:clamp(25px,7vw,32px)!important;line-height:1.55!important;max-width:100%;overflow-wrap:anywhere}
+ .editorial-featured-copy>p{font-size:14px!important;line-height:1.9!important}
+ .editorial-card-foot{flex-wrap:wrap;align-items:flex-start;row-gap:12px}
+ .editorial-card-foot span{max-width:70%;line-height:1.7}
+}
