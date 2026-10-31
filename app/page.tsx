@@ -153,7 +153,7 @@ export default function Dashboard() {
       if(!assessment){if(active)setDrillStats({total:0,correct:0,subject:"NO DRILL PUBLISHED",loading:false});return;}
       const [{data:questionRows,error:questionError},{data:attempt,error:attemptError}]=await Promise.all([
         supabase.from("questions").select("id,correct_option").eq("assessment_id",assessment.id),
-        supabase.from("assessment_attempts").select("answers,submitted_at").eq("assessment_id",assessment.id).eq("student_id",user.id).order("submitted_at",{ascending:false,nullsFirst:false}).limit(1).maybeSingle()
+        supabase.from("assessment_attempts").select("answers,submitted_at,correct_count,answered_count,question_count").eq("assessment_id",assessment.id).eq("student_id",user.id).order("submitted_at",{ascending:false,nullsFirst:false}).limit(1).maybeSingle()
       ]);
       if(questionError)throw questionError;
       if(attemptError)throw attemptError;
@@ -163,7 +163,7 @@ export default function Dashboard() {
         if(subjectRow?.name_en)subject=subjectRow.name_en.toUpperCase();
       }
       const answers=attempt?.answers && typeof attempt.answers==="object" ? attempt.answers as Record<string,unknown> : {};
-      const correct=(questionRows||[]).reduce((sum,q)=>sum+(Object.prototype.hasOwnProperty.call(answers,q.id)&&Number.isInteger(Number(answers[q.id]))&&Number(answers[q.id])===q.correct_option?1:0),0);
+      const correct=Number(attempt?.correct_count)||0;
       if(active)setDrillStats({total:(questionRows||[]).length,correct,subject,loading:false});
     };
     void loadDrill().catch(()=>{if(active)setDrillStats({total:0,correct:0,subject:"DRILL DATA UNAVAILABLE",loading:false});});
