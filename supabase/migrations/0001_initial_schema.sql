@@ -155,6 +155,19 @@ end; $$;
 create trigger on_auth_user_created after insert on auth.users
 for each row execute procedure public.handle_new_user();
 
+-- Prevent users from promoting themselves by editing their own profile.
+create or replace function public.protect_profile_role()
+returns trigger language plpgsql set search_path=public
+as $ begin
+  if new.role is distinct from old.role and not public.is_admin() then
+    raise exception 'Only an administrator can change account roles';
+  end if;
+  return new;
+end; $;
+create trigger protect_profile_role_before_update
+before update on public.profiles
+for each row execute procedure public.protect_profile_role();
+
 do $$ declare t text; begin
   foreach t in array array['profiles','subjects','courses','batches','enrollments','study_resources','assessments','questions','assessment_attempts','class_sessions','student_activity','announcements'] loop
     execute format('alter table public.%I enable row level security',t);
