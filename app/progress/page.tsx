@@ -5,9 +5,8 @@ import {HugeiconsIcon} from "@hugeicons/react";
 import {ArrowLeft01Icon,ArrowUpRight01Icon,Target01Icon,FireIcon,Clock01Icon,BookOpen01Icon,CheckmarkCircle02Icon,Calendar01Icon,Activity01Icon,Refresh01Icon} from "@hugeicons/core-free-icons";
 import {getSupabaseBrowserClient} from "@/lib/supabase/client";
 
-type Attempt={id:string;assessment_id:string;answers:Record<string,number>|null;score:number|null;started_at:string;submitted_at:string|null};
+type Attempt={id:string;assessment_id:string;answers:Record<string,number>|null;score:number|null;correct_count:number|null;answered_count:number|null;question_count:number|null;started_at:string;submitted_at:string|null};
 type Assessment={id:string;title:string;kind:string;subject_id:string|null;duration_minutes:number};
-type Question={id:string;assessment_id:string|null;subject_id:string|null;correct_option:number;topic:string|null};
 type Activity={id:string;activity_type:string;metadata:Record<string,unknown>|null;created_at:string};
 type SubjectStat={name:string;done:number;total:number;accuracy:number;color:string};
 type Recent={id:string;title:string;detail:string;score:string;href:string;tag:string;at:string};
@@ -22,7 +21,6 @@ export default function ProgressPage(){
  const [error,setError]=useState("");
  const [attempts,setAttempts]=useState<Attempt[]>([]);
  const [assessments,setAssessments]=useState<Assessment[]>([]);
- const [questions,setQuestions]=useState<Question[]>([]);
  const [activities,setActivities]=useState<Activity[]>([]);
  const [studentName,setStudentName]=useState("");
  const load=useCallback(async()=>{
@@ -34,7 +32,7 @@ export default function ProgressPage(){
   if(!user){window.location.href="/login";return;}
   setStudentName(String(user.user_metadata?.full_name||user.email||"Student"));
   const [attemptResult,activityResult]=await Promise.all([
-   supabase.from("assessment_attempts").select("id,assessment_id,answers,score,started_at,submitted_at").eq("student_id",user.id).order("started_at",{ascending:false}).limit(100),
+   supabase.from("assessment_attempts").select("id,assessment_id,answers,score,correct_count,answered_count,question_count,started_at,submitted_at").eq("student_id",user.id).order("started_at",{ascending:false}).limit(100),
    supabase.from("student_activity").select("id,activity_type,metadata,created_at").eq("student_id",user.id).order("created_at",{ascending:false}).limit(250)
   ]);
   if(attemptResult.error)throw attemptResult.error;
@@ -42,47 +40,38 @@ export default function ProgressPage(){
   const nextAttempts=(attemptResult.data||[]) as Attempt[];
   const ids=[...new Set(nextAttempts.map(a=>a.assessment_id))];
   let nextAssessments:Assessment[]=[];
-  let nextQuestions:Question[]=[];
   if(ids.length){
-   const [assessmentResult,questionResult]=await Promise.all([
-    supabase.from("assessments").select("id,title,kind,subject_id,duration_minutes").in("id",ids),
-    supabase.from("questions").select("id,assessment_id,subject_id,correct_option,topic").in("assessment_id",ids)
-   ]);
-   if(assessmentResult.error)throw assessmentResult.error;
-   if(questionResult.error)throw questionResult.error;
-   nextAssessments=(assessmentResult.data||[]) as Assessment[];
-   nextQuestions=(questionResult.data||[]) as Question[];
+   const {data,error}=await supabase.from("assessments").select("id,title,kind,subject_id,duration_minutes").in("id",ids);
+   if(error)throw error;
+   nextAssessments=(data||[]) as Assessment[];
   }
-  setAttempts(nextAttempts);setAssessments(nextAssessments);setQuestions(nextQuestions);setActivities((activityResult.data||[]) as Activity[]);setLoading(false);
+  setAttempts(nextAttempts);setAssessments(nextAssessments);setActivities((activityResult.data||[]) as Activity[]);setLoading(false);
  },[]);
  useEffect(()=>{void load().catch(e=>{setError(e instanceof Error?e.message:"Unable to load learning analytics.");setLoading(false);});},[load]);
  const assessmentMap=useMemo(()=>new Map(assessments.map(a=>[a.id,a])),[assessments]);
- const questionMap=useMemo(()=>new Map(questions.map(q=>[q.id,q])),[questions]);
  const completed=useMemo(()=>attempts.filter(a=>a.submitted_at),[attempts]);
  const metrics=useMemo(()=>{
   let correct=0,answered=0,seconds=0;
   completed.forEach(a=>{
-   const answerMap=a.answers||{};
-   Object.entries(answerMap).forEach(([qid,choice])=>{const q=questionMap.get(qid);if(q){answered++;if(Number(choice)===q.correct_option)correct++;}});
+   correct+=Number(a.correct_count)||0;
+   answered+=Number(a.answered_count)||Object.keys(a.answers||{}).length;
    if(a.submitted_at)seconds+=Math.max(0,(new Date(a.submitted_at).getTime()-new Date(a.started_at).getTime())/1000);
   });
   return {correct,answered,accuracy:answered?Math.round(correct/answered*100):0,seconds,attemptCount:completed.length};
- },[completed,questionMap]);
+ },[completed]);
  const subjects=useMemo(()=>{
   const buckets=new Map<string,{correct:number;answered:number;name:string}>();
-  completed.forEach(a=>{
-   const fallback=assessmentMap.get(a.assessment_id)?.subject_id;
-   Object.entries(a.answers||{}).forEach(([qid,choice])=>{
-    const q=questionMap.get(qid);if(!q)return;
-    const subjectId=q.subject_id||fallback||"general";
-    const name=q.topic?.split(/[·:/-]/)[0]?.trim()||"General Studies";
-    const key=subjectId==="general"?name:subjectId;
-    const b=buckets.get(key)||{correct:0,answered:0,name};
-    b.answered++;if(Number(choice)===q.correct_option)b.correct++;buckets.set(key,b);
-   });
+  completed.forEach(attempt=>{
+   const assessment=assessmentMap.get(attempt.assessment_id);
+   const name=assessment?.title||"General Studies";
+   const key=assessment?.subject_id||name;
+   const bucket=buckets.get(key)||{correct:0,answered:0,name};
+   bucket.correct+=Number(attempt.correct_count)||0;
+   bucket.answered+=Number(attempt.answered_count)||Object.keys(attempt.answers||{}).length;
+   buckets.set(key,bucket);
   });
-  return [...buckets.values()].map((b,i)=>({name:b.name,done:b.answered?Math.round(b.correct/b.answered*100):0,total:b.answered,accuracy:b.answered?Math.round(b.correct/b.answered*100):0,color:palette[i%palette.length]})).slice(0,6);
- },[completed,assessmentMap,questionMap]);
+  return [...buckets.values()].map((bucket,i)=>({name:bucket.name,done:bucket.answered?Math.round(bucket.correct/bucket.answered*100):0,total:bucket.answered,accuracy:bucket.answered?Math.round(bucket.correct/bucket.answered*100):0,color:palette[i%palette.length]})).slice(0,6);
+ },[completed,assessmentMap]);
  const activityDays=useMemo(()=>{
   const counts=new Map<string,number>();
   [...activities,...completed.map(a=>({id:a.id,activity_type:"assessment_attempt",metadata:null,created_at:a.submitted_at||a.started_at}))].forEach(a=>{const key=new Date(a.created_at).toLocaleDateString("en-CA");counts.set(key,(counts.get(key)||0)+1);});
@@ -93,10 +82,10 @@ export default function ProgressPage(){
  const streak=useMemo(()=>{const dates=new Set(activityDays.filter(d=>d.count>0).map(d=>d.date));let n=0;const d=new Date();d.setHours(0,0,0,0);if(!dates.has(d.toLocaleDateString("en-CA")))d.setDate(d.getDate()-1);while(dates.has(d.toLocaleDateString("en-CA"))){n++;d.setDate(d.getDate()-1);}return n;},[activityDays]);
  const recent=useMemo<Recent[]>(()=>{
   const rows:Recent[]=[];
-  completed.forEach(a=>{const assessment=assessmentMap.get(a.assessment_id);const answered=Object.keys(a.answers||{}).length;const correct=Object.entries(a.answers||{}).filter(([id,v])=>questionMap.get(id)?.correct_option===Number(v)).length;rows.push({id:a.id,title:assessment?.title||"Assessment",detail:answered+" questions attempted",score:answered?Math.round(correct/answered*100)+"%":"Submitted",href:assessment?.kind==="daily_drill"?"/practice/daily":assessment?.kind==="mock"?"/mock-test":"/practice/daily",tag:titleCase(assessment?.kind||"practice"),at:a.submitted_at||a.started_at});});
+  completed.forEach(a=>{const assessment=assessmentMap.get(a.assessment_id);const answered=Number(a.answered_count)||Object.keys(a.answers||{}).length;const correct=Number(a.correct_count)||0;rows.push({id:a.id,title:assessment?.title||"Assessment",detail:answered+" questions attempted",score:answered?Math.round(correct/answered*100)+"%":"Submitted",href:assessment?.kind==="daily_drill"?"/practice/daily":assessment?.kind==="mock"?"/mock-test":"/practice/daily",tag:titleCase(assessment?.kind||"practice"),at:a.submitted_at||a.started_at});});
   activities.forEach(a=>{const meta=a.metadata||{};const title=String(meta.title||titleCase(a.activity_type));const slug=String(meta.slug||"");rows.push({id:a.id,title,detail:String(meta.detail||"Learning activity"),score:"RECORDED",href:slug?"/current-affairs/"+slug:"/library",tag:titleCase(a.activity_type),at:a.created_at});});
   return rows.sort((a,b)=>new Date(b.at).getTime()-new Date(a.at).getTime()).slice(0,5);
- },[completed,assessmentMap,activities,questions,questionMap]);
+ },[completed,assessmentMap,activities]);
  const averageSubject=subjects.length?Math.round(subjects.reduce((s,x)=>s+x.done,0)/subjects.length):0;
  if(loading)return <main className="progress-app"><div className="progress-wrap"><p>Loading your learning analytics…</p></div></main>;
  if(error)return <main className="progress-app"><div className="progress-wrap"><h1>Progress, <em>in motion.</em></h1><p role="alert">{error}</p><button className="progress-retry" onClick={()=>void load()}>Retry <Icon icon={Refresh01Icon}/></button></div></main>;
