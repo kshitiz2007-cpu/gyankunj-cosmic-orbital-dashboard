@@ -7,7 +7,7 @@ import {motion} from "motion/react";
 import {HugeiconsIcon} from "@hugeicons/react";
 import {ArrowLeft01Icon,ArrowUpRight01Icon,Clock01Icon,Search01Icon,NewspaperIcon} from "@hugeicons/core-free-icons";
 type EditorialCard={id:string;slug:string;category:string;title_en:string;title_hi:string;summary_en:string;summary_hi:string;read_minutes:number;published_at:string|null;created_at:string};
-const categories=["ALL","SCIENCE & TECHNOLOGY","POLITY & GOVERNANCE","ENVIRONMENT","ECONOMY"];
+const categories=["ALL","POLITY & GOVERNANCE","ECONOMY","SCIENCE & TECHNOLOGY","ENVIRONMENT","INTERNATIONAL RELATIONS","DEFENCE & INTERNAL SECURITY","HISTORY & CULTURE","GEOGRAPHY","SOCIAL SECTOR"];
 function Icon({icon,size=18}:{icon:typeof ArrowLeft01Icon;size?:number}){return <HugeiconsIcon icon={icon} size={size} strokeWidth={1.8}/>}
 export default function CurrentAffairsPage(){
  const router=useRouter();
@@ -34,7 +34,7 @@ export default function CurrentAffairsPage(){
     <label className="editorial-search"><Icon icon={Search01Icon}/><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search editorials, topics, themes..."/></label>
     <div className="editorial-filters">{categories.map(c=><button key={c} className={category===c?"active":""} onClick={()=>setCategory(c)}>{c}</button>)}</div>
     <div className="editorial-list">{filtered.map((a,i)=><motion.article key={a.slug} initial={{opacity:0,y:12}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.05}} className="editorial-list-card">
-      <div className="editorial-list-number">0{i+1}</div><div className="editorial-list-copy"><span>{a.category} · {new Date(a.published_at||a.created_at).toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}</span><h3>{a.title_hi||a.title_en}</h3><p>{a.summary_hi||a.summary_en}</p><small>{a.read_minutes} MIN READ · DAILY EDITORIAL</small></div><Link href={"/current-affairs/"+a.slug} aria-label={"Read "+a.title}><Icon icon={ArrowUpRight01Icon}/></Link>
+      <div className="editorial-list-number">0{i+1}</div><div className="editorial-list-copy"><span>{a.category} · {new Date(a.published_at||a.created_at).toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}</span><h3>{a.title_hi||a.title_en}</h3><p>{a.summary_hi||a.summary_en}</p><small>{a.read_minutes} MIN READ · DAILY EDITORIAL</small></div><Link href={"/current-affairs/"+a.slug} aria-label={"Read "+(a.title_hi||a.title_en)}><Icon icon={ArrowUpRight01Icon}/></Link>
      </motion.article>)}{loading&&<div className="editorial-empty">Loading published editorials…</div>}{loadError&&<div className="editorial-empty">{loadError}. Please try again later.</div>}{!loading&&!loadError&&filtered.length===0&&<div className="editorial-empty">{articles.length===0?"No editorials published yet. Please check back soon.":"No editorials match this search. Try another topic or category."}</div>}</div>
    </section>
    <footer className="editorial-footer">GYANKUNJ · CIVILPREP <span>READ · CONNECT · RECALL</span></footer>
