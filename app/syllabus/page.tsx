@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import Link from "next/link";
 
 type Topic = { title: string; items: string[] };
@@ -63,9 +64,41 @@ const optionals=["Agriculture","Animal Husbandry & Veterinary Science","Anthropo
 const totalTopics=papers.reduce((n,p)=>n+p.topics.reduce((m,t)=>m+t.items.length,0),0);
 export default function SyllabusPage(){
  const [active,setActive]=useState("prelims-gs"),[query,setQuery]=useState(""),[done,setDone]=useState<string[]>([]),[optional,setOptional]=useState(""),[expanded,setExpanded]=useState<string[]>([]);
+ const [syncLoading,setSyncLoading]=useState(true),[syncMessage,setSyncMessage]=useState("");
+ useEffect(()=>{
+  let alive=true;
+  const loadProgress=async()=>{
+   const supabase=getSupabaseBrowserClient();
+   if(!supabase){if(alive){setSyncLoading(false);setSyncMessage("Progress sync unavailable: Supabase is not configured.");}return;}
+   const {data:{user},error:authError}=await supabase.auth.getUser();
+   if(authError)throw authError;
+   if(!user){if(alive){setSyncLoading(false);setSyncMessage("Sign in to save syllabus completion across devices.");}return;}
+   const {data,error}=await supabase.from("student_topic_progress").select("topic_key").eq("student_id",user.id).eq("exam_key","upsc-cse");
+   if(error)throw error;
+   if(alive){setDone((data||[]).map(row=>row.topic_key));setSyncLoading(false);setSyncMessage("Progress synced with your account.");}
+  };
+  void loadProgress().catch(error=>{if(alive){setSyncLoading(false);setSyncMessage(error instanceof Error?error.message:"Unable to sync syllabus progress.");}});
+  return()=>{alive=false;};
+ },[]);
  const paper=papers.find(p=>p.id===active)??papers[0];
  const filtered=useMemo(()=>paper.topics.map(t=>({...t,items:t.items.filter(x=>(t.title+" "+x).toLowerCase().includes(query.toLowerCase()))})).filter(t=>t.items.length),[paper,query]);
- const toggle=(key:string)=>setDone(old=>old.includes(key)?old.filter(x=>x!==key):[...old,key]);
+ const makeTopicKey=(paperKey:string,topicTitle:string,itemText:string)=>paperKey+"::"+topicTitle+"::"+itemText;
+ const toggle=async(paperKey:string,topicTitle:string,itemText:string)=>{
+  const key=makeTopicKey(paperKey,topicTitle,itemText);
+  const wasDone=done.includes(key);
+  setDone(old=>wasDone?old.filter(x=>x!==key):[...old,key]);
+  setSyncMessage("Saving your syllabus progress…");
+  const supabase=getSupabaseBrowserClient();
+  if(!supabase){setDone(old=>wasDone?[...old,key]:old.filter(x=>x!==key));setSyncMessage("Could not save: Supabase is not configured.");return;}
+  const {data:{user},error:authError}=await supabase.auth.getUser();
+  if(authError||!user){setDone(old=>wasDone?[...old,key]:old.filter(x=>x!==key));setSyncMessage("Sign in to save syllabus progress.");return;}
+  const result=wasDone
+   ? await supabase.from("student_topic_progress").delete().eq("student_id",user.id).eq("exam_key","upsc-cse").eq("topic_key",key)
+   : await supabase.from("student_topic_progress").upsert({student_id:user.id,exam_key:"upsc-cse",paper_key:paperKey,topic_key:key,topic_title:topicTitle,item_text:itemText,completed_at:new Date().toISOString(),updated_at:new Date().toISOString()},{onConflict:"student_id,exam_key,topic_key"});
+  if(result.error){setDone(old=>wasDone?[...old,key]:old.filter(x=>x!==key));setSyncMessage("Save failed: "+result.error.message);return;}
+  if(!wasDone)await supabase.from("student_activity").insert({student_id:user.id,activity_type:"syllabus_topic_completed",metadata:{exam_key:"upsc-cse",paper_key:paperKey,topic_title:topicTitle,topic_key:key}});
+  setSyncMessage("Progress synced with your account.");
+ };
  return <main className="syllabus-app">
   <header className="syllabus-top"><Link href="/" className="syllabus-brand">← <span>GYANKUNJ / CIVILPREP</span></Link><span>UPSC CSE · OFFICIAL FRAMEWORK</span><a href="https://upsc.gov.in/examinations/Examination-Notifications" target="_blank" rel="noreferrer">UPSC SOURCE ↗</a></header>
   <div className="syllabus-wrap">
@@ -74,9 +107,9 @@ export default function SyllabusPage(){
    <section className="syllabus-workspace">
     <aside className="syllabus-sidebar"><span className="syllabus-side-label">EXAM STRUCTURE</span>{[{label:"PRELIMS",ids:["prelims-gs","csat"]},{label:"MAINS · WRITTEN",ids:["essay","language","gs1","gs2","gs3","gs4","optional"]}].map(group=><div className="syllabus-nav-group" key={group.label}><small>{group.label}</small>{group.ids.map(id=>{const p=papers.find(x=>x.id===id)!;return <button key={id} className={active===id?"active":""} onClick={()=>{setActive(id);setQuery("");}}><span>{p.code.split(" · ")[1]??p.code}</span>{p.title}</button>})}</div>)}<div className="syllabus-interview"><small>FINAL STAGE</small><b>Personality Test</b><span>275 marks · Interview</span></div></aside>
     <div className="syllabus-content"><div className="syllabus-paper-head"><div><span>{paper.code}</span><h2>{paper.title}</h2><p>{paper.note}</p></div><div className="syllabus-paper-meta"><b>{paper.marks}</b><small>{paper.duration}</small></div></div>
-     <div className="syllabus-tools"><label>⌕ <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="इस paper में topic खोजें..."/></label><span>{filtered.reduce((n,t)=>n+t.items.length,0)} SYLLABUS POINTS</span></div>
+     <div className="syllabus-tools"><label>⌕ <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="इस paper में topic खोजें..."/></label><span>{filtered.reduce((n,t)=>n+t.items.length,0)} SYLLABUS POINTS</span></div><p className="syllabus-sync-status" role="status">{syncLoading?"SYNCING YOUR PROGRESS…":syncMessage}</p>
      {paper.id==="optional"&&<div className="syllabus-optional"><label htmlFor="optional-subject">अपना Optional Subject चुनें</label><select id="optional-subject" value={optional} onChange={e=>setOptional(e.target.value)}><option value="">Select subject</option>{optionals.map(o=><option key={o}>{o}</option>)}</select><p>Optional चुनने पर Paper I & II के विस्तृत विषयवार sub-topics को आधिकारिक notification से मिलाएँ।</p></div>}
-     <div className="syllabus-topic-list">{filtered.map((topic,i)=>{const key=paper.id+"-"+topic.title;const isOpen=expanded.includes(key)||query.length>0;return <article className="syllabus-topic" key={key}><button className="syllabus-topic-head" onClick={()=>setExpanded(old=>old.includes(key)?old.filter(x=>x!==key):[...old,key])}><span className="syllabus-topic-no">{String(i+1).padStart(2,"0")}</span><b>{topic.title}</b><small>{topic.items.filter((_,j)=>done.includes(key+"-"+j)).length}/{topic.items.length} DONE</small><i>{isOpen?"−":"+"}</i></button>{isOpen&&<div className="syllabus-topic-items">{topic.items.map((item,j)=><label key={item} className={done.includes(key+"-"+j)?"checked":""}><input type="checkbox" checked={done.includes(key+"-"+j)} onChange={()=>toggle(key+"-"+j)}/><span>{item}</span></label>)}</div>}</article>})}{filtered.length===0&&<p className="syllabus-empty">इस paper में कोई matching topic नहीं मिला।</p>}</div>
+     <div className="syllabus-topic-list">{filtered.map((topic,i)=>{const key=paper.id+"-"+topic.title;const isOpen=expanded.includes(key)||query.length>0;return <article className="syllabus-topic" key={key}><button className="syllabus-topic-head" onClick={()=>setExpanded(old=>old.includes(key)?old.filter(x=>x!==key):[...old,key])}><span className="syllabus-topic-no">{String(i+1).padStart(2,"0")}</span><b>{topic.title}</b><small>{topic.items.filter((_,j)=>done.includes(makeTopicKey(paper.id,topic.title,item))).length}/{topic.items.length} DONE</small><i>{isOpen?"−":"+"}</i></button>{isOpen&&<div className="syllabus-topic-items">{topic.items.map((item,j)=><label key={item} className={done.includes(key+"-"+j)?"checked":""}><input type="checkbox" checked={done.includes(key+"-"+j)} onChange={()=>void toggle(paper.id,topic.title,item)}/><span>{item}</span></label>)}</div>}</article>})}{filtered.length===0&&<p className="syllabus-empty">इस paper में कोई matching topic नहीं मिला।</p>}</div>
      <div className="syllabus-paper-foot"><span>CHECK EACH TOPIC AS YOU COMPLETE IT</span><b>{Math.round((done.length/Math.max(totalTopics,1))*100)}% OVERALL TRACKED</b></div>
     </div>
    </section>
