@@ -73,23 +73,23 @@ export default function Dashboard() {
   const [search,setSearch] = useState("");
   const [notice,setNotice] = useState(false);
   const [selected,setSelected] = useState<NodeItem|null>(null);
-  const [drillStats,setDrillStats] = useState({total:0,attempted:0,subject:"NO DRILL PUBLISHED",loading:true});
+  const [drillStats,setDrillStats] = useState({total:0,correct:0,subject:"NO DRILL PUBLISHED",loading:true});
   useEffect(()=>{
     let active=true;
     const loadDrill=async()=>{
       const {getSupabaseBrowserClient}=await import("@/lib/supabase/client");
       const supabase=getSupabaseBrowserClient();
-      if(!supabase){if(active)setDrillStats({total:0,attempted:0,subject:"SUPABASE UNAVAILABLE",loading:false});return;}
+      if(!supabase){if(active)setDrillStats({total:0,correct:0,subject:"SUPABASE UNAVAILABLE",loading:false});return;}
       const {data:{user}}=await supabase.auth.getUser();
       if(!user){if(active)setDrillStats({total:0,attempted:0,subject:"SIGN IN TO PRACTICE",loading:false});return;}
       const {data:assessment,error:assessmentError}=await supabase.from("assessments").select("id,subject_id").eq("kind","daily_drill").eq("is_published",true).order("created_at",{ascending:false}).limit(1).maybeSingle();
       if(assessmentError)throw assessmentError;
       if(!assessment){if(active)setDrillStats({total:0,attempted:0,subject:"NO DRILL PUBLISHED",loading:false});return;}
-      const [{count,error:countError},{data:attempt,error:attemptError}]=await Promise.all([
-        supabase.from("questions").select("id",{count:"exact",head:true}).eq("assessment_id",assessment.id),
+      const [{data:questionRows,error:questionError},{data:attempt,error:attemptError}]=await Promise.all([
+        supabase.from("questions").select("id,correct_option").eq("assessment_id",assessment.id),
         supabase.from("assessment_attempts").select("answers,submitted_at").eq("assessment_id",assessment.id).eq("student_id",user.id).order("submitted_at",{ascending:false,nullsFirst:false}).limit(1).maybeSingle()
       ]);
-      if(countError)throw countError;
+      if(questionError)throw questionError;
       if(attemptError)throw attemptError;
       let subject="GENERAL STUDIES";
       if(assessment.subject_id){
@@ -97,7 +97,8 @@ export default function Dashboard() {
         if(subjectRow?.name_en)subject=subjectRow.name_en.toUpperCase();
       }
       const answers=attempt?.answers && typeof attempt.answers==="object" ? attempt.answers as Record<string,unknown> : {};
-      if(active)setDrillStats({total:count||0,attempted:Object.keys(answers).length,subject,loading:false});
+      const correct=(questionRows||[]).reduce((sum,q)=>sum+(Number.isInteger(Number(answers[q.id]))&&Number(answers[q.id])===q.correct_option?1:0),0);
+      if(active)setDrillStats({total:(questionRows||[]).length,correct,subject,loading:false});
     };
     void loadDrill().catch(()=>{if(active)setDrillStats({total:0,attempted:0,subject:"DRILL DATA UNAVAILABLE",loading:false});});
     return()=>{active=false;};
@@ -148,8 +149,8 @@ export default function Dashboard() {
       </motion.article>
       <motion.article className="drill-panel" id="practice" initial={reduceMotion?false:{opacity:0,y:22}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}}>
         <div className="drill-heading"><span className="target-icon"><Icon icon={Target01Icon} size={27}/></span><span>TODAY&apos;S DRILL</span><Link className="drill-open-link" aria-label="Continue drill" href="/practice/daily"><Icon icon={ArrowUpRight01Icon}/></Link></div>
-        <div className="drill-stats"><div><strong>{drillStats.loading?"—":drillStats.attempted} <small>/ {drillStats.total}</small></strong><span>Questions attempted</span></div><div className="progress-ring" style={{"--progress":drillStats.total?Math.min(100,Math.round(drillStats.attempted/drillStats.total*100)):0} as React.CSSProperties}><span>{drillStats.total?Math.min(100,Math.round(drillStats.attempted/drillStats.total*100)):0}%</span></div></div>
-        <div className="drill-foot"><span><Icon icon={CheckmarkCircle02Icon} size={15}/> {drillStats.total?(drillStats.attempted?"DAILY PRACTICE":"READY TO PRACTICE"):drillStats.loading?"LOADING DRILL":"NO ACTIVE DRILL"}</span><span>{drillStats.subject}</span></div>
+        <div className="drill-stats"><div><strong>{drillStats.loading?"—":drillStats.correct} <small>/ {drillStats.total}</small></strong><span>Correct answers</span></div><div className="progress-ring" style={{"--progress":drillStats.total?Math.min(100,Math.round(drillStats.correct/drillStats.total*100)):0} as React.CSSProperties}><span>{drillStats.total?Math.min(100,Math.round(drillStats.attempted/drillStats.total*100)):0}%</span></div></div>
+        <div className="drill-foot"><span><Icon icon={CheckmarkCircle02Icon} size={15}/> {drillStats.total?(drillStats.correct?"DAILY PRACTICE":"READY TO PRACTICE"):drillStats.loading?"LOADING DRILL":"NO ACTIVE DRILL"}</span><span>{drillStats.subject}</span></div>
       </motion.article>
     </section>
 
