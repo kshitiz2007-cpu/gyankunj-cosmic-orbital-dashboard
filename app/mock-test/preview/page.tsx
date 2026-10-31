@@ -35,7 +35,7 @@ export default function MockPreview(){
    if(!rows?.length){setLoadError("This mock test has no published questions yet.");setLoading(false);return;}
    if(!active)return;
    setAssessmentId(assessment.id);setTitle(assessment.title);
-   setDurationSeconds(Math.max(1,Number(assessment.duration_minutes)||120)*60);setSec(Math.max(1,Number(assessment.duration_minutes)||120)*60);
+   setSec(Math.max(1,Number(assessment.duration_minutes)||120)*60);
    setQs(rows.map(q=>({id:q.id,q:q.question_hi||q.question_en,o:Array.isArray(q.options_hi)&&q.options_hi.length===4?q.options_hi:q.options_en,a:-1,e:q.explanation_hi||q.explanation_en||""})));
    setLoading(false);
   };
