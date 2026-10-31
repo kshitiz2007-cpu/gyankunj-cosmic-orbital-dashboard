@@ -84,7 +84,7 @@ export default function Dashboard() {
       <label className="searchbox"><Icon icon={Search01Icon}/><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search subjects..."/><Icon icon={SparklesIcon}/></label>
       <div className="top-actions" id="profile">
         <button className="icon-button" aria-label="Notifications" onClick={()=>setNotice(v=>!v)}><Icon icon={Notification01Icon}/><i/></button>
-        <button className="avatar" aria-label="Open profile" onClick={()=>setSelected({id:"profile",title:"STUDENT",subtitle:"PROFILE",color:"#f4c879",icon:UserCircleIcon,href:"/profile",angle:0})}>KV</button>
+        <Link className="avatar" aria-label="Open student profile" href="/profile">KV</Link>
       </div>
     </header>
 
