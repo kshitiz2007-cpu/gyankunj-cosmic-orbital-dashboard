@@ -5,3 +5,5 @@ export type StudyResource = { id:string; subject_id:string|null; title_en:string
 export type QuizQuestion = { id:string; subject_id:string|null; topic:string|null; question_en:string; question_hi:string; options_en:string[]; options_hi:string[]; correct_option: number; explanation_en:string|null; explanation_hi:string|null; difficulty:string; created_at:string };
 
 export type StudentTopicProgress = { id:string; student_id:string; exam_key:string; paper_key:string; topic_key:string; topic_title:string; item_text:string; completed_at:string; created_at:string; updated_at:string };
+
+export type AssessmentAttempt = { id:string; assessment_id:string; student_id:string; answers:Record<string,number>; score:number|null; correct_count:number|null; answered_count:number|null; question_count:number|null; started_at:string; submitted_at:string|null };
