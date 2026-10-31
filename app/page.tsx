@@ -33,7 +33,7 @@ const subjectVisuals:Record<string,{icon:typeof GraduationScrollIcon;color:strin
 };
 const nav = [
   {name:"Home",icon:Home01Icon,href:"/"},
-  {name:"Today",icon:NewspaperIcon,href:"/todays-glimpses"},
+  {name:"Today’s Glimpses",icon:NewspaperIcon,href:"/todays-glimpses"},
   {name:"Practice",icon:Notebook01Icon,href:"/practice/daily"},
   {name:"AI",icon:SparklesIcon,href:"/ai"},
   {name:"Live",icon:UserGroupIcon,href:"/live"},
