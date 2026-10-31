@@ -1081,3 +1081,48 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #f4c8
 
 /* Routed utility destinations: AI companion and live classroom */
 .utility-page{min-height:100vh;background:radial-gradient(ellipse at 75% 20%,#172943 0,transparent 38%),#070d19;color:#edf2fa;padding:0 clamp(20px,6vw,90px);display:flex;flex-direction:column}.utility-page header{height:72px;border-bottom:1px solid #ffffff18;display:flex;align-items:center;justify-content:space-between;font-size:9px;letter-spacing:.16em;color:#9ba9bd}.utility-page header a{color:#e8c58e;text-decoration:none}.utility-page section{max-width:900px;margin:auto 0;padding:90px 0}.utility-page section>small{font-size:9px;letter-spacing:.2em;color:#d7b477}.utility-page h1{font-size:clamp(48px,9vw,104px);letter-spacing:-.075em;line-height:.92;font-weight:500;margin:25px 0}.utility-page h1 em{font-family:Georgia,serif;font-weight:400;color:#e5c184}.utility-page section>p{max-width:590px;color:#9ba9bd;font-size:14px;line-height:1.9}.utility-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:35px}.utility-actions a{padding:13px 17px;border:1px solid #d5b47766;color:#e7c58d;text-decoration:none;font-size:10px}.utility-panel{max-width:520px;margin-top:30px;padding:22px;background:#101c2e;border:1px solid #ffffff18;display:grid;gap:10px}.utility-panel b{font-size:9px;letter-spacing:.16em;color:#d6b477}.utility-panel strong{font-size:19px}.utility-panel span{font-size:11px;color:#91a0b5}.utility-page footer{border-top:1px solid #ffffff18;padding:20px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#73829a;font-size:8px;letter-spacing:.13em}
+
+/* ROSE / PINK / MAGENTA GRADIENT THEME — Gyankunj visual refresh */
+:root{color-scheme:light;--ink:#35152f;--muted:#805d78;--gold:#c34b86;--bg:#fff7fb;--line:rgba(170,68,132,.18);--rose:#f6a8c8;--magenta:#bd4b9a;--plum:#512044}
+html,body{background:#fff7fb;color:#35152f}
+button:focus-visible,a:focus-visible,input:focus-visible{outline-color:#d84e9b}
+.app-shell{background:radial-gradient(ellipse at 50% 25%,rgba(255,190,220,.75),transparent 43%),radial-gradient(ellipse at 8% 78%,rgba(231,132,190,.28),transparent 31%),radial-gradient(ellipse at 90% 70%,rgba(190,104,190,.22),transparent 32%),linear-gradient(135deg,#fff9fc 0%,#fceaf4 48%,#f8e5f3 100%);color:#35152f}
+.cosmos-noise{opacity:.18;background-image:radial-gradient(1px 1px at 10% 12%,#b93c83 55%,transparent 100%),radial-gradient(1px 1px at 25% 30%,#d85a9c 55%,transparent 100%),radial-gradient(1.5px 1.5px at 78% 14%,#8c3e85 55%,transparent 100%)}
+.topbar,.floating-dock{color:#4c2441}
+.brand strong,.orb-node__title,.hero-copy,.section-heading,.editorial-bento__copy h1{color:#4a2040}
+.searchbox,.subject-pill,.drill-panel{background:rgba(255,255,255,.72)!important;border-color:rgba(185,70,137,.2)!important;color:#512044!important;box-shadow:0 12px 35px rgba(177,69,132,.08)}
+.floating-dock{background:rgba(255,247,252,.88)!important;border:1px solid rgba(184,74,139,.22)!important;box-shadow:0 16px 50px rgba(157,62,119,.16)!important;backdrop-filter:blur(22px)}
+.floating-dock a{color:#79506d}.floating-dock a.active,.floating-dock a:hover{color:#c13e89}
+.avatar,.brand-mark,.target-icon{background:linear-gradient(135deg,#f8b5d0,#d95a9f 60%,#a9439b)!important;color:white!important}
+.orb-node{background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,224,239,.92))!important;border-color:rgba(188,71,140,.35)!important;color:#572044!important;box-shadow:0 14px 36px rgba(180,67,132,.15)!important}
+.orb-node__icon,.orb-node__arrow{color:#c13e89!important}
+.core{background:radial-gradient(circle at 32% 25%,#fff,#f7b6d1 42%,#d65b9e 75%,#8e3d85)!important;color:#552044!important;box-shadow:0 0 75px rgba(204,73,146,.3)!important}
+.orbit{border-color:rgba(185,72,137,.25)!important}
+.editorial-bento{color:#512044}
+.editorial-bento__visual{background:linear-gradient(145deg,#f9c3dc,#e98ab9 55%,#b64b9b)!important}
+.editorial-bento__chip{background:linear-gradient(145deg,#fff7fb,#f3a9cc 55%,#b64b9b)!important;color:#542044!important}
+.editorial-bento__accent{color:#c13e89!important}
+.drill-panel{color:#512044!important}
+.notice-pop,.route-modal{background:#fff7fb!important;color:#512044!important;border:1px solid #e8b2d0!important}
+.notice-pop span,.route-modal p{color:#805d78!important}
+.modal-primary,.editorial-bento__cta,.drill-open-link{background:linear-gradient(110deg,#ee91bb,#c44a99)!important;color:#fff!important}
+.subject-section,.section-heading{color:#542044}
+.subject-pill{background:linear-gradient(120deg,#fff,#fde6f1)!important;color:#68294f!important}
+.utility-page{background:radial-gradient(ellipse at 75% 20%,#f3b2d0 0,transparent 42%),linear-gradient(135deg,#fff8fc,#f8e4f2)!important;color:#512044!important}
+.utility-page header,.utility-page footer{color:#815b76!important;border-color:#e9c2d9!important}
+.utility-page header a,.utility-page section>small{color:#c13e89!important}
+.utility-page h1 em{color:#c13e89!important}
+.utility-page section>p,.utility-panel span{color:#805d78!important}
+.utility-actions a{border-color:#d987b4!important;color:#a83479!important;background:#fff8fc}
+.utility-panel{background:#fff8fc!important;border-color:#e8b7d2!important}
+.profile-app{background:radial-gradient(ellipse at 20% 12%,#f5c0d8 0,transparent 38%),linear-gradient(135deg,#fff8fc,#f8e5f2)!important;color:#512044!important}
+.profile-top,.profile-footer{color:#805d78!important;border-color:#e9c2d9!important}
+.profile-back,.profile-kicker,.profile-stats b,.profile-activity>span{color:#bd438b!important}
+.profile-panel,.profile-form-panel,.profile-stats article,.profile-goals{background:rgba(255,255,255,.76)!important;border-color:#edc5da!important;color:#512044!important}
+.profile-identity p,.profile-activity small,.profile-goals p,.profile-form-panel p{color:#805d78!important}
+.profile-avatar{background:linear-gradient(135deg,#f6bfd8,#d45a9d)!important;color:#fff!important}
+.profile-tags span{border-color:#e6b5d0!important;color:#87516f!important}
+.profile-tabs{border-color:#e7bfd6!important}.profile-tabs button{color:#805d78!important}.profile-tabs button.active{color:#bc4389!important;border-color:#c64c93!important}
+.profile-form-panel input,.profile-form-panel select{background:#fffafd!important;border-color:#e7bfd6!important;color:#512044!important}
+.profile-goals a,.profile-footer a{color:#bd438b!important}
+.library-app,.drill-app,.mock-app,.progress-app,.syllabus-app{background:linear-gradient(135deg,#fff8fc,#f8e6f2)!important;color:#512044!important}
