@@ -67,15 +67,20 @@ export default function DailyDrillPage(){
   const supabase=getSupabaseBrowserClient();
   const {data:{user}}=await supabase!.auth.getUser();
   if(!user){router.replace("/login");return;}
-  const {error}=await supabase!.from("assessment_attempts").insert({
+  const submittedAt=new Date().toISOString();
+  const {data:attempt,error}=await supabase!.from("assessment_attempts").insert({
    assessment_id:assessmentId,
    student_id:user.id,
    answers,
    score,
-   submitted_at:new Date().toISOString()
-  });
+   submitted_at:submittedAt
+  }).select("id").single();
+  if(!error&&attempt){
+   const {error:activityError}=await supabase!.from("student_activity").insert({student_id:user.id,activity_type:"daily_drill_submitted",reference_id:assessmentId,metadata:{attempt_id:attempt.id,score,question_count:questions.length,answered_count:attempted,accuracy:questions.length?Math.round(score/questions.length*100):0}});
+   if(activityError)setSaveMessage("Attempt saved; activity sync warning: "+activityError.message);
+  }
   setSaving(false);
-  setSaveMessage(error?"Your result is visible here, but could not be saved: "+error.message:"Your attempt has been saved to your student account.");
+  if(!error)setSaveMessage("Your attempt has been saved to your student account.");else setSaveMessage("Your result is visible here, but could not be saved: "+error.message);
  },[assessmentId,submitted,saving,answers,score,router]);
  const restart=()=>{setIndex(0);setAnswers({});setMarked([]);setSubmitted(false);setSeconds(12*60);setShowExplanation(false);setSaveMessage("");};
  const toggleMark=()=>{if(current)setMarked(value=>value.includes(current.id)?value.filter(id=>id!==current.id):[...value,current.id]);};
