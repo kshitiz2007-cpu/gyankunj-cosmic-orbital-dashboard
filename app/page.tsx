@@ -74,6 +74,45 @@ export default function Dashboard() {
   const [notice,setNotice] = useState(false);
   const [selected,setSelected] = useState<NodeItem|null>(null);
   const [drillStats,setDrillStats] = useState({total:0,correct:0,subject:"NO DRILL PUBLISHED",loading:true});
+  const [streakDays,setStreakDays]=useState(0);
+  const [streakLoading,setStreakLoading]=useState(true);
+  const [todayLabel,setTodayLabel]=useState("");
+  useEffect(()=>{
+    let active=true;
+    const loadStreak=async()=>{
+      const supabase=(await import("@/lib/supabase/client")).getSupabaseBrowserClient();
+      if(!supabase){if(active)setStreakLoading(false);return;}
+      const {data:{user}}=await supabase.auth.getUser();
+      if(!user){if(active)setStreakLoading(false);return;}
+      const dateFmt=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"});
+      const today=dateFmt.format(new Date());
+      const dateLabel=new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",weekday:"short",day:"2-digit",month:"short",year:"numeric"}).format(new Date()).toUpperCase();
+      const [year,month,day]=today.split("-").map(Number);
+      const todayUtc=Date.UTC(year,month-1,day);
+      const since=new Date(todayUtc-366*86400000).toISOString();
+      const [{data:activities,error:activityError},{data:attempts,error:attemptError}]=await Promise.all([
+        supabase.from("student_activity").select("created_at").eq("student_id",user.id).gte("created_at",since),
+        supabase.from("assessment_attempts").select("submitted_at").eq("student_id",user.id).not("submitted_at","is",null).gte("submitted_at",since)
+      ]);
+      if(activityError)throw activityError;
+      if(attemptError)throw attemptError;
+      const activeDates=new Set<string>();
+      for(const item of activities||[])if(item.created_at)activeDates.add(dateFmt.format(new Date(item.created_at)));
+      for(const item of attempts||[])if(item.submitted_at)activeDates.add(dateFmt.format(new Date(item.submitted_at)));
+      const yesterday=new Date(todayUtc-86400000).toISOString().slice(0,10);
+      let cursor=activeDates.has(today)?today:activeDates.has(yesterday)?yesterday:"";
+      let count=0;
+      while(cursor&&activeDates.has(cursor)){
+        count++;
+        const [y,m,d]=cursor.split("-").map(Number);
+        cursor=new Date(Date.UTC(y,m-1,d)-86400000).toISOString().slice(0,10);
+      }
+      if(active){setStreakDays(count);setTodayLabel(dateLabel);setStreakLoading(false);}
+    };
+    void loadStreak().catch(()=>{if(active){setStreakDays(0);setStreakLoading(false);}});
+    return()=>{active=false;};
+  },[]);
+
   useEffect(()=>{
     let active=true;
     const loadDrill=async()=>{
@@ -119,8 +158,8 @@ export default function Dashboard() {
     </header>
 
     <section className="hero" aria-label="Your knowledge universe">
-      <div className="hero-copy hero-copy--left"><span className="eyebrow">THU / 30 OCT 2026</span><p>“A little progress<br/>every day builds<br/>a big result.”</p><span className="vertical-index">01<br/>02<br/>03<br/>04<br/>05</span></div>
-      <div className="hero-copy hero-copy--right"><div className="streak"><Icon icon={FireIcon} size={28}/><strong>12</strong><span>DAY STREAK</span></div><p>“Discipline today,<br/>freedom tomorrow.”</p></div>
+      <div className="hero-copy hero-copy--left"><span className="eyebrow">{todayLabel || "YOUR LEARNING DASHBOARD"}</span><p>“A little progress<br/>every day builds<br/>a big result.”</p><span className="vertical-index">01<br/>02<br/>03<br/>04<br/>05</span></div>
+      <div className="hero-copy hero-copy--right"><div className="streak"><Icon icon={FireIcon} size={28}/><strong>{streakLoading?"—":streakDays}</strong><span>DAY STREAK</span></div><p>“Discipline today,<br/>freedom tomorrow.”</p></div>
       <div className="universe">
         <div className="orbit orbit--one"/><div className="orbit orbit--two"/><div className="orbit orbit--three"/>
         <div className="orbit-dash"/>
