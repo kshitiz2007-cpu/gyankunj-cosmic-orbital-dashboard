@@ -92,7 +92,7 @@ begin
     'id',q.id,'correct_option',q.correct_option,
     'explanation',coalesce(q.explanation_hi,q.explanation_en,'')
   ) order by q.created_at asc),'[]'::jsonb)
-  into v_review from public.questions q where q.assessment_id=p_assessment_id;
+  into v_review from public.questions q where q.assessment_id=p_assessment_id and (v_answered_count=v_question_count or p_answers ? q.id::text);
 
   return jsonb_build_object(
     'attempt_id',v_attempt_id,'score',v_score,'correct_count',v_correct_count,
