@@ -33,19 +33,20 @@ export default function TodaysGlimpsesPage(){
    const label=new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(new Date());
    const [editorialResult,assessmentResult]=await Promise.all([
     supabase.from("editorial_articles").select("id,slug,category,title_hi,title_en,summary_hi,summary_en,mains_question,read_minutes,published_at,created_at").eq("is_published",true).order("published_at",{ascending:false,nullsFirst:false}).order("created_at",{ascending:false}).limit(50),
-    supabase.from("assessments").select("id,title,duration_minutes,created_at,published_at,subject_id").eq("kind","daily_drill").eq("is_published",true).gte("published_at",start).lt("published_at",end).order("created_at",{ascending:false}).limit(1).maybeSingle()
+    supabase.from("assessments").select("id,title,duration_minutes,created_at,published_at,subject_id").eq("kind","daily_drill").eq("is_published",true).order("created_at",{ascending:false}).limit(30)
    ]);
    if(editorialResult.error)throw editorialResult.error;
    if(assessmentResult.error)throw assessmentResult.error;
+   const todaysDrill=((assessmentResult.data||[]) as Assessment[]).find(row=>isTodayIndia(row.published_at||row.created_at,key))||null;
    const todaysEditorial=(editorialResult.data||[]).find(row=>isTodayIndia(row.published_at||row.created_at,key)) as Editorial|undefined;
    let nextQuestions:Question[]=[];
-   if(assessmentResult.data){
-    const {data,error:qError}=await supabase.from("questions").select("id,question_hi,question_en,topic").eq("assessment_id",assessmentResult.data.id).order("created_at",{ascending:true});
+   if(todaysDrill){
+    const {data,error:qError}=await supabase.from("questions").select("id,question_hi,question_en,topic").eq("assessment_id",todaysDrill.id).order("created_at",{ascending:true});
     if(qError)throw qError;
     nextQuestions=(data||[]) as Question[];
    }
    if(!active)return;
-   setTodayKey(key);setDateLabel(label);setEditorial(todaysEditorial||null);setAssessment(assessmentResult.data as Assessment|null);setQuestions(nextQuestions);setLoading(false);
+   setTodayKey(key);setDateLabel(label);setEditorial(todaysEditorial||null);setAssessment(nextQuestions.length>0?todaysDrill:null);setQuestions(nextQuestions);setLoading(false);
   };
   void load().catch(e=>{if(active){setError(e instanceof Error?e.message:"Unable to load today's published content.");setLoading(false);}});
   return()=>{active=false;};
