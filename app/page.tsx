@@ -84,8 +84,9 @@ export default function Dashboard() {
       if(!supabase){if(active)setStreakLoading(false);return;}
       const {data:{user}}=await supabase.auth.getUser();
       if(!user){if(active)setStreakLoading(false);return;}
-      const dateFmt=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"});
-      const today=dateFmt.format(new Date());
+      const dateFmt=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"});
+      const dateKey=(value:Date)=>{const parts=dateFmt.formatToParts(value);const get=(type:string)=>parts.find(part=>part.type===type)?.value||"";return get("year")+"-"+get("month")+"-"+get("day");};
+      const today=dateKey(new Date());
       const dateLabel=new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",weekday:"short",day:"2-digit",month:"short",year:"numeric"}).format(new Date()).toUpperCase();
       const [year,month,day]=today.split("-").map(Number);
       const todayUtc=Date.UTC(year,month-1,day);
@@ -97,8 +98,8 @@ export default function Dashboard() {
       if(activityError)throw activityError;
       if(attemptError)throw attemptError;
       const activeDates=new Set<string>();
-      for(const item of activities||[])if(item.created_at)activeDates.add(dateFmt.format(new Date(item.created_at)));
-      for(const item of attempts||[])if(item.submitted_at)activeDates.add(dateFmt.format(new Date(item.submitted_at)));
+      for(const item of activities||[])if(item.created_at)activeDates.add(dateKey(new Date(item.created_at)));
+      for(const item of attempts||[])if(item.submitted_at)activeDates.add(dateKey(new Date(item.submitted_at)));
       const yesterday=new Date(todayUtc-86400000).toISOString().slice(0,10);
       let cursor=activeDates.has(today)?today:activeDates.has(yesterday)?yesterday:"";
       let count=0;
