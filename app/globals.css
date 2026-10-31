@@ -1469,3 +1469,121 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
  .library-app .library-tools input{font-size:13px;height:42px}
  .library-app .library-tools>span{font-size:8px;letter-spacing:.12em}
 }
+
+
+/* SUBJECT-THEMED TOPIC MODULES — premium Gyankunj blush visual system */
+.library-app .library-topic-section{padding-top:28px}
+.library-app .library-topic-section .library-section-head{margin-bottom:23px;gap:12px}
+.library-app .library-topic-section .library-kicker{
+ color:#9b3b75!important;font-size:10px;font-weight:700;letter-spacing:.2em;
+}
+.library-app .library-topic-section .library-section-head h2{
+ color:#421b39!important;font-size:clamp(32px,6vw,46px);font-weight:650;
+ letter-spacing:-.065em;line-height:1.14;
+}
+.library-app .library-topic-section .library-section-head h2 em{
+ color:#bd438b!important;font-family:"Playfair Display","Noto Serif Devanagari",serif;
+ font-weight:500;font-style:italic;letter-spacing:-.045em;
+}
+.library-app .library-topic-section .library-section-head>small{
+ color:#93627f!important;font-size:9px;font-weight:700;letter-spacing:.16em;
+ padding:8px 11px;border:1px solid rgba(189,67,139,.18);
+ border-radius:999px;background:rgba(255,255,255,.55);
+}
+.library-app .library-topic-grid{gap:14px}
+.library-app .library-topic-card{
+ --topic-accent:#bd438b;--topic-soft:rgba(189,67,139,.11);
+ position:relative;isolation:isolate;overflow:hidden;
+ grid-template-columns:48px minmax(0,1fr) 38px;gap:13px;
+ min-height:190px;padding:22px 20px 20px;
+ border:1px solid color-mix(in srgb,var(--topic-accent) 23%,#fff)!important;
+ border-radius:24px!important;
+ background:
+  radial-gradient(ellipse at 100% 0%,var(--topic-soft),transparent 48%),
+  linear-gradient(145deg,rgba(255,255,255,.97),rgba(255,246,251,.94))!important;
+ box-shadow:0 12px 30px rgba(133,42,99,.075),inset 0 1px 0 rgba(255,255,255,.95)!important;
+ transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.library-app .library-topic-card::before{
+ content:"";position:absolute;z-index:-1;left:0;top:18px;bottom:18px;width:3px;
+ border-radius:0 5px 5px 0;background:linear-gradient(180deg,var(--topic-accent),transparent);
+ opacity:.8;
+}
+.library-app .library-topic-card::after{
+ content:"";position:absolute;z-index:-1;right:-45px;bottom:-70px;width:145px;height:145px;
+ border:1px solid color-mix(in srgb,var(--topic-accent) 13%,transparent);
+ border-radius:50%;box-shadow:0 0 0 15px color-mix(in srgb,var(--topic-accent) 4%,transparent),0 0 0 31px color-mix(in srgb,var(--topic-accent) 3%,transparent);
+}
+.library-app .library-topic-card--polity{--topic-accent:#bd438b;--topic-soft:rgba(216,103,164,.15)}
+.library-app .library-topic-card--history{--topic-accent:#b58a36;--topic-soft:rgba(225,188,111,.2)}
+.library-app .library-topic-card--economy{--topic-accent:#398c78;--topic-soft:rgba(115,204,177,.2)}
+.library-app .library-topic-card--environment{--topic-accent:#4b9364;--topic-soft:rgba(145,205,151,.2)}
+.library-app .library-topic-card--science-tech{--topic-accent:#8660b8;--topic-soft:rgba(179,147,220,.2)}
+.library-app .library-topic-card--geography{--topic-accent:#397f9c;--topic-soft:rgba(119,190,214,.2)}
+.library-app .library-topic-card:hover{
+ transform:translateY(-4px);
+ border-color:color-mix(in srgb,var(--topic-accent) 48%,#fff)!important;
+ box-shadow:0 18px 38px rgba(133,42,99,.12)!important;
+}
+.library-app .library-topic-number{
+ display:flex;align-items:flex-start;justify-content:center;
+ padding-top:1px;color:var(--topic-accent)!important;
+ font:600 27px/1 "Playfair Display",serif;letter-spacing:-.04em;
+}
+.library-app .library-topic-card>div:nth-child(2)>span{
+ display:inline-flex;align-items:center;min-height:23px;padding:0 9px;
+ border:1px solid color-mix(in srgb,var(--topic-accent) 21%,#fff);
+ border-radius:999px;background:var(--topic-soft);
+ color:var(--topic-accent)!important;font:700 8px "Space Grotesk",sans-serif;
+ letter-spacing:.15em;
+}
+.library-app .library-topic-card h3{
+ margin:12px 0 7px;color:#54213f!important;
+ font:700 clamp(16px,2vw,19px)/1.55 "Noto Serif Devanagari",serif;
+ letter-spacing:0;overflow-wrap:anywhere;
+}
+.library-app .library-topic-card p{
+ margin:0;color:#80647a!important;
+ font:500 12px/1.75 "Noto Sans Devanagari",sans-serif;
+}
+.library-app .library-topic-resources{
+ display:flex;flex-wrap:wrap;gap:13px;margin-top:17px;
+ padding-top:12px;border-top:1px solid color-mix(in srgb,var(--topic-accent) 15%,#fff);
+}
+.library-app .library-topic-resources span{
+ display:inline-flex;align-items:center;gap:5px;
+ color:#866d80!important;font:700 8px "Space Grotesk",sans-serif;letter-spacing:.09em;
+}
+.library-app .library-topic-resources svg{width:16px;height:16px;color:var(--topic-accent)!important}
+.library-app .library-topic-card>a{
+ display:grid;place-items:center;width:38px;height:38px;
+ border:1px solid color-mix(in srgb,var(--topic-accent) 25%,#fff)!important;
+ border-radius:50%;background:rgba(255,255,255,.68)!important;
+ color:var(--topic-accent)!important;text-decoration:none;
+ transition:background .2s ease,transform .2s ease;
+}
+.library-app .library-topic-card>a:hover{
+ background:var(--topic-soft)!important;transform:translate(2px,-2px);
+}
+.library-app .library-topic-card>a svg{width:21px;height:21px}
+.library-app .library-topic-section .library-empty{
+ border:1px dashed rgba(189,67,139,.3)!important;background:rgba(255,255,255,.45)!important;
+ color:#80647a!important;
+}
+@media(max-width:700px){
+ .library-app .library-topic-section{padding-top:22px}
+ .library-app .library-topic-section .library-section-head{align-items:flex-end;margin-bottom:19px}
+ .library-app .library-topic-section .library-section-head h2{font-size:clamp(29px,8vw,38px);line-height:1.2}
+ .library-app .library-topic-section .library-section-head>small{font-size:8px;padding:7px 9px}
+ .library-app .library-topic-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+ .library-app .library-topic-card{grid-template-columns:43px minmax(0,1fr) 36px;gap:10px;min-height:174px;padding:19px 16px 18px;border-radius:22px!important}
+ .library-app .library-topic-number{font-size:25px}
+ .library-app .library-topic-card h3{font-size:18px;line-height:1.55;margin-top:10px}
+ .library-app .library-topic-card p{font-size:12px}
+ .library-app .library-topic-resources{gap:11px;margin-top:14px;padding-top:11px}
+ .library-app .library-topic-resources span{font-size:7px}
+ .library-app .library-topic-card>a{width:36px;height:36px}
+}
+@media(prefers-reduced-motion:reduce){
+ .library-app .library-topic-card,.library-app .library-topic-card>a{transition:none}
+}
