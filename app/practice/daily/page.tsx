@@ -35,7 +35,10 @@ export default function DailyDrillPage(){
    if(!supabase){setLoadError("Supabase configuration is missing.");setLoading(false);return;}
    const {data:{user}}=await supabase.auth.getUser();
    if(!user){router.replace("/login");return;}
-   const {data:assessment,error:assessmentError}=await supabase.from("assessments").select("id,duration_minutes").eq("kind","daily_drill").eq("is_published",true).order("created_at",{ascending:false}).limit(1).maybeSingle();
+   const requestedAssessmentId=new URLSearchParams(window.location.search).get("assessment");
+   let assessmentQuery=supabase.from("assessments").select("id,duration_minutes").eq("kind","daily_drill").eq("is_published",true);
+   if(requestedAssessmentId)assessmentQuery=assessmentQuery.eq("id",requestedAssessmentId);
+   const {data:assessment,error:assessmentError}=await assessmentQuery.order("created_at",{ascending:false}).limit(1).maybeSingle();
    if(assessmentError)throw assessmentError;
    if(!assessment){if(active)setLoading(false);return;}
    const {data:rows,error:questionError}=await supabase.from("questions").select("id,subject_id,topic,question_en,question_hi,options_en,options_hi,explanation_en,explanation_hi").eq("assessment_id",assessment.id).order("created_at",{ascending:true});
