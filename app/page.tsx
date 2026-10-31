@@ -36,7 +36,7 @@ const subjects = [
 ];
 const nav = [
   {name:"Home",icon:Home01Icon,href:"/"},
-  {name:"Study",icon:BookOpen01Icon,href:"/library"},
+  {name:"Syllabus",icon:GraduationScrollIcon,href:"/syllabus"},
   {name:"Practice",icon:Notebook01Icon,href:"/practice/daily"},
   {name:"AI",icon:SparklesIcon,href:"/ai"},
   {name:"Live",icon:UserGroupIcon,href:"/live"},
