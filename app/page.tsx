@@ -63,7 +63,7 @@ function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:nu
     whileHover:reduceMotion?undefined:{scale:1.045,y:-4},
     whileTap:{scale:.96}
   };
-  if(item.id==="drill" || item.id==="mock" || item.id==="editorial" || item.id==="library" || item.id==="progress" || item.id==="syllabus") return <motion.a {...animation} href={item.href} aria-label={"Open "+item.title+" "+item.subtitle} className={"orb-node orb-node--"+item.id} style={style}>{content}</motion.a>;
+  if(item.id==="drill" || item.id==="mock" || item.id==="editorial" || item.id==="library" || item.id==="progress" || item.id==="syllabus" || item.id==="live") return <motion.a {...animation} href={item.href} aria-label={"Open "+item.title+" "+item.subtitle} className={"orb-node orb-node--"+item.id} style={style}>{content}</motion.a>;
   return <motion.button {...animation} type="button" aria-label={item.title+" "+item.subtitle} className={"orb-node orb-node--"+item.id} style={style} onClick={()=>onSelect(item)}>{content}</motion.button>;
 }
 
