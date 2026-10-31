@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -73,6 +73,35 @@ export default function Dashboard() {
   const [search,setSearch] = useState("");
   const [notice,setNotice] = useState(false);
   const [selected,setSelected] = useState<NodeItem|null>(null);
+  const [drillStats,setDrillStats] = useState({total:0,attempted:0,subject:"NO DRILL PUBLISHED",loading:true});
+  useEffect(()=>{
+    let active=true;
+    const loadDrill=async()=>{
+      const {getSupabaseBrowserClient}=await import("@/lib/supabase/client");
+      const supabase=getSupabaseBrowserClient();
+      if(!supabase){if(active)setDrillStats({total:0,attempted:0,subject:"SUPABASE UNAVAILABLE",loading:false});return;}
+      const {data:{user}}=await supabase.auth.getUser();
+      if(!user){if(active)setDrillStats({total:0,attempted:0,subject:"SIGN IN TO PRACTICE",loading:false});return;}
+      const {data:assessment,error:assessmentError}=await supabase.from("assessments").select("id,subject_id").eq("kind","daily_drill").eq("is_published",true).order("created_at",{ascending:false}).limit(1).maybeSingle();
+      if(assessmentError)throw assessmentError;
+      if(!assessment){if(active)setDrillStats({total:0,attempted:0,subject:"NO DRILL PUBLISHED",loading:false});return;}
+      const [{count,error:countError},{data:attempt,error:attemptError}]=await Promise.all([
+        supabase.from("questions").select("id",{count:"exact",head:true}).eq("assessment_id",assessment.id),
+        supabase.from("assessment_attempts").select("answers,submitted_at").eq("assessment_id",assessment.id).eq("student_id",user.id).order("submitted_at",{ascending:false,nullsFirst:false}).limit(1).maybeSingle()
+      ]);
+      if(countError)throw countError;
+      if(attemptError)throw attemptError;
+      let subject="GENERAL STUDIES";
+      if(assessment.subject_id){
+        const {data:subjectRow}=await supabase.from("subjects").select("name_en").eq("id",assessment.subject_id).maybeSingle();
+        if(subjectRow?.name_en)subject=subjectRow.name_en.toUpperCase();
+      }
+      const answers=attempt?.answers && typeof attempt.answers==="object" ? attempt.answers as Record<string,unknown> : {};
+      if(active)setDrillStats({total:count||0,attempted:Object.keys(answers).length,subject,loading:false});
+    };
+    void loadDrill().catch(()=>{if(active)setDrillStats({total:0,attempted:0,subject:"DRILL DATA UNAVAILABLE",loading:false});});
+    return()=>{active=false;};
+  },[]);
   const filtered = useMemo(()=>subjects.filter(s=>s.name.toLowerCase().includes(search.toLowerCase())),[search]);
   const choose = (item:NodeItem) => setSelected(item);
   return <main id="home" className="app-shell">
@@ -119,8 +148,8 @@ export default function Dashboard() {
       </motion.article>
       <motion.article className="drill-panel" id="practice" initial={reduceMotion?false:{opacity:0,y:22}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}}>
         <div className="drill-heading"><span className="target-icon"><Icon icon={Target01Icon} size={27}/></span><span>TODAY&apos;S DRILL</span><Link className="drill-open-link" aria-label="Continue drill" href="/practice/daily"><Icon icon={ArrowUpRight01Icon}/></Link></div>
-        <div className="drill-stats"><div><strong>15 <small>/ 20</small></strong><span>Questions</span></div><div className="progress-ring"><span>75%</span></div></div>
-        <div className="drill-foot"><span><Icon icon={CheckmarkCircle02Icon} size={15}/> DAILY PRACTICE</span><span>POLITY</span></div>
+        <div className="drill-stats"><div><strong>{drillStats.loading?"—":drillStats.attempted} <small>/ {drillStats.total}</small></strong><span>Questions attempted</span></div><div className="progress-ring" style={{"--progress":drillStats.total?Math.min(100,Math.round(drillStats.attempted/drillStats.total*100)):0} as React.CSSProperties}><span>{drillStats.total?Math.min(100,Math.round(drillStats.attempted/drillStats.total*100)):0}%</span></div></div>
+        <div className="drill-foot"><span><Icon icon={CheckmarkCircle02Icon} size={15}/> {drillStats.total?(drillStats.attempted?"DAILY PRACTICE":"READY TO PRACTICE"):drillStats.loading?"LOADING DRILL":"NO ACTIVE DRILL"}</span><span>{drillStats.subject}</span></div>
       </motion.article>
     </section>
 
