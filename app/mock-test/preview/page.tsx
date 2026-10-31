@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import {useEffect,useMemo,useState} from "react";
+import {useEffect,useState} from "react";
 import {ArrowLeft01Icon,ArrowRight01Icon,Flag01Icon,Clock01Icon,ArrowUpRight01Icon} from "@hugeicons/core-free-icons";
 import {HugeiconsIcon} from "@hugeicons/react";
 import {getSupabaseBrowserClient} from "@/lib/supabase/client";
@@ -35,7 +35,7 @@ export default function MockPreview(){
    if(!rows?.length){setLoadError("This mock test has no published questions yet.");setLoading(false);return;}
    if(!active)return;
    setAssessmentId(assessment.id);setTitle(assessment.title);
-   setSec(Math.max(1,Number(assessment.duration_minutes)||120)*60);
+   setDurationSeconds(Math.max(1,Number(assessment.duration_minutes)||120)*60);setSec(Math.max(1,Number(assessment.duration_minutes)||120)*60);
    setQs(rows.map(q=>({id:q.id,q:q.question_hi||q.question_en,o:Array.isArray(q.options_hi)&&q.options_hi.length===4?q.options_hi:q.options_en,a:-1,e:q.explanation_hi||q.explanation_en||""})));
    setLoading(false);
   };
@@ -43,7 +43,6 @@ export default function MockPreview(){
   return()=>{active=false;};
  },[]);
  useEffect(()=>{if(loading||done||sec<=0||!qs.length)return;const timer=window.setInterval(()=>setSec(v=>Math.max(0,v-1)),1000);return()=>window.clearInterval(timer);},[loading,done,sec,qs.length]);
- const score=useMemo(()=>qs.reduce((sum,q)=>sum+(answers[q.id]===q.a?1:0),0),[answers,qs]);
  const attempted=Object.keys(answers).length;
  const q=qs[i];
  const mm=String(Math.floor(sec/60)).padStart(2,"0"),ss=String(sec%60).padStart(2,"0");
