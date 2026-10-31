@@ -69,6 +69,8 @@ export default function Dashboard() {
   const [active,setActive] = useState("Home");
   const [search,setSearch] = useState("");
   const [notice,setNotice] = useState(false);
+  const [studentInitials,setStudentInitials]=useState("GK");
+  const [announcements,setAnnouncements]=useState<Array<{id:string;title:string;body:string;published_at:string|null}>>([]);
   const [selected,setSelected] = useState<NodeItem|null>(null);
   const [drillStats,setDrillStats] = useState({total:0,correct:0,subject:"NO DRILL PUBLISHED",loading:true});
   const [streakDays,setStreakDays]=useState(0);
@@ -83,13 +85,19 @@ export default function Dashboard() {
       const {getSupabaseBrowserClient}=await import("@/lib/supabase/client");
       const supabase=getSupabaseBrowserClient();
       if(!supabase){if(active)setDashboardContentLoading(false);return;}
-      const [subjectResult,editorialResult]=await Promise.all([
+      const {data:{user}}=await supabase.auth.getUser();
+      const [subjectResult,editorialResult,announcementResult,profileResult]=await Promise.all([
         supabase.from("subjects").select("slug,name_en,name_hi,sort_order").order("sort_order",{ascending:true}),
-        supabase.from("editorial_articles").select("slug,title_hi,summary_hi,category,read_minutes,published_at,created_at").eq("is_published",true).order("published_at",{ascending:false,nullsFirst:false}).order("created_at",{ascending:false}).limit(1).maybeSingle()
+        supabase.from("editorial_articles").select("slug,title_hi,summary_hi,category,read_minutes,published_at,created_at").eq("is_published",true).order("published_at",{ascending:false,nullsFirst:false}).order("created_at",{ascending:false}).limit(1).maybeSingle(),
+        supabase.from("announcements").select("id,title,body,published_at").eq("is_published",true).order("published_at",{ascending:false,nullsFirst:false}).limit(5),
+        user?supabase.from("profiles").select("full_name").eq("id",user.id).maybeSingle():Promise.resolve({data:null,error:null})
       ]);
       if(!active)return;
       if(!subjectResult.error)setSubjects((subjectResult.data||[]).map(s=>({slug:s.slug,name:s.name_en,icon:subjectVisuals[s.slug]?.icon||BookOpen01Icon,color:subjectVisuals[s.slug]?.color||"#b89cff"})));
       if(!editorialResult.error&&editorialResult.data)setFeaturedEditorial(editorialResult.data);
+      if(!announcementResult.error)setAnnouncements(announcementResult.data||[]);
+      const fullName=profileResult.data?.full_name||user?.user_metadata?.full_name||"";
+      if(fullName)setStudentInitials(fullName.split(" ").filter(Boolean).slice(0,2).map((part:string)=>part[0]?.toUpperCase()).join(""));
       setDashboardContentLoading(false);
     };
     void loadDashboardContent();
@@ -172,7 +180,7 @@ export default function Dashboard() {
       <label className="searchbox"><Icon icon={Search01Icon}/><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search subjects..."/><Icon icon={SparklesIcon}/></label>
       <div className="top-actions" id="profile">
         <button className="icon-button" aria-label="Notifications" onClick={()=>setNotice(v=>!v)}><Icon icon={Notification01Icon}/><i/></button>
-        <Link className="avatar" aria-label="Open student profile" href="/profile">KV</Link>
+        <Link className="avatar" aria-label="Open student profile" href="/profile">{studentInitials}</Link>
       </div>
     </header>
 
@@ -196,7 +204,7 @@ export default function Dashboard() {
         <div className="editorial-bento__top"><span><i/> DAILY CRUX / EDITION 001</span><span>GYANKUNJ EDITORIAL DESK <b>↗</b></span></div>
         <div className="editorial-bento__body">
           <div className="editorial-bento__copy">
-            <span className="editorial-bento__eyebrow">{dashboardContentLoading?"LOADING EDITORIAL":"TODAY&apos;S EDITORIAL"} <i>·</i> {featuredEditorial?.category||"DAILY CRUX"}</span>
+            <span className="editorial-bento__eyebrow">{dashboardContentLoading?"LOADING EDITORIAL":"TODAY'S EDITORIAL"} <i>·</i> {featuredEditorial?.category||"DAILY CRUX"}</span>
             <h1><motion.span initial={reduceMotion?false:{y:"105%"}} whileInView={{y:0}} viewport={{once:true}} transition={{duration:.8,delay:.12}}>{featuredEditorial?.title_hi||"आज का Daily Crux"}</motion.span></h1>
             <p>{featuredEditorial?.summary_hi||"नवीनतम UPSC-केंद्रित संपादकीय यहाँ प्रकाशित होते ही दिखाई देगा।"}</p>
             <div className="editorial-bento__bottom"><span>◷ &nbsp;{featuredEditorial?.read_minutes||"—"} MIN READ</span><span>{featuredEditorial?.category||"UPSC CURRENT AFFAIRS"}</span><Link href={featuredEditorial?"/current-affairs/"+featuredEditorial.slug:"/current-affairs"} className="editorial-bento__cta">READ THE EDITORIAL <b>↗</b></Link></div>
@@ -219,7 +227,7 @@ export default function Dashboard() {
 
     <nav className="floating-dock" aria-label="Primary navigation">{nav.map((item)=><Link key={item.name} href={item.href} onClick={()=>setActive(item.name)} className={active===item.name?"active":""}><span className={item.name==="AI"?"dock-ai":""}><Icon icon={item.icon} size={21}/></span><small>{item.name}</small></Link>)}</nav>
 
-    <AnimatePresence>{notice&&<motion.div className="notice-pop" initial={{opacity:0,y:-8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}}><strong>You&apos;re all caught up.</strong><span>No new notifications right now.</span></motion.div>}</AnimatePresence>
+    <AnimatePresence>{notice&&<motion.div className="notice-pop" initial={{opacity:0,y:-8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}}>{announcements.length?announcements.map(item=><div key={item.id}><strong>{item.title}</strong><span>{item.body}</span></div>):<div><strong>You&apos;re all caught up.</strong><span>No new notifications right now.</span></div>}</motion.div>}</AnimatePresence>
     <AnimatePresence>{selected&&<motion.div className="modal-backdrop" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setSelected(null)}><motion.div className="route-modal" role="dialog" aria-modal="true" onClick={e=>e.stopPropagation()} initial={{y:20,scale:.96}} animate={{y:0,scale:1}} exit={{y:12,scale:.98}}><button className="modal-close" onClick={()=>setSelected(null)}>×</button><span className="eyebrow">GYANKUNJ / LEARNING SPACE</span><h2>{selected.title} {selected.subtitle}</h2><p>This destination is ready to connect to its dedicated learning module. Route: <code>{selected.href}</code></p><button className="modal-primary" onClick={()=>setSelected(null)}>Continue exploring <Icon icon={ArrowUpRight01Icon}/></button></motion.div></motion.div>}</AnimatePresence>
   </main>;
 }
