@@ -26,14 +26,11 @@ const nodes: NodeItem[] = [
   { id:"ai", title:"AI", subtitle:"COMPANION", color:"#f28fc9", icon:Brain01Icon, href:"/ai", angle:90 },
   { id:"syllabus", title:"EXPLORE", subtitle:"SYLLABUS", color:"#f3c879", icon:Compass01Icon, href:"/syllabus", angle:45 }
 ];
-const subjects = [
-  {slug:"polity",name:"Polity",icon:GraduationScrollIcon,color:"#70cfff"},
-  {slug:"economy",name:"Economy",icon:ChartLineData01Icon,color:"#76e2bd"},
-  {slug:"environment",name:"Environment",icon:Atom01Icon,color:"#9bdda0"},
-  {slug:"science-tech",name:"Science & Tech",icon:SparklesIcon,color:"#b89cff"},
-  {slug:"history",name:"History",icon:BookOpen01Icon,color:"#f3c879"},
-  {slug:"geography",name:"Geography",icon:Layers01Icon,color:"#ff9f9a"},
-];
+const subjectVisuals:Record<string,{icon:typeof GraduationScrollIcon;color:string}> = {
+  polity:{icon:GraduationScrollIcon,color:"#70cfff"},economy:{icon:ChartLineData01Icon,color:"#76e2bd"},
+  environment:{icon:Atom01Icon,color:"#9bdda0"},"science-tech":{icon:SparklesIcon,color:"#b89cff"},
+  history:{icon:BookOpen01Icon,color:"#f3c879"},geography:{icon:Layers01Icon,color:"#ff9f9a"}
+};
 const nav = [
   {name:"Home",icon:Home01Icon,href:"/"},
   {name:"Syllabus",icon:GraduationScrollIcon,href:"/syllabus"},
@@ -77,6 +74,27 @@ export default function Dashboard() {
   const [streakDays,setStreakDays]=useState(0);
   const [streakLoading,setStreakLoading]=useState(true);
   const [todayLabel,setTodayLabel]=useState("");
+  const [subjects,setSubjects]=useState<Array<{slug:string;name:string;icon:typeof GraduationScrollIcon;color:string}>>([]);
+  const [featuredEditorial,setFeaturedEditorial]=useState<{slug:string;title_hi:string;summary_hi:string;category:string;read_minutes:number}|null>(null);
+  const [dashboardContentLoading,setDashboardContentLoading]=useState(true);
+  useEffect(()=>{
+    let active=true;
+    const loadDashboardContent=async()=>{
+      const {getSupabaseBrowserClient}=await import("@/lib/supabase/client");
+      const supabase=getSupabaseBrowserClient();
+      if(!supabase){if(active)setDashboardContentLoading(false);return;}
+      const [subjectResult,editorialResult]=await Promise.all([
+        supabase.from("subjects").select("slug,name_en,name_hi,sort_order").order("sort_order",{ascending:true}),
+        supabase.from("editorial_articles").select("slug,title_hi,summary_hi,category,read_minutes,published_at,created_at").eq("is_published",true).order("published_at",{ascending:false,nullsFirst:false}).order("created_at",{ascending:false}).limit(1).maybeSingle()
+      ]);
+      if(!active)return;
+      if(!subjectResult.error)setSubjects((subjectResult.data||[]).map(s=>({slug:s.slug,name:s.name_en,icon:subjectVisuals[s.slug]?.icon||BookOpen01Icon,color:subjectVisuals[s.slug]?.color||"#b89cff"})));
+      if(!editorialResult.error&&editorialResult.data)setFeaturedEditorial(editorialResult.data);
+      setDashboardContentLoading(false);
+    };
+    void loadDashboardContent();
+    return()=>{active=false;};
+  },[]);
   useEffect(()=>{
     let active=true;
     const loadStreak=async()=>{
@@ -178,10 +196,10 @@ export default function Dashboard() {
         <div className="editorial-bento__top"><span><i/> DAILY CRUX / EDITION 001</span><span>GYANKUNJ EDITORIAL DESK <b>↗</b></span></div>
         <div className="editorial-bento__body">
           <div className="editorial-bento__copy">
-            <span className="editorial-bento__eyebrow">TODAY&apos;S EDITORIAL <i>·</i> SCIENCE & TECHNOLOGY</span>
-            <h1><motion.span initial={reduceMotion?false:{y:"105%"}} whileInView={{y:0}} viewport={{once:true}} transition={{duration:.8,delay:.12}}>भारत का</motion.span><motion.span initial={reduceMotion?false:{y:"105%"}} whileInView={{y:0}} viewport={{once:true}} transition={{duration:.8,delay:.22}}>सेमीकंडक्टर</motion.span><motion.span className="editorial-bento__accent" initial={reduceMotion?false:{y:"105%"}} whileInView={{y:0}} viewport={{once:true}} transition={{duration:.8,delay:.32}}>मिशन<span>.</span></motion.span></h1>
-            <p>आत्मनिर्भरता से रणनीतिक शक्ति तक — भारत की चिप क्षमता, वैश्विक आपूर्ति शृंखला और तकनीकी संप्रभुता का विश्लेषण।</p>
-            <div className="editorial-bento__bottom"><span>◷ &nbsp;08 MIN READ</span><span>UPSC · GS III</span><Link href="/current-affairs" className="editorial-bento__cta">READ THE EDITORIAL <b>↗</b></Link></div>
+            <span className="editorial-bento__eyebrow">{dashboardContentLoading?"LOADING EDITORIAL":"TODAY&apos;S EDITORIAL"} <i>·</i> {featuredEditorial?.category||"DAILY CRUX"}</span>
+            <h1><motion.span initial={reduceMotion?false:{y:"105%"}} whileInView={{y:0}} viewport={{once:true}} transition={{duration:.8,delay:.12}}>{featuredEditorial?.title_hi||"आज का Daily Crux"}</motion.span></h1>
+            <p>{featuredEditorial?.summary_hi||"नवीनतम UPSC-केंद्रित संपादकीय यहाँ प्रकाशित होते ही दिखाई देगा।"}</p>
+            <div className="editorial-bento__bottom"><span>◷ &nbsp;{featuredEditorial?.read_minutes||"—"} MIN READ</span><span>{featuredEditorial?.category||"UPSC CURRENT AFFAIRS"}</span><Link href={featuredEditorial?"/current-affairs/"+featuredEditorial.slug:"/current-affairs"} className="editorial-bento__cta">READ THE EDITORIAL <b>↗</b></Link></div>
           </div>
           <div className="editorial-bento__visual" aria-hidden="true"><div className="editorial-bento__visual-grid"/><div className="editorial-bento__orbit editorial-bento__orbit--one"/><div className="editorial-bento__orbit editorial-bento__orbit--two"/><div className="editorial-bento__chip"><span>INDIA</span><b>Si</b><small>SEMICONDUCTOR<br/>ECOSYSTEM</small></div><div className="editorial-bento__serial">01 / 12</div><div className="editorial-bento__vertical">KNOWLEDGE IN MOTION</div></div>
         </div>
