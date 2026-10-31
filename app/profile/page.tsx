@@ -33,20 +33,17 @@ export default function StudentProfile(){
    const [{data:row,error:profileError},{data:activityRows},{data:attemptRows,error:attemptError},{count:topicCount,error:topicError}]=await Promise.all([
     supabase.from("profiles").select("*").eq("id",user.id).maybeSingle(),
     supabase.from("student_activity").select("id,activity_type,metadata,created_at").eq("student_id",user.id).order("created_at",{ascending:false}).limit(6),
-    supabase.from("assessment_attempts").select("assessment_id,answers,submitted_at").eq("student_id",user.id).not("submitted_at","is",null).gte("submitted_at",since),
+    supabase.from("assessment_attempts").select("assessment_id,answers,submitted_at,correct_count,answered_count").eq("student_id",user.id).not("submitted_at","is",null).gte("submitted_at",since),
     supabase.from("student_topic_progress").select("id",{count:"exact",head:true}).eq("student_id",user.id).eq("exam_key","upsc-cse")
    ]);
    if(attemptError)throw attemptError;
    if(topicError)throw topicError;
    const attempts=attemptRows||[];
-   const assessmentIds=[...new Set(attempts.map(a=>a.assessment_id))];
-   const {data:questionRows,error:questionError}=assessmentIds.length
-    ? await supabase.from("questions").select("id,assessment_id,correct_option").in("assessment_id",assessmentIds)
-    : {data:[],error:null};
-   if(questionError)throw questionError;
-   const questionMap=new Map((questionRows||[]).map(q=>[q.id,q]));
    let answered=0,correct=0;
-   for(const attempt of attempts){const answers=attempt.answers&&typeof attempt.answers==="object"?attempt.answers as Record<string,unknown>:{};for(const [qid,choice] of Object.entries(answers)){const question=questionMap.get(qid);if(question){answered++;if(Number(choice)===question.correct_option)correct++;}}}
+   for(const attempt of attempts){
+    answered+=Number(attempt.answered_count)||Object.keys(attempt.answers||{}).length;
+    correct+=Number(attempt.correct_count)||0;
+   }
    const dateFmt=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"});
    const dateKey=(value:Date)=>{const parts=dateFmt.formatToParts(value);const get=(type:string)=>parts.find(part=>part.type===type)?.value||"";return get("year")+"-"+get("month")+"-"+get("day");};
    const activeDates=new Set<string>();
