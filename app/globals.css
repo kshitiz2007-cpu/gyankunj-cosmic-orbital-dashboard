@@ -80,7 +80,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #f4c8
 .drill-stats strong{display:block;font:500 clamp(38px,4vw,56px) "Playfair Display",serif;color:#f7f0e4}
 .drill-stats strong small{font-size:27px;color:#b8c1d0}
 .drill-stats span{color:#b6c0d0;font:13px "Playfair Display",serif}
-.progress-ring{display:grid;place-items:center;width:104px;aspect-ratio:1;border-radius:50%;background:conic-gradient(#f5d28e 0 75%,rgba(255,255,255,.1) 75% 100%);position:relative}
+.progress-ring{display:grid;place-items:center;width:104px;aspect-ratio:1;border-radius:50%;background:conic-gradient(#f5d28e 0 calc(var(--progress,0)*1%),rgba(255,255,255,.1) calc(var(--progress,0)*1%) 100%);position:relative;transition:background .35s ease}
 .progress-ring:before{content:"";position:absolute;inset:8px;border-radius:50%;background:#111a2a}
 .progress-ring span{z-index:1;color:#fff;font:500 19px "Space Grotesk",sans-serif}
 .drill-foot{display:flex;justify-content:space-between;padding-top:14px;border-top:1px solid var(--line);color:#9eacc0;font:9px "Space Grotesk",sans-serif;letter-spacing:.13em}
