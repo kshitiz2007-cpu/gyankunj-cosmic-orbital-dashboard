@@ -1298,3 +1298,23 @@ body{color:#35152f}
 .drill-foot span:first-child{color:#477d69!important}
 .drill-foot span:last-child{color:#80516f!important}
 @media(max-width:700px){.editorial-hero{gap:22px}.editorial-featured{background:#fffafd!important}.editorial-list-card{background:linear-gradient(145deg,#fffafd,#f8e8f2)!important}.drill-panel{box-shadow:0 12px 30px #a6437d18!important}}
+
+/* HOTFIX: dashboard Daily Drill contrast — force light inner ring and dark readable type */
+.app-shell .drill-panel .drill-heading>span:not(.target-icon){color:#87305f!important;opacity:1!important}
+.app-shell .drill-panel .drill-stats strong{color:#a52f70!important;text-shadow:none!important}
+.app-shell .drill-panel .drill-stats strong small{color:#68465f!important;opacity:1!important}
+.app-shell .drill-panel .drill-stats>div>span{color:#68465f!important;opacity:1!important}
+.app-shell .drill-panel .progress-ring{background:conic-gradient(#bd438b 0 75%,#efd2e2 75% 100%)!important;border:1px solid #e6bfd5!important;box-shadow:0 8px 22px #a8437d18!important}
+.app-shell .drill-panel .progress-ring::before{content:""!important;position:absolute!important;inset:8px!important;border-radius:50%!important;background:#fff8fc!important;z-index:0!important}
+.app-shell .drill-panel .progress-ring span{position:relative!important;z-index:2!important;color:#512044!important;font-weight:700!important}
+.app-shell .drill-panel .drill-foot{border-top-color:#e4bfd4!important}
+.app-shell .drill-panel .drill-foot span:first-child{color:#477d69!important;opacity:1!important}
+.app-shell .drill-panel .drill-foot span:last-child{color:#80516f!important;opacity:1!important}
+.app-shell .subject-section .section-heading{color:#512044!important}
+.app-shell .subject-section .section-heading>span{color:#512044!important;font-weight:700!important}
+.app-shell .subject-section .section-heading small{color:#80516f!important;opacity:1!important}
+.app-shell .subject-strip .subject-pill{color:#512044!important;background:linear-gradient(120deg,#fffafd,#f9e4ef)!important;border:1px solid #e7bfd5!important}
+.app-shell .subject-strip .subject-pill span{color:#512044!important;font-weight:600!important}
+.app-shell .subject-strip .subject-pill svg{color:#87305f!important}
+.app-shell .editorial-bento__ticker,.app-shell .editorial-bento__ticker span{color:#80516f!important;opacity:1!important}
+.app-shell .editorial-bento__ticker b{color:#bd438b!important}
