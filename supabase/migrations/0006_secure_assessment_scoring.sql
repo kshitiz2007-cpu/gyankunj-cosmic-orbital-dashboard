@@ -4,6 +4,11 @@ alter table public.assessment_attempts
   add column if not exists answered_count integer,
   add column if not exists question_count integer;
 
+-- Prevent clients from forging scores or editing a submitted attempt.
+drop policy if exists "attempts student insert" on public.assessment_attempts;
+drop policy if exists "attempts student update" on public.assessment_attempts;
+revoke insert, update on public.assessment_attempts from anon, authenticated;
+
 -- Students may read question content/options, but never the answer key column.
 revoke select on public.questions from anon, authenticated;
 grant select (id,assessment_id,subject_id,topic,question_en,question_hi,options_en,options_hi,explanation_en,explanation_hi,difficulty,created_at)
