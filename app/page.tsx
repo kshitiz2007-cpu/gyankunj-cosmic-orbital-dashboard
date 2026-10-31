@@ -27,11 +27,12 @@ const nodes: NodeItem[] = [
   { id:"syllabus", title:"EXPLORE", subtitle:"SYLLABUS", color:"#f3c879", icon:Compass01Icon, href:"/syllabus", angle:45 }
 ];
 const subjects = [
-  {name:"Polity",icon:GraduationScrollIcon,color:"#70cfff"},
-  {name:"Economy",icon:ChartLineData01Icon,color:"#76e2bd"},
-  {name:"Environment",icon:Atom01Icon,color:"#9bdda0"},
-  {name:"Science & Tech",icon:SparklesIcon,color:"#70cfff"},
-  {name:"History",icon:BookOpen01Icon,color:"#f3c879"},
+  {slug:"polity",name:"Polity",icon:GraduationScrollIcon,color:"#70cfff"},
+  {slug:"economy",name:"Economy",icon:ChartLineData01Icon,color:"#76e2bd"},
+  {slug:"environment",name:"Environment",icon:Atom01Icon,color:"#9bdda0"},
+  {slug:"science-tech",name:"Science & Tech",icon:SparklesIcon,color:"#b89cff"},
+  {slug:"history",name:"History",icon:BookOpen01Icon,color:"#f3c879"},
+  {slug:"geography",name:"Geography",icon:Layers01Icon,color:"#ff9f9a"},
 ];
 const nav = [
   {name:"Home",icon:Home01Icon,href:"#home"},
@@ -124,8 +125,8 @@ export default function Dashboard() {
     </section>
 
     <section className="subject-section" id="library">
-      <div className="section-heading"><span>EXPLORE YOUR TERRITORY</span><small>SUBJECTS / 05</small></div>
-      <div className="subject-strip">{filtered.map(subject=><button className="subject-pill" key={subject.name} style={{"--subject":subject.color} as React.CSSProperties} onClick={()=>setSelected({id:subject.name.toLowerCase().replaceAll(" ","-"),title:subject.name.toUpperCase(),subtitle:"STUDY SPACE",color:subject.color,icon:subject.icon,href:"/subjects/"+subject.name.toLowerCase().replaceAll(" ","-"),angle:0})}><Icon icon={subject.icon} size={20}/>{subject.name}</button>)}{filtered.length===0&&<span className="empty-search">No matching subjects</span>}</div>
+      <div className="section-heading"><span>STUDY CORNER / EXPLORE YOUR TERRITORY</span><small>SUBJECTS / 06 · OPEN A SPACE ↗</small></div>
+      <div className="subject-strip">{filtered.map(subject=><Link className="subject-pill" key={subject.slug} href={"/library/"+subject.slug} style={{"--subject":subject.color} as React.CSSProperties} aria-label={"Open "+subject.name+" study space"}><Icon icon={subject.icon} size={20}/><span>{subject.name}</span><Icon icon={ArrowUpRight01Icon} size={15}/></Link>)}{filtered.length===0&&<span className="empty-search">No matching subjects</span>}</div>
     </section>
 
     <nav className="floating-dock" aria-label="Primary navigation">{nav.map((item)=><a key={item.name} href={item.href} onClick={()=>setActive(item.name)} className={active===item.name?"active":""}><span className={item.name==="AI"?"dock-ai":""}><Icon icon={item.icon} size={21}/></span><small>{item.name}</small></a>)}</nav>
