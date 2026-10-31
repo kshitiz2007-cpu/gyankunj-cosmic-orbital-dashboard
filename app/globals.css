@@ -1333,3 +1333,89 @@ body{color:#35152f}
  .editorial-card-foot{flex-wrap:wrap;align-items:flex-start;row-gap:12px}
  .editorial-card-foot span{max-width:70%;line-height:1.7}
 }
+
+/* =========================================================
+   GYANKUNJ APP-WIDE SUBSECTION DESIGN SYSTEM
+   Rose / blush / magenta surfaces · plum typography
+   ========================================================= */
+:root{--gk-page:#fff6fa;--gk-surface:#fffafd;--gk-surface-2:#f9e8f2;--gk-ink:#421b39;--gk-body:#68465f;--gk-muted:#896b82;--gk-line:#e9c6d9;--gk-rose:#e987b5;--gk-magenta:#bd438b;--gk-deep:#8f2d6b;--gk-shadow:0 16px 42px rgba(133,42,99,.10)}
+.library-app,.mock-app,.drill-app,.progress-app,.syllabus-app,.editorial-app,.editorial-detail-app,.profile-app,.utility-page{background:radial-gradient(ellipse at 12% 0%,rgba(247,190,216,.42),transparent 34%),radial-gradient(ellipse at 92% 70%,rgba(226,164,207,.24),transparent 32%),linear-gradient(145deg,#fff9fc 0%,#fbedf5 52%,#f7e5f1 100%)!important;color:var(--gk-ink)!important}
+.library-app,.mock-app,.drill-app,.progress-app,.syllabus-app,.editorial-app,.editorial-detail-app{color:var(--gk-ink)!important}
+.library-top,.mock-top,.drill-topbar,.progress-top,.syllabus-top{border-color:var(--gk-line)!important;color:var(--gk-muted)!important}
+.library-back,.mock-back,.drill-back,.progress-back,.editorial-back{color:var(--gk-deep)!important}
+.library-kicker,.mock-kicker,.drill-kicker,.progress-kicker,.syllabus-kicker,.syllabus-side-label{color:var(--gk-deep)!important}
+.library-hero h1,.mock-hero h1,.drill-intro h1,.progress-hero h1,.syllabus-hero h1,.editorial-app h1,.editorial-detail-app h1{color:var(--gk-ink)!important}
+.library-hero h1 em,.mock-hero h1 em,.drill-intro h1 em,.progress-hero h1 em,.syllabus-hero h1 em{color:var(--gk-magenta)!important}
+.library-hero p,.mock-hero p,.drill-intro p,.progress-hero p,.syllabus-hero p,.library-subject-meta,.library-resource-type{color:var(--gk-body)!important}
+.library-stats,.mock-hero-stats,.progress-kpis,.syllabus-stats{background:rgba(255,255,255,.7)!important;border:1px solid var(--gk-line)!important;box-shadow:var(--gk-shadow)}
+.library-stats strong,.mock-hero-stats strong,.progress-kpis strong,.syllabus-stats strong{color:var(--gk-magenta)!important}
+.library-subject-card,.library-resource-card,.mock-test-card,.question-card,.drill-progress-card,.progress-panel,.syllabus-sidebar,.syllabus-content,.syllabus-optional,.syllabus-topic,.result-card,.answer-explanation,.question-rail{background:rgba(255,250,253,.92)!important;border:1px solid var(--gk-line)!important;color:var(--gk-ink)!important;box-shadow:var(--gk-shadow)!important}
+.library-subject-card:hover,.library-resource-card:hover,.mock-test-card:hover,.syllabus-topic:hover{border-color:#d77eae!important;box-shadow:0 18px 42px rgba(158,54,116,.14)!important}
+.library-subject-card h2,.library-subject-card h3,.library-resource-card h3,.mock-test-card h2,.mock-test-card h3,.question-card h2,.question-card h3,.progress-panel h2,.progress-panel h3,.syllabus-content h2,.syllabus-topic h3{color:var(--gk-ink)!important}
+.library-subject-card p,.library-resource-card p,.mock-test-card p,.mock-guidelines p,.syllabus-topic p,.syllabus-paper-foot,.progress-panel p{color:var(--gk-body)!important}
+.library-subject-icon,.library-resource-icon,.mock-card-icon,.guideline-icon,.progress-recent-icon{background:linear-gradient(135deg,#f8c7dd,#df82b4)!important;color:#7e285f!important}
+.library-tools input,.editorial-search input,.admin-workspace-tools input{background:#fffafd!important;color:var(--gk-ink)!important;border-color:var(--gk-line)!important}
+.library-tools,.library-tools>*,.editorial-search{border-color:var(--gk-line)!important}
+.library-empty,.mock-preview,.mock-modal,.drill-modal,.syllabus-empty{background:#fffafd!important;color:var(--gk-body)!important;border-color:var(--gk-line)!important}
+.mock-test-card{background:linear-gradient(145deg,#fffafd,#f8e7f1)!important}
+.mock-tag{background:#f8e2ee!important;color:#9a326f!important;border-color:#e8b7d1!important}
+.mock-index,.mock-metrics strong,.mock-card-foot{color:var(--gk-deep)!important}
+.mock-metrics,.mock-card-foot,.mock-guidelines{border-color:var(--gk-line)!important}
+.mock-guidelines{background:rgba(255,255,255,.65)!important;color:var(--gk-ink)!important}
+.mock-guideline-icon{color:var(--gk-magenta)!important}
+.mock-launch,.mock-preview button,.mock-modal button,.next-question,.submit-drill,.drill-primary,.progress-hero-actions a,.syllabus-tools button{background:linear-gradient(110deg,#e98db8,#bd438b)!important;color:#fff!important;border-color:#bd438b!important}
+.mock-modal-back{background:rgba(67,22,53,.55)!important}
+.mock-modal{box-shadow:0 24px 70px rgba(83,27,66,.25)!important}
+.drill-session-label,.drill-timer,.drill-progress-meta,.drill-progress-foot,.question-topic,.question-number,.question-rail,.rail-heading,.palette-legend,.rail-tip{color:var(--gk-body)!important}
+.drill-progress-track{background:#efd7e5!important}
+.drill-progress-track>span{background:linear-gradient(90deg,#ef9ac1,#b93683)!important}
+.question-card{box-shadow:0 14px 38px rgba(133,42,99,.08)!important}
+.option-list button,.question-nav button,.question-grid button,.question-rail button{background:#fff5fa!important;border:1px solid #e9c6d9!important;color:var(--gk-ink)!important}
+.option-list button:hover,.option-list button.selected,.question-grid button.active{background:#f8dce9!important;border-color:#c65b99!important;color:#712653!important}
+.option-letter{background:#f5d9e8!important;color:#87305f!important}
+.option-check{color:#a52f70!important}
+.answer-explanation{background:#f9e8f2!important}
+.result-orbit{background:radial-gradient(circle,#f5c2d9,#dc78ad 68%,#b63e88)!important;color:#fff!important}
+.result-stats{background:#fffafd!important;border-color:var(--gk-line)!important}
+.result-stats strong{color:var(--gk-magenta)!important}
+.progress-status,.syllabus-hero-meta,.syllabus-paper-meta{color:var(--gk-muted)!important}
+.progress-ring{background:conic-gradient(#bd438b 0 75%,#f0d6e4 75% 100%)!important}
+.progress-ring:before,.progress-ring::before{background:#fffafd!important}
+.progress-ring span{color:#512044!important}
+.progress-bar{background:#efd6e5!important}.progress-bar>span{background:linear-gradient(90deg,#ed9bc1,#b93683)!important}
+.progress-heatmap span{border:1px solid #e8bfd5!important}
+.progress-legend,.progress-activity-foot,.progress-recent-row small{color:var(--gk-body)!important}
+.progress-subject,.progress-recent-row{border-color:var(--gk-line)!important}
+.progress-insight-icon{background:#f7ddeb!important;color:var(--gk-magenta)!important}
+.syllabus-nav-group button,.syllabus-topic-head,.syllabus-tools input,.syllabus-optional select{background:#fffafd!important;color:var(--gk-ink)!important;border-color:var(--gk-line)!important}
+.syllabus-nav-group button.active,.syllabus-nav-group button[aria-current=true]{background:#f5d9e8!important;color:#8f2d6b!important}
+.syllabus-paper-head{background:linear-gradient(110deg,#f9e4ef,#f2d1e4)!important;color:var(--gk-ink)!important;border-color:var(--gk-line)!important}
+.syllabus-topic-no,.syllabus-topic-no+*{color:var(--gk-magenta)!important}
+.syllabus-topic-items{color:var(--gk-body)!important}
+.syllabus-topic input,.syllabus-tools input[type=checkbox]{accent-color:#bd438b}
+.syllabus-bottom,.syllabus-footer,.library-footer,.mock-footer,.drill-footer,.progress-footer{color:var(--gk-muted)!important;border-color:var(--gk-line)!important}
+.editorial-app .editorial-featured,.editorial-app .editorial-list-card{color:var(--gk-ink)!important}
+.editorial-app .editorial-featured-copy h2,.editorial-app .editorial-list-copy h3{color:var(--gk-ink)!important}
+.editorial-app .editorial-featured-copy p,.editorial-app .editorial-list-copy p{color:var(--gk-body)!important}
+.editorial-detail-app{color:var(--gk-ink)!important}
+.editorial-detail-app article,.editorial-detail-app .article-body,.editorial-detail-app .editorial-detail-content{background:rgba(255,250,253,.78)!important;color:var(--gk-ink)!important;border-color:var(--gk-line)!important}
+.editorial-detail-app p,.editorial-detail-app li{color:var(--gk-body)!important}
+.utility-page{color:var(--gk-ink)!important}
+.utility-page section>p{color:var(--gk-body)!important}
+.profile-app .profile-panel,.profile-app .profile-form-panel,.profile-app .profile-stats article{background:rgba(255,250,253,.88)!important;color:var(--gk-ink)!important;border-color:var(--gk-line)!important}
+.profile-app .profile-activity b,.profile-app .profile-identity h1{color:var(--gk-ink)!important}
+.admin-root{background:linear-gradient(145deg,#fff8fc,#f8e6f2)!important;color:var(--gk-ink)!important}
+.admin-sidebar,.admin-builder,.admin-module,.admin-metric,.admin-table-wrap{border-color:var(--gk-line)!important}
+.admin-root .admin-hero h1,.admin-root .admin-module strong,.admin-root .admin-builder h2{color:var(--gk-ink)!important}
+.admin-root .admin-hero-copy,.admin-root .admin-warning p,.admin-root .admin-table-note{color:var(--gk-body)!important}
+.admin-root .admin-builder input,.admin-root .admin-builder select,.admin-root .admin-builder textarea{background:#fffafd!important;color:var(--gk-ink)!important;border-color:var(--gk-line)!important}
+.admin-root .admin-builder button,.admin-root .admin-workspace-tools button{background:linear-gradient(110deg,#e98db8,#bd438b)!important;color:#fff!important}
+.utility-page .utility-panel{background:rgba(255,250,253,.9)!important;border-color:var(--gk-line)!important;color:var(--gk-ink)!important}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(189,67,139,.35)!important;outline-offset:3px}
+@media(max-width:700px){
+ .library-subject-card,.library-resource-card,.mock-test-card,.question-card,.progress-panel,.syllabus-sidebar,.syllabus-content,.syllabus-topic,.result-card{border-radius:20px!important}
+ .mock-test-card,.library-subject-card,.library-resource-card{padding:19px!important}
+ .progress-kpis,.library-stats,.mock-hero-stats,.syllabus-stats{gap:8px!important}
+ .question-card{padding:18px!important}
+ .syllabus-workspace{gap:12px!important}
+}
