@@ -21,7 +21,7 @@ export async function POST(request:NextRequest){
   const {data:{user},error:authError}=await supabase.auth.getUser(token);
   if(authError||!user)return NextResponse.json({error:"Your session has expired. Please sign in again."},{status:401});
 
-  const words=question.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu," ").split(/\s+/).filter(word=>word.length>2).slice(0,6);
+  const words=question.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu," ").split(/\s+/).filter((word: string)=>word.length>2).slice(0,6);
   const filter=words.length?words.map(word=>"title_en.ilike.%"+word+"%,title_hi.ilike.%"+word+"%,topic.ilike.%"+word+"%,content_text.ilike.%"+word+"%").join(","):"";
   let resourceQuery=supabase.from("study_resources").select("id,title_en,title_hi,topic,content_text,content_hi,category").eq("is_published",true).limit(6);
   if(filter)resourceQuery=resourceQuery.or(filter);
