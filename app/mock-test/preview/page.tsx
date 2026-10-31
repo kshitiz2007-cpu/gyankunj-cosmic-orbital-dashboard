@@ -30,7 +30,7 @@ export default function MockPreview(){
    const {data:assessment,error:assessmentError}=await supabase.from("assessments").select("id,title,duration_minutes,negative_mark").eq("id",id).eq("kind","mock").eq("is_published",true).maybeSingle();
    if(assessmentError)throw assessmentError;
    if(!assessment){setLoadError("This mock test is unavailable or has been unpublished.");setLoading(false);return;}
-   const {data:rows,error:questionError}=await supabase.from("questions").select("id,question_en,question_hi,options_en,options_hi,correct_option,explanation_en,explanation_hi,topic").eq("assessment_id",assessment.id).order("created_at",{ascending:true});
+   const {data:rows,error:questionError}=await supabase.from("questions").select("id,question_en,question_hi,options_en,options_hi,explanation_en,explanation_hi,topic").eq("assessment_id",assessment.id).order("created_at",{ascending:true});
    if(questionError)throw questionError;
    if(!rows?.length){setLoadError("This mock test has no published questions yet.");setLoading(false);return;}
    if(!active)return;
