@@ -1,4 +1,5 @@
 "use client";
+import "./profile.css";
 import Link from "next/link";
 import {useState} from "react";
 
