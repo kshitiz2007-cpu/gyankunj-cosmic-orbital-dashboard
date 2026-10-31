@@ -25,7 +25,6 @@ export default function ProgressPage(){
  const [questions,setQuestions]=useState<Question[]>([]);
  const [activities,setActivities]=useState<Activity[]>([]);
  const [studentName,setStudentName]=useState("");
- const [userId,setUserId]=useState("");
  const load=useCallback(async()=>{
   setLoading(true);setError("");
   const supabase=getSupabaseBrowserClient();
@@ -33,7 +32,7 @@ export default function ProgressPage(){
   const {data:{user},error:authError}=await supabase.auth.getUser();
   if(authError)throw authError;
   if(!user){window.location.href="/login";return;}
-  setUserId(user.id);setStudentName(String(user.user_metadata?.full_name||user.email||"Student"));
+  setStudentName(String(user.user_metadata?.full_name||user.email||"Student"));
   const [attemptResult,activityResult]=await Promise.all([
    supabase.from("assessment_attempts").select("id,assessment_id,answers,score,started_at,submitted_at").eq("student_id",user.id).order("started_at",{ascending:false}).limit(100),
    supabase.from("student_activity").select("id,activity_type,metadata,created_at").eq("student_id",user.id).order("created_at",{ascending:false}).limit(250)
@@ -54,11 +53,9 @@ export default function ProgressPage(){
    nextAssessments=(assessmentResult.data||[]) as Assessment[];
    nextQuestions=(questionResult.data||[]) as Question[];
   }
-  setAttempts(nextAttempts);setAssessments(nextAssessments);setQuestions(nextQuestions);setActivities((activityResult.data||[]) as Activity[]);
+  setAttempts(nextAttempts);setAssessments(nextAssessments);setQuestions(nextQuestions);setActivities((activityResult.data||[]) as Activity[]);setLoading(false);
  },[]);
  useEffect(()=>{void load().catch(e=>{setError(e instanceof Error?e.message:"Unable to load learning analytics.");setLoading(false);});},[load]);
- useEffect(()=>{if(!loading)return;},[loading]);
- useEffect(()=>{if(!loading&&attempts.length>=0)setLoading(false);},[loading,attempts]);
  const assessmentMap=useMemo(()=>new Map(assessments.map(a=>[a.id,a])),[assessments]);
  const questionMap=useMemo(()=>new Map(questions.map(q=>[q.id,q])),[questions]);
  const completed=useMemo(()=>attempts.filter(a=>a.submitted_at),[attempts]);
@@ -96,12 +93,11 @@ export default function ProgressPage(){
  const streak=useMemo(()=>{const dates=new Set(activityDays.filter(d=>d.count>0).map(d=>d.date));let n=0;const d=new Date();d.setHours(0,0,0,0);if(!dates.has(d.toLocaleDateString("en-CA")))d.setDate(d.getDate()-1);while(dates.has(d.toLocaleDateString("en-CA"))){n++;d.setDate(d.getDate()-1);}return n;},[activityDays]);
  const recent=useMemo<Recent[]>(()=>{
   const rows:Recent[]=[];
-  completed.forEach(a=>{const assessment=assessmentMap.get(a.assessment_id);const answered=Object.keys(a.answers||{}).length;const qs=questions.filter(q=>q.assessment_id===a.assessment_id);const correct=Object.entries(a.answers||{}).filter(([id,v])=>questionMap.get(id)?.correct_option===Number(v)).length;rows.push({id:a.id,title:assessment?.title||"Assessment",detail:answered+" questions attempted",score:answered?Math.round(correct/answered*100)+"%":"Submitted",href:assessment?.kind==="daily_drill"?"/practice/daily":assessment?.kind==="mock"?"/mock-test":"/practice/daily",tag:titleCase(assessment?.kind||"practice"),at:a.submitted_at||a.started_at});});
+  completed.forEach(a=>{const assessment=assessmentMap.get(a.assessment_id);const answered=Object.keys(a.answers||{}).length;const correct=Object.entries(a.answers||{}).filter(([id,v])=>questionMap.get(id)?.correct_option===Number(v)).length;rows.push({id:a.id,title:assessment?.title||"Assessment",detail:answered+" questions attempted",score:answered?Math.round(correct/answered*100)+"%":"Submitted",href:assessment?.kind==="daily_drill"?"/practice/daily":assessment?.kind==="mock"?"/mock-test":"/practice/daily",tag:titleCase(assessment?.kind||"practice"),at:a.submitted_at||a.started_at});});
   activities.forEach(a=>{const meta=a.metadata||{};const title=String(meta.title||titleCase(a.activity_type));const slug=String(meta.slug||"");rows.push({id:a.id,title,detail:String(meta.detail||"Learning activity"),score:"RECORDED",href:slug?"/current-affairs/"+slug:"/library",tag:titleCase(a.activity_type),at:a.created_at});});
   return rows.sort((a,b)=>new Date(b.at).getTime()-new Date(a.at).getTime()).slice(0,5);
  },[completed,assessmentMap,activities,questions,questionMap]);
  const averageSubject=subjects.length?Math.round(subjects.reduce((s,x)=>s+x.done,0)/subjects.length):0;
- const totalQuestions=questions.length;
  if(loading)return <main className="progress-app"><div className="progress-wrap"><p>Loading your learning analytics…</p></div></main>;
  if(error)return <main className="progress-app"><div className="progress-wrap"><h1>Progress, <em>in motion.</em></h1><p role="alert">{error}</p><button className="progress-retry" onClick={()=>void load()}>Retry <Icon icon={Refresh01Icon}/></button></div></main>;
  return <main className="progress-app"><header className="progress-top"><Link href="/" className="progress-back"><Icon icon={ArrowLeft01Icon}/> GYANKUNJ</Link><span>STUDENT ANALYTICS / MY PROGRESS</span><span className="progress-status">LIVE LEARNING INSIGHTS</span></header><div className="progress-wrap">
