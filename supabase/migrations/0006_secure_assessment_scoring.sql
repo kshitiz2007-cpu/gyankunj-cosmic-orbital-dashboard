@@ -5,7 +5,7 @@ alter table public.assessment_attempts
   add column if not exists question_count integer;
 
 -- Students may read question content/options, but never the answer key column.
-revoke select on public.questions from authenticated;
+revoke select on public.questions from anon, authenticated;
 grant select (id,assessment_id,subject_id,topic,question_en,question_hi,options_en,options_hi,explanation_en,explanation_hi,difficulty,created_at)
   on public.questions to authenticated;
 grant insert (assessment_id,subject_id,topic,question_en,question_hi,options_en,options_hi,correct_option,explanation_en,explanation_hi,difficulty)
