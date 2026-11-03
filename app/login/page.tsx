@@ -25,7 +25,7 @@ export default function LoginPage() {
     try {
       const { error: authError } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(getSafeNextPath())}` },
+        options: { redirectTo: `https://gyankunj-cosmic-orbital-dashboard.onrender.com/auth/callback?next=${encodeURIComponent(getSafeNextPath())}` },
       });
       if (authError) throw authError;
     } catch (caught) {
