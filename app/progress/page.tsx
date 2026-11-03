@@ -85,7 +85,7 @@ export default function ProgressPage(){
    bucket.answered+=Number(attempt.answered_count)||Object.keys(attempt.answers||{}).length;
    bucket.attempts+=1;buckets.set(key,bucket);
   });
-  return [...buckets.entries()].map(([key,b,i])=>({key,name:b.name,attempts:b.attempts,answered:b.answered,correct:b.correct,accuracy:b.answered?Math.round(b.correct/b.answered*100):0,color:palette[i%palette.length]})).sort((a,b)=>b.answered-a.answered).slice(0,8);
+  return [...buckets.entries()].map(([key,b],i)=>({key,name:b.name,attempts:b.attempts,answered:b.answered,correct:b.correct,accuracy:b.answered?Math.round(b.correct/b.answered*100):0,color:palette[i%palette.length]})).sort((a,b)=>b.answered-a.answered).slice(0,8);
  },[periodAttempts,assessmentMap,subjectMap]);
  const activityDays=useMemo(()=>{
   const counts=new Map<string,number>();
