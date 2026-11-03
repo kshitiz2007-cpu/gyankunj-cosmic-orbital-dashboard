@@ -1,15 +1,21 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+function safeNext(value: string | null) {
+  return value && value.startsWith("/") && !value.startsWith("//") ? value : "/";
+}
+
 export async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const isLoginRoute = pathname === "/login";
+  const isAdminRoute = pathname.startsWith("/admin");
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-  const isAdminRoute = request.nextUrl.pathname.startsWith("/admin");
 
   if (!supabaseUrl || !supabaseKey) {
-    return isAdminRoute
-      ? NextResponse.redirect(new URL("/login?reason=auth-config", request.url))
-      : NextResponse.next();
+    if (isLoginRoute) return NextResponse.next();
+    const destination = new URL("/login?reason=auth-config", request.url);
+    return NextResponse.redirect(destination);
   }
 
   let response = NextResponse.next({ request });
@@ -25,10 +31,11 @@ export async function middleware(request: NextRequest) {
   });
 
   const { data: { user }, error: authError } = await supabase.auth.getUser();
+
   if (authError || !user) {
-    if (!isAdminRoute) return response;
+    if (isLoginRoute) return response;
     const destination = new URL("/login", request.url);
-    destination.searchParams.set("next", "/admin");
+    destination.searchParams.set("next", safeNext(pathname + request.nextUrl.search));
     const redirect = NextResponse.redirect(destination);
     response.cookies.getAll().forEach(cookie => redirect.cookies.set(cookie));
     return redirect;
@@ -41,17 +48,25 @@ export async function middleware(request: NextRequest) {
     .maybeSingle();
 
   if (profileError) {
-    // Keep student access available while the one-time security migration is pending.
-    // Admin routes fail closed until is_active and the audit table exist.
+    // Keep the login page accessible if the optional account-security migration is pending.
+    if (isLoginRoute) return response;
     if (isAdminRoute) {
       return NextResponse.redirect(new URL("/login?reason=security-migration", request.url));
     }
+    // Authentication is verified; allow student routes while profile metadata is unavailable.
     return response;
   }
 
   if (!profile || profile.is_active === false) {
     await supabase.auth.signOut();
     const redirect = NextResponse.redirect(new URL("/login?reason=account-disabled", request.url));
+    response.cookies.getAll().forEach(cookie => redirect.cookies.set(cookie));
+    return redirect;
+  }
+
+  if (isLoginRoute) {
+    const destination = new URL(safeNext(request.nextUrl.searchParams.get("next")), request.url);
+    const redirect = NextResponse.redirect(destination);
     response.cookies.getAll().forEach(cookie => redirect.cookies.set(cookie));
     return redirect;
   }
@@ -66,5 +81,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!login|auth/callback|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"],
+  matcher: ["/((?!auth/callback|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"],
 };
