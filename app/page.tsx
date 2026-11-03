@@ -77,7 +77,7 @@ export default function Dashboard() {
   const [streakLoading,setStreakLoading]=useState(true);
   const [todayLabel,setTodayLabel]=useState("");
   const [subjects,setSubjects]=useState<Array<{slug:string;name:string;icon:typeof GraduationScrollIcon;color:string}>>([]);
-  const [featuredEditorial,setFeaturedEditorial]=useState<{slug:string;title_hi:string;summary_hi:string;category:string;read_minutes:number}|null>(null);
+  const [featuredEditorial,setFeaturedEditorial]=useState<{slug:string;title_hi:string|null;title_en:string|null;summary_hi:string|null;summary_en:string|null;category:string;read_minutes:number}|null>(null);
   const [dashboardContentLoading,setDashboardContentLoading]=useState(true);
   useEffect(()=>{
     let active=true;
@@ -88,7 +88,7 @@ export default function Dashboard() {
       const {data:{user}}=await supabase.auth.getUser();
       const [subjectResult,editorialResult,announcementResult,profileResult]=await Promise.all([
         supabase.from("subjects").select("slug,name_en,name_hi,sort_order").order("sort_order",{ascending:true}),
-        supabase.from("editorial_articles").select("slug,title_hi,summary_hi,category,read_minutes,published_at,created_at").eq("is_published",true).order("published_at",{ascending:false,nullsFirst:false}).order("created_at",{ascending:false}).limit(1).maybeSingle(),
+        supabase.from("editorial_articles").select("slug,title_hi,title_en,summary_hi,summary_en,category,read_minutes,published_at,created_at").eq("is_published",true).order("published_at",{ascending:false,nullsFirst:false}).order("created_at",{ascending:false}).limit(1).maybeSingle(),
         supabase.from("announcements").select("id,title,body,published_at").eq("is_published",true).order("published_at",{ascending:false,nullsFirst:false}).limit(5),
         user?supabase.from("profiles").select("full_name").eq("id",user.id).maybeSingle():Promise.resolve({data:null,error:null})
       ]);
@@ -205,8 +205,8 @@ export default function Dashboard() {
         <div className="editorial-bento__body">
           <div className="editorial-bento__copy">
             <span className="editorial-bento__eyebrow">{dashboardContentLoading?"LOADING EDITORIAL":"TODAY'S EDITORIAL"} <i>·</i> {featuredEditorial?.category||"DAILY CRUX"}</span>
-            <h1><motion.span initial={reduceMotion?false:{y:"105%"}} whileInView={{y:0}} viewport={{once:true}} transition={{duration:.8,delay:.12}}>{featuredEditorial?.title_hi||"आज का Daily Crux"}</motion.span></h1>
-            <p>{featuredEditorial?.summary_hi||"नवीनतम UPSC-केंद्रित संपादकीय यहाँ प्रकाशित होते ही दिखाई देगा।"}</p>
+            <h1><motion.span initial={reduceMotion?false:{y:"105%"}} whileInView={{y:0}} viewport={{once:true}} transition={{duration:.8,delay:.12}}>{featuredEditorial?.title_hi?.trim()||featuredEditorial?.title_en?.trim()||"आज का Daily Crux"}</motion.span></h1>
+            <p>{featuredEditorial?.summary_hi?.trim()||featuredEditorial?.summary_en?.trim()||"नवीनतम UPSC-केंद्रित संपादकीय यहाँ प्रकाशित होते ही दिखाई देगा।"}</p>
             <div className="editorial-bento__bottom"><span>◷ &nbsp;{featuredEditorial?.read_minutes||"—"} MIN READ</span><span>{featuredEditorial?.category||"UPSC CURRENT AFFAIRS"}</span><Link href={featuredEditorial?"/current-affairs/"+featuredEditorial.slug:"/current-affairs"} className="editorial-bento__cta">READ THE EDITORIAL <b>↗</b></Link></div>
           </div>
           <div className="editorial-bento__visual" aria-hidden="true"><div className="editorial-bento__visual-grid"/><div className="editorial-bento__orbit editorial-bento__orbit--one"/><div className="editorial-bento__orbit editorial-bento__orbit--two"/><div className="editorial-bento__chip"><span>INDIA</span><b>Si</b><small>SEMICONDUCTOR<br/>ECOSYSTEM</small></div><div className="editorial-bento__serial">01 / 12</div><div className="editorial-bento__vertical">KNOWLEDGE IN MOTION</div></div>
