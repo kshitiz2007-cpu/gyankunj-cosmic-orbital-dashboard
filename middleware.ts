@@ -40,14 +40,23 @@ export async function middleware(request: NextRequest) {
     .eq("id", user.id)
     .maybeSingle();
 
-  if (profileError || !profile || profile.is_active !== true) {
+  if (profileError) {
+    // Keep student access available while the one-time security migration is pending.
+    // Admin routes fail closed until is_active and the audit table exist.
+    if (isAdminRoute) {
+      return NextResponse.redirect(new URL("/login?reason=security-migration", request.url));
+    }
+    return response;
+  }
+
+  if (!profile || profile.is_active === false) {
     await supabase.auth.signOut();
     const redirect = NextResponse.redirect(new URL("/login?reason=account-disabled", request.url));
     response.cookies.getAll().forEach(cookie => redirect.cookies.set(cookie));
     return redirect;
   }
 
-  if (isAdminRoute && profile.role !== "admin") {
+  if (isAdminRoute && (profile.role !== "admin" || profile.is_active !== true)) {
     const redirect = NextResponse.redirect(new URL("/profile?access=denied", request.url));
     response.cookies.getAll().forEach(cookie => redirect.cookies.set(cookie));
     return redirect;
