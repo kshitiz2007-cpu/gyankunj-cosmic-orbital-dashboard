@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
-const STORAGE_KEY = "gyankunj-theme";
+const STORAGE_KEY = "gyankunj-theme-v2";
 
 function readTheme(): Theme {
   try {
@@ -12,7 +12,7 @@ function readTheme(): Theme {
   } catch {
     // Storage may be unavailable in restricted browser contexts.
   }
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return "dark";
 }
 
 function applyTheme(theme: Theme) {
@@ -28,7 +28,7 @@ function applyTheme(theme: Theme) {
 }
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
