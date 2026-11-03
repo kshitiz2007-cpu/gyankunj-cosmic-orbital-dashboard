@@ -2135,3 +2135,100 @@ html[data-theme="dark"] .ai-companion-app :is(.ai-companion-composer,.ai-compani
   background:linear-gradient(145deg,#2b1b35,#211629)!important;border-color:rgba(235,137,193,.23)!important;
 }
 html[data-theme="dark"] .ai-companion-app :is(textarea,input){background:#160f20!important;color:#fff!important;border-color:rgba(235,137,193,.25)!important}
+
+
+/* Route-specific component surfaces: ensure no blush panels remain bright in dark mode */
+html[data-theme="dark"] .editorial-app :is(.editorial-top,.editorial-footer,.editorial-section-heading){border-color:rgba(237,140,195,.2)!important;color:#dfc4d8!important}
+html[data-theme="dark"] .editorial-app :is(.editorial-hero,.editorial-featured,.editorial-list-card,.editorial-empty){
+  background:linear-gradient(145deg,#2c1b36,#211629)!important;border:1px solid rgba(235,137,193,.23)!important;
+  box-shadow:0 16px 40px rgba(0,0,0,.24)!important;color:#f7eaf4!important;
+}
+html[data-theme="dark"] .editorial-app :is(.editorial-hero-copy h1,.editorial-featured-copy h2,.editorial-list-copy h3,.editorial-section-heading h2){color:#fff0f8!important}
+html[data-theme="dark"] .editorial-app :is(.editorial-hero-copy p,.editorial-featured-copy p,.editorial-list-copy p,.editorial-date,.editorial-card-foot){color:#d8bfd2!important}
+html[data-theme="dark"] .editorial-app :is(.editorial-kicker,.editorial-hero-meta,.editorial-list-number){color:#f0a1cc!important}
+html[data-theme="dark"] .editorial-app :is(.editorial-search,.editorial-filters button,.editorial-filters select){
+  background:#1b1225!important;border:1px solid rgba(235,137,193,.24)!important;color:#f5e6f0!important;
+}
+html[data-theme="dark"] .editorial-app .editorial-cta,
+html[data-theme="dark"] .editorial-app .editorial-list-card>a{
+  background:linear-gradient(110deg,#df70ae,#a83d83)!important;color:#fff!important;border-color:#d86aa9!important;
+}
+html[data-theme="dark"] .editorial-detail-app .editorial-article{
+  background:linear-gradient(145deg,#2b1b35,#211629)!important;border-color:rgba(235,137,193,.23)!important;
+  box-shadow:0 16px 40px rgba(0,0,0,.24)!important;
+}
+html[data-theme="dark"] .editorial-detail-app :is(.editorial-article-head h1,.editorial-article-body h2,.editorial-article-body h3,.editorial-mains h2){color:#fff0f8!important}
+html[data-theme="dark"] .editorial-detail-app :is(.editorial-article-body p,.editorial-deck,.editorial-lead,.editorial-article-meta){color:#e0cadd!important}
+html[data-theme="dark"] .editorial-detail-app :is(.editorial-mains,.editorial-next){
+  background:linear-gradient(145deg,#38213d,#27182f)!important;border-color:rgba(235,137,193,.25)!important;color:#f6e8f2!important;
+}
+
+/* Mock tests and preview */
+html[data-theme="dark"] .mock-app :is(.mock-hero,.mock-test-card,.mock-empty,.mock-guidelines){
+  background:linear-gradient(145deg,#2b1b35,#211629)!important;border:1px solid rgba(235,137,193,.23)!important;
+  box-shadow:0 14px 36px rgba(0,0,0,.23)!important;color:#f6e8f2!important;
+}
+html[data-theme="dark"] .mock-app :is(.mock-top,.mock-back,.mock-live,.mock-kicker,.mock-section-head,.mock-card-top,.mock-tag,.mock-index,.mock-metrics,.mock-card-foot,.mock-footer){color:#e4c9dc!important}
+html[data-theme="dark"] .mock-app :is(.mock-hero h1,.mock-test-card h2,.mock-test-card h3,.mock-empty strong){color:#fff0f8!important}
+html[data-theme="dark"] .mock-app .mock-test-card a,
+html[data-theme="dark"] .mock-app .mock-hero a{background:linear-gradient(110deg,#df70ae,#a83d83)!important;color:#fff!important}
+html[data-theme="dark"] .mock-preview-app :is(.preview-top,.preview-title,.preview-qmeta,.preview-palette){color:#ead5e5!important}
+html[data-theme="dark"] .mock-preview-app :is(.preview-result,.preview-question,.preview-palette,.preview-layout){
+  background:linear-gradient(145deg,#2b1b35,#211629)!important;border-color:rgba(235,137,193,.23)!important;
+  color:#f8edf6!important;box-shadow:0 14px 36px rgba(0,0,0,.23)!important;
+}
+html[data-theme="dark"] .mock-preview-app :is(.preview-question h2,.preview-title h1,.preview-result h2){color:#fff0f8!important}
+html[data-theme="dark"] .mock-preview-app .preview-options button{
+  background:#26182f!important;border-color:rgba(235,137,193,.23)!important;color:#f7eaf4!important;
+}
+html[data-theme="dark"] .mock-preview-app .preview-options button.selected{background:rgba(192,65,142,.24)!important;border-color:#e779b8!important}
+
+/* Daily drill question palette and result details */
+html[data-theme="dark"] .drill-app :is(.drill-topbar,.question-card,.question-rail,.drill-progress-card,.result-card){
+  border-color:rgba(235,137,193,.23)!important;
+}
+html[data-theme="dark"] .drill-app :is(.question-card h2,.result-copy h2,.result-copy p,.question-topic,.question-number,.rail-heading,.rail-tip p,.result-stats span){color:#f3e2ee!important}
+html[data-theme="dark"] .drill-app .question-grid button{
+  background:#211629!important;border-color:rgba(235,137,193,.25)!important;color:#f1ddeb!important;
+}
+html[data-theme="dark"] .drill-app .question-grid button.current,
+html[data-theme="dark"] .drill-app .question-grid button.answered{background:#a83d83!important;color:#fff!important}
+html[data-theme="dark"] .drill-app :is(.submit-drill,.next-question){
+  background:linear-gradient(110deg,#df70ae,#a83d83)!important;color:#fff!important;border-color:#d86aa9!important;
+}
+html[data-theme="dark"] .drill-app .result-stats>div{background:#321e3a!important;border-color:rgba(235,137,193,.2)!important}
+
+/* Progress analytics */
+html[data-theme="dark"] .progress-app :is(.progress-hero,.progress-panel,.progress-subject-panel,.progress-activity-panel,.progress-recent,.progress-insight,.progress-kpis>article){
+  background:linear-gradient(145deg,#2b1b35,#211629)!important;border:1px solid rgba(235,137,193,.22)!important;
+  box-shadow:0 14px 36px rgba(0,0,0,.22)!important;color:#f5e6f0!important;
+}
+html[data-theme="dark"] .progress-app :is(.progress-top,.progress-back,.progress-status,.progress-kicker,.progress-heading,.progress-subject,.progress-recent-row,.progress-activity-foot,.progress-legend,.progress-footer){color:#e5cadd!important}
+html[data-theme="dark"] .progress-app :is(.progress-hero h1,.progress-panel h2,.progress-subject-panel h2){color:#fff0f8!important}
+html[data-theme="dark"] .progress-app .progress-bar{background:#4a2a49!important}
+html[data-theme="dark"] .progress-app .progress-bar>i{background:linear-gradient(90deg,#e779b8,#a83d83)!important}
+
+/* Profile forms and activity */
+html[data-theme="dark"] .profile-app :is(.profile-hero,.profile-panel,.profile-activity,.profile-goals,.profile-form-panel,.profile-content-grid){
+  background:linear-gradient(145deg,#2b1b35,#211629)!important;border-color:rgba(235,137,193,.22)!important;
+  box-shadow:0 14px 36px rgba(0,0,0,.22)!important;
+}
+html[data-theme="dark"] .profile-app :is(.profile-top,.profile-back,.profile-kicker,.profile-tags,.profile-streak,.profile-footer,.profile-data-note){color:#e6cadd!important}
+html[data-theme="dark"] .profile-app .profile-tabs button{background:#211629!important;color:#e9d2e3!important;border-color:rgba(235,137,193,.22)!important}
+html[data-theme="dark"] .profile-app .profile-tabs button.active{background:#a83d83!important;color:#fff!important}
+html[data-theme="dark"] .profile-app .profile-form-actions button{background:linear-gradient(110deg,#df70ae,#a83d83)!important;color:#fff!important}
+
+/* Auth / sign-in */
+html[data-theme="dark"] .auth-shell :is(.auth-panel,.auth-story,.auth-orbit,.auth-footnote){
+  background:linear-gradient(145deg,#2b1b35,#211629)!important;border-color:rgba(235,137,193,.23)!important;color:#f8edf6!important;
+}
+html[data-theme="dark"] .auth-shell :is(.auth-top,.auth-brand,.auth-back,.auth-eyebrow,.auth-legal){color:#e9cfe1!important}
+html[data-theme="dark"] .auth-shell :is(.auth-panel-head h1,.auth-story h1,.auth-story h2){color:#fff0f8!important}
+html[data-theme="dark"] .auth-shell .auth-submit{background:linear-gradient(110deg,#df70ae,#a83d83)!important;color:#fff!important}
+html[data-theme="dark"] .auth-shell .auth-switch button{color:#f0a5ce!important}
+
+/* Respect reduced motion for the global theme control */
+@media(prefers-reduced-motion:reduce){
+ .gyankunj-theme-toggle{transition:none}
+ .gyankunj-theme-toggle__track i{transition:none}
+}
