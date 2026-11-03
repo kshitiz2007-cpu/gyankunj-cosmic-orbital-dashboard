@@ -1,4 +1,5 @@
 "use client";
+import "./question-bank.css";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
