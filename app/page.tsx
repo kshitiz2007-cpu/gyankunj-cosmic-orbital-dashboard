@@ -72,7 +72,7 @@ export default function Dashboard() {
   const [studentInitials,setStudentInitials]=useState("GK");
   const [announcements,setAnnouncements]=useState<Array<{id:string;title:string;body:string;published_at:string|null}>>([]);
   const [selected,setSelected] = useState<NodeItem|null>(null);
-  const [drillStats,setDrillStats] = useState({total:0,correct:0,subject:"NO DRILL PUBLISHED",loading:true});
+  const [drillStats,setDrillStats] = useState({total:0,correct:0,subject:"NO DRILL PUBLISHED",dateLabel:"",loading:true});
   const [streakDays,setStreakDays]=useState(0);
   const [streakLoading,setStreakLoading]=useState(true);
   const [todayLabel,setTodayLabel]=useState("");
@@ -145,28 +145,33 @@ export default function Dashboard() {
     const loadDrill=async()=>{
       const {getSupabaseBrowserClient}=await import("@/lib/supabase/client");
       const supabase=getSupabaseBrowserClient();
-      if(!supabase){if(active)setDrillStats({total:0,correct:0,subject:"SUPABASE UNAVAILABLE",loading:false});return;}
-      const {data:{user}}=await supabase.auth.getUser();
-      if(!user){if(active)setDrillStats({total:0,correct:0,subject:"SIGN IN TO PRACTICE",loading:false});return;}
-      const {data:assessment,error:assessmentError}=await supabase.from("assessments").select("id,subject_id").eq("kind","daily_drill").eq("is_published",true).order("created_at",{ascending:false}).limit(1).maybeSingle();
+      if(!supabase){if(active)setDrillStats({total:0,correct:0,subject:"SUPABASE UNAVAILABLE",dateLabel:"",loading:false});return;}
+      const {data:{user},error:authError}=await supabase.auth.getUser();
+      if(authError)throw authError;
+      if(!user){if(active)setDrillStats({total:0,correct:0,subject:"SIGN IN TO PRACTICE",dateLabel:"",loading:false});return;}
+      const {data:assessment,error:assessmentError}=await supabase.from("assessments").select("id,subject_id,title,published_at,created_at").eq("kind","daily_drill").eq("is_published",true).order("published_at",{ascending:false,nullsFirst:false}).order("created_at",{ascending:false}).limit(1).maybeSingle();
       if(assessmentError)throw assessmentError;
-      if(!assessment){if(active)setDrillStats({total:0,correct:0,subject:"NO DRILL PUBLISHED",loading:false});return;}
+      if(!assessment){if(active)setDrillStats({total:0,correct:0,subject:"NO DRILL PUBLISHED",dateLabel:"",loading:false});return;}
+      // The secure-scoring migration intentionally revokes SELECT on correct_option.
+      // The dashboard only needs question IDs for the total; score comes from the server RPC attempt.
       const [{data:questionRows,error:questionError},{data:attempt,error:attemptError}]=await Promise.all([
-        supabase.from("questions").select("id,correct_option").eq("assessment_id",assessment.id),
-        supabase.from("assessment_attempts").select("answers,submitted_at,correct_count,answered_count,question_count").eq("assessment_id",assessment.id).eq("student_id",user.id).order("submitted_at",{ascending:false,nullsFirst:false}).limit(1).maybeSingle()
+        supabase.from("questions").select("id").eq("assessment_id",assessment.id),
+        supabase.from("assessment_attempts").select("correct_count,submitted_at").eq("assessment_id",assessment.id).eq("student_id",user.id).not("submitted_at","is",null).order("submitted_at",{ascending:false}).limit(1).maybeSingle()
       ]);
       if(questionError)throw questionError;
       if(attemptError)throw attemptError;
       let subject="GENERAL STUDIES";
       if(assessment.subject_id){
-        const {data:subjectRow}=await supabase.from("subjects").select("name_en").eq("id",assessment.subject_id).maybeSingle();
+        const {data:subjectRow,error:subjectError}=await supabase.from("subjects").select("name_en").eq("id",assessment.subject_id).maybeSingle();
+        if(subjectError)throw subjectError;
         if(subjectRow?.name_en)subject=subjectRow.name_en.toUpperCase();
       }
-      const answers=attempt?.answers && typeof attempt.answers==="object" ? attempt.answers as Record<string,unknown> : {};
+      const publishedOn=assessment.published_at||assessment.created_at;
+      const dateLabel=publishedOn?new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",day:"2-digit",month:"short",year:"numeric"}).format(new Date(publishedOn)).toUpperCase():"";
       const correct=Number(attempt?.correct_count)||0;
-      if(active)setDrillStats({total:(questionRows||[]).length,correct,subject,loading:false});
+      if(active)setDrillStats({total:(questionRows||[]).length,correct,subject,dateLabel,loading:false});
     };
-    void loadDrill().catch(()=>{if(active)setDrillStats({total:0,correct:0,subject:"DRILL DATA UNAVAILABLE",loading:false});});
+    void loadDrill().catch(()=>{if(active)setDrillStats({total:0,correct:0,subject:"DRILL DATA UNAVAILABLE",dateLabel:"",loading:false});});
     return()=>{active=false;};
   },[]);
   const filtered = useMemo(()=>subjects.filter(s=>s.name.toLowerCase().includes(search.toLowerCase())),[search]);
@@ -216,7 +221,7 @@ export default function Dashboard() {
       <motion.article className="drill-panel" id="practice" initial={reduceMotion?false:{opacity:0,y:22}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}}>
         <div className="drill-heading"><span className="target-icon"><Icon icon={Target01Icon} size={27}/></span><span>TODAY&apos;S DRILL</span><Link className="drill-open-link" aria-label="Continue drill" href="/practice/daily"><Icon icon={ArrowUpRight01Icon}/></Link></div>
         <div className="drill-stats"><div><strong>{drillStats.loading?"—":drillStats.correct} <small>/ {drillStats.total}</small></strong><span>Correct answers</span></div><div className="progress-ring" style={{"--progress":drillStats.total?Math.min(100,Math.round(drillStats.correct/drillStats.total*100)):0} as React.CSSProperties}><span>{drillStats.total?Math.min(100,Math.round(drillStats.correct/drillStats.total*100)):0}%</span></div></div>
-        <div className="drill-foot"><span><Icon icon={CheckmarkCircle02Icon} size={15}/> {drillStats.total?(drillStats.correct?"DAILY PRACTICE":"READY TO PRACTICE"):drillStats.loading?"LOADING DRILL":"NO ACTIVE DRILL"}</span><span>{drillStats.subject}</span></div>
+        <div className="drill-foot"><span><Icon icon={CheckmarkCircle02Icon} size={15}/> {drillStats.loading?"LOADING DRILL":drillStats.total?(drillStats.correct?"DAILY PRACTICE":"READY TO PRACTICE"):"NO ACTIVE DRILL"}</span><span>{drillStats.total?(drillStats.dateLabel?"TODAY’S DRILL · "+drillStats.dateLabel:drillStats.subject):drillStats.subject}</span></div>
       </motion.article>
     </section>
 
