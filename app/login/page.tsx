@@ -14,7 +14,8 @@ export default function LoginPage() {
   const [password,setPassword] = useState("");
   const [busy,setBusy] = useState(false);
   const [message,setMessage] = useState("");
-  const [error,setError] = useState("");\n  const getSafeNextPath = () => { const requested = new URLSearchParams(window.location.search).get("next") || "/"; return requested.startsWith("/") && !requested.startsWith("//") ? requested : "/"; };
+  const [error,setError] = useState("");
+  const getSafeNextPath = () => { const requested = new URLSearchParams(window.location.search).get("next") || "/"; return requested.startsWith("/") && !requested.startsWith("//") ? requested : "/"; };
 
   const signInWithGoogle = async () => {
     setBusy(true); setError(""); setMessage("");
