@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
-const STORAGE_KEY = "gyankunj-theme-v2";
+const STORAGE_KEY = "gyankunj-theme-v3";
 
 function readTheme(): Theme {
   try {
@@ -39,7 +39,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 
     const syncTheme = (event: StorageEvent) => {
       if (event.key !== STORAGE_KEY) return;
-      const next: Theme = event.newValue === "dark" ? "dark" : "light";
+      const next: Theme = event.newValue === "light" ? "light" : "dark";
       setTheme(next);
       document.documentElement.dataset.theme = next;
       document.documentElement.style.colorScheme = next;
