@@ -2232,3 +2232,216 @@ html[data-theme="dark"] .auth-shell .auth-switch button{color:#f0a5ce!important}
  .gyankunj-theme-toggle{transition:none}
  .gyankunj-theme-toggle__track i{transition:none}
 }
+
+
+/* =========================================================
+   COMPACT DEVICE LAYOUT — also applies when Android Chrome
+   requests the desktop site (layout viewport can report ~980px).
+   Keep real desktop/laptop layouts untouched.
+   ========================================================= */
+@media (max-device-width: 760px) and (pointer: coarse) {
+  html,body{width:100%;min-width:0;overflow-x:hidden}
+  .app-shell{
+    width:100%;min-width:0;min-height:100svh;
+    padding:14px 14px calc(118px + env(safe-area-inset-bottom))!important;
+    overflow:hidden;
+  }
+  .topbar{
+    width:100%;max-width:100%;min-width:0;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    gap:11px 12px!important;
+    margin:0 auto 8px!important;
+  }
+  .brand{min-width:0;gap:8px}
+  .brand-mark{font-size:29px}
+  .brand strong{font-size:20px;letter-spacing:.06em}
+  .brand small{font-size:6px;letter-spacing:.12em;white-space:nowrap}
+  .searchbox{
+    grid-column:1/-1;grid-row:2;
+    width:100%;min-width:0;height:42px;padding-inline:13px;
+  }
+  .searchbox input{font-size:13px}
+  .top-actions{grid-column:2;grid-row:1;gap:12px}
+  .avatar{width:35px;height:35px}
+
+  /* Compact, centered orbital hero instead of the desktop 3-column grid */
+  .hero{
+    display:block!important;position:relative;
+    width:100%;max-width:100%;min-width:0;
+    min-height:0!important;height:auto;
+    padding:10px 0 18px!important;
+    margin:0 auto;
+  }
+  .hero-copy{
+    position:absolute;z-index:5;top:10px;
+    margin:0!important;align-self:auto;
+  }
+  .hero-copy--left{left:2px;padding-left:8px}
+  .hero-copy--right{right:2px;padding-right:8px}
+  .hero-copy .eyebrow{font-size:8px;letter-spacing:.1em}
+  .hero-copy p,.hero-copy .vertical-index{display:none!important}
+  .hero-copy--right .streak{gap:5px}
+  .hero-copy--right .streak strong{font-size:22px}
+  .hero-copy--right .streak span{font-size:7px}
+  .hero-copy--right .streak svg{width:18px;height:18px}
+  .universe{
+    position:relative!important;left:auto!important;right:auto!important;
+    display:block;width:min(100%,560px)!important;max-width:560px;
+    height:auto;aspect-ratio:1;
+    margin:46px auto 0!important;
+    transform:none!important;translate:none!important;
+  }
+  .orbit--one{width:51%;height:51%}
+  .orbit--two{width:76%;height:76%}
+  .orbit--three{width:96%;height:96%}
+  .core{
+    left:50%!important;top:50%!important;
+    width:28%;margin:0!important;
+    transform:translate(-50%,-50%)!important;
+    translate:none!important;
+  }
+  .core strong{font-size:clamp(13px,2vw,20px)}
+  .core small{font-size:7px;line-height:1.65;letter-spacing:.15em;margin-top:6px}
+  .orb-node{
+    left:var(--x)!important;top:var(--y)!important;
+    width:24%;min-width:0;padding:5px 3px;
+    margin:0!important;
+    transform:translate(-50%,-50%)!important;
+    translate:none!important;
+    border-radius:17px;
+  }
+  .orb-node:nth-of-type(1){left:50%!important;top:8%!important}
+  .orb-node:nth-of-type(2){left:20%!important;top:23%!important}
+  .orb-node:nth-of-type(3){left:80%!important;top:23%!important}
+  .orb-node:nth-of-type(4){left:12%!important;top:50%!important}
+  .orb-node:nth-of-type(5){left:88%!important;top:50%!important}
+  .orb-node:nth-of-type(6){left:20%!important;top:77%!important}
+  .orb-node:nth-of-type(7){left:50%!important;top:90%!important}
+  .orb-node:nth-of-type(8){left:80%!important;top:77%!important}
+  .orb-node__icon{margin-bottom:3px}
+  .orb-node__icon svg{width:21px;height:21px}
+  .orb-node__title{font-size:clamp(8px,1.2vw,12px);line-height:1.25}
+  .orb-node__sub{font-size:6px;letter-spacing:0;margin-top:3px}
+  .orb-node__arrow{width:19px;height:19px;margin-top:4px}
+  .orb-node__arrow svg{width:12px;height:12px}
+  .hero-caption{display:none!important}
+
+  /* Stack the two learning cards and use the full available width */
+  .feature-row{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    width:100%;max-width:760px;min-width:0;
+    gap:13px!important;
+    margin:0 auto 27px!important;
+    align-items:stretch;
+  }
+  .editorial-bento{
+    width:100%;min-width:0;min-height:0!important;
+    overflow:hidden!important;border-radius:21px!important;
+  }
+  .editorial-bento__top{
+    min-width:0;gap:8px;padding:12px 13px 10px!important;
+    font-size:6px!important;letter-spacing:.09em!important;
+  }
+  .editorial-bento__top>span:last-child{font-size:5px!important;text-align:right}
+  .editorial-bento__body{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 92px!important;
+    gap:10px!important;min-height:0!important;
+    padding:15px 13px 13px!important;
+  }
+  .editorial-bento__copy{min-width:0;justify-content:flex-start;padding:0!important}
+  .editorial-bento__eyebrow{font-size:7px!important;line-height:1.6;letter-spacing:.08em!important}
+  .editorial-bento__copy h1{
+    display:block!important;overflow:visible!important;
+    margin:12px 0 9px!important;
+    font-size:clamp(22px,3vw,30px)!important;
+    line-height:1.45!important;letter-spacing:-.025em!important;
+    overflow-wrap:anywhere;text-wrap:pretty;
+  }
+  .editorial-bento__copy h1>span{white-space:normal!important;overflow:visible!important}
+  .editorial-bento__copy>p{
+    max-width:none!important;margin:0 0 12px!important;
+    font-size:11px!important;line-height:1.85!important;
+  }
+  .editorial-bento__bottom{gap:5px!important;padding-top:10px!important}
+  .editorial-bento__bottom>span{padding:6px 7px!important;font-size:5px!important}
+  .editorial-bento__cta{margin-left:0!important;padding:8px 9px!important;font-size:6px!important}
+  .editorial-bento__visual{
+    display:grid;align-self:stretch;min-width:0;min-height:190px!important;
+    border-radius:13px!important;overflow:hidden!important;
+  }
+  .editorial-bento__chip{width:78px!important}
+  .editorial-bento__chip>b{font-size:36px!important}
+  .editorial-bento__chip>small{font-size:5px!important}
+  .editorial-bento__vertical{font-size:5px!important}
+  .editorial-bento__serial{font-size:6px!important}
+  .editorial-bento__ticker{gap:8px;padding:10px 13px 11px!important;font-size:6px!important;letter-spacing:.08em!important}
+
+  .drill-panel{
+    width:100%;min-width:0;min-height:205px!important;
+    padding:17px!important;border-radius:20px!important;
+  }
+  .drill-heading{gap:9px;font-size:9px;letter-spacing:.14em}
+  .target-icon{width:37px;height:37px;flex:0 0 auto}
+  .drill-heading button,.drill-open-link{width:33px;height:33px}
+  .drill-stats{gap:12px}
+  .drill-stats strong{font-size:43px!important}
+  .drill-stats strong small{font-size:22px}
+  .drill-stats span{font-size:12px}
+  .progress-ring{width:88px!important;flex:0 0 88px}
+  .drill-foot{gap:8px;font-size:7px;letter-spacing:.07em}
+  .drill-foot span:last-child{text-align:right}
+
+  .subject-section{width:100%;max-width:760px;margin:0 auto 24px}
+  .section-heading{gap:10px;align-items:flex-start;font-size:8px;letter-spacing:.12em}
+  .section-heading small{font-size:6px;text-align:right}
+  .subject-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;overflow:visible}
+  .subject-pill{min-width:0;min-height:55px;padding:10px;border-radius:14px;font-size:10px}
+  .subject-pill span{overflow-wrap:anywhere}
+
+  .floating-dock{
+    position:fixed;z-index:30;
+    left:50%;bottom:max(8px,env(safe-area-inset-bottom));
+    width:calc(100% - 20px);max-width:560px;
+    display:flex;justify-content:space-around;gap:0;
+    padding:7px 6px!important;
+    transform:translateX(-50%);
+  }
+  .floating-dock a{min-width:0;flex:1;gap:2px;font-size:7px}
+  .floating-dock a>span{width:29px;height:26px}
+  .floating-dock a .dock-ai{width:42px;height:42px;margin-top:-18px}
+  .floating-dock a svg{width:18px;height:18px}
+  .floating-dock a small{font-size:6px;white-space:nowrap}
+  .gyankunj-theme-toggle{
+    right:12px!important;
+    bottom:calc(max(8px,env(safe-area-inset-bottom)) + 66px)!important;
+  }
+
+  /* Other routes also get the compact layout when desktop-site mode is forced. */
+  .editorial-app,.editorial-detail-app,.library-app,.glimpses-app,
+  .syllabus-app,.profile-app,.progress-app,.drill-app,.mock-app,
+  .mock-preview-app,.utility-page,.auth-shell,.ai-companion-app{
+    width:100%;min-width:0;overflow-x:hidden;
+    padding-left:14px;padding-right:14px;
+  }
+  .library-wrap,.editorial-wrap,.glimpses-wrap,.progress-wrap,
+  .profile-wrap,.drill-wrap,.preview-wrap{width:100%;max-width:100%;min-width:0}
+  .library-grid,.mock-test-grid,.progress-main-grid,.profile-content-grid,
+  .drill-layout,.preview-layout{grid-template-columns:minmax(0,1fr)!important}
+}
+
+/* Narrow handset screens: slightly tighter editorial art panel. */
+@media (max-device-width: 390px) and (pointer: coarse) {
+  .app-shell{padding-left:12px!important;padding-right:12px!important}
+  .editorial-bento__body{grid-template-columns:minmax(0,1fr) 78px!important;gap:8px!important}
+  .editorial-bento__visual{min-height:175px!important}
+  .editorial-bento__chip{width:67px!important}
+  .editorial-bento__chip>b{font-size:31px!important}
+  .editorial-bento__copy h1{font-size:22px!important}
+  .editorial-bento__copy>p{font-size:10px!important}
+  .drill-panel{padding:15px!important}
+  .progress-ring{width:78px!important;flex-basis:78px}
+  .floating-dock a small{font-size:5px}
+}
