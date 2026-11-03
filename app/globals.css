@@ -3716,3 +3716,143 @@ html[data-motion="dynamic"] :is(.app-shell .orb-node,.gk-bento-card){transition:
 .gk-studio-launcher{z-index:10001;right:14px;bottom:calc(158px + env(safe-area-inset-bottom,0px))}
 .gk-studio-backdrop{z-index:10002}
 @media(max-width:700px){.gk-studio-launcher{right:12px;bottom:calc(154px + env(safe-area-inset-bottom,0px))}}
+
+
+/* =========================================================
+   REAL COMPOSITION SWITCHER — structural dashboard layouts.
+   These rules deliberately change geometry, hierarchy,
+   navigation and component placement, not only paint.
+   ========================================================= */
+
+/* Shared: transition the actual page composition. */
+html[data-style] .app-shell{transition:background .35s ease}
+html[data-style] .app-shell .topbar,
+html[data-style] .app-shell .hero,
+html[data-style] .app-shell .feature-row,
+html[data-style] .app-shell .learning-intelligence,
+html[data-style] .app-shell .subject-section{transition:all .35s cubic-bezier(.2,.8,.2,1)}
+
+/* 01 — NEO BRUTALIST: editorial masthead + asymmetric dashboard grid. */
+html[data-style="brutal"] .app-shell{padding:24px clamp(16px,3vw,48px) 130px;background:var(--gk-studio-bg)!important}
+html[data-style="brutal"] .app-shell .cosmos-noise{display:none}
+html[data-style="brutal"] .app-shell .topbar{grid-template-columns:1fr minmax(260px,420px) auto;max-width:1500px;margin-bottom:34px;padding:18px 0;border-bottom:3px solid var(--gk-studio-accent)}
+html[data-style="brutal"] .app-shell .brand-mark{display:grid;place-items:center;width:44px;height:44px;background:var(--gk-studio-accent);color:#08131c;text-shadow:none;font-size:27px}
+html[data-style="brutal"] .app-shell .brand strong{font:900 27px/1 "Space Grotesk",sans-serif;letter-spacing:-.07em}
+html[data-style="brutal"] .app-shell .brand small{color:var(--gk-studio-muted);font-weight:800;letter-spacing:.15em}
+html[data-style="brutal"] .app-shell .searchbox{border:2px solid var(--gk-studio-accent);border-radius:5px;background:var(--gk-studio-panel);box-shadow:4px 4px 0 var(--gk-studio-accent)}
+html[data-style="brutal"] .app-shell .hero{display:grid;grid-template-columns:minmax(0,1fr);min-height:0;max-width:1500px;margin:0 auto 26px;padding:20px 0}
+html[data-style="brutal"] .app-shell .hero:before{display:none}
+html[data-style="brutal"] .app-shell .hero-copy{position:static;display:flex;align-items:center;justify-content:space-between;margin:0;padding:0 0 18px;border:0;text-align:left}
+html[data-style="brutal"] .app-shell .hero-copy p,html[data-style="brutal"] .app-shell .vertical-index,html[data-style="brutal"] .app-shell .hero-caption{display:none}
+html[data-style="brutal"] .app-shell .hero-copy--right{justify-content:flex-end}
+html[data-style="brutal"] .app-shell .universe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;width:100%;max-width:none;max-height:none;aspect-ratio:auto;filter:none}
+html[data-style="brutal"] .app-shell .universe>.orbit,html[data-style="brutal"] .app-shell .universe>.orbit-dash,html[data-style="brutal"] .app-shell .universe>.planet{display:none}
+html[data-style="brutal"] .app-shell .core{position:relative;left:auto;top:auto;grid-column:span 2;grid-row:span 2;width:100%;height:100%;min-height:250px;aspect-ratio:auto;transform:none!important;border:3px solid var(--gk-studio-accent);border-radius:6px;background:var(--gk-studio-accent);color:#08131c;box-shadow:8px 8px 0 rgba(183,243,74,.2)!important}
+html[data-style="brutal"] .app-shell .core:before{display:none}
+html[data-style="brutal"] .app-shell .core :is(strong,small,.core-star){color:#08131c!important;text-shadow:none}
+html[data-style="brutal"] .app-shell .core strong{font:900 clamp(24px,4vw,48px)/1 "Space Grotesk",sans-serif;letter-spacing:-.08em}
+html[data-style="brutal"] .app-shell .core small{font-size:11px;font-weight:900;letter-spacing:.2em}
+html[data-style="brutal"] .app-shell .orb-node{position:relative;left:auto;top:auto;width:auto;min-height:116px;aspect-ratio:auto;transform:none!important;border:2px solid var(--gk-studio-accent);border-radius:6px;background:var(--gk-studio-panel);box-shadow:4px 4px 0 rgba(183,243,74,.15)!important;backdrop-filter:none}
+html[data-style="brutal"] .app-shell .orb-node:before{display:none}
+html[data-style="brutal"] .app-shell .orb-node__sub{display:none}
+html[data-style="brutal"] .app-shell .orb-node__title{font:900 13px/1.25 "Space Grotesk","Noto Sans Devanagari",sans-serif;letter-spacing:-.02em}
+html[data-style="brutal"] .app-shell .orb-node__arrow{border-radius:4px;background:var(--gk-studio-accent);color:#08131c}
+html[data-style="brutal"] .app-shell .feature-row{grid-template-columns:minmax(0,1.7fr) minmax(270px,.8fr);gap:14px}
+html[data-style="brutal"] .app-shell .editorial-bento{border:3px solid var(--gk-studio-accent)!important;border-radius:6px!important;background:var(--gk-studio-panel)!important;color:var(--gk-studio-text);box-shadow:7px 7px 0 rgba(183,243,74,.15)!important}
+html[data-style="brutal"] .app-shell .editorial-bento:after{opacity:.08}
+html[data-style="brutal"] .app-shell .editorial-bento__top,html[data-style="brutal"] .app-shell .editorial-bento__ticker{color:var(--gk-studio-accent)!important}
+html[data-style="brutal"] .app-shell .editorial-bento__copy h1{font:900 clamp(30px,4vw,52px)/1.35 "Noto Sans Devanagari",sans-serif!important;letter-spacing:-.04em}
+html[data-style="brutal"] .app-shell .editorial-bento__copy>p{color:var(--gk-studio-text)!important}
+html[data-style="brutal"] .app-shell .editorial-bento__visual{border-left:2px solid var(--gk-studio-accent)}
+html[data-style="brutal"] .app-shell .editorial-bento__cta{border-radius:4px;background:var(--gk-studio-accent);color:#08131c}
+html[data-style="brutal"] .app-shell .drill-panel,html[data-style="brutal"] .app-shell .learning-intelligence{border:2px solid var(--gk-studio-accent);border-radius:6px;background:var(--gk-studio-panel);box-shadow:6px 6px 0 rgba(183,243,74,.12)}
+html[data-style="brutal"] .app-shell .learning-metric,html[data-style="brutal"] .app-shell .learning-activity{border:1px solid var(--gk-studio-border);border-radius:4px;background:var(--gk-studio-panel-2)}
+html[data-style="brutal"] .app-shell .floating-dock{width:min(980px,calc(100% - 36px));border:2px solid var(--gk-studio-accent);border-radius:7px;background:#101f28;box-shadow:6px 6px 0 rgba(183,243,74,.2);backdrop-filter:none}
+html[data-style="brutal"] .app-shell .floating-dock a .dock-ai{border:2px solid var(--gk-studio-accent);border-radius:5px;background:var(--gk-studio-accent);color:#08131c;box-shadow:none}
+
+/* 02 — EDITORIAL SWISS: magazine masthead, split feature and horizontal section rhythm. */
+html[data-style="editorial"] .app-shell{max-width:1600px;margin:auto;padding:32px clamp(24px,6vw,100px) 140px;background:var(--gk-studio-bg)!important}
+html[data-style="editorial"] .app-shell .cosmos-noise{display:none}
+html[data-style="editorial"] .app-shell .topbar{grid-template-columns:1fr auto;gap:18px;margin-bottom:54px;padding-bottom:20px;border-bottom:1px solid var(--gk-studio-border)}
+html[data-style="editorial"] .app-shell .brand strong{font:700 30px/1 "Playfair Display",serif;letter-spacing:-.04em}
+html[data-style="editorial"] .app-shell .searchbox{grid-column:1/-1;grid-row:2;max-width:100%;border-radius:3px;background:var(--gk-studio-panel);box-shadow:none}
+html[data-style="editorial"] .app-shell .hero{grid-template-columns:1fr;min-height:0;margin-bottom:52px}
+html[data-style="editorial"] .app-shell .hero:before,html[data-style="editorial"] .app-shell .hero-copy,html[data-style="editorial"] .app-shell .hero-caption{display:none}
+html[data-style="editorial"] .app-shell .universe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:100%;max-width:none;max-height:none;aspect-ratio:auto;filter:none}
+html[data-style="editorial"] .app-shell .universe>.orbit,html[data-style="editorial"] .app-shell .universe>.orbit-dash,html[data-style="editorial"] .app-shell .universe>.planet{display:none}
+html[data-style="editorial"] .app-shell .core{position:relative;left:auto;top:auto;grid-column:span 2;grid-row:span 2;width:100%;height:100%;min-height:250px;aspect-ratio:auto;transform:none!important;border-radius:3px;background:var(--gk-studio-panel-2);box-shadow:none;border:1px solid var(--gk-studio-border)}
+html[data-style="editorial"] .app-shell .orb-node{position:relative;left:auto;top:auto;width:auto;aspect-ratio:auto;min-height:112px;transform:none!important;border-radius:3px;background:var(--gk-studio-panel);box-shadow:none;backdrop-filter:none}
+html[data-style="editorial"] .app-shell .orb-node__sub{display:none}
+html[data-style="editorial"] .app-shell .orb-node__title{font:700 12px/1.3 "Space Grotesk","Noto Sans Devanagari",sans-serif}
+html[data-style="editorial"] .app-shell .orb-node__arrow{border-radius:2px}
+html[data-style="editorial"] .app-shell .feature-row{grid-template-columns:1fr;gap:18px}
+html[data-style="editorial"] .app-shell .editorial-bento{border-radius:3px!important;box-shadow:none!important}
+html[data-style="editorial"] .app-shell .editorial-bento__copy h1{font-family:"Noto Serif Devanagari","Playfair Display",serif!important;font-size:clamp(32px,5vw,62px)!important;line-height:1.5!important}
+html[data-style="editorial"] .app-shell .drill-panel{min-height:170px;border-radius:3px;box-shadow:none}
+html[data-style="editorial"] .app-shell .learning-intelligence{border-radius:3px;box-shadow:none}
+html[data-style="editorial"] .app-shell .floating-dock{left:auto;right:22px;top:50%;bottom:auto;width:76px;transform:translateY(-50%);flex-direction:column;border-radius:3px;background:var(--gk-studio-panel);box-shadow:none}
+html[data-style="editorial"] .app-shell .floating-dock a{min-height:54px}
+
+/* 03 — MIDNIGHT AURORA: immersive split workspace, vertical side navigation. */
+html[data-style="aurora"] .app-shell{padding:22px clamp(18px,3vw,48px) 70px;background:radial-gradient(ellipse at 50% 0%,#14536a66,transparent 50%),var(--gk-studio-bg)!important}
+html[data-style="aurora"] .app-shell .hero{grid-template-columns:1fr;min-height:0;padding:30px 0}
+html[data-style="aurora"] .app-shell .hero:before,html[data-style="aurora"] .app-shell .hero-copy,html[data-style="aurora"] .app-shell .hero-caption{display:none}
+html[data-style="aurora"] .app-shell .universe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;width:100%;max-width:none;max-height:none;aspect-ratio:auto;filter:none}
+html[data-style="aurora"] .app-shell .universe>.orbit,html[data-style="aurora"] .app-shell .universe>.orbit-dash,html[data-style="aurora"] .app-shell .universe>.planet{display:none}
+html[data-style="aurora"] .app-shell .core{position:relative;left:auto;top:auto;grid-column:span 2;grid-row:span 2;width:100%;height:100%;min-height:230px;aspect-ratio:auto;transform:none!important;border-radius:28px;background:linear-gradient(145deg,#1a6170,#0a2638);box-shadow:0 20px 60px #0005}
+html[data-style="aurora"] .app-shell .orb-node{position:relative;left:auto;top:auto;width:auto;min-height:105px;aspect-ratio:auto;transform:none!important;border-radius:22px;background:linear-gradient(145deg,rgba(30,93,111,.65),rgba(8,31,47,.88));box-shadow:inset 0 1px #ffffff1c,0 15px 35px #0004}
+html[data-style="aurora"] .app-shell .feature-row{grid-template-columns:minmax(0,1.4fr) minmax(260px,.8fr)}
+html[data-style="aurora"] .app-shell .floating-dock{left:16px;top:50%;bottom:auto;width:72px;transform:translateY(-50%);flex-direction:column;border-radius:24px;background:rgba(7,32,47,.92)}
+
+/* 04 — SOFT GLASS: dashboard as layered floating panels and spacious cards. */
+html[data-style="glass"] .app-shell{padding:28px clamp(18px,4vw,64px) 140px;background:radial-gradient(ellipse at 12% 10%,#8bc8ff24,transparent 40%),radial-gradient(ellipse at 88% 80%,#5e9dc522,transparent 40%),var(--gk-studio-bg)!important}
+html[data-style="glass"] .app-shell .hero{grid-template-columns:1fr;min-height:0;padding:26px 0}
+html[data-style="glass"] .app-shell .hero:before,html[data-style="glass"] .app-shell .hero-copy,html[data-style="glass"] .app-shell .hero-caption{display:none}
+html[data-style="glass"] .app-shell .universe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;width:100%;max-width:none;max-height:none;aspect-ratio:auto;filter:none}
+html[data-style="glass"] .app-shell .universe>.orbit,html[data-style="glass"] .app-shell .universe>.orbit-dash,html[data-style="glass"] .app-shell .universe>.planet{display:none}
+html[data-style="glass"] .app-shell .core{position:relative;left:auto;top:auto;grid-column:span 2;grid-row:span 2;width:100%;height:100%;min-height:250px;aspect-ratio:auto;transform:none!important;border-radius:30px;background:linear-gradient(145deg,#8bc8ff33,#1d3e5c88);backdrop-filter:blur(25px);box-shadow:inset 0 1px #ffffff44,0 24px 70px #0005}
+html[data-style="glass"] .app-shell .orb-node{position:relative;left:auto;top:auto;width:auto;min-height:112px;aspect-ratio:auto;transform:none!important;border-radius:25px;background:linear-gradient(145deg,#ffffff20,#ffffff08);backdrop-filter:blur(25px);box-shadow:inset 0 1px #ffffff38,0 18px 45px #0004}
+html[data-style="glass"] .app-shell .feature-row{grid-template-columns:minmax(0,1.5fr) minmax(260px,.8fr);gap:20px}
+html[data-style="glass"] .app-shell .editorial-bento,html[data-style="glass"] .app-shell .drill-panel,html[data-style="glass"] .app-shell .learning-intelligence{border-radius:28px;backdrop-filter:blur(24px);box-shadow:0 24px 65px #0004}
+
+/* 05 — FOCUS MINIMAL: compact command header, utility grid, no ornamental hub. */
+html[data-style="minimal"] .app-shell{max-width:1320px;margin:auto;padding:20px 22px 120px;background:var(--gk-studio-bg)!important}
+html[data-style="minimal"] .app-shell .cosmos-noise,html[data-style="minimal"] .app-shell .hero:before{display:none}
+html[data-style="minimal"] .app-shell .topbar{grid-template-columns:auto minmax(200px,1fr) auto;gap:18px;margin-bottom:24px}
+html[data-style="minimal"] .app-shell .brand-mark{font-size:26px}
+html[data-style="minimal"] .app-shell .brand strong{font:750 21px/1 "Space Grotesk",sans-serif;letter-spacing:-.04em}
+html[data-style="minimal"] .app-shell .hero{display:block;min-height:0;margin-bottom:24px}
+html[data-style="minimal"] .app-shell .hero-copy,html[data-style="minimal"] .app-shell .hero-caption{display:none}
+html[data-style="minimal"] .app-shell .universe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:100%;max-width:none;max-height:none;aspect-ratio:auto;filter:none}
+html[data-style="minimal"] .app-shell .universe>.orbit,html[data-style="minimal"] .app-shell .universe>.orbit-dash,html[data-style="minimal"] .app-shell .universe>.planet{display:none}
+html[data-style="minimal"] .app-shell .core{position:relative;left:auto;top:auto;grid-column:span 4;width:100%;height:auto;min-height:100px;aspect-ratio:auto;transform:none!important;border-radius:14px;background:var(--gk-studio-panel-2);box-shadow:none}
+html[data-style="minimal"] .app-shell .core-star,html[data-style="minimal"] .app-shell .core small{display:none}
+html[data-style="minimal"] .app-shell .orb-node{position:relative;left:auto;top:auto;width:auto;min-height:88px;aspect-ratio:auto;transform:none!important;border-radius:12px;background:var(--gk-studio-panel);box-shadow:none}
+html[data-style="minimal"] .app-shell .orb-node__sub{display:none}
+html[data-style="minimal"] .app-shell .orb-node__arrow{display:none}
+html[data-style="minimal"] .app-shell .feature-row{grid-template-columns:1fr;gap:12px}
+html[data-style="minimal"] .app-shell .editorial-bento,html[data-style="minimal"] .app-shell .drill-panel,html[data-style="minimal"] .app-shell .learning-intelligence{border-radius:14px;box-shadow:none}
+html[data-style="minimal"] .app-shell .floating-dock{border-radius:16px;box-shadow:0 8px 24px #0002}
+
+/* Mobile composition rules for the structural presets. */
+@media(max-width:760px){
+ html[data-style="brutal"] .app-shell .topbar{grid-template-columns:1fr auto;gap:10px;padding:8px 0 14px}
+ html[data-style="brutal"] .app-shell .searchbox{grid-column:1/-1;grid-row:2}
+ html[data-style="brutal"] .app-shell .hero{padding:6px 0 18px}
+ html[data-style="brutal"] .app-shell .universe{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ html[data-style="brutal"] .app-shell .core{grid-column:span 2;grid-row:auto;min-height:135px}
+ html[data-style="brutal"] .app-shell .orb-node{min-height:100px}
+ html[data-style="brutal"] .app-shell .feature-row{grid-template-columns:1fr}
+ html[data-style="brutal"] .app-shell .editorial-bento__body{grid-template-columns:1fr}
+ html[data-style="brutal"] .app-shell .editorial-bento__visual{display:none}
+ html[data-style="editorial"] .app-shell .topbar{grid-template-columns:1fr auto}
+ html[data-style="editorial"] .app-shell .universe,html[data-style="aurora"] .app-shell .universe,html[data-style="glass"] .app-shell .universe{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ html[data-style="editorial"] .app-shell .core,html[data-style="aurora"] .app-shell .core,html[data-style="glass"] .app-shell .core{grid-column:span 2;grid-row:auto;min-height:135px}
+ html[data-style="editorial"] .app-shell .orb-node,html[data-style="aurora"] .app-shell .orb-node,html[data-style="glass"] .app-shell .orb-node{min-height:95px}
+ html[data-style="editorial"] .app-shell .floating-dock,html[data-style="aurora"] .app-shell .floating-dock{left:50%;right:auto;top:auto;bottom:max(9px,env(safe-area-inset-bottom));width:calc(100% - 20px);transform:translateX(-50%);flex-direction:row;border-radius:16px}
+ html[data-style="glass"] .app-shell .feature-row,html[data-style="aurora"] .app-shell .feature-row{grid-template-columns:1fr}
+ html[data-style="minimal"] .app-shell .universe{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html[data-style="minimal"] .app-shell .core{grid-column:span 2}
+ html[data-style="minimal"] .app-shell .topbar{grid-template-columns:1fr auto}
+ html[data-style="minimal"] .app-shell .searchbox{grid-column:1/-1;grid-row:2}
+}
