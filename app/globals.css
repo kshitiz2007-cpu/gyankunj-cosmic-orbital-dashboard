@@ -1801,3 +1801,33 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
  .editorial-bento__bottom>span{font-size:5px!important}
  .editorial-bento__cta{font-size:5px!important;padding:8px!important}
 }
+
+
+/* Daily Drill review: high-contrast concept note on the blush theme */
+.answer-explanation{
+ margin-top:22px!important;
+ padding:22px 22px 24px!important;
+ border:1px solid rgba(128,43,94,.22)!important;
+ border-left:4px solid #bd4389!important;
+ border-radius:0 18px 18px 0!important;
+ background:linear-gradient(135deg,#fff8fc 0%,#f7e4ef 100%)!important;
+ box-shadow:0 12px 30px rgba(81,24,62,.08)!important;
+}
+.answer-explanation strong{
+ display:block!important;
+ color:#96366f!important;
+ font:800 10px "Space Grotesk",sans-serif!important;
+ letter-spacing:.18em!important;
+}
+.answer-explanation p{
+ margin:12px 0 0!important;
+ color:#3e2038!important;
+ font:600 14px/2 "Noto Sans Devanagari",sans-serif!important;
+ opacity:1!important;
+ text-shadow:none!important;
+}
+@media(max-width:700px){
+ .answer-explanation{margin-top:18px!important;padding:18px 16px 20px!important;border-radius:0 15px 15px 0!important}
+ .answer-explanation strong{font-size:9px!important}
+ .answer-explanation p{font-size:13px!important;line-height:1.95!important;font-weight:650!important}
+}
