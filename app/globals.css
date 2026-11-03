@@ -3710,3 +3710,9 @@ html[data-motion="dynamic"] :is(.app-shell .orb-node,.gk-bento-card){transition:
 .gk-studio-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:18px;color:var(--gk-studio-muted);font-size:10px}
 .gk-studio-footer button{border:0;background:transparent;color:var(--gk-studio-accent);font-size:10px;font-weight:800;cursor:pointer}
 @media(max-width:600px){.gk-studio-launcher{right:12px;bottom:calc(88px + env(safe-area-inset-bottom));padding:10px 13px;font-size:9px}.gk-studio-panel{padding:18px 15px;max-height:88dvh}.gk-style-grid{gap:8px}.gk-style-option{padding:9px}.gk-studio-footer{align-items:flex-start;flex-direction:column}}
+
+
+/* Keep the Design Studio launcher clear of the persistent theme switch and bottom dock. */
+.gk-studio-launcher{z-index:10001;right:14px;bottom:calc(158px + env(safe-area-inset-bottom,0px))}
+.gk-studio-backdrop{z-index:10002}
+@media(max-width:700px){.gk-studio-launcher{right:12px;bottom:calc(154px + env(safe-area-inset-bottom,0px))}}
