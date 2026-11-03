@@ -16,8 +16,8 @@ export default function AuthCallbackPage(){
    const {data,error}=await supabase.auth.getSession();
    if(error)throw error;
    if(!data.session)throw new Error("Google sign-in did not create a session. Please try again.");
-   const requested=params.get("next")||"/profile";
-   const next=requested.startsWith("/")&&!requested.startsWith("//")?requested:"/profile";
+   const requested=params.get("next")||"/";
+   const next=requested.startsWith("/")&&!requested.startsWith("//")?requested :"/";
    if(active){router.replace(next);router.refresh();}
   };
   void complete().catch(error=>{if(active)setMessage(error instanceof Error?error.message:"Unable to complete Google sign-in.");});
