@@ -2,17 +2,36 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-function safeNext(value: string | null) {
-  return value && value.startsWith("/") && !value.startsWith("//") ? value : "/";
+function getAppOrigin(request: NextRequest) {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL;
+  const candidate = configured || request.nextUrl.origin;
+  try {
+    const parsed = new URL(candidate);
+    if (parsed.protocol !== "https:" && parsed.protocol !== "http:") return request.nextUrl.origin;
+    return parsed.origin;
+  } catch {
+    return request.nextUrl.origin;
+  }
+}
+
+function safeNext(value: string | null, origin: string) {
+  if (!value || !value.startsWith("/") || value.startsWith("//") || value.includes("\\\\")) return "/";
+  try {
+    const target = new URL(value, origin);
+    return target.origin === origin ? target.pathname + target.search + target.hash : "/";
+  } catch {
+    return "/";
+  }
 }
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
-  const appOrigin = "https://gyankunj-cosmic-orbital-dashboard.onrender.com";
+  const appOrigin = getAppOrigin(request);
   const code = searchParams.get("code");
-  const next = safeNext(searchParams.get("next"));
-  const authError = searchParams.get("error_description") || searchParams.get("error");
-  if (authError) return NextResponse.redirect(new URL("/login?error=" + encodeURIComponent(authError), appOrigin));
+  const next = safeNext(searchParams.get("next"), appOrigin);
+  if (searchParams.has("error") || searchParams.has("error_description")) {
+    return NextResponse.redirect(new URL("/login?error=oauth_failed", appOrigin));
+  }
   if (!code) return NextResponse.redirect(new URL("/login?error=missing_oauth_code", appOrigin));
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -27,6 +46,6 @@ export async function GET(request: NextRequest) {
     },
   });
   const { error } = await supabase.auth.exchangeCodeForSession(code);
-  if (error) return NextResponse.redirect(new URL("/login?error=" + encodeURIComponent(error.message), appOrigin));
+  if (error) return NextResponse.redirect(new URL("/login?error=oauth_exchange_failed", appOrigin));
   return NextResponse.redirect(new URL(next, appOrigin));
 }
