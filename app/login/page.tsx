@@ -55,7 +55,7 @@ export default function LoginPage() {
           email: email.trim(), password,
         });
         if (authError) throw authError;
-        router.replace("/");
+        router.replace(getSafeNextPath());
         router.refresh();
       }
     } catch (caught) {
