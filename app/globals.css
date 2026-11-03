@@ -2698,3 +2698,84 @@ img,svg,video,canvas{max-width:100%}
 :root[data-theme="dark"] .gyankunj-theme-toggle__track i{transform:translateX(12px)}
 @media(max-width:600px){.gyankunj-theme-toggle{right:12px;bottom:14px;min-height:38px;padding:0 10px;gap:7px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+
+/* =========================================================
+   GYANKUNJ DESIGN SYSTEM 2.0 — FOUNDATION TOKENS
+   Rose / Magenta / Blush · semantic surfaces · accessible motion
+   ========================================================= */
+:root{
+ --gk-font-ui:"DM Sans","Noto Sans Devanagari",sans-serif;
+ --gk-font-display:"Space Grotesk","Noto Serif Devanagari",sans-serif;
+ --gk-font-editorial:"Playfair Display","Noto Serif Devanagari",serif;
+ --gk-rose-50:#fff5fa;--gk-rose-100:#ffe7f2;--gk-rose-200:#f9c9e1;
+ --gk-rose-300:#efa1cb;--gk-rose-400:#e875b2;--gk-rose-500:#d94c98;
+ --gk-rose-600:#bd347f;--gk-rose-700:#982766;--gk-rose-800:#70204f;
+ --gk-magenta-500:#bd3eaa;--gk-plum-500:#75417e;
+ --gk-gradient-brand:linear-gradient(120deg,#ed8cbd 0%,#d94c98 48%,#a84baf 100%);
+ --gk-gradient-soft:linear-gradient(135deg,#fff9fc 0%,#fff0f7 52%,#f5edff 100%);
+ --gk-gradient-hero:radial-gradient(ellipse at 12% 0%,rgba(255,191,220,.52),transparent 38%),radial-gradient(ellipse at 100% 30%,rgba(220,190,247,.36),transparent 35%),#fff8fc;
+ --gk-space-1:4px;--gk-space-2:8px;--gk-space-3:12px;--gk-space-4:16px;
+ --gk-space-5:20px;--gk-space-6:24px;--gk-space-8:32px;--gk-space-10:40px;--gk-space-12:48px;
+ --gk-radius-sm:10px;--gk-radius-md:16px;--gk-radius-lg:22px;--gk-radius-xl:30px;--gk-radius-pill:999px;
+ --gk-shadow-soft:0 8px 24px rgba(92,34,75,.07);
+ --gk-shadow-card:0 18px 48px rgba(92,34,75,.10);
+ --gk-shadow-float:0 24px 64px rgba(92,34,75,.16);
+ --gk-motion-fast:160ms;--gk-motion-base:240ms;--gk-motion-slow:420ms;
+ --gk-ease:cubic-bezier(.2,.8,.2,1);
+ color-scheme:light;
+ --gk-canvas:#fff8fc;--gk-surface:#ffffff;--gk-surface-raised:#fffafd;
+ --gk-surface-muted:#fff0f7;--gk-text:#32152f;--gk-text-soft:#63485f;
+ --gk-muted:#896f83;--gk-border:rgba(133,57,105,.14);
+ --gk-border-strong:rgba(189,52,127,.28);--gk-focus:#bd347f;
+ --gk-accent:#d94c98;--gk-accent-strong:#a92d76;
+ --gk-on-accent:#ffffff;--gk-success:#218568;--gk-warning:#a96a20;--gk-danger:#c44463;
+}
+html[data-theme="light"]{color-scheme:light}
+html[data-theme="dark"]{
+ color-scheme:dark;
+ --gk-canvas:#100b17;--gk-surface:#1b1424;--gk-surface-raised:#261a30;
+ --gk-surface-muted:#302039;--gk-text:#fff0f8;--gk-text-soft:#e0c8d9;
+ --gk-muted:#b99eb5;--gk-border:rgba(244,185,220,.13);
+ --gk-border-strong:rgba(237,121,189,.34);--gk-focus:#f08ac5;
+ --gk-accent:#ed79bd;--gk-accent-strong:#f3a0d0;
+ --gk-on-accent:#2b1026;--gk-success:#72d4b1;--gk-warning:#f0bd75;--gk-danger:#ff91a7;
+ --gk-gradient-soft:linear-gradient(135deg,#211629 0%,#28172a 55%,#21172e 100%);
+ --gk-gradient-hero:radial-gradient(ellipse at 12% 0%,rgba(166,49,117,.25),transparent 38%),radial-gradient(ellipse at 100% 30%,rgba(91,43,112,.2),transparent 35%),#100b17;
+ --gk-shadow-soft:0 8px 24px rgba(0,0,0,.2);
+ --gk-shadow-card:0 18px 48px rgba(0,0,0,.28);
+ --gk-shadow-float:0 24px 64px rgba(0,0,0,.38);
+}
+html,body{background:var(--gk-canvas);color:var(--gk-text);font-family:var(--gk-font-ui)}
+body{transition:background-color var(--gk-motion-base) ease,color var(--gk-motion-base) ease}
+::selection{background:#f3b5d7;color:#35152f}
+:focus-visible{outline:2px solid var(--gk-focus);outline-offset:3px}
+:where(button,a,input,textarea,select){-webkit-tap-highlight-color:transparent}
+:where(button:not(:disabled)){cursor:pointer}
+:where(input,textarea,select){accent-color:var(--gk-accent)}
+:where(img,svg,video,canvas){max-width:100%}
+:where(button,a,input,textarea,select){transition-duration:var(--gk-motion-fast)}
+/* Reusable primitives for gradual page-by-page migration */
+.gk-page{min-height:100vh;background:var(--gk-gradient-hero);color:var(--gk-text)}
+.gk-surface{background:var(--gk-surface);border:1px solid var(--gk-border);border-radius:var(--gk-radius-lg);box-shadow:var(--gk-shadow-soft)}
+.gk-surface-raised{background:var(--gk-surface-raised);border:1px solid var(--gk-border);border-radius:var(--gk-radius-xl);box-shadow:var(--gk-shadow-card)}
+.gk-glass{background:color-mix(in srgb,var(--gk-surface) 78%,transparent);border:1px solid var(--gk-border);border-radius:var(--gk-radius-xl);box-shadow:var(--gk-shadow-card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.gk-eyebrow{color:var(--gk-accent-strong);font:700 9px var(--gk-font-display);letter-spacing:.16em;text-transform:uppercase}
+.gk-gradient-text{background:var(--gk-gradient-brand);background-clip:text;-webkit-background-clip:text;color:transparent}
+.gk-button-primary{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:0 18px;border:1px solid transparent;border-radius:var(--gk-radius-pill);background:var(--gk-gradient-brand);color:#fff;font:700 12px var(--gk-font-ui);box-shadow:0 8px 22px rgba(189,52,127,.2);transition:transform var(--gk-motion-fast) var(--gk-ease),box-shadow var(--gk-motion-fast) var(--gk-ease)}
+.gk-button-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(189,52,127,.28)}
+.gk-button-secondary{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:42px;padding:0 16px;border:1px solid var(--gk-border-strong);border-radius:var(--gk-radius-pill);background:var(--gk-surface);color:var(--gk-text);font:700 12px var(--gk-font-ui)}
+.gk-input{width:100%;min-height:44px;padding:0 14px;border:1px solid var(--gk-border);border-radius:var(--gk-radius-md);background:var(--gk-surface);color:var(--gk-text)}
+.gk-input::placeholder{color:var(--gk-muted)}
+.gk-input:focus{border-color:var(--gk-focus);box-shadow:0 0 0 3px color-mix(in srgb,var(--gk-focus) 15%,transparent);outline:0}
+.gk-divider{height:1px;border:0;background:var(--gk-border)}
+/* Consistent browser chrome and motion accessibility */
+html{scrollbar-color:color-mix(in srgb,var(--gk-accent) 45%,transparent) transparent;scrollbar-width:thin}
+html::-webkit-scrollbar{width:9px;height:9px}
+html::-webkit-scrollbar-thumb{border:2px solid transparent;border-radius:99px;background:color-mix(in srgb,var(--gk-accent) 42%,transparent);background-clip:padding-box}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+@media(max-width:700px){
+ .gk-surface-raised,.gk-glass{border-radius:var(--gk-radius-lg)}
+}
