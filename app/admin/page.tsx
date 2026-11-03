@@ -33,8 +33,7 @@ export default function AdminPortal(){
    const {count:total,error}=await request;if(error)throw new Error(table+": "+error.message);return total||0;
   };
   const jobs=[count("profiles","role","student"),count("profiles","role","faculty"),count("courses"),count("study_resources","is_published","true"),count("editorial_articles","is_published","true"),count("assessments","is_published","true"),(async()=>{const {count,error}=await supabase.from("class_sessions").select("*",{count:"exact",head:true}).eq("status","published").gte("starts_at",new Date().toISOString());if(error)throw new Error("class_sessions: "+error.message);return count||0;})()];
-  const settled=await Promise.allSettled(jobs);const keys=["students","faculty","courses","resources","editorials","assessments","classes"] as const;const next={...dashboardStats};const errors:string[];
-  errors=[];settled.forEach((result,index)=>{if(result.status==="fulfilled")next[keys[index]]=result.value;else errors.push(result.reason instanceof Error?result.reason.message:"A dashboard metric could not be loaded.");});
+  const settled=await Promise.allSettled(jobs);const keys=["students","faculty","courses","resources","editorials","assessments","classes"] as const;const next={...dashboardStats};const errors:string[]=[];settled.forEach((result,index)=>{if(result.status==="fulfilled")next[keys[index]]=result.value;else errors.push(result.reason instanceof Error?result.reason.message:"A dashboard metric could not be loaded.");});
   setDashboardStats(next);setDashboardErrors(errors);
   const {data:activity,error:activityError}=await supabase.from("student_activity").select("id,activity_type,created_at,student_id").order("created_at",{ascending:false}).limit(6);
   if(activityError)setDashboardErrors(previous=>[...previous,"Recent activity: "+activityError.message]);else setDashboardActivity((activity||[]) as DashboardActivity[]);
