@@ -2952,3 +2952,247 @@ html[data-theme="dark"] .gk-navigation{background:rgba(31,20,40,.9)}
 @media(prefers-reduced-motion:reduce){
  .gk-button,.gk-bento-card,.gk-modal,.gk-modal-backdrop,.gk-navigation__link{animation:none!important;transition:none!important}
 }
+
+
+/* =========================================================
+   GYANKUNJ TYPOGRAPHY SYSTEM 2.0
+   Bilingual Hindi–English scale · responsive rhythm · editorial reading
+   ========================================================= */
+:root{
+  /* Font roles: keep Latin display expressive and Devanagari highly legible. */
+  --gk-font-ui:"DM Sans","Noto Sans Devanagari",sans-serif;
+  --gk-font-display:"Space Grotesk","Noto Serif Devanagari",serif;
+  --gk-font-hindi-ui:"Noto Sans Devanagari","DM Sans",sans-serif;
+  --gk-font-hindi-display:"Noto Serif Devanagari","Playfair Display",serif;
+  --gk-font-editorial:"Noto Serif Devanagari","Playfair Display",serif;
+
+  /* Fluid type scale — mobile-first, capped for wide desktop layouts. */
+  --gk-type-xs:clamp(.7rem,.66rem + .12vw,.78rem);
+  --gk-type-sm:clamp(.8rem,.76rem + .16vw,.9rem);
+  --gk-type-body:clamp(.94rem,.89rem + .22vw,1.06rem);
+  --gk-type-lg:clamp(1.08rem,1rem + .38vw,1.28rem);
+  --gk-type-h3:clamp(1.22rem,1.08rem + .7vw,1.7rem);
+  --gk-type-h2:clamp(1.55rem,1.25rem + 1.35vw,2.35rem);
+  --gk-type-h1:clamp(2rem,1.45rem + 2.6vw,3.65rem);
+  --gk-type-display:clamp(2.55rem,1.7rem + 4.5vw,5.5rem);
+
+  /* Separate rhythm for Devanagari; avoid tight Latin-style leading. */
+  --gk-leading-tight:1.16;
+  --gk-leading-heading:1.38;
+  --gk-leading-body:1.78;
+  --gk-leading-hindi:1.92;
+  --gk-leading-editorial:2.02;
+  --gk-reading-measure:72ch;
+  --gk-reading-measure-wide:82ch;
+}
+html{font-size:16px;text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--gk-font-ui);
+  font-size:var(--gk-type-body);
+  line-height:var(--gk-leading-body);
+  font-kerning:normal;
+  font-optical-sizing:auto;
+  font-synthesis:none;
+}
+:where(h1,h2,h3,h4,h5,h6){
+  text-wrap:pretty;
+  overflow-wrap:normal;
+  word-break:normal;
+  hyphens:none;
+}
+:where(p,li,dd,blockquote){text-wrap:pretty}
+:where(input,textarea,select,button){font-family:var(--gk-font-ui)}
+:where([lang="hi"],[lang="hi-IN"],[lang="mr"],[lang="sa"]){
+  font-family:var(--gk-font-hindi-ui);
+  line-height:var(--gk-leading-hindi);
+  letter-spacing:normal;
+}
+:where([lang="hi"],[lang="hi-IN"],[lang="mr"],[lang="sa"]) :where(h1,h2,h3,h4,h5,h6,.gk-display,.gk-type-display,.gk-type-h1,.gk-type-h2){
+  font-family:var(--gk-font-hindi-display);
+  letter-spacing:normal;
+  line-height:1.48;
+}
+:where([lang="hi"],[lang="hi-IN"],[lang="mr"],[lang="sa"]) :where(p,li,dd,blockquote){
+  font-family:var(--gk-font-hindi-ui);
+  line-height:var(--gk-leading-hindi);
+  letter-spacing:normal;
+}
+
+/* Named hierarchy utilities for consistent use across every route. */
+.gk-type-display{
+  margin:0;
+  font-family:var(--gk-font-display);
+  font-size:var(--gk-type-display);
+  font-weight:700;
+  line-height:var(--gk-leading-tight);
+  letter-spacing:-.045em;
+  text-wrap:balance;
+}
+.gk-type-h1{
+  margin:0;
+  font-family:var(--gk-font-display);
+  font-size:var(--gk-type-h1);
+  font-weight:700;
+  line-height:var(--gk-leading-heading);
+  letter-spacing:-.035em;
+  text-wrap:balance;
+}
+.gk-type-h2{
+  margin:0;
+  font-family:var(--gk-font-display);
+  font-size:var(--gk-type-h2);
+  font-weight:700;
+  line-height:var(--gk-leading-heading);
+  letter-spacing:-.025em;
+  text-wrap:balance;
+}
+.gk-type-h3{
+  margin:0;
+  font-family:var(--gk-font-display);
+  font-size:var(--gk-type-h3);
+  font-weight:650;
+  line-height:1.42;
+}
+.gk-type-h4{font-size:var(--gk-type-lg);font-weight:700;line-height:1.5}
+.gk-type-body{font-size:var(--gk-type-body);line-height:var(--gk-leading-body)}
+.gk-type-small{font-size:var(--gk-type-sm);line-height:1.6}
+.gk-type-caption{font-size:var(--gk-type-xs);line-height:1.5;color:var(--gk-muted)}
+.gk-type-eyebrow{
+  font-family:var(--gk-font-display);
+  font-size:var(--gk-type-xs);
+  font-weight:700;
+  line-height:1.5;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gk-accent-strong);
+}
+.gk-type-hindi{
+  font-family:var(--gk-font-hindi-ui);
+  letter-spacing:normal;
+  line-height:var(--gk-leading-hindi);
+}
+.gk-type-hindi-display{
+  font-family:var(--gk-font-hindi-display);
+  font-size:var(--gk-type-h1);
+  font-weight:700;
+  letter-spacing:normal;
+  line-height:1.48;
+  text-wrap:pretty;
+}
+.gk-type-english-editorial{
+  font-family:"Playfair Display","DM Sans",serif;
+  font-weight:600;
+  letter-spacing:-.035em;
+  line-height:1.2;
+}
+.gk-reading-width{width:min(100%,var(--gk-reading-measure));margin-inline:auto}
+.gk-reading-width--wide{width:min(100%,var(--gk-reading-measure-wide));margin-inline:auto}
+
+/* Editorial reading: generous Devanagari leading and clear section cadence. */
+.gk-editorial-title{
+  max-width:19ch;
+  margin:0;
+  color:var(--gk-text);
+  font-family:var(--gk-font-hindi-display);
+  font-size:clamp(1.85rem,1.25rem + 2.5vw,3.45rem);
+  font-weight:700;
+  line-height:1.48;
+  letter-spacing:normal;
+  text-wrap:pretty;
+}
+.gk-editorial-deck{
+  max-width:68ch;
+  margin:1rem 0 0;
+  color:var(--gk-text-secondary);
+  font-family:var(--gk-font-hindi-ui);
+  font-size:clamp(1rem,.94rem + .28vw,1.16rem);
+  line-height:2;
+}
+.gk-editorial-body{
+  max-width:var(--gk-reading-measure);
+  color:var(--gk-text);
+  font-family:var(--gk-font-hindi-ui);
+  font-size:clamp(.98rem,.94rem + .2vw,1.08rem);
+  line-height:var(--gk-leading-editorial);
+  letter-spacing:normal;
+}
+.gk-editorial-body p{margin:0 0 1.35em}
+.gk-editorial-body h2,.gk-editorial-body h3{
+  margin:2.1em 0 .8em;
+  color:var(--gk-text);
+  font-family:var(--gk-font-hindi-display);
+  font-weight:700;
+  letter-spacing:normal;
+  line-height:1.52;
+  text-wrap:pretty;
+}
+.gk-editorial-body h2{font-size:clamp(1.35rem,1.15rem + .8vw,1.8rem)}
+.gk-editorial-body h3{font-size:clamp(1.12rem,1rem + .5vw,1.42rem)}
+.gk-editorial-body li{margin-block:.45em;line-height:var(--gk-leading-editorial)}
+.gk-editorial-body strong{font-weight:700;color:var(--gk-text)}
+
+/* Existing editorial reader receives the same bilingual rhythm without markup changes. */
+.editorial-detail-app--premium .editorial-article-head--premium h1{
+  font-family:var(--gk-font-hindi-display);
+  font-size:var(--gk-type-h1);
+  line-height:1.48;
+  letter-spacing:normal;
+  text-wrap:pretty;
+}
+.editorial-detail-app--premium .editorial-deck{
+  font-family:var(--gk-font-hindi-ui);
+  font-size:var(--gk-type-lg);
+  line-height:2;
+}
+.editorial-detail-app--premium .editorial-content-paragraph{
+  font-family:var(--gk-font-hindi-ui);
+  font-size:var(--gk-type-body);
+  line-height:var(--gk-leading-editorial);
+  letter-spacing:normal;
+}
+.editorial-detail-app--premium .editorial-content-heading{
+  font-family:var(--gk-font-hindi-display);
+  line-height:1.52;
+  letter-spacing:normal;
+  text-wrap:pretty;
+}
+.editorial-detail-app--premium .editorial-content-point p{
+  font-family:var(--gk-font-hindi-ui);
+  line-height:var(--gk-leading-editorial);
+}
+
+/* Shared components inherit the same scale, including cards and form controls. */
+.gk-bento-card__header h3{font-size:var(--gk-type-h3);line-height:1.48}
+.gk-bento-card__header p{font-size:var(--gk-type-sm);line-height:1.75}
+.gk-modal__header h2{font-size:var(--gk-type-h3);line-height:1.45}
+.gk-modal__header p,.gk-modal__content{font-size:var(--gk-type-sm);line-height:1.75}
+.gk-input,.gk-field__label{font-size:var(--gk-type-sm)}
+.gk-field__hint,.gk-field__error{font-size:var(--gk-type-xs);line-height:1.6}
+.gk-navigation__link{font-size:var(--gk-type-xs)}
+
+/* Kinetic headings: opt-in only, with reduced-motion support. */
+.gk-kinetic-heading{
+  animation:gk-type-enter 650ms cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes gk-type-enter{
+  from{opacity:0;transform:translateY(12px);filter:blur(4px)}
+  to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+@media(max-width:640px){
+  :root{
+    --gk-leading-body:1.82;
+    --gk-leading-hindi:1.98;
+    --gk-leading-editorial:2.05;
+    --gk-reading-measure:100%;
+  }
+  .gk-type-display{letter-spacing:-.035em}
+  .gk-editorial-title{max-width:100%;font-size:clamp(1.65rem,7vw,2.35rem);line-height:1.52}
+  .gk-editorial-deck{font-size:1rem;line-height:1.95}
+  .gk-editorial-body{font-size:1rem;line-height:2.05}
+  .gk-editorial-body h2{margin-top:1.8em}
+  .editorial-detail-app--premium .editorial-article-head--premium h1{font-size:clamp(1.75rem,7.2vw,2.35rem);line-height:1.52}
+  .editorial-detail-app--premium .editorial-content-paragraph{font-size:1rem;line-height:2.05}
+}
+@media(prefers-reduced-motion:reduce){
+  .gk-kinetic-heading{animation:none!important}
+}
