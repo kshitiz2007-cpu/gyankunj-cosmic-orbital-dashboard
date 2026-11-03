@@ -63,14 +63,14 @@ export async function POST(request: NextRequest) {
       .eq("is_published", true).limit(5);
     if (filter) resourceQuery = resourceQuery.or(filter);
 
-    const [resourceResult, editorialResult] = await Promise.all([
-      resourceQuery,
-      supabase.from("editorial_articles")
-        .select("slug,title_en,title_hi,summary_hi,content_hi,content_en,category")
-        .eq("is_published", true)
-        .or(words.map(word => "title_en.ilike.%" + word + "%,title_hi.ilike.%" + word + "%,summary_hi.ilike.%" + word + "%").join(","))
-        .order("published_at", { ascending: false, nullsFirst: false }).limit(3),
-    ]);
+    let editorialQuery = supabase.from("editorial_articles")
+      .select("slug,title_en,title_hi,summary_hi,content_hi,content_en,category")
+      .eq("is_published", true)
+      .order("published_at", { ascending: false, nullsFirst: false }).limit(3);
+    if (words.length) {
+      editorialQuery = editorialQuery.or(words.map(word => "title_en.ilike.%" + word + "%,title_hi.ilike.%" + word + "%,summary_hi.ilike.%" + word + "%").join(","));
+    }
+    const [resourceResult, editorialResult] = await Promise.all([resourceQuery, editorialQuery]);
     if (resourceResult.error) throw new Error("Study resources could not be loaded.");
     if (editorialResult.error) throw new Error("Editorial resources could not be loaded.");
 
