@@ -42,7 +42,7 @@ export default function AdminPortal(){
  useEffect(()=>{if(adminAccess==="allowed"&&section==="Overview")void loadDashboardOverview();},[adminAccess,section]);
 
  const loadDatabaseRows=async(target:Section)=>{
-  const supported=["Students","Courses","Batches","Faculty","Analytics","Notifications","Tests","Question Bank"];
+  const supported=["Students","Courses","Batches","Faculty","Analytics","Notifications","Tests","Question Bank","Audit Logs"];
   if(!supported.includes(target)){setDatabaseRows([]);return;}
   const supabase=getSupabaseBrowserClient();if(!supabase){setDatabaseRows([]);return;}
   setLoadingDatabaseRows(true);
@@ -65,7 +65,7 @@ export default function AdminPortal(){
    }else if(target==="Notifications"){
     const {data,error}=await supabase.from("announcements").select("id,title,published_at,is_published").order("created_at",{ascending:false});if(error)throw error;
     rows=(data||[]).map(x=>[x.id.slice(0,8),x.title,x.published_at?new Date(x.published_at).toLocaleString():"Not published",x.is_published?"Published":"Draft"]);
-   }else if(target==="Tests"){
+   }else if(target==="Audit Logs"){\n    const {data,error}=await supabase.from("admin_audit_logs").select("id,actor_id,target_user_id,action,details,created_at").order("created_at",{ascending:false}).limit(200);if(error)throw error;\n    rows=(data||[]).map(x=>[x.id.slice(0,8),x.action,x.target_user_id?.slice(0,8)||"—",new Date(x.created_at).toLocaleString("en-IN")]);\n   }else if(target==="Tests"){
     const {data,error}=await supabase.from("assessments").select("id,title,kind,is_published").order("created_at",{ascending:false});if(error)throw error;
     rows=(data||[]).map(x=>[x.id.slice(0,8),x.title,x.kind,x.is_published?"Published":"Draft"]);
    }else if(target==="Question Bank"){
@@ -77,7 +77,7 @@ export default function AdminPortal(){
   finally{setLoadingDatabaseRows(false);}
  };
  useEffect(()=>{if(adminAccess==="allowed")void loadDatabaseRows(section);},[adminAccess,section]);
- useEffect(()=>{let active=true;const check=async()=>{const supabase=getSupabaseBrowserClient();if(!supabase){if(active)setAdminAccess("denied");return;}const {data:{user},error}=await supabase.auth.getUser();if(!active)return;if(error||!user){router.replace("/login");return;}const {data:profile}=await supabase.from("profiles").select("role").eq("id",user.id).maybeSingle();if(!active)return;setAdminAccess(profile?.role==="admin"?"allowed":"denied");};void check();return()=>{active=false;};},[router]);
+ useEffect(()=>{let active=true;const supabase=getSupabaseBrowserClient();if(!supabase){setAdminAccess("denied");return;}const check=async()=>{const {data:{user},error}=await supabase.auth.getUser();if(!active)return;if(error||!user){setAdminAccess("denied");router.replace("/login?next=/admin");return;}const {data:profile,error:profileError}=await supabase.from("profiles").select("role,is_active").eq("id",user.id).maybeSingle();if(!active)return;if(profileError||profile?.role!=="admin"||profile.is_active!==true){setAdminAccess("denied");return;}setAdminAccess("allowed");};void check();const {data:{subscription}}=supabase.auth.onAuthStateChange((_event,session)=>{if(!session){setAdminAccess("denied");router.replace("/login?next=/admin");}});return()=>{active=false;subscription.unsubscribe();};},[router]);
  const [contentMode,setContentMode]=useState("Text"),[noteTitle,setNoteTitle]=useState(""),[noteTitleHi,setNoteTitleHi]=useState(""),[noteTextHi,setNoteTextHi]=useState(""),[editingResourceId,setEditingResourceId]=useState<string|null>(null),[subject,setSubject]=useState("Polity"),[topic,setTopic]=useState(""),[noteText,setNoteText]=useState(""),[fileName,setFileName]=useState(""),[selectedFile,setSelectedFile]=useState<File|null>(null),[resourceType,setResourceType]=useState("Notes"),[contentItems,setContentItems]=useState<string[][]>([]),[savedResourceId,setSavedResourceId]=useState<string|null>(null),[savingResource,setSavingResource]=useState(false);
  type CmsResource={id:string;title_en:string;title_hi:string|null;topic:string|null;resource_type:"text"|"pdf"|"image";category:string;content_text:string|null;content_hi:string|null;storage_path:string|null;is_published:boolean;created_at:string;subject_id:string|null;subject?:{name_en:string;slug:string}[]|null};
  const [cmsResources,setCmsResources]=useState<CmsResource[]>([]),[loadingCms,setLoadingCms]=useState(false);
