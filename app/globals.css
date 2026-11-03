@@ -2458,3 +2458,52 @@ html[data-theme="dark"] .auth-shell .auth-switch button{color:#f0a5ce!important}
   .universe .orb-node--ai{left:50%!important;top:90%!important}
   .universe .orb-node--syllabus{left:80%!important;top:77%!important}
 }
+
+
+/* Student Intelligence & Analytics — period controls, signals and accuracy trend */
+.progress-app .si-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:24px 0 13px;padding:15px 18px;border:1px solid #ead4e2;border-radius:18px;background:rgba(255,250,253,.78)}
+.progress-app .si-toolbar>div:first-child{display:grid;gap:4px}
+.progress-app .si-toolbar>div:first-child>b{font-size:15px;color:#49223e}
+.progress-app .si-period{display:flex;gap:5px;padding:4px;border-radius:999px;background:#f2e4ed}
+.progress-app .si-period button{border:0;border-radius:999px;background:transparent;padding:8px 14px;color:#80556f;font-size:11px;font-weight:800;letter-spacing:.08em;cursor:pointer}
+.progress-app .si-period button.active{background:linear-gradient(110deg,#df70ae,#a83d83);color:#fff;box-shadow:0 5px 14px #a83d8330}
+.progress-app .si-insights-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:13px;margin:13px 0}
+.progress-app .si-insight-card{min-width:0;padding:20px;border:1px solid #ead4e2;border-radius:20px;background:linear-gradient(145deg,#fffafd,#f8eaf3);box-shadow:0 12px 28px #5c24400a}
+.progress-app .si-insight-card--focus{background:linear-gradient(135deg,#fff4fa,#f2d9e9)}
+.progress-app .si-insight-card .progress-kicker{display:flex;align-items:center;gap:7px}
+.progress-app .si-insight-card h2{margin:15px 0 8px;color:#49223e;font-size:clamp(18px,2vw,23px);line-height:1.25}
+.progress-app .si-insight-card>strong{display:block;margin:16px 0 9px;color:#49223e;font-size:21px;line-height:1.2;overflow-wrap:anywhere}
+.progress-app .si-insight-card p{margin:0;color:#795a70;font-size:12px;line-height:1.75}
+.progress-app .si-insight-card>a{display:inline-flex;align-items:center;gap:8px;margin-top:15px;color:#a83d83;font-size:11px;font-weight:800;text-decoration:none}
+.progress-app .si-trend-panel{margin:13px 0;padding:22px;border:1px solid #ead4e2;border-radius:22px;background:#fffafd}
+.progress-app .si-trend-chart{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:12px;align-items:end;height:190px;padding:18px 4px 0}
+.progress-app .si-trend-column{display:flex;min-width:0;height:100%;flex-direction:column;align-items:center;justify-content:flex-end;gap:7px}
+.progress-app .si-trend-bar-track{display:flex;align-items:flex-end;justify-content:center;width:min(100%,34px);height:135px;border-radius:999px;background:#f3e5ee;overflow:hidden}
+.progress-app .si-trend-bar-track>i{display:block;width:100%;min-height:3px;border-radius:999px;background:linear-gradient(180deg,#e78abd,#a83d83);transition:height .35s ease}
+.progress-app .si-trend-column>b{font-size:10px;color:#6f3b5d}
+.progress-app .si-trend-column>small{font-size:10px;color:#98788e}
+.progress-app .si-chart-note{margin:12px 0 0;color:#96788b;font-size:11px;line-height:1.6}
+html[data-theme="dark"] .progress-app .si-toolbar,
+html[data-theme="dark"] .progress-app .si-insight-card,
+html[data-theme="dark"] .progress-app .si-trend-panel{background:linear-gradient(145deg,#2b1b35,#211629)!important;border-color:rgba(235,137,193,.22)!important;color:#f5e6f0}
+html[data-theme="dark"] .progress-app .si-toolbar>div:first-child>b,
+html[data-theme="dark"] .progress-app .si-insight-card h2,
+html[data-theme="dark"] .progress-app .si-insight-card>strong{color:#fff0f8}
+html[data-theme="dark"] .progress-app .si-insight-card p,
+html[data-theme="dark"] .progress-app .si-chart-note{color:#d8bfd2}
+html[data-theme="dark"] .progress-app .si-period{background:#1b1225}
+html[data-theme="dark"] .progress-app .si-period button{color:#e9cfe1}
+html[data-theme="dark"] .progress-app .si-period button.active{color:#fff}
+html[data-theme="dark"] .progress-app .si-trend-bar-track{background:#4a2a49}
+html[data-theme="dark"] .progress-app .si-trend-column>b,
+html[data-theme="dark"] .progress-app .si-trend-column>small{color:#e5cadd}
+@media(max-width:760px){
+ .progress-app .si-toolbar{align-items:flex-start;flex-direction:column}
+ .progress-app .si-period{width:100%;justify-content:space-between}
+ .progress-app .si-period button{flex:1}
+ .progress-app .si-insights-grid{grid-template-columns:1fr}
+ .progress-app .si-insight-card{padding:17px}
+ .progress-app .si-trend-panel{padding:16px}
+ .progress-app .si-trend-chart{gap:5px;height:160px}
+ .progress-app .si-trend-bar-track{height:112px;width:min(100%,25px)}
+}
