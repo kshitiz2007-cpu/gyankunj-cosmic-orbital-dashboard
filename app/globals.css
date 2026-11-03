@@ -2633,3 +2633,68 @@ html[data-theme="dark"] .progress-app .si-trend-column>small{color:#e5cadd}
  .editorial-next--premium{gap:18px}
  .editorial-detail-footer{font-size:7px;letter-spacing:.08em}
 }
+
+
+/* =========================================================
+   GYANKUNJ DESIGN SYSTEM 2.0 — FOUNDATION TOKENS
+   Rose / Magenta / Blush with accessible semantic surfaces
+   ========================================================= */
+:root{
+ color-scheme:light;
+ --gk-brand-50:#fff4fa;--gk-brand-100:#fce7f2;--gk-brand-200:#f7c8e0;--gk-brand-300:#efa1ca;
+ --gk-brand-400:#e675b2;--gk-brand-500:#d94d98;--gk-brand-600:#bb347e;--gk-brand-700:#982866;--gk-brand-800:#70204f;--gk-brand-900:#4b1838;
+ --gk-accent-plum:#512044;--gk-accent-lilac:#a88bd4;--gk-accent-peach:#f2b99e;
+ --gk-success:#16866b;--gk-warning:#a96718;--gk-danger:#c33d5a;--gk-info:#3976ad;
+ --gk-bg:#fff8fc;--gk-bg-soft:#fff1f8;--gk-surface:#ffffff;--gk-surface-raised:#fffafd;
+ --gk-surface-muted:#f8edf4;--gk-text:#32172d;--gk-text-secondary:#735c70;--gk-text-muted:#987f94;
+ --gk-border:rgba(113,48,91,.14);--gk-border-strong:rgba(169,54,119,.3);
+ --gk-shadow-sm:0 2px 8px rgba(83,31,67,.06);--gk-shadow-md:0 12px 32px rgba(83,31,67,.09);--gk-shadow-lg:0 24px 70px rgba(83,31,67,.14);
+ --gk-glass:rgba(255,255,255,.72);--gk-glass-border:rgba(255,255,255,.78);
+ --gk-gradient-brand:linear-gradient(120deg,#e879b2 0%,#c94c9a 48%,#8e4aaf 100%);
+ --gk-gradient-soft:linear-gradient(135deg,#fff8fc 0%,#fcebf5 54%,#f2eafa 100%);
+ --gk-gradient-hero:radial-gradient(ellipse at 15% 0%,rgba(246,184,216,.42),transparent 44%),radial-gradient(ellipse at 90% 20%,rgba(198,161,226,.28),transparent 40%),#fff8fc;
+ --gk-font-ui:"DM Sans","Noto Sans Devanagari",sans-serif;
+ --gk-font-display:"Space Grotesk","Noto Sans Devanagari",sans-serif;
+ --gk-font-editorial:"Noto Serif Devanagari","Playfair Display",serif;
+ --gk-radius-xs:8px;--gk-radius-sm:12px;--gk-radius-md:18px;--gk-radius-lg:24px;--gk-radius-xl:32px;--gk-radius-pill:999px;
+ --gk-space-1:4px;--gk-space-2:8px;--gk-space-3:12px;--gk-space-4:16px;--gk-space-5:20px;--gk-space-6:24px;--gk-space-8:32px;--gk-space-10:40px;--gk-space-12:48px;
+ --gk-motion-fast:160ms;--gk-motion-base:240ms;--gk-motion-slow:420ms;--gk-ease:cubic-bezier(.2,.75,.25,1);
+ --gk-focus:0 0 0 3px rgba(217,77,152,.22);
+}
+:root[data-theme="dark"]{
+ color-scheme:dark;
+ --gk-bg:#100b17;--gk-bg-soft:#17101f;--gk-surface:#1d1424;--gk-surface-raised:#261a2c;
+ --gk-surface-muted:#302137;--gk-text:#fff3fa;--gk-text-secondary:#d2bbce;--gk-text-muted:#aa8fa7;
+ --gk-border:rgba(244,194,222,.13);--gk-border-strong:rgba(232,130,187,.32);
+ --gk-shadow-sm:0 2px 10px rgba(0,0,0,.2);--gk-shadow-md:0 14px 36px rgba(0,0,0,.26);--gk-shadow-lg:0 26px 76px rgba(0,0,0,.38);
+ --gk-glass:rgba(35,23,42,.74);--gk-glass-border:rgba(255,255,255,.09);
+ --gk-gradient-soft:linear-gradient(135deg,#130d1a 0%,#201326 55%,#21172d 100%);
+ --gk-gradient-hero:radial-gradient(ellipse at 15% 0%,rgba(167,53,117,.2),transparent 44%),radial-gradient(ellipse at 90% 20%,rgba(114,73,151,.18),transparent 40%),#100b17;
+ --gk-brand-500:#e675b2;--gk-brand-600:#d45a9e;
+}
+html{background:var(--gk-bg);scroll-padding-top:84px}
+body{font-family:var(--gk-font-ui);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(217,77,152,.22);color:var(--gk-text)}
+:focus-visible{outline:2px solid var(--gk-brand-500);outline-offset:3px;box-shadow:var(--gk-focus)}
+button:disabled{cursor:not-allowed}
+img,svg,video,canvas{max-width:100%}
+.gk-display{font-family:var(--gk-font-display);letter-spacing:-.045em}
+.gk-editorial{font-family:var(--gk-font-editorial);line-height:1.85}
+.gk-eyebrow{font:700 9px/1.4 var(--gk-font-display);letter-spacing:.16em;text-transform:uppercase;color:var(--gk-brand-600)}
+.gk-surface{background:var(--gk-surface);border:1px solid var(--gk-border);border-radius:var(--gk-radius-lg);box-shadow:var(--gk-shadow-sm)}
+.gk-glass{background:var(--gk-glass);border:1px solid var(--gk-glass-border);border-radius:var(--gk-radius-lg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--gk-shadow-md)}
+.gk-button-primary{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:0 18px;border:0;border-radius:var(--gk-radius-pill);background:var(--gk-gradient-brand);color:#fff;font:700 12px var(--gk-font-display);box-shadow:0 8px 22px rgba(190,55,128,.22);transition:transform var(--gk-motion-fast) var(--gk-ease),box-shadow var(--gk-motion-fast) var(--gk-ease)}
+.gk-button-primary:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(190,55,128,.28)}
+.gk-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border:1px solid var(--gk-border);border-radius:var(--gk-radius-pill);background:var(--gk-surface-muted);color:var(--gk-text-secondary);font:700 9px var(--gk-font-display);letter-spacing:.08em}
+.gk-divider{height:1px;border:0;background:var(--gk-border)}
+.gyankunj-theme-toggle{position:fixed;z-index:80;right:18px;bottom:22px;display:flex;align-items:center;gap:9px;min-height:42px;padding:0 12px;border:1px solid var(--gk-border-strong);border-radius:var(--gk-radius-pill);background:var(--gk-glass);color:var(--gk-text);box-shadow:var(--gk-shadow-md);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);font:700 9px var(--gk-font-display);letter-spacing:.1em;cursor:pointer;transition:transform var(--gk-motion-fast) var(--gk-ease),background var(--gk-motion-base) var(--gk-ease)}
+.gyankunj-theme-toggle:hover{transform:translateY(-2px)}
+.gyankunj-theme-toggle__icon{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--gk-brand-100);color:var(--gk-brand-700);font-size:15px}
+:root[data-theme="dark"] .gyankunj-theme-toggle__icon{background:#4a2540;color:#ffd1e9}
+.gyankunj-theme-toggle__label{color:var(--gk-text-secondary)}
+.gyankunj-theme-toggle__track{position:relative;width:27px;height:15px;border-radius:99px;background:var(--gk-brand-200);transition:background var(--gk-motion-base) var(--gk-ease)}
+.gyankunj-theme-toggle__track i{position:absolute;left:2px;top:2px;width:11px;height:11px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0003;transition:transform var(--gk-motion-base) var(--gk-ease)}
+:root[data-theme="dark"] .gyankunj-theme-toggle__track{background:var(--gk-brand-600)}
+:root[data-theme="dark"] .gyankunj-theme-toggle__track i{transform:translateX(12px)}
+@media(max-width:600px){.gyankunj-theme-toggle{right:12px;bottom:14px;min-height:38px;padding:0 10px;gap:7px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
