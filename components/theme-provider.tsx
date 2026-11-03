@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 type Style = "cosmic" | "aurora" | "editorial" | "brutal" | "glass" | "minimal";
@@ -17,8 +17,9 @@ const STYLES: { id: Style; name: string; description: string; accent: string }[]
   { id: "glass", name: "Soft Glass", description: "Frosted · floating · soft", accent: "#8bc8ff" },
   { id: "minimal", name: "Focus Minimal", description: "Quiet · clean · focused", accent: "#75c8b2" },
 ];
-const valid = <T extends string>(value: unknown, values: readonly T[], fallback: T): T =>
-  typeof value === "string" && values.includes(value as T) ? value as T : fallback;
+function valid<T extends string>(value: unknown, values: readonly T[], fallback: T): T {
+  return typeof value === "string" && values.includes(value as T) ? value as T : fallback;
+}
 function readPreferences(): Preferences {
   try {
     const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "null");
@@ -66,13 +67,13 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     window.addEventListener("storage", sync);
     return () => window.removeEventListener("storage", sync);
   }, []);
-  const update = useCallback(<K extends keyof Preferences>(key: K, value: Preferences[K]) => {
+  function update<K extends keyof Preferences>(key: K, value: Preferences[K]) {
     setPrefs(current => {
-      const next = { ...current, [key]: value };
+      const next: Preferences = { ...current, [key]: value };
       applyPreferences(next);
       return next;
     });
-  }, []);
+  }
   const reset = () => { setPrefs(DEFAULTS); applyPreferences(DEFAULTS); };
   return <>
     {children}
