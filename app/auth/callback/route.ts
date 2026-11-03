@@ -15,7 +15,7 @@ function getAppOrigin(request: NextRequest) {
 }
 
 function safeNext(value: string | null, origin: string) {
-  if (!value || !value.startsWith("/") || value.startsWith("//") || value.includes("\\\\")) return "/";
+  if (!value || !value.startsWith("/") || value.startsWith("//") || value.includes("\\")) return "/";
   try {
     const target = new URL(value, origin);
     return target.origin === origin ? target.pathname + target.search + target.hash : "/";
