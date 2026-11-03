@@ -18,18 +18,18 @@ type NodeItem = {
 };
 const nodes: NodeItem[] = [
   { id:"drill", title:"DAILY", subtitle:"DRILL", color:"#f7bd66", icon:Notebook01Icon, href:"/practice/daily", angle:-90 },
-  { id:"editorial", title:"DAILY", subtitle:"EDITORIAL", color:"#ff817b", icon:NewspaperIcon, href:"/current-affairs", angle:-135 },
+  { id:"editorial", title:"DAILY", subtitle:"EDITORIAL", color:"#5ab7cb", icon:NewspaperIcon, href:"/current-affairs", angle:-135 },
   { id:"mock", title:"FULL-LENGTH", subtitle:"MOCK TEST", color:"#70cfff", icon:BookOpen01Icon, href:"/mock-test", angle:-45 },
   { id:"library", title:"STUDY", subtitle:"LIBRARY", color:"#76e2bd", icon:Layers01Icon, href:"/library", angle:180 },
-  { id:"progress", title:"MY", subtitle:"PROGRESS", color:"#d48cff", icon:ChartLineData01Icon, href:"/progress", angle:0 },
+  { id:"progress", title:"MY", subtitle:"PROGRESS", color:"#72cce0", icon:ChartLineData01Icon, href:"/progress", angle:0 },
   { id:"live", title:"LIVE", subtitle:"CLASSES", color:"#63d8f5", icon:UserGroupIcon, href:"/live", angle:135 },
-  { id:"ai", title:"AI", subtitle:"COMPANION", color:"#f28fc9", icon:Brain01Icon, href:"/ai", angle:90 },
+  { id:"ai", title:"AI", subtitle:"COMPANION", color:"#55c0d0", icon:Brain01Icon, href:"/ai", angle:90 },
   { id:"syllabus", title:"EXPLORE", subtitle:"SYLLABUS", color:"#f3c879", icon:Compass01Icon, href:"/syllabus", angle:45 }
 ];
 const subjectVisuals:Record<string,{icon:typeof GraduationScrollIcon;color:string}> = {
   polity:{icon:GraduationScrollIcon,color:"#70cfff"},economy:{icon:ChartLineData01Icon,color:"#76e2bd"},
   environment:{icon:Atom01Icon,color:"#9bdda0"},"science-tech":{icon:SparklesIcon,color:"#b89cff"},
-  history:{icon:BookOpen01Icon,color:"#f3c879"},geography:{icon:Layers01Icon,color:"#ff9f9a"}
+  history:{icon:BookOpen01Icon,color:"#f3c879"},geography:{icon:Layers01Icon,color:"#76c5d6"}
 };
 const nav = [
   {name:"Home",icon:Home01Icon,href:"/"},
