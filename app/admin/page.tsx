@@ -49,7 +49,8 @@ export default function AdminPortal(){
    supabase.from("profiles").select("id",{count:"exact",head:true}).eq("role","student"),
    supabase.from("assessment_attempts").select("id,student_id,score,started_at,submitted_at,assessment_id").gte("started_at",since.toISOString()).order("started_at",{ascending:false}).limit(1000),
    supabase.from("student_activity").select("id,student_id,activity_type,created_at").gte("created_at",since.toISOString()).order("created_at",{ascending:false}).limit(2000),
-   supabase.from("assessments").select("id,title,kind")
+   supabase.from("assessments").select("id,title,kind"),
+   supabase.from("assessment_attempt_responses").select("id,attempt_id,student_id,assessment_id,question_id,is_correct,subject_id,topic,topic_mapped,responded_at").gte("responded_at",since.toISOString()).order("responded_at",{ascending:false}).limit(10000)
   ]);
   const errors=[students.error,attempts.error,activities.error,assessmentRows.error,responses.error].filter(Boolean);
   if(errors.length){setAnalyticsError(errors.map(e=>e?.message||"Unknown data error").join(" · "));}
