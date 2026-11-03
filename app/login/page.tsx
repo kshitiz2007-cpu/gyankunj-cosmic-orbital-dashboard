@@ -23,11 +23,17 @@ export default function LoginPage() {
     const supabase = getSupabaseBrowserClient();
     if (!supabase) { setError("Supabase configuration missing. Please contact the administrator."); setBusy(false); return; }
     try {
-      const { error: authError } = await supabase.auth.signInWithOAuth({
+      const callbackUrl = `https://gyankunj-cosmic-orbital-dashboard.onrender.com/auth/callback?next=${encodeURIComponent(getSafeNextPath())}`;
+      const { data, error: authError } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: `https://gyankunj-cosmic-orbital-dashboard.onrender.com/auth/callback?next=${encodeURIComponent(getSafeNextPath())}` },
+        options: { redirectTo: callbackUrl, skipBrowserRedirect: true },
       });
       if (authError) throw authError;
+      if (!data.url) throw new Error("Google authorization URL was not returned.");
+      // Keep the SDK-generated PKCE challenge/verifier, but force the production callback.
+      const authorizationUrl = new URL(data.url);
+      authorizationUrl.searchParams.set("redirect_to", callbackUrl);
+      window.location.assign(authorizationUrl.toString());
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Google sign-in could not be started. Please try again.");
       setBusy(false);
