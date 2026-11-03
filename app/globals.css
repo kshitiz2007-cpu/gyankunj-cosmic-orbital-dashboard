@@ -2445,3 +2445,16 @@ html[data-theme="dark"] .auth-shell .auth-switch button{color:#f0a5ce!important}
   .progress-ring{width:78px!important;flex-basis:78px}
   .floating-dock a small{font-size:5px}
 }
+
+
+/* Semantic orbital anchors for touch devices in forced desktop-site mode. */
+@media (max-device-width: 760px) and (pointer: coarse) {
+  .universe .orb-node--drill{left:50%!important;top:8%!important}
+  .universe .orb-node--editorial{left:20%!important;top:23%!important}
+  .universe .orb-node--mock{left:80%!important;top:23%!important}
+  .universe .orb-node--library{left:12%!important;top:50%!important}
+  .universe .orb-node--progress{left:88%!important;top:50%!important}
+  .universe .orb-node--live{left:20%!important;top:77%!important}
+  .universe .orb-node--ai{left:50%!important;top:90%!important}
+  .universe .orb-node--syllabus{left:80%!important;top:77%!important}
+}
