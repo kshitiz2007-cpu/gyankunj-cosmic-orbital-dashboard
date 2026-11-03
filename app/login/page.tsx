@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [password,setPassword] = useState("");
   const [busy,setBusy] = useState(false);
   const [message,setMessage] = useState("");
-  const [error,setError] = useState("");
+  const [error,setError] = useState("");\n  const getSafeNextPath = () => { const requested = new URLSearchParams(window.location.search).get("next") || "/"; return requested.startsWith("/") && !requested.startsWith("//") ? requested : "/"; };
 
   const signInWithGoogle = async () => {
     setBusy(true); setError(""); setMessage("");
@@ -23,7 +23,7 @@ export default function LoginPage() {
     try {
       const { error: authError } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: `${window.location.origin}/auth/callback?next=/` },
+        options: { redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(getSafeNextPath())}` },
       });
       if (authError) throw authError;
     } catch (caught) {
@@ -48,7 +48,7 @@ export default function LoginPage() {
           options: { data: { full_name: name.trim() } },
         });
         if (authError) throw authError;
-        if (data.session) router.replace("/");
+        if (data.session) router.replace(getSafeNextPath());
         else setMessage("Account created. Check your email for the confirmation link, then sign in.");
       } else {
         const { error: authError } = await supabase.auth.signInWithPassword({
