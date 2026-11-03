@@ -79,6 +79,54 @@ export default function Dashboard() {
   const [subjects,setSubjects]=useState<Array<{slug:string;name:string;icon:typeof GraduationScrollIcon;color:string}>>([]);
   const [featuredEditorial,setFeaturedEditorial]=useState<{slug:string;title_hi:string|null;title_en:string|null;summary_hi:string|null;summary_en:string|null;category:string;read_minutes:number}|null>(null);
   const [dashboardContentLoading,setDashboardContentLoading]=useState(true);
+  const [learningSnapshot,setLearningSnapshot]=useState({attempts:0,answered:0,correct:0,topics:0,loading:true});
+  const [weeklyActivity,setWeeklyActivity]=useState<number[]>([]);
+  const [recentLearning,setRecentLearning]=useState<Array<{id:string;activity_type:string;created_at:string}>>([]);
+  const [snapshotError,setSnapshotError]=useState("");
+  useEffect(()=>{
+    let active=true;
+    const loadLearningSnapshot=async()=>{
+      const {getSupabaseBrowserClient}=await import("@/lib/supabase/client");
+      const supabase=getSupabaseBrowserClient();
+      if(!supabase){if(active)setLearningSnapshot(v=>({...v,loading:false}));return;}
+      const {data:{user},error:authError}=await supabase.auth.getUser();
+      if(authError)throw authError;
+      if(!user){if(active)setLearningSnapshot(v=>({...v,loading:false}));return;}
+      const since=new Date(Date.now()-30*86400000).toISOString();
+      const [attemptResult,topicResult,activityResult]=await Promise.all([
+        supabase.from("assessment_attempts").select("id,answered_count,correct_count,submitted_at").eq("student_id",user.id).not("submitted_at","is",null).gte("submitted_at",since).order("submitted_at",{ascending:false}).limit(500),
+        supabase.from("student_topic_progress").select("id",{count:"exact",head:true}).eq("student_id",user.id).eq("exam_key","upsc-cse"),
+        supabase.from("student_activity").select("id,activity_type,created_at").eq("student_id",user.id).gte("created_at",since).order("created_at",{ascending:false}).limit(100)
+      ]);
+      if(attemptResult.error)throw attemptResult.error;
+      if(topicResult.error)throw topicResult.error;
+      if(activityResult.error)throw activityResult.error;
+      const attempts=attemptResult.data||[];
+      const answered=attempts.reduce((sum,item)=>sum+(Number(item.answered_count)||0),0);
+      const correct=attempts.reduce((sum,item)=>sum+(Number(item.correct_count)||0),0);
+      const dayKey=(date:Date)=>new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata"}).format(date);
+      const activityByDay=new Map<string,number>();
+      for(const item of activityResult.data||[]){
+        const key=dayKey(new Date(item.created_at));
+        activityByDay.set(key,(activityByDay.get(key)||0)+1);
+      }
+      const bars=Array.from({length:7},(_,index)=>{
+        const date=new Date();date.setDate(date.getDate()-(6-index));
+        return activityByDay.get(dayKey(date))||0;
+      });
+      if(active){
+        setLearningSnapshot({attempts:attempts.length,answered,correct,topics:topicResult.count||0,loading:false});
+        setWeeklyActivity(bars);
+        setRecentLearning((activityResult.data||[]).slice(0,5));
+        setSnapshotError("");
+      }
+    };
+    void loadLearningSnapshot().catch(error=>{
+      if(active){setSnapshotError(error instanceof Error?error.message:"Learning insights are temporarily unavailable.");setLearningSnapshot(v=>({...v,loading:false}));}
+    });
+    return()=>{active=false;};
+  },[]);
+
   useEffect(()=>{
     let active=true;
     const loadDashboardContent=async()=>{
@@ -223,6 +271,17 @@ export default function Dashboard() {
         <div className="drill-stats"><div><strong>{drillStats.loading?"—":drillStats.correct} <small>/ {drillStats.total}</small></strong><span>Correct answers</span></div><div className="progress-ring" style={{"--progress":drillStats.total?Math.min(100,Math.round(drillStats.correct/drillStats.total*100)):0} as React.CSSProperties}><span>{drillStats.total?Math.min(100,Math.round(drillStats.correct/drillStats.total*100)):0}%</span></div></div>
         <div className="drill-foot"><span><Icon icon={CheckmarkCircle02Icon} size={15}/> {drillStats.loading?"LOADING DRILL":drillStats.total?(drillStats.correct?"DAILY PRACTICE":"READY TO PRACTICE"):"NO ACTIVE DRILL"}</span><span>{drillStats.total?(drillStats.dateLabel?"TODAY’S DRILL · "+drillStats.dateLabel:drillStats.subject):drillStats.subject}</span></div>
       </motion.article>
+    </section>
+
+    <section className="learning-intelligence" aria-label="Your learning intelligence">
+      <div className="learning-intelligence__heading"><div><span className="eyebrow">PERSONAL LEARNING INTELLIGENCE</span><h2>Your preparation, <em>in focus.</em></h2><p>Real progress from your recent learning activity.</p></div><Link href="/progress">VIEW FULL PROGRESS ↗</Link></div>
+      <div className="learning-intelligence__grid">
+        <article className="learning-metric"><span>TESTS COMPLETED · 30 DAYS</span><strong>{learningSnapshot.loading?"—":learningSnapshot.attempts}</strong><small>Submitted assessments</small></article>
+        <article className="learning-metric"><span>ANSWER ACCURACY</span><strong>{learningSnapshot.loading?"—":learningSnapshot.answered?Math.round(learningSnapshot.correct/learningSnapshot.answered*100)+"%":"—"}</strong><small>{learningSnapshot.correct} correct of {learningSnapshot.answered} answered</small></article>
+        <article className="learning-metric"><span>SYLLABUS TOPICS TRACKED</span><strong>{learningSnapshot.loading?"—":learningSnapshot.topics}</strong><small>UPSC CSE topic progress records</small></article>
+        <article className="learning-activity"><div className="learning-activity__top"><span>7-DAY ACTIVITY PULSE</span><small>LAST 7 DAYS</small></div><div className="learning-bars">{weeklyActivity.map((value,index)=><span key={index} title={value+" activities"} style={{"--bar":Math.max(8,value?Math.min(100,value*18):8)+"%"} as React.CSSProperties}><i/></span>)}</div><div className="learning-bars__labels"><span>6D AGO</span><span>TODAY</span></div></article>
+      </div>
+      <div className="learning-intelligence__bottom"><div><span className="eyebrow">RECENT LEARNING SIGNALS</span>{recentLearning.length?recentLearning.slice(0,3).map(item=><div className="learning-signal" key={item.id}><b>{item.activity_type.replace(/_/g," ")}</b><time>{new Date(item.created_at).toLocaleDateString("en-IN",{day:"2-digit",month:"short"})}</time></div>):<p>Complete a drill, test or study activity to start building your learning intelligence.</p>}{snapshotError&&<small role="status">Insights unavailable: {snapshotError}</small>}</div><Link className="learning-next-step" href={learningSnapshot.attempts?"/progress":"/practice/daily"}><span>{learningSnapshot.attempts?"KEEP YOUR MOMENTUM":"YOUR NEXT BEST STEP"}</span><strong>{learningSnapshot.attempts?"Review your progress":"Start today's practice"}</strong><b>↗</b></Link></div>
     </section>
 
     <section className="subject-section" id="library">
