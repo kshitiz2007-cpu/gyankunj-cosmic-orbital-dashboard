@@ -16,6 +16,22 @@ export default function LoginPage() {
   const [message,setMessage] = useState("");
   const [error,setError] = useState("");
 
+  const signInWithGoogle = async () => {
+    setBusy(true); setError(""); setMessage("");
+    const supabase = getSupabaseBrowserClient();
+    if (!supabase) { setError("Supabase configuration missing. Please contact the administrator."); setBusy(false); return; }
+    try {
+      const { error: authError } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: `${window.location.origin}/auth/callback?next=/profile` },
+      });
+      if (authError) throw authError;
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : "Google sign-in could not be started. Please try again.");
+      setBusy(false);
+    }
+  };
+
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setBusy(true); setMessage(""); setError("");
@@ -75,6 +91,11 @@ export default function LoginPage() {
             <button type="button" className={mode==="signin"?"active":""} onClick={()=>{setMode("signin");setError("");setMessage("");}}>Sign in</button>
             <button type="button" className={mode==="signup"?"active":""} onClick={()=>{setMode("signup");setError("");setMessage("");}}>Create account</button>
           </div>
+          <button className="auth-google" type="button" onClick={signInWithGoogle} disabled={busy}>
+            <span className="auth-google-mark" aria-hidden="true">G</span>
+            {busy ? "Connecting…" : "Continue with Google"}
+          </button>
+          <div className="auth-divider"><span>OR CONTINUE WITH EMAIL</span></div>
           <form onSubmit={submit}>
             {mode==="signup" && <label>FULL NAME<input autoComplete="name" value={name} onChange={e=>setName(e.target.value)} placeholder="Your full name" required minLength={2}/></label>}
             <label>EMAIL ADDRESS<input type="email" autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@example.com" required/></label>
