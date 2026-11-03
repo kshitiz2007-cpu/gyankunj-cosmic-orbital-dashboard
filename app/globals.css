@@ -4078,3 +4078,51 @@ html[data-style="minimal"] .app-shell .core:before{display:none!important}
 /* Cosmic Orbital is the sole app identity; keep its locked identity card full-width. */
 .gk-style-grid{grid-template-columns:minmax(0,1fr)!important}
 .gk-style-option[aria-current="true"]{cursor:default}
+
+
+/* COSMIC ORBITAL — accessible dark-mode text contrast across every route.
+   Keep text readable on the dark surfaces used by this single locked identity. */
+html[data-style="cosmic"][data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #f4f2ff;
+  --muted: #c2c6dc;
+}
+html[data-style="cosmic"][data-theme="dark"] body,
+html[data-style="cosmic"][data-theme="dark"] :is(.drill-app,.mock-app,.mock-preview-app,.progress-app,.library-app,.editorial-app,.editorial-detail-app,.syllabus-app,.profile-app,.utility-page,.admin-root) {
+  color: #f1f3ff;
+}
+html[data-style="cosmic"][data-theme="dark"] :is(
+  .drill-intro p,.drill-intro-stat span,.drill-intro-stat small,
+  .drill-progress-foot,.drill-progress-meta,.drill-progress-foot span,
+  .question-number,.question-number small,.question-topic,
+  .answer-option,.option-letter,.mark-button,.question-nav button,
+  .rail-heading,.rail-heading small,.palette-legend span,.rail-tip,
+  .drill-footer,.answer-explanation p,.result-copy p,.result-stats span,
+  .review-list button,.review-list h3,
+  .library-app p,.editorial-app p,.progress-app p,.syllabus-app p,
+  .profile-app p,.utility-page p
+) {
+  color: #c4cbe0;
+}
+html[data-style="cosmic"][data-theme="dark"] :is(
+  .question-card h2,.answer-option.selected,.drill-intro h1,
+  .library-app h1,.library-app h2,.editorial-app h1,.editorial-app h2,
+  .progress-app h1,.progress-app h2,.syllabus-app h1,.syllabus-app h2,
+  .profile-app h1,.profile-app h2,.utility-page h1,.utility-page h2
+) {
+  color: #f7f5ff;
+}
+html[data-style="cosmic"][data-theme="dark"] .answer-option {
+  background: #151d35;
+  border-color: rgba(190, 199, 230, .24);
+}
+html[data-style="cosmic"][data-theme="dark"] .answer-option.selected {
+  background: linear-gradient(100deg, rgba(217,181,107,.2), rgba(217,181,107,.07));
+  border-color: #d9b56b;
+}
+html[data-style="cosmic"][data-theme="dark"] .question-card,
+html[data-style="cosmic"][data-theme="dark"] .drill-progress-card,
+html[data-style="cosmic"][data-theme="dark"] .question-rail {
+  background: #11182d;
+  color: #f4f2ff;
+}
