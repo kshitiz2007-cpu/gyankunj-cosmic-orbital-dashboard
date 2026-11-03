@@ -1748,3 +1748,56 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .editorial-bento__visual{background:linear-gradient(145deg,#f5b8d4 0%,#df78ad 55%,#a83c83 100%)!important}.editorial-bento__visual-grid{opacity:.22!important}.editorial-bento__orbit{border-color:rgba(75,22,59,.42)!important}
 .editorial-bento__vertical,.editorial-bento__serial{color:#fff!important;text-shadow:0 2px 7px rgba(47,12,37,.8)!important;font-weight:800!important}.editorial-bento__chip{box-shadow:0 14px 32px rgba(57,12,44,.28),inset 0 1px 0 rgba(255,255,255,.7)!important}
 @media(max-width:700px){.editorial-bento__copy h1,.editorial-bento__copy h1>span{color:#32142f!important}.editorial-bento__copy>p{color:#48203e!important;font-size:12px!important;line-height:1.95!important;font-weight:650!important}.editorial-bento__eyebrow{color:#8e3268!important}.editorial-bento__top>span:last-child{color:#76536d!important}.editorial-bento__bottom>span{color:#71345c!important;background:rgba(255,255,255,.72)!important}.editorial-bento__ticker span{color:#71415f!important}}
+
+
+/* Editorial preview: unified magazine card silhouette and clear title hierarchy */
+.editorial-bento{
+ position:relative!important;display:flex!important;flex-direction:column!important;
+ min-height:0!important;overflow:hidden!important;
+ border:1px solid rgba(112,47,88,.2)!important;border-radius:26px!important;
+ background:linear-gradient(135deg,#fff8fc 0%,#f9eaf3 56%,#f2dce9 100%)!important;
+ box-shadow:0 18px 46px rgba(78,27,64,.11),inset 0 1px 0 #fff!important;
+ padding:0!important;color:#32142f!important;
+}
+.editorial-bento:after{display:block!important;opacity:.12!important;background-image:linear-gradient(rgba(94,49,76,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(94,49,76,.12) 1px,transparent 1px)!important;mask-image:linear-gradient(90deg,#000,transparent 85%)!important}
+.editorial-bento__top{padding:16px 20px 13px!important;border-bottom:1px solid rgba(112,47,88,.16)!important;color:#76506b!important}
+.editorial-bento__top>span:first-child{color:#96366f!important}.editorial-bento__top>span:last-child{color:#79566f!important}
+.editorial-bento__body{position:relative!important;z-index:1!important;grid-template-columns:minmax(0,1.25fr) minmax(150px,.75fr)!important;min-height:310px!important;padding:22px 20px 18px!important;gap:12px!important}
+.editorial-bento__copy{justify-content:flex-start!important;padding:0!important;min-width:0!important}
+.editorial-bento__eyebrow{color:#8e3268!important;font-size:9px!important;font-weight:800!important;letter-spacing:.12em!important;line-height:1.7!important}
+.editorial-bento__copy h1{display:block!important;overflow:visible!important;position:relative!important;z-index:2!important;margin:17px 0 13px!important;color:#32142f!important;font:800 clamp(25px,3vw,42px)/1.42 "Noto Serif Devanagari",serif!important;letter-spacing:-.035em!important;text-shadow:none!important}
+.editorial-bento__copy h1>span{display:block!important;overflow:visible!important;white-space:normal!important;overflow-wrap:anywhere!important}
+.editorial-bento__copy>p{max-width:unset!important;margin:0 0 18px!important;color:#48203e!important;font:600 13px/1.95 "Noto Sans Devanagari",sans-serif!important}
+.editorial-bento__bottom{position:relative!important;z-index:2!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px!important;margin-top:auto!important;padding-top:13px!important;border-top:1px solid rgba(112,47,88,.14)!important;color:#70405f!important}
+.editorial-bento__bottom>span{padding:7px 9px!important;border:1px solid rgba(115,48,91,.25)!important;border-radius:99px!important;background:rgba(255,255,255,.62)!important;color:#71345c!important;font-size:8px!important}
+.editorial-bento__cta{margin-left:auto!important;padding:11px 14px!important;border:1px solid #9b326f!important;border-radius:99px!important;background:linear-gradient(110deg,#bd4389,#8c286c)!important;color:#fff!important;font-size:8px!important;box-shadow:0 8px 20px rgba(141,37,104,.2)!important}
+.editorial-bento__visual{position:relative!important;align-self:stretch!important;min-height:260px!important;overflow:hidden!important;border-radius:18px!important;background:linear-gradient(145deg,#f5b8d4,#df78ad 55%,#a83c83)!important}
+.editorial-bento__visual-grid{opacity:.2!important}.editorial-bento__orbit{border-color:rgba(75,22,59,.38)!important}
+.editorial-bento__vertical,.editorial-bento__serial{color:#fff!important;text-shadow:0 2px 7px rgba(47,12,37,.8)!important;font-weight:800!important}
+.editorial-bento__ticker{position:relative!important;z-index:1!important;padding:12px 20px 14px!important;border-top:1px solid rgba(112,47,88,.16)!important;color:#71415f!important}
+.editorial-bento__ticker>span:last-child{color:#71415f!important}.editorial-bento__ticker b{color:#b33e82!important}
+@media(max-width:760px){
+ .editorial-bento{border-radius:22px!important;margin:0 2px!important;padding:0!important;min-height:0!important}
+ .editorial-bento__top{padding:13px 14px 11px!important;font-size:6px!important}
+ .editorial-bento__body{grid-template-columns:minmax(0,1fr) 104px!important;min-height:0!important;padding:17px 14px 14px!important;gap:10px!important}
+ .editorial-bento__copy h1{font-size:clamp(23px,6.3vw,32px)!important;line-height:1.48!important;margin:14px 0 10px!important;white-space:normal!important}
+ .editorial-bento__copy h1>span{white-space:normal!important}
+ .editorial-bento__eyebrow{font-size:7px!important;letter-spacing:.08em!important}
+ .editorial-bento__copy>p{font-size:11px!important;line-height:1.9!important;font-weight:650!important;margin-bottom:13px!important}
+ .editorial-bento__visual{min-height:210px!important;border-radius:14px!important}
+ .editorial-bento__chip{width:88px!important}
+ .editorial-bento__chip>b{font-size:38px!important}
+ .editorial-bento__chip>small{font-size:5px!important}
+ .editorial-bento__bottom{gap:6px!important;padding-top:11px!important}
+ .editorial-bento__bottom>span{font-size:6px!important;padding:6px 7px!important}
+ .editorial-bento__cta{font-size:6px!important;padding:9px 10px!important}
+ .editorial-bento__ticker{padding:10px 14px 12px!important;font-size:6px!important}
+}
+@media(max-width:390px){
+ .editorial-bento__body{grid-template-columns:minmax(0,1fr) 84px!important;padding-left:12px!important;padding-right:12px!important}
+ .editorial-bento__visual{min-height:190px!important}
+ .editorial-bento__chip{width:72px!important}
+ .editorial-bento__chip>b{font-size:32px!important}
+ .editorial-bento__bottom>span{font-size:5px!important}
+ .editorial-bento__cta{font-size:5px!important;padding:8px!important}
+}
