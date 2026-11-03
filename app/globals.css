@@ -3905,3 +3905,172 @@ html[data-style="minimal"] :is(.library-subject-grid,.library-resource-grid,.pro
  html[data-style="brutal"] :is(.library-subject-grid,.library-resource-grid,.progress-kpis,.si-insights-grid),html[data-style="editorial"] :is(.library-subject-grid,.library-resource-grid,.progress-kpis,.si-insights-grid){grid-template-columns:1fr!important}
  html[data-style="glass"] :is(.library-subject-grid,.library-resource-grid,.progress-kpis,.si-insights-grid){grid-template-columns:1fr!important}
 }
+
+
+/* =========================================================
+   RESPONSIVE COMPOSITION HOTFIX
+   The orbital anchors used CSS translate:-50% -50% for centering.
+   Grid-based design systems must explicitly clear that anchor
+   offset, otherwise every card is shifted and overlaps.
+   ========================================================= */
+html[data-style="brutal"] .app-shell .universe,
+html[data-style="editorial"] .app-shell .universe,
+html[data-style="aurora"] .app-shell .universe,
+html[data-style="glass"] .app-shell .universe,
+html[data-style="minimal"] .app-shell .universe{
+  position:relative!important;left:auto!important;top:auto!important;
+  display:grid!important;align-items:stretch!important;justify-items:stretch!important;
+  height:auto!important;min-height:0!important;overflow:visible!important;
+}
+html[data-style="brutal"] .app-shell .core,
+html[data-style="editorial"] .app-shell .core,
+html[data-style="aurora"] .app-shell .core,
+html[data-style="glass"] .app-shell .core,
+html[data-style="minimal"] .app-shell .core,
+html[data-style="brutal"] .app-shell .orb-node,
+html[data-style="editorial"] .app-shell .orb-node,
+html[data-style="aurora"] .app-shell .orb-node,
+html[data-style="glass"] .app-shell .orb-node,
+html[data-style="minimal"] .app-shell .orb-node{
+  position:relative!important;left:auto!important;top:auto!important;
+  right:auto!important;bottom:auto!important;translate:none!important;
+  transform:none!important;margin:0!important;
+  inset:auto!important;justify-self:stretch!important;align-self:stretch!important;
+}
+html[data-style="brutal"] .app-shell .core,
+html[data-style="editorial"] .app-shell .core,
+html[data-style="aurora"] .app-shell .core,
+html[data-style="glass"] .app-shell .core,
+html[data-style="minimal"] .app-shell .core{
+  width:100%!important;height:100%!important;aspect-ratio:auto!important;
+  min-width:0!important;min-height:250px!important;grid-column:span 2!important;grid-row:span 2!important;
+}
+html[data-style="brutal"] .app-shell .orb-node,
+html[data-style="editorial"] .app-shell .orb-node,
+html[data-style="aurora"] .app-shell .orb-node,
+html[data-style="glass"] .app-shell .orb-node,
+html[data-style="minimal"] .app-shell .orb-node{
+  width:100%!important;height:auto!important;min-width:0!important;
+  min-height:112px!important;aspect-ratio:auto!important;
+}
+html[data-style="brutal"] .app-shell .universe>:is(.orbit,.orbit-dash,.planet),
+html[data-style="editorial"] .app-shell .universe>:is(.orbit,.orbit-dash,.planet),
+html[data-style="aurora"] .app-shell .universe>:is(.orbit,.orbit-dash,.planet),
+html[data-style="glass"] .app-shell .universe>:is(.orbit,.orbit-dash,.planet),
+html[data-style="minimal"] .app-shell .universe>:is(.orbit,.orbit-dash,.planet){display:none!important}
+html[data-style="brutal"] .app-shell .core:before,
+html[data-style="editorial"] .app-shell .core:before,
+html[data-style="aurora"] .app-shell .core:before,
+html[data-style="glass"] .app-shell .core:before,
+html[data-style="minimal"] .app-shell .core:before{display:none!important}
+
+@media(max-width:760px){
+ html[data-style="brutal"] .app-shell .hero,
+ html[data-style="editorial"] .app-shell .hero,
+ html[data-style="aurora"] .app-shell .hero,
+ html[data-style="glass"] .app-shell .hero,
+ html[data-style="minimal"] .app-shell .hero{
+   display:block!important;width:100%!important;min-width:0!important;
+   min-height:0!important;height:auto!important;padding:8px 0 20px!important;margin:0 auto 18px!important;
+ }
+ html[data-style="brutal"] .app-shell .universe,
+ html[data-style="editorial"] .app-shell .universe,
+ html[data-style="aurora"] .app-shell .universe,
+ html[data-style="glass"] .app-shell .universe,
+ html[data-style="minimal"] .app-shell .universe{
+   width:100%!important;max-width:none!important;max-height:none!important;
+   margin:0!important;padding:0!important;aspect-ratio:auto!important;
+   grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;
+   filter:none!important;transform:none!important;
+ }
+ html[data-style="brutal"] .app-shell .core,
+ html[data-style="editorial"] .app-shell .core,
+ html[data-style="aurora"] .app-shell .core,
+ html[data-style="glass"] .app-shell .core,
+ html[data-style="minimal"] .app-shell .core{
+   grid-column:1/-1!important;grid-row:auto!important;
+   min-height:140px!important;height:auto!important;
+ }
+ html[data-style="brutal"] .app-shell .orb-node,
+ html[data-style="editorial"] .app-shell .orb-node,
+ html[data-style="aurora"] .app-shell .orb-node,
+ html[data-style="glass"] .app-shell .orb-node,
+ html[data-style="minimal"] .app-shell .orb-node{min-height:104px!important;padding:12px 8px!important}
+ html[data-style="brutal"] .app-shell .topbar,
+ html[data-style="editorial"] .app-shell .topbar,
+ html[data-style="aurora"] .app-shell .topbar,
+ html[data-style="glass"] .app-shell .topbar,
+ html[data-style="minimal"] .app-shell .topbar{grid-template-columns:minmax(0,1fr) auto!important;min-width:0!important}
+ html[data-style="brutal"] .app-shell .feature-row,
+ html[data-style="editorial"] .app-shell .feature-row,
+ html[data-style="aurora"] .app-shell .feature-row,
+ html[data-style="glass"] .app-shell .feature-row,
+ html[data-style="minimal"] .app-shell .feature-row{grid-template-columns:minmax(0,1fr)!important;width:100%!important;min-width:0!important}
+ html[data-style="brutal"] .app-shell .learning-intelligence__grid,
+ html[data-style="editorial"] .app-shell .learning-intelligence__grid,
+ html[data-style="aurora"] .app-shell .learning-intelligence__grid,
+ html[data-style="glass"] .app-shell .learning-intelligence__grid,
+ html[data-style="minimal"] .app-shell .learning-intelligence__grid{
+   grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;
+ }
+ html[data-style="brutal"] .app-shell .learning-metric,
+ html[data-style="editorial"] .app-shell .learning-metric,
+ html[data-style="aurora"] .app-shell .learning-metric,
+ html[data-style="glass"] .app-shell .learning-metric,
+ html[data-style="minimal"] .app-shell .learning-metric{min-width:0!important;padding:12px!important}
+ html[data-style="brutal"] .app-shell .learning-activity,
+ html[data-style="editorial"] .app-shell .learning-activity,
+ html[data-style="aurora"] .app-shell .learning-activity,
+ html[data-style="glass"] .app-shell .learning-activity,
+ html[data-style="minimal"] .app-shell .learning-activity{grid-column:1/-1!important;min-width:0!important}
+ html[data-style="brutal"] .app-shell .floating-dock,
+ html[data-style="editorial"] .app-shell .floating-dock,
+ html[data-style="aurora"] .app-shell .floating-dock,
+ html[data-style="glass"] .app-shell .floating-dock,
+ html[data-style="minimal"] .app-shell .floating-dock{
+   left:50%!important;right:auto!important;top:auto!important;
+   bottom:max(9px,env(safe-area-inset-bottom))!important;
+   width:calc(100% - 20px)!important;max-width:600px!important;
+   transform:translateX(-50%)!important;flex-direction:row!important;
+ }
+ html[data-style="brutal"] .app-shell .editorial-bento__body,
+ html[data-style="editorial"] .app-shell .editorial-bento__body,
+ html[data-style="aurora"] .app-shell .editorial-bento__body,
+ html[data-style="glass"] .app-shell .editorial-bento__body,
+ html[data-style="minimal"] .app-shell .editorial-bento__body{grid-template-columns:minmax(0,1fr)!important}
+ html[data-style="brutal"] .app-shell .editorial-bento__visual,
+ html[data-style="editorial"] .app-shell .editorial-bento__visual,
+ html[data-style="aurora"] .app-shell .editorial-bento__visual,
+ html[data-style="glass"] .app-shell .editorial-bento__visual,
+ html[data-style="minimal"] .app-shell .editorial-bento__visual{display:none!important}
+ html[data-style="brutal"] .app-shell .learning-intelligence,
+ html[data-style="editorial"] .app-shell .learning-intelligence,
+ html[data-style="aurora"] .app-shell .learning-intelligence,
+ html[data-style="glass"] .app-shell .learning-intelligence,
+ html[data-style="minimal"] .app-shell .learning-intelligence{width:100%!important;min-width:0!important}
+ html[data-style="brutal"] .app-shell .learning-intelligence__bottom,
+ html[data-style="editorial"] .app-shell .learning-intelligence__bottom,
+ html[data-style="aurora"] .app-shell .learning-intelligence__bottom,
+ html[data-style="glass"] .app-shell .learning-intelligence__bottom,
+ html[data-style="minimal"] .app-shell .learning-intelligence__bottom{grid-template-columns:minmax(0,1fr)!important}
+ html[data-style="brutal"] .app-shell .learning-intelligence__heading,
+ html[data-style="editorial"] .app-shell .learning-intelligence__heading,
+ html[data-style="aurora"] .app-shell .learning-intelligence__heading,
+ html[data-style="glass"] .app-shell .learning-intelligence__heading,
+ html[data-style="minimal"] .app-shell .learning-intelligence__heading{align-items:flex-start!important;gap:10px!important;flex-wrap:wrap!important}
+ html[data-style="brutal"] .app-shell .learning-intelligence__heading h2,
+ html[data-style="editorial"] .app-shell .learning-intelligence__heading h2,
+ html[data-style="aurora"] .app-shell .learning-intelligence__heading h2,
+ html[data-style="glass"] .app-shell .learning-intelligence__heading h2,
+ html[data-style="minimal"] .app-shell .learning-intelligence__heading h2{font-size:clamp(20px,6vw,30px)!important}
+ html[data-style="brutal"] :is(.progress-app,.library-app,.editorial-app,.syllabus-app,.drill-app) .progress-kpis,
+ html[data-style="editorial"] :is(.progress-app,.library-app,.editorial-app,.syllabus-app,.drill-app) .progress-kpis,
+ html[data-style="aurora"] :is(.progress-app,.library-app,.editorial-app,.syllabus-app,.drill-app) .progress-kpis,
+ html[data-style="glass"] :is(.progress-app,.library-app,.editorial-app,.syllabus-app,.drill-app) .progress-kpis,
+ html[data-style="minimal"] :is(.progress-app,.library-app,.editorial-app,.syllabus-app,.drill-app) .progress-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:390px){
+ html[data-style] .app-shell .learning-intelligence__grid{grid-template-columns:1fr 1fr!important}
+ html[data-style] .app-shell .orb-node__title{font-size:11px!important}
+ html[data-style] .app-shell .orb-node__sub{display:none!important}
+}
