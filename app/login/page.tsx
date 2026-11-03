@@ -55,7 +55,7 @@ export default function LoginPage() {
       <div className="auth-glow auth-glow--two" />
       <header className="auth-top">
         <Link href="/" className="auth-brand"><span>✳</span><b>GYANKUNJ</b><small>YOUR KNOWLEDGE UNIVERSE</small></Link>
-        <Link href="/" className="auth-back">← Back to dashboard</Link>
+        
       </header>
       <section className="auth-layout">
         <div className="auth-story">
