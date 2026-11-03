@@ -3527,3 +3527,58 @@ html[data-theme="dark"] :is(.gk-button--secondary,.gk-input,.gk-select,.gk-texta
 }
 html[data-theme="dark"] .gk-bento-card--rose,
 html[data-theme="dark"] .gk-bento-card--plum{background:linear-gradient(145deg,#15384a,#102737)!important}
+
+
+/* GYANKUNJ TYPOGRAPHY & CONTRAST 2.1 — global bilingual dark UI */
+html[data-theme="dark"]{
+ --gk-text:#f1fbfd;--gk-text-soft:#d1e7ec;--gk-text-secondary:#b8d4dc;--gk-text-muted:#91b4bf;--gk-muted:#9abac4;
+ --gk-border:rgba(151,211,221,.19);--gk-border-strong:rgba(103,210,223,.38);
+ --gk-type-body:clamp(1rem,.96rem + .18vw,1.1rem);--gk-type-sm:clamp(.875rem,.84rem + .14vw,.96rem);--gk-type-xs:clamp(.75rem,.72rem + .1vw,.82rem);
+ --gk-leading-body:1.78;--gk-leading-hindi:1.95;--gk-leading-editorial:2;
+}
+html[data-theme="dark"] body{font-family:"DM Sans","Noto Sans Devanagari",sans-serif!important;font-size:16px;line-height:1.75;color:#d1e7ec!important;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html[data-theme="dark"] :where(h1,h2,h3,h4,h5,h6){color:#f1fbfd;font-family:"Space Grotesk","Noto Serif Devanagari",sans-serif;font-weight:700;line-height:1.42;text-wrap:pretty}
+html[data-theme="dark"] :where(p,li,label,dd,dt,blockquote){color:#c3dce3}
+html[data-theme="dark"] :where(small,.muted,.text-muted,.caption,.helper-text){color:#9abac4}
+html[data-theme="dark"] :where(input,textarea,select,button){font-family:"DM Sans","Noto Sans Devanagari",sans-serif}
+html[data-theme="dark"] :where([lang="hi"],[lang="hi-IN"],[lang="mr"],[lang="sa"]) :where(h1,h2,h3,h4,h5,h6,p,li,blockquote){font-family:"Noto Serif Devanagari","Noto Sans Devanagari",serif;letter-spacing:normal}
+html[data-theme="dark"] :where([lang="hi"],[lang="hi-IN"],[lang="mr"],[lang="sa"]) :where(p,li,blockquote){line-height:2}
+html[data-theme="dark"] .app-shell .editorial-bento__copy h1,html[data-theme="dark"] .app-shell .editorial-bento__copy h1>span{color:#f2fbfd!important;font-family:"Noto Serif Devanagari","Noto Sans Devanagari",serif!important;font-size:clamp(27px,3.8vw,46px)!important;font-weight:800!important;line-height:1.52!important;letter-spacing:normal!important;text-shadow:0 2px 18px rgba(85,192,208,.22),0 5px 26px rgba(0,0,0,.35)!important}
+html[data-theme="dark"] .app-shell .editorial-bento__copy>p{color:#d3e8ed!important;font-family:"Noto Sans Devanagari","DM Sans",sans-serif!important;font-size:clamp(14px,1.12vw,16px)!important;font-weight:500!important;line-height:2.02!important;text-shadow:0 1px 12px rgba(0,0,0,.24)}
+html[data-theme="dark"] .app-shell .editorial-bento__eyebrow,html[data-theme="dark"] .app-shell .editorial-bento__eyebrow i,html[data-theme="dark"] .app-shell .editorial-bento__accent,html[data-theme="dark"] .app-shell .editorial-bento__accent span,html[data-theme="dark"] .app-shell .editorial-bento__ticker b{color:#83e4ed!important;text-shadow:0 0 12px rgba(85,192,208,.32)}
+html[data-theme="dark"] .app-shell .editorial-bento__top,html[data-theme="dark"] .app-shell .editorial-bento__ticker,html[data-theme="dark"] .app-shell .editorial-bento__bottom>span{color:#b7dce3!important}
+html[data-theme="dark"] .app-shell .editorial-bento__bottom>span{background:rgba(85,192,208,.12)!important;border:1px solid rgba(103,210,223,.24)!important}
+html[data-theme="dark"] .app-shell .editorial-bento__cta{color:#fff!important;font-size:11px!important;font-weight:800!important;letter-spacing:.055em;text-shadow:0 1px 8px rgba(0,0,0,.18)}
+html[data-theme="dark"] .app-shell .orb-node__title{color:#f0fbfd!important;font-family:"Space Grotesk","Noto Sans Devanagari",sans-serif!important;font-weight:700!important;text-shadow:0 0 14px rgba(103,210,223,.28)}
+html[data-theme="dark"] .app-shell .orb-node__sub{color:#a9cbd3!important}
+html[data-theme="dark"] .app-shell .brand strong{color:#f5fcfd!important;text-shadow:0 0 20px rgba(103,210,223,.22)}
+html[data-theme="dark"] .app-shell .core :is(strong,small){color:#f3fcfd!important;text-shadow:0 0 18px rgba(103,210,223,.32)}
+html[data-theme="dark"] .app-shell .hero-copy .eyebrow,html[data-theme="dark"] .app-shell .section-heading{color:#9de7ed!important;text-shadow:0 0 12px rgba(85,192,208,.25)}
+html[data-theme="dark"] :is(.library-hero h1,.mock-hero h1,.drill-intro h1,.progress-hero h1,.syllabus-hero h1,.editorial-app h1,.editorial-detail-app h1,.utility-page h1,.admin-root h1){color:#f1fbfd!important;text-shadow:0 2px 22px rgba(85,192,208,.18)}
+html[data-theme="dark"] :is(.library-hero p,.mock-hero p,.drill-intro p,.progress-hero p,.syllabus-hero p,.editorial-app p,.editorial-detail-app p,.utility-page section>p){color:#c3dce3!important}
+html[data-theme="dark"] :is(.editorial-article-head--premium h1,.editorial-article-head h1,.editorial-content-heading,.editorial-article-body h2,.editorial-article-body h3,.library-reader-body h1,.library-reader-body h2,.library-reader-body h3){color:#effafd!important;font-family:"Noto Serif Devanagari","Noto Sans Devanagari",serif!important;font-weight:750!important;line-height:1.62!important;text-shadow:0 2px 18px rgba(85,192,208,.16)}
+html[data-theme="dark"] :is(.editorial-article-body,.editorial-content-paragraph,.library-reader-body,.gk-editorial-body,.gk-type-hindi){color:#d1e7ec!important;font-family:"Noto Sans Devanagari","DM Sans",sans-serif!important;font-size:clamp(15px,1rem + .12vw,17px)!important;line-height:2.02!important}
+html[data-theme="dark"] :is(.editorial-article-body strong,.editorial-content-point strong,.library-reader-body strong,.gk-editorial-body strong){color:#f3fcfd!important;font-weight:750}
+html[data-theme="dark"] :is(.editorial-content-heading--3,.editorial-content-heading--4,.editorial-detail-app--premium .editorial-content-heading span){color:#83e4ed!important}
+html[data-theme="dark"] :is(.gk-type-display,.gk-type-h1,.gk-type-h2,.gk-type-h3,.gk-type-hindi-display,.gk-editorial-title){color:#f1fbfd!important;text-shadow:0 2px 20px rgba(85,192,208,.18)}
+html[data-theme="dark"] .gk-type-eyebrow,html[data-theme="dark"] .gk-eyebrow{color:#83e4ed!important;text-shadow:0 0 12px rgba(85,192,208,.28)}
+html[data-theme="dark"] :is(.gk-bento-card__header h3,.gk-modal__header h2,.gk-navigation__link[aria-current="page"]){color:#f1fbfd!important}
+html[data-theme="dark"] :is(.gk-bento-card__header p,.gk-modal__header p,.gk-modal__content,.gk-field__label){color:#c3dce3!important}
+html[data-theme="dark"] :is(.gk-field__hint,.gk-type-caption,.gk-navigation__link){color:#a4c3cc!important}
+html[data-theme="dark"] :is(.gk-input,.gk-select,.gk-textarea,input,textarea,select){color:#f1fbfd;caret-color:#83e4ed}
+html[data-theme="dark"] :is(input,textarea,select)::placeholder{color:#86aab5!important;opacity:1}
+html[data-theme="dark"] :is(a,button):focus-visible{outline:2px solid #83e4ed!important;outline-offset:3px}
+html[data-theme="dark"] .gk-glow-text{color:#eafcff;background:linear-gradient(105deg,#eafcff 0%,#8de4eb 32%,#fff 50%,#72d4e1 68%,#eafcff 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gk-text-glint 9s ease-in-out infinite;filter:drop-shadow(0 0 10px rgba(85,192,208,.2))}
+@keyframes gk-text-glint{0%,100%{background-position:100% 50%}50%{background-position:0% 50%}}
+@media(max-width:700px){
+ html[data-theme="dark"] body{font-size:15px}
+ html[data-theme="dark"] .app-shell .editorial-bento__copy h1,html[data-theme="dark"] .app-shell .editorial-bento__copy h1>span{font-size:clamp(24px,6.4vw,33px)!important;line-height:1.55!important}
+ html[data-theme="dark"] .app-shell .editorial-bento__copy>p{font-size:13px!important;line-height:1.98!important}
+ html[data-theme="dark"] .app-shell .editorial-bento__top,html[data-theme="dark"] .app-shell .editorial-bento__ticker{font-size:8px!important;letter-spacing:.09em}
+ html[data-theme="dark"] .app-shell .editorial-bento__bottom>span{font-size:8px!important}
+ html[data-theme="dark"] .app-shell .editorial-bento__cta{font-size:9px!important}
+ html[data-theme="dark"] .app-shell .orb-node__title{font-size:clamp(9px,2.6vw,12px)!important;line-height:1.3!important}
+ html[data-theme="dark"] .app-shell .orb-node__sub{font-size:7px!important}
+ html[data-theme="dark"] :is(.editorial-article-body,.editorial-content-paragraph,.library-reader-body,.gk-editorial-body){font-size:15px!important;line-height:2.05!important}
+}
+@media(prefers-reduced-motion:reduce){html[data-theme="dark"] .gk-glow-text{animation:none;background-position:50% 50%}}
