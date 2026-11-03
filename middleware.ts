@@ -1,8 +1,14 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-function safeNext(value: string | null) {
-  return value && value.startsWith("/") && !value.startsWith("//") ? value : "/";
+function safeNext(value: string | null, origin: string) {
+  if (!value || !value.startsWith("/") || value.startsWith("//") || value.includes("\\\\")) return "/";
+  try {
+    const target = new URL(value, origin);
+    return target.origin === origin ? target.pathname + target.search + target.hash : "/";
+  } catch {
+    return "/";
+  }
 }
 
 export async function middleware(request: NextRequest) {
@@ -35,7 +41,7 @@ export async function middleware(request: NextRequest) {
   if (authError || !user) {
     if (isLoginRoute) return response;
     const destination = new URL("/login", request.url);
-    destination.searchParams.set("next", safeNext(pathname + request.nextUrl.search));
+    destination.searchParams.set("next", safeNext(pathname + request.nextUrl.search, request.nextUrl.origin));
     const redirect = NextResponse.redirect(destination);
     response.cookies.getAll().forEach(cookie => redirect.cookies.set(cookie));
     return redirect;
@@ -65,7 +71,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (isLoginRoute) {
-    const destination = new URL(safeNext(request.nextUrl.searchParams.get("next")), request.url);
+    const destination = new URL(safeNext(request.nextUrl.searchParams.get("next"), request.nextUrl.origin), request.url);
     const redirect = NextResponse.redirect(destination);
     response.cookies.getAll().forEach(cookie => redirect.cookies.set(cookie));
     return redirect;
