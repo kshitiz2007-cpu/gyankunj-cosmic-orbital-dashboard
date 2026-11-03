@@ -59,3 +59,14 @@ Run the build before deploying. The SQL migrations are separate from the Next.js
 ## Branch
 
 `feature/cosmic-orbital-dashboard`
+
+## UPSC Practice Engine 2.0 — Phase 1 foundation
+
+Migration `supabase/migrations/0007_upsc_question_bank_foundation.sql` adds an additive, backward-compatible foundation for a reusable question bank:
+
+- `questions` gains question type, difficulty/source metadata, verification state and an optional normalized topic reference. Existing question IDs and `assessment_id` values are preserved.
+- `question_topics` supports a Subject → Topic → Subtopic hierarchy.
+- `assessment_questions` separates assessment membership from question records, allowing a verified question to be reused across drills, topic practice and mock tests.
+- Existing `questions.assessment_id` relationships are backfilled into `assessment_questions`; the legacy column remains in place for current student flows and scoring functions.
+
+**Migration step:** apply `0007_upsc_question_bank_foundation.sql` in the Supabase SQL Editor after the existing migrations. This migration is not executed by the Next.js build. The current student quiz and mock-test readers continue using the legacy relationship until the next application-code phase switches them to the reusable membership table.
