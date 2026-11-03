@@ -12,7 +12,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   themeColor: "#071521",
 };
-const themeBootstrap = `(function(){try{var t=localStorage.getItem("gyankunj-theme-v2");if(t!=="light"&&t!=="dark")t="dark";document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}catch(e){document.documentElement.dataset.theme="dark";document.documentElement.style.colorScheme="dark";}})();`;
+const themeBootstrap = `(function(){try{var t=localStorage.getItem("gyankunj-theme-v3");if(t!=="light"&&t!=="dark")t="dark";document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}catch(e){document.documentElement.dataset.theme="dark";document.documentElement.style.colorScheme="dark";}})();`;
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="hi" suppressHydrationWarning>
