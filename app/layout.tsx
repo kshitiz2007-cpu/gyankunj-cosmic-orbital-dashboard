@@ -6,10 +6,6 @@ export const metadata: Metadata = {
   title: "Gyankunj — Your Knowledge Universe",
   description: "A more intentional way to prepare, practice and grow.",
   applicationName: "Gyankunj",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fff5fa" },
-    { media: "(prefers-color-scheme: dark)", color: "#100b17" },
-  ],
 };
 export const viewport: Viewport = {
   width: "device-width",
