@@ -23,7 +23,7 @@ export default function LoginPage() {
     try {
       const { error: authError } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: `${window.location.origin}/auth/callback?next=/profile` },
+        options: { redirectTo: `${window.location.origin}/auth/callback?next=/` },
       });
       if (authError) throw authError;
     } catch (caught) {
@@ -48,14 +48,14 @@ export default function LoginPage() {
           options: { data: { full_name: name.trim() } },
         });
         if (authError) throw authError;
-        if (data.session) router.replace("/profile");
+        if (data.session) router.replace("/");
         else setMessage("Account created. Check your email for the confirmation link, then sign in.");
       } else {
         const { error: authError } = await supabase.auth.signInWithPassword({
           email: email.trim(), password,
         });
         if (authError) throw authError;
-        router.replace("/profile");
+        router.replace("/");
         router.refresh();
       }
     } catch (caught) {
