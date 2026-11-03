@@ -2,10 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-type Theme = "light" | "dark";
 type Density = "compact" | "comfortable" | "spacious";
 type Motion = "minimal" | "dynamic" | "expressive";
-type Preferences = { style: "cosmic"; theme: Theme; density: Density; motion: Motion };
+type Preferences = { style: "cosmic"; theme: "dark"; density: Density; motion: Motion };
 
 const STORAGE_KEY = "gyankunj-design-studio-v1";
 const DEFAULTS: Preferences = { style: "cosmic", theme: "dark", density: "comfortable", motion: "dynamic" };
@@ -21,7 +20,7 @@ function readPreferences(): Preferences {
     return {
       // Cosmic Orbital is the single supported identity. Ignore legacy style values.
       style: "cosmic",
-      theme: valid(saved?.theme ?? oldTheme, ["dark", "light"], DEFAULTS.theme),
+      theme: "dark",
       density: valid(saved?.density, ["compact", "comfortable", "spacious"], DEFAULTS.density),
       motion: valid(saved?.motion, ["minimal", "dynamic", "expressive"], DEFAULTS.motion),
     };
@@ -30,13 +29,13 @@ function readPreferences(): Preferences {
 
 function applyPreferences(value: Preferences, persist = true) {
   const root = document.documentElement;
-  root.dataset.theme = value.theme;
+  root.dataset.theme = "dark";
   root.dataset.style = "cosmic";
   root.dataset.density = value.density;
   root.dataset.motion = value.motion;
-  root.style.colorScheme = value.theme;
+  root.style.colorScheme = "dark";
   if (persist) {
-    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...value, style: "cosmic" })); } catch { /* tab remains usable */ }
+    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...value, style: "cosmic", theme: "dark" })); } catch { /* tab remains usable */ }
   }
 }
 
@@ -57,7 +56,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
         const raw = JSON.parse(event.newValue);
         const next: Preferences = {
           style: "cosmic",
-          theme: valid(raw.theme, ["dark", "light"], DEFAULTS.theme),
+          theme: "dark",
           density: valid(raw.density, ["compact", "comfortable", "spacious"], DEFAULTS.density),
           motion: valid(raw.motion, ["minimal", "dynamic", "expressive"], DEFAULTS.motion),
         };
@@ -109,10 +108,6 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
           </div>
 
           <div className="gk-studio-section">
-            <div className="gk-studio-section-title"><span>02 / APPEARANCE MODE</span></div>
-            <div className="gk-studio-segment">{(["dark","light"] as Theme[]).map(v => <button key={v} className={prefs.theme === v ? "is-active" : ""} onClick={() => update("theme",v)} aria-pressed={prefs.theme === v}>{v === "dark" ? "◐  Dark" : "☼  Light"}</button>)}</div>
-          </div>
-          <div className="gk-studio-section">
             <div className="gk-studio-section-title"><span>03 / CONTENT DENSITY</span></div>
             <div className="gk-studio-segment">{(["compact","comfortable","spacious"] as Density[]).map(v => <button key={v} className={prefs.density === v ? "is-active" : ""} onClick={() => update("density",v)} aria-pressed={prefs.density === v}>{v[0].toUpperCase()+v.slice(1)}</button>)}</div>
           </div>
@@ -120,7 +115,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
             <div className="gk-studio-section-title"><span>04 / MOTION INTENSITY</span></div>
             <div className="gk-studio-segment">{(["minimal","dynamic","expressive"] as Motion[]).map(v => <button key={v} className={prefs.motion === v ? "is-active" : ""} onClick={() => update("motion",v)} aria-pressed={prefs.motion === v}>{v[0].toUpperCase()+v.slice(1)}</button>)}</div>
           </div>
-          <footer className="gk-studio-footer"><span>Cosmic Orbital is permanent · preferences saved on this device</span><button onClick={reset}>RESET DEFAULTS ↺</button></footer>
+          <footer className="gk-studio-footer"><span>Cosmic Orbital · Dark appearance · saved on this device</span><button onClick={reset}>RESET DEFAULTS ↺</button></footer>
         </section>
       </div>}
     </>}
