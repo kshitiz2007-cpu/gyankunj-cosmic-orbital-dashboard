@@ -6,12 +6,22 @@ export const metadata: Metadata = {
   title: "Gyankunj — Your Knowledge Universe",
   description: "A more intentional way to prepare, practice and grow.",
   applicationName: "Gyankunj",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fff5fa" },
+    { media: "(prefers-color-scheme: dark)", color: "#100b17" },
+  ],
 };
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f8eaf2",
+  themeColor: "#fff5fa",
 };
+const themeBootstrap = `(function(){try{var t=localStorage.getItem("gyankunj-theme");if(t!=="light"&&t!=="dark")t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}catch(e){document.documentElement.dataset.theme="light";}})();`;
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" suppressHydrationWarning><body><ThemeProvider>{children}</ThemeProvider></body></html>;
+  return (
+    <html lang="hi" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: themeBootstrap }} /></head>
+      <body><ThemeProvider>{children}</ThemeProvider></body>
+    </html>
+  );
 }
