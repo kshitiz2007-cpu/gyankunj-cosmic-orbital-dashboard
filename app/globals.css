@@ -3856,3 +3856,52 @@ html[data-style="minimal"] .app-shell .floating-dock{border-radius:16px;box-shad
  html[data-style="minimal"] .app-shell .topbar{grid-template-columns:1fr auto}
  html[data-style="minimal"] .app-shell .searchbox{grid-column:1/-1;grid-row:2}
 }
+
+
+/* Cross-route composition adapters: the same selected design language
+   reshapes Library, Editorial, Progress, Syllabus and Practice workspaces. */
+html[data-style="brutal"] :is(.library-app,.editorial-app,.progress-app,.syllabus-app,.drill-app){padding:18px clamp(14px,3vw,46px) 120px!important;background:var(--gk-studio-bg)!important}
+html[data-style="brutal"] :is(.library-top,.editorial-top,.progress-top,.syllabus-top,.drill-topbar){border:0!important;border-bottom:3px solid var(--gk-studio-accent)!important;border-radius:0!important;box-shadow:none!important;background:transparent!important}
+html[data-style="brutal"] :is(.library-hero,.editorial-hero,.progress-hero,.syllabus-hero,.drill-intro){display:grid!important;grid-template-columns:minmax(0,1.5fr) minmax(180px,.7fr)!important;gap:18px!important;padding:clamp(20px,4vw,42px)!important;border:3px solid var(--gk-studio-accent)!important;border-radius:5px!important;background:var(--gk-studio-panel)!important;box-shadow:7px 7px 0 rgba(183,243,74,.13)!important}
+html[data-style="brutal"] :is(.library-hero h1,.editorial-hero h1,.progress-hero h1,.syllabus-hero h1,.drill-intro h1){font-family:"Space Grotesk","Noto Sans Devanagari",sans-serif!important;font-weight:900!important;letter-spacing:-.07em!important}
+html[data-style="brutal"] :is(.library-subject-grid,.library-resource-grid,.progress-kpis,.si-insights-grid,.syllabus-stats){gap:12px!important}
+html[data-style="brutal"] :is(.library-subject-card,.library-resource-card,.progress-kpis>article,.si-insight-card,.syllabus-stats>article,.syllabus-sidebar,.syllabus-content,.question-card,.result-card){border:2px solid var(--gk-studio-border)!important;border-radius:5px!important;background:var(--gk-studio-panel)!important;box-shadow:4px 4px 0 rgba(183,243,74,.12)!important}
+html[data-style="brutal"] :is(.library-tools,.editorial-tools,.si-toolbar,.syllabus-workspace,.drill-layout){border-radius:5px!important}
+html[data-style="brutal"] :is(.library-subject-card a,.editorial-card a,.progress-hero-actions a,.submit-drill,.question-nav button,.modal-primary){border-radius:4px!important;font-weight:900!important}
+html[data-style="brutal"] :is(.library-subject-grid,.library-resource-grid){grid-template-columns:repeat(2,minmax(0,1fr))!important}
+html[data-style="brutal"] :is(.editorial-grid,.editorial-list){grid-template-columns:repeat(2,minmax(0,1fr))!important}
+
+/* Swiss editorial pages become typographic magazine spreads. */
+html[data-style="editorial"] :is(.library-app,.editorial-app,.progress-app,.syllabus-app,.drill-app){max-width:1600px;margin:auto;padding:30px clamp(20px,6vw,100px) 130px!important;background:var(--gk-studio-bg)!important}
+html[data-style="editorial"] :is(.library-top,.editorial-top,.progress-top,.syllabus-top,.drill-topbar){border-bottom:1px solid var(--gk-studio-border)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+html[data-style="editorial"] :is(.library-hero,.editorial-hero,.progress-hero,.syllabus-hero,.drill-intro){display:grid!important;grid-template-columns:minmax(0,1.4fr) minmax(180px,.6fr)!important;gap:30px!important;border:0!important;border-top:2px solid var(--gk-studio-text)!important;border-bottom:1px solid var(--gk-studio-border)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;padding:38px 0!important}
+html[data-style="editorial"] :is(.library-hero h1,.editorial-hero h1,.progress-hero h1,.syllabus-hero h1,.drill-intro h1){font-family:"Noto Serif Devanagari","Playfair Display",serif!important;font-weight:700!important;letter-spacing:-.045em!important;line-height:1.45!important}
+html[data-style="editorial"] :is(.library-subject-card,.library-resource-card,.editorial-card,.progress-kpis>article,.si-insight-card,.syllabus-stats>article,.question-card,.result-card){border:0!important;border-top:1px solid var(--gk-studio-border)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+html[data-style="editorial"] :is(.library-subject-grid,.library-resource-grid,.progress-kpis,.si-insights-grid){grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 28px!important}
+html[data-style="editorial"] :is(.library-subject-section,.library-recent,.editorial-list,.progress-main-grid,.syllabus-workspace){border-top:1px solid var(--gk-studio-border);padding-top:24px}
+html[data-style="editorial"] :is(.library-subject-card,.library-resource-card){padding:24px 0!important}
+html[data-style="editorial"] :is(.library-subject-card h3,.library-resource-card h3,.editorial-card h2,.progress-panel h2,.syllabus-paper-head h2){font-family:"Noto Serif Devanagari","Playfair Display",serif!important}
+
+/* Aurora: layered workspace with a large feature and compact supporting cards. */
+html[data-style="aurora"] :is(.library-app,.editorial-app,.progress-app,.syllabus-app,.drill-app){background:radial-gradient(ellipse at 10% 0%,#14536a44,transparent 42%),var(--gk-studio-bg)!important}
+html[data-style="aurora"] :is(.library-hero,.editorial-hero,.progress-hero,.syllabus-hero){border:1px solid #69e4e844!important;border-radius:28px!important;background:linear-gradient(130deg,#17465a99,#0b2638dd)!important;box-shadow:0 25px 70px #0005!important}
+html[data-style="aurora"] :is(.library-subject-card,.library-resource-card,.editorial-card,.progress-kpis>article,.si-insight-card,.syllabus-stats>article,.question-card,.result-card){border:1px solid #69e4e833!important;border-radius:22px!important;background:linear-gradient(145deg,#174257aa,#0a2535dd)!important;box-shadow:inset 0 1px #ffffff12,0 18px 45px #0003!important}
+html[data-style="aurora"] :is(.library-subject-grid,.library-resource-grid,.progress-kpis,.si-insights-grid){gap:16px!important}
+
+/* Glass: elevated cards, blurred surfaces and spacious multi-column workspaces. */
+html[data-style="glass"] :is(.library-app,.editorial-app,.progress-app,.syllabus-app,.drill-app){background:radial-gradient(ellipse at 15% 5%,#8bc8ff20,transparent 42%),var(--gk-studio-bg)!important}
+html[data-style="glass"] :is(.library-hero,.editorial-hero,.progress-hero,.syllabus-hero,.drill-intro){border:1px solid #c5e4ff35!important;border-radius:30px!important;background:linear-gradient(140deg,#ffffff18,#ffffff06)!important;backdrop-filter:blur(25px)!important;box-shadow:0 25px 70px #0004,inset 0 1px #ffffff35!important}
+html[data-style="glass"] :is(.library-subject-card,.library-resource-card,.editorial-card,.progress-kpis>article,.si-insight-card,.syllabus-stats>article,.question-card,.result-card){border:1px solid #c5e4ff30!important;border-radius:24px!important;background:linear-gradient(145deg,#ffffff1b,#ffffff08)!important;backdrop-filter:blur(22px)!important;box-shadow:0 18px 45px #0003,inset 0 1px #ffffff28!important}
+html[data-style="glass"] :is(.library-subject-grid,.library-resource-grid,.progress-kpis,.si-insights-grid){gap:18px!important}
+
+/* Minimal: remove decorative hero art and prioritise clean content grids. */
+html[data-style="minimal"] :is(.library-app,.editorial-app,.progress-app,.syllabus-app,.drill-app){max-width:1360px;margin:auto;padding:20px 22px 120px!important;background:var(--gk-studio-bg)!important}
+html[data-style="minimal"] :is(.library-hero-art,.editorial-hero-art,.progress-hero-ring,.syllabus-orbit){display:none!important}
+html[data-style="minimal"] :is(.library-hero,.editorial-hero,.progress-hero,.syllabus-hero,.drill-intro){display:block!important;min-height:0!important;padding:20px 0!important;border:0!important;border-bottom:1px solid var(--gk-studio-border)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+html[data-style="minimal"] :is(.library-subject-card,.library-resource-card,.editorial-card,.progress-kpis>article,.si-insight-card,.syllabus-stats>article,.question-card,.result-card){border:1px solid var(--gk-studio-border)!important;border-radius:12px!important;background:var(--gk-studio-panel)!important;box-shadow:none!important}
+html[data-style="minimal"] :is(.library-subject-grid,.library-resource-grid,.progress-kpis,.si-insights-grid){gap:10px!important}
+@media(max-width:700px){
+ html[data-style="brutal"] :is(.library-hero,.editorial-hero,.progress-hero,.syllabus-hero,.drill-intro),html[data-style="editorial"] :is(.library-hero,.editorial-hero,.progress-hero,.syllabus-hero,.drill-intro){grid-template-columns:1fr!important}
+ html[data-style="brutal"] :is(.library-subject-grid,.library-resource-grid,.progress-kpis,.si-insights-grid),html[data-style="editorial"] :is(.library-subject-grid,.library-resource-grid,.progress-kpis,.si-insights-grid){grid-template-columns:1fr!important}
+ html[data-style="glass"] :is(.library-subject-grid,.library-resource-grid,.progress-kpis,.si-insights-grid){grid-template-columns:1fr!important}
+}
