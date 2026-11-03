@@ -12,7 +12,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   themeColor: "#071521",
 };
-const themeBootstrap = `(function(){try{var k="gyankunj-design-studio-v1",p=JSON.parse(localStorage.getItem(k)||"null"),t=p&&p.theme==="light"?"light":"dark",d=p&&["compact","comfortable","spacious"].includes(p.density)?p.density:"comfortable",m=p&&["minimal","dynamic","expressive"].includes(p.motion)?p.motion:"dynamic",r=document.documentElement;r.dataset.theme=t;r.dataset.style="cosmic";r.dataset.density=d;r.dataset.motion=m;r.style.colorScheme=t;localStorage.setItem(k,JSON.stringify({style:"cosmic",theme:t,density:d,motion:m}));}catch(e){var r=document.documentElement;r.dataset.theme="dark";r.dataset.style="cosmic";r.dataset.density="comfortable";r.dataset.motion="dynamic";r.style.colorScheme="dark";}})();`;
+const themeBootstrap = `(function(){try{var k="gyankunj-design-studio-v1",p=JSON.parse(localStorage.getItem(k)||"null"),d=p&&["compact","comfortable","spacious"].includes(p.density)?p.density:"comfortable",m=p&&["minimal","dynamic","expressive"].includes(p.motion)?p.motion:"dynamic",r=document.documentElement;r.dataset.theme="dark";r.dataset.style="cosmic";r.dataset.density=d;r.dataset.motion=m;r.style.colorScheme="dark";localStorage.setItem(k,JSON.stringify({style:"cosmic",theme:"dark",density:d,motion:m}));}catch(e){var r=document.documentElement;r.dataset.theme="dark";r.dataset.style="cosmic";r.dataset.density="comfortable";r.dataset.motion="dynamic";r.style.colorScheme="dark";}})();`;
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="hi" suppressHydrationWarning>
