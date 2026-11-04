@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 
 type Density = "compact" | "comfortable" | "spacious";
 type Motion = "minimal" | "dynamic" | "expressive";
@@ -42,6 +43,28 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   const [prefs, setPrefs] = useState<Preferences>(DEFAULTS);
   const [ready, setReady] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    const supabase = getSupabaseBrowserClient();
+    if (!supabase) return;
+    const verifyAdmin = async () => {
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      if (!active) return;
+      if (authError || !user) { setIsAdmin(false); return; }
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("role,is_active")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (!active) return;
+      setIsAdmin(!profileError && profile?.role === "admin" && profile.is_active === true);
+    };
+    void verifyAdmin();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => { void verifyAdmin(); });
+    return () => { active = false; subscription.unsubscribe(); };
+  }, []);
 
   useEffect(() => {
     const initial = readPreferences();
@@ -83,7 +106,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 
   return <>
     {children}
-    {ready && <>
+    {ready && isAdmin && <>
       <button type="button" className="gk-studio-launcher" onClick={() => setOpen(v => !v)} aria-expanded={open} aria-controls="gk-design-studio">
         <span aria-hidden="true">✳</span><span>DESIGN STUDIO</span>
       </button>
