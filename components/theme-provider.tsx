@@ -52,7 +52,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     const verifyAdmin = async () => {
       const { data: { user }, error: authError } = await supabase.auth.getUser();
       if (!active) return;
-      if (authError || !user) { setIsAdmin(false); return; }
+      if (authError || !user) { setIsAdmin(false); setOpen(false); return; }
       const { data: profile, error: profileError } = await supabase
         .from("profiles")
         .select("role,is_active")
@@ -62,7 +62,10 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
       setIsAdmin(!profileError && profile?.role === "admin" && profile.is_active === true);
     };
     void verifyAdmin();
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => { void verifyAdmin(); });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session?.user) { setIsAdmin(false); setOpen(false); return; }
+      void verifyAdmin();
+    });
     return () => { active = false; subscription.unsubscribe(); };
   }, []);
 
