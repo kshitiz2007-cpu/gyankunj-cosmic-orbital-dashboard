@@ -96,3 +96,14 @@ button:not(:disabled):active,[role="button"]:active{transform:scale(.975);transi
  .gk-skeleton{animation:none;background:rgba(255,255,255,.07)}
  .gk-feedback{animation:none}
 }
+
+
+/* Design system preview entry point from the existing Appearance Lab. */
+.gk-studio-preview-link{
+ display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:9px 12px;
+ width:max-content;max-width:100%;border:1px solid rgba(230,107,176,.35);
+ border-radius:999px;background:rgba(230,107,176,.09);color:#f3a4cf!important;
+ font:600 9px/1.2 "Space Grotesk",sans-serif;letter-spacing:.12em;text-decoration:none;
+ transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+.gk-studio-preview-link:hover{background:rgba(230,107,176,.16);border-color:rgba(230,107,176,.65);transform:translateY(-1px)}
