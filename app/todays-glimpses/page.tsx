@@ -41,9 +41,14 @@ export default function TodaysGlimpsesPage(){
    const todaysEditorial=(editorialResult.data||[]).find(row=>isTodayIndia(row.published_at||row.created_at,key)) as Editorial|undefined;
    let nextQuestions:Question[]=[];
    if(todaysDrill){
-    const {data,error:qError}=await supabase.from("questions").select("id,question_hi,question_en,topic").eq("assessment_id",todaysDrill.id).order("created_at",{ascending:true});
-    if(qError)throw qError;
-    nextQuestions=(data||[]) as Question[];
+    const {data:linked,error:linkedError}=await supabase.from("assessment_questions").select("position,question:questions(id,question_hi,question_en,topic)").eq("assessment_id",todaysDrill.id).order("position",{ascending:true});
+    if(linkedError)throw linkedError;
+    nextQuestions=(linked||[]).map((item:any)=>item.question).filter(Boolean) as Question[];
+    if(nextQuestions.length===0){
+     const {data,error:qError}=await supabase.from("questions").select("id,question_hi,question_en,topic").eq("assessment_id",todaysDrill.id).order("created_at",{ascending:true});
+     if(qError)throw qError;
+     nextQuestions=(data||[]) as Question[];
+    }
    }
    if(!active)return;
    setTodayKey(key);setDateLabel(label);setEditorial(todaysEditorial||null);setAssessment(nextQuestions.length>0?todaysDrill:null);setQuestions(nextQuestions);setLoading(false);
