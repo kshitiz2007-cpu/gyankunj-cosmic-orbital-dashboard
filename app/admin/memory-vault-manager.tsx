@@ -70,6 +70,9 @@ export default function MemoryVaultManager(){
  };
 
  const save=async(publish:boolean)=>{
+  const existingImage=Boolean(editingId&&cards.find(c=>c.id===editingId)?.image_path&&!removeImage);
+  const hasText=[form.prompt_en,form.prompt_hi,form.answer_en,form.answer_hi,form.rationale_en,form.rationale_hi].some(value=>value.trim().length>0);
+  if(!imageFile&&!existingImage&&!hasText){setError("Add an image, question, answer or explanation before saving.");return;}
   if(imageFile&&(!["image/jpeg","image/png","image/webp"].includes(imageFile.type)||imageFile.size>8*1024*1024)){
    setError("Choose JPG, PNG or WEBP up to 8 MB.");return;
   }
