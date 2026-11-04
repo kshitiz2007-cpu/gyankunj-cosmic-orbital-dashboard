@@ -15,7 +15,7 @@ type Recent={id:string;title:string;detail:string;score:string;href:string;tag:s
 type Period="7D"|"30D"|"90D";
 const palette=["#c05a9b","#b38bd1","#65b89a","#d5a45c","#78a8c8","#c77d83"];
 function Icon({icon,size=19}:{icon:typeof ArrowLeft01Icon;size?:number}){return <HugeiconsIcon icon={icon} size={size} strokeWidth={1.8}/>}
-function Ring({value,color,label}:{value:number;color:string;label:string}){return <div className="progress-ring" style={{"--value":value,"--ring":color} as React.CSSProperties}><div><strong>{value}%</strong><span>{label}</span></div></div>}
+function Ring({value,color,label}:{value:number;color:string;label:string}){return <div className="si-mastery-ring" style={{"--value":value,"--ring":color} as React.CSSProperties}><div><strong>{value}%</strong><span>{label}</span></div></div>}
 function formatDuration(seconds:number){const mins=Math.max(0,Math.round(seconds/60));return mins>=60?(mins/60).toFixed(1)+" HRS":mins+" MIN";}
 function titleCase(value:string){return value.replace(/[_-]/g," ").replace(/\b\w/g,x=>x.toUpperCase());}
 function dayKey(value:string|Date){const d=new Date(value);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");}
