@@ -224,12 +224,12 @@ export default function Dashboard() {
       const publishedOn=assessment.published_at||assessment.created_at;
       const dateLabel=publishedOn?new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",day:"2-digit",month:"short",year:"numeric"}).format(new Date(publishedOn)).toUpperCase():"";
       const correct=Number(attempt?.correct_count)||0;
-      if(active)setDrillStats({total:(questionRows||[]).length,correct,subject,dateLabel,loading:false});
+      if(active)setDrillStats({total:questionTotal,correct,subject,dateLabel,loading:false});
     };
     void loadDrill().catch(()=>{if(active)setDrillStats({total:0,correct:0,subject:"DRILL DATA UNAVAILABLE",dateLabel:"",loading:false});});
     return()=>{active=false;};
   },[]);
-  const filtered = useMemo(()=>subjects.filter(s=>s.name.toLowerCase().includes(search.toLowerCase())),[search]);
+  const filtered = useMemo(()=>subjects.filter(s=>s.name.toLowerCase().includes(search.toLowerCase())),[subjects,search]);
   const choose = (item:NodeItem) => setSelected(item);
   return <main id="home" className="app-shell">
     <div className="cosmos-noise" aria-hidden="true"/>
