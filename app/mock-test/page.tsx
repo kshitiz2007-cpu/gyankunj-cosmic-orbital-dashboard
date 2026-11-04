@@ -4,7 +4,7 @@ import {useEffect,useState} from "react";
 import {getSupabaseBrowserClient} from "@/lib/supabase/client";
 import {motion} from "motion/react";
 import {HugeiconsIcon} from "@hugeicons/react";
-import {ArrowLeft01Icon,ArrowUpRight01Icon,Notebook01Icon,CheckmarkCircle02Icon,Target01Icon} from "@hugeicons/core-free-icons";
+import {ArrowLeft01Icon,ArrowUpRight01Icon,Notebook01Icon,CheckmarkCircle02Icon} from "@hugeicons/core-free-icons";
 
 type MockAssessment={id:string;title:string;duration_minutes:number;negative_mark:number;created_at:string;question_count:number};
 function Icon({icon,size=20}:{icon:typeof ArrowLeft01Icon;size?:number}){return <HugeiconsIcon icon={icon} size={size} strokeWidth={1.8}/>}
