@@ -6,7 +6,7 @@ import "./memory-vault-manager.css";
 
 type MemoryCard={
  id:string;category:string;category_label_en:string;category_label_hi:string;
- prompt_en:string;prompt_hi:string;answer_en:string;answer_hi:string;
+ prompt_en:string|null;prompt_hi:string|null;answer_en:string|null;answer_hi:string|null;
  rationale_en:string|null;rationale_hi:string|null;exam_tags:string[];sort_order:number;
  is_published:boolean;image_path:string|null;created_at:string;
 };
@@ -57,7 +57,7 @@ export default function MemoryVaultManager(){
   setEditingId(card.id);
   setForm({
    category:card.category,category_label_en:card.category_label_en,category_label_hi:card.category_label_hi,
-   prompt_en:card.prompt_en,prompt_hi:card.prompt_hi,answer_en:card.answer_en,answer_hi:card.answer_hi,
+   prompt_en:card.prompt_en||"",prompt_hi:card.prompt_hi||"",answer_en:card.answer_en||"",answer_hi:card.answer_hi||"",
    rationale_en:card.rationale_en||"",rationale_hi:card.rationale_hi||"",
    exam_tags:(card.exam_tags||[]).join(", "),sort_order:String(card.sort_order||0)
   });
@@ -70,9 +70,6 @@ export default function MemoryVaultManager(){
  };
 
  const save=async(publish:boolean)=>{
-  if(!form.prompt_en.trim()||!form.prompt_hi.trim()||!form.answer_en.trim()||!form.answer_hi.trim()){
-   setError("English and Hindi prompt and answer are required.");return;
-  }
   if(imageFile&&(!["image/jpeg","image/png","image/webp"].includes(imageFile.type)||imageFile.size>8*1024*1024)){
    setError("Choose JPG, PNG or WEBP up to 8 MB.");return;
   }
@@ -83,8 +80,8 @@ export default function MemoryVaultManager(){
     category:form.category.trim()||"general",
     category_label_en:form.category_label_en.trim()||"General Revision",
     category_label_hi:form.category_label_hi.trim()||"सामान्य पुनरावृत्ति",
-    prompt_en:form.prompt_en.trim(),prompt_hi:form.prompt_hi.trim(),
-    answer_en:form.answer_en.trim(),answer_hi:form.answer_hi.trim(),
+    prompt_en:form.prompt_en.trim()||null,prompt_hi:form.prompt_hi.trim()||null,
+    answer_en:form.answer_en.trim()||null,answer_hi:form.answer_hi.trim()||null,
     rationale_en:form.rationale_en.trim()||null,rationale_hi:form.rationale_hi.trim()||null,
     exam_tags:form.exam_tags.split(",").map(x=>x.trim()).filter(Boolean),
     sort_order:Number(form.sort_order)||0,updated_at:new Date().toISOString()
@@ -151,10 +148,10 @@ export default function MemoryVaultManager(){
     <label>CATEGORY LABEL (EN)<input value={form.category_label_en} onChange={e=>setField("category_label_en",e.target.value)}/></label>
     <label>CATEGORY LABEL (HI)<input value={form.category_label_hi} onChange={e=>setField("category_label_hi",e.target.value)}/></label>
     <label>EXAM TAGS <input value={form.exam_tags} onChange={e=>setField("exam_tags",e.target.value)} placeholder="UPSC Prelims, Polity"/></label>
-    <label className="mv-admin-wide">PROMPT / QUESTION (EN)<textarea rows={3} value={form.prompt_en} onChange={e=>setField("prompt_en",e.target.value)} placeholder="Enter the recall question in English…"/></label>
-    <label className="mv-admin-wide">प्रश्न / PROMPT (HI)<textarea rows={3} value={form.prompt_hi} onChange={e=>setField("prompt_hi",e.target.value)} placeholder="हिन्दी में प्रश्न लिखें…"/></label>
-    <label>ANSWER (EN)<textarea rows={2} value={form.answer_en} onChange={e=>setField("answer_en",e.target.value)}/></label>
-    <label>उत्तर (HI)<textarea rows={2} value={form.answer_hi} onChange={e=>setField("answer_hi",e.target.value)}/></label>
+    <label className="mv-admin-wide">PROMPT / QUESTION (EN) · OPTIONAL<textarea rows={3} value={form.prompt_en} onChange={e=>setField("prompt_en",e.target.value)} placeholder="Enter the recall question in English…"/></label>
+    <label className="mv-admin-wide">प्रश्न / PROMPT (HI) · OPTIONAL<textarea rows={3} value={form.prompt_hi} onChange={e=>setField("prompt_hi",e.target.value)} placeholder="हिन्दी में प्रश्न लिखें…"/></label>
+    <label>ANSWER (EN) · OPTIONAL<textarea rows={2} value={form.answer_en} onChange={e=>setField("answer_en",e.target.value)}/></label>
+    <label>उत्तर (HI) · OPTIONAL<textarea rows={2} value={form.answer_hi} onChange={e=>setField("answer_hi",e.target.value)}/></label>
     <label>RATIONALE / EXPLANATION (EN)<textarea rows={4} value={form.rationale_en} onChange={e=>setField("rationale_en",e.target.value)} placeholder="Why is this answer correct?"/></label>
     <label>व्याख्या / RATIONALE (HI)<textarea rows={4} value={form.rationale_hi} onChange={e=>setField("rationale_hi",e.target.value)} placeholder="उत्तर का कारण और परीक्षा-संदर्भ…"/></label>
     <label>SORT ORDER<input type="number" value={form.sort_order} onChange={e=>setField("sort_order",e.target.value)}/></label>
@@ -166,7 +163,7 @@ export default function MemoryVaultManager(){
     <small>JPG · PNG · WEBP · Maximum 8 MB. Images are private and shown to signed-in students.</small>
    </div>
    {(error||notice)&&<div className={error?"mv-inline-feedback mv-inline-error":"mv-inline-feedback mv-inline-success"} role={error?"alert":"status"}>{error||notice}</div>}
-   <div className="mv-admin-actions"><span>{editingId?"Changes apply to this card":"New cards are saved as drafts until published"}</span>{editingId&&<button type="button" className="mv-secondary" onClick={reset}>Cancel</button>}<button type="button" disabled={saving} onClick={()=>void save(false)}>{saving?"Saving…":"Save draft"}</button><button type="button" className="mv-publish" disabled={saving} onClick={()=>void save(true)}>{saving?"Saving…":"Publish to students ↗"}</button></div>
+   <div className="mv-admin-actions"><span>{editingId?"Changes apply to this card":"All text fields are optional. Add an image, question or answer as needed."}</span>{editingId&&<button type="button" className="mv-secondary" onClick={reset}>Cancel</button>}<button type="button" disabled={saving} onClick={()=>void save(false)}>{saving?"Saving…":"Save draft"}</button><button type="button" className="mv-publish" disabled={saving} onClick={()=>void save(true)}>{saving?"Saving…":"Publish to students ↗"}</button></div>
   </div>
   <div className="mv-admin-list-head"><div><span className="admin-kicker">CONTENT LIBRARY</span><h3>Card <em>management.</em></h3></div><div className="mv-admin-filters"><input aria-label="Search memory cards" placeholder="Search cards…" value={query} onChange={e=>setQuery(e.target.value)}/><select value={filter} onChange={e=>setFilter(e.target.value)}><option value="all">All cards</option><option value="published">Published</option><option value="draft">Drafts</option></select></div></div>
   <div className="mv-admin-card-list">{visible.map(card=><article key={card.id} className="mv-admin-card-row">
