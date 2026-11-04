@@ -74,3 +74,103 @@
 .profile-avatar-remove{padding:9px 11px;border:1px solid #e5b7d0;border-radius:9px;background:#fffafd;color:#9c477e;font-size:9px;cursor:pointer}
 .profile-avatar-settings small{width:100%;color:#98748e;font-size:8px}
 @media(max-width:700px){.profile-avatar-change{font-size:7px;padding:5px 7px}.profile-avatar-settings{align-items:flex-start}.profile-avatar-settings>img,.profile-avatar-settings>span{width:58px;height:58px;flex-basis:58px}}
+
+
+/* PROFILE IDENTITY HERO — rebuild the first fold as a deliberate identity card */
+.profile-app .profile-wrap{padding-top:34px!important}
+.profile-app .profile-hero{
+  position:relative!important;
+  isolation:isolate!important;
+  display:grid!important;
+  grid-template-columns:88px minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:18px 20px!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:25px!important;
+  overflow:hidden!important;
+  border:1px solid rgba(237,145,204,.28)!important;
+  border-radius:25px!important;
+  background:
+    radial-gradient(circle at 0% 0%,rgba(236,72,153,.28),transparent 42%),
+    radial-gradient(circle at 100% 100%,rgba(168,85,247,.2),transparent 42%),
+    linear-gradient(135deg,#28152f 0%,#21152f 52%,#17162f 100%)!important;
+  box-shadow:0 22px 55px rgba(31,9,37,.24),inset 0 1px 0 rgba(255,255,255,.1)!important;
+}
+.profile-app .profile-hero:before{
+  content:"";position:absolute;z-index:-1;right:-70px;top:-100px;width:260px;height:260px;
+  border:1px solid rgba(255,255,255,.09);border-radius:50%;
+  box-shadow:0 0 0 28px rgba(255,255,255,.018),0 0 0 58px rgba(255,255,255,.014);
+}
+.profile-app .profile-avatar{
+  width:82px!important;height:82px!important;
+  border:2px solid rgba(255,255,255,.76)!important;
+  border-radius:27px!important;
+  background:linear-gradient(145deg,#fb8bc6,#c23c91 58%,#853caa)!important;
+  box-shadow:0 12px 28px rgba(222,73,160,.3)!important;
+  color:#fff!important;font-size:25px!important;
+}
+.profile-app .profile-avatar-mark{right:-10px!important;top:-12px!important;color:#ffd7ee!important;font-size:21px!important}
+.profile-app .profile-avatar-change{
+  bottom:-12px!important;padding:6px 9px!important;
+  border:1px solid rgba(255,255,255,.24)!important;
+  background:#fff!important;color:#8d3478!important;
+  font-size:8px!important;font-weight:700!important;
+  box-shadow:0 5px 16px rgba(0,0,0,.2)!important;
+}
+.profile-app .profile-identity{min-width:0!important}
+.profile-app .profile-kicker{color:#f5a8d3!important;font-size:8px!important;letter-spacing:.2em!important}
+.profile-app .profile-identity h1{
+  margin:7px 0 3px!important;color:#fff!important;
+  font-size:clamp(29px,4.5vw,43px)!important;line-height:1.08!important;
+  letter-spacing:-.055em!important;overflow-wrap:anywhere!important;
+}
+.profile-app .profile-identity h1 em{color:#f6b5d9!important;font-style:normal!important}
+.profile-app .profile-identity p{
+  margin:0!important;color:#d8bfd8!important;font-size:11px!important;
+  overflow-wrap:anywhere!important;
+}
+.profile-app .profile-tags{gap:7px!important;margin-top:12px!important}
+.profile-app .profile-tags span{
+  padding:6px 9px!important;border:1px solid rgba(255,255,255,.2)!important;
+  border-radius:99px!important;background:rgba(255,255,255,.07)!important;
+  color:#f0ddec!important;font-size:7px!important;letter-spacing:.09em!important;
+}
+.profile-app .profile-streak{
+  grid-column:1/-1!important;
+  display:flex!important;align-items:center!important;gap:10px!important;
+  width:100%!important;text-align:left!important;
+  padding:12px 0 0!important;margin:0!important;
+  border:0!important;border-top:1px solid rgba(255,255,255,.13)!important;
+}
+.profile-app .profile-streak b{
+  display:grid!important;place-items:center!important;
+  width:30px!important;height:30px!important;flex:0 0 30px!important;
+  border-radius:10px!important;background:linear-gradient(135deg,#f472b6,#c084fc)!important;
+  color:#fff!important;font-size:16px!important;line-height:1!important;
+}
+.profile-app .profile-streak span{
+  color:#e4cfe4!important;font-size:8px!important;letter-spacing:.15em!important;
+}
+@media(max-width:700px){
+  .profile-app .profile-wrap{padding:24px 16px 40px!important}
+  .profile-app .profile-hero{
+    grid-template-columns:70px minmax(0,1fr)!important;
+    gap:15px!important;padding:20px 17px 16px!important;
+    border-radius:22px!important;
+  }
+  .profile-app .profile-avatar{width:66px!important;height:66px!important;border-radius:22px!important;font-size:21px!important}
+  .profile-app .profile-identity h1{font-size:clamp(26px,7.4vw,34px)!important}
+  .profile-app .profile-identity p{font-size:10px!important}
+  .profile-app .profile-tags{margin-top:9px!important;gap:6px!important}
+  .profile-app .profile-tags span{font-size:6px!important;padding:6px 7px!important}
+  .profile-app .profile-streak{padding-top:10px!important}
+  .profile-app .profile-top{height:54px!important;padding:0 16px!important;font-size:7px!important;letter-spacing:.1em!important}
+  .profile-app .profile-state{padding:7px 9px!important;border-radius:99px!important}
+}
+@media(max-width:370px){
+  .profile-app .profile-hero{grid-template-columns:60px minmax(0,1fr)!important;gap:12px!important;padding:17px 13px 14px!important}
+  .profile-app .profile-avatar{width:58px!important;height:58px!important}
+  .profile-app .profile-identity h1{font-size:25px!important}
+  .profile-app .profile-tags span{letter-spacing:.04em!important}
+}
