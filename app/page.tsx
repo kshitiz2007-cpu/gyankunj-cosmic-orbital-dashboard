@@ -31,16 +31,7 @@ const subjectVisuals:Record<string,{icon:typeof GraduationScrollIcon;color:strin
   environment:{icon:Atom01Icon,color:"#9bdda0"},"science-tech":{icon:SparklesIcon,color:"#b89cff"},
   history:{icon:BookOpen01Icon,color:"#f3c879"},geography:{icon:Layers01Icon,color:"#76c5d6"}
 };
-const nav = [
-  {name:"Home",icon:Home01Icon,href:"/"},
-  {name:"Today’s Glimpses",icon:NewspaperIcon,href:"/todays-glimpses"},
-  {name:"Practice",icon:Notebook01Icon,href:"/practice/daily"},
-  {name:"AI",icon:SparklesIcon,href:"/ai"},
-  {name:"Live",icon:UserGroupIcon,href:"/live"},
-  {name:"Library",icon:Layers01Icon,href:"/library"},
-  {name:"Memory Vault",icon:Brain01Icon,href:"/vault"},
-  {name:"Profile",icon:UserCircleIcon,href:"/profile"},
-];
+
 
 function Icon({icon,size=22}: {icon: typeof Home01Icon;size?:number}) {
   return <HugeiconsIcon icon={icon} size={size} strokeWidth={1.7} />;
@@ -296,7 +287,7 @@ export default function Dashboard() {
       <div className="subject-strip">{filtered.map(subject=><Link className="subject-pill" key={subject.slug} href={"/library/"+subject.slug} style={{"--subject":subject.color} as React.CSSProperties} aria-label={"Open "+subject.name+" study space"}><Icon icon={subject.icon} size={20}/><span>{subject.name}</span><Icon icon={ArrowUpRight01Icon} size={15}/></Link>)}{filtered.length===0&&<span className="empty-search">No matching subjects</span>}</div>
     </section>
 
-    <nav className="floating-dock" aria-label="Primary navigation">{nav.map((item)=><Link key={item.name} href={item.href} onClick={()=>setActive(item.name)} className={active===item.name?"active":""}><span className={item.name==="AI"?"dock-ai":""}><Icon icon={item.icon} size={21}/></span><small>{item.name}</small></Link>)}</nav>
+    
 
     <AnimatePresence>{notice&&<motion.div className="notice-pop" initial={{opacity:0,y:-8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}}>{announcements.length?announcements.map(item=><div key={item.id}><strong>{item.title}</strong><span>{item.body}</span></div>):<div><strong>You&apos;re all caught up.</strong><span>No new notifications right now.</span></div>}</motion.div>}</AnimatePresence>
     <AnimatePresence>{selected&&<motion.div className="modal-backdrop" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setSelected(null)}><motion.div className="route-modal" role="dialog" aria-modal="true" onClick={e=>e.stopPropagation()} initial={{y:20,scale:.96}} animate={{y:0,scale:1}} exit={{y:12,scale:.98}}><button className="modal-close" onClick={()=>setSelected(null)}>×</button><span className="eyebrow">GYANKUNJ / LEARNING SPACE</span><h2>{selected.title} {selected.subtitle}</h2><p>This destination is ready to connect to its dedicated learning module. Route: <code>{selected.href}</code></p><button className="modal-primary" onClick={()=>setSelected(null)}>Continue exploring <Icon icon={ArrowUpRight01Icon}/></button></motion.div></motion.div>}</AnimatePresence>
