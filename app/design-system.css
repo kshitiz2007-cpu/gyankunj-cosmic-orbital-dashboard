@@ -693,3 +693,125 @@ html[data-style="cosmic"] .admin-root :is(.admin-primary,.admin-submit,.admin-bu
 html[data-style="cosmic"] .admin-root :is(input,textarea,select){
   background:#1b1024!important;border-color:var(--gk-line-strong)!important;color:var(--gk-text)!important;
 }
+
+
+/* ==========================================================================
+   ORBITAL DASHBOARD 2.0 — mathematically symmetric 8-node constellation.
+   Position by semantic class, never nth-of-type (anchors and buttons differ).
+   All nodes share one radius, one size and one visual treatment.
+   ========================================================================== */
+html[data-style="cosmic"] .app-shell .hero{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  justify-items:center!important;
+  align-items:center!important;
+  gap:0!important;
+  padding:clamp(12px,2vw,28px) 0 clamp(20px,3vw,42px)!important;
+}
+html[data-style="cosmic"] .app-shell .hero-copy,
+html[data-style="cosmic"] .app-shell .hero-caption{display:none!important}
+html[data-style="cosmic"] .app-shell .universe{
+  --orbital-node-size:23%;
+  --orbital-ring-radius:37%;
+  position:relative!important;
+  left:auto!important;right:auto!important;
+  width:min(calc(100vw - 36px),650px)!important;
+  max-width:650px!important;
+  aspect-ratio:1/1!important;
+  height:auto!important;max-height:none!important;
+  margin:clamp(30px,5vw,54px) auto!important;
+  transform:none!important;translate:none!important;
+  filter:drop-shadow(0 26px 52px rgba(8,4,20,.42))!important;
+  isolation:isolate;
+}
+html[data-style="cosmic"] .app-shell .universe .orbit--one{
+  width:51%!important;height:51%!important;
+  border:1px solid rgba(249,168,212,.23)!important;
+  box-shadow:0 0 36px rgba(236,72,153,.12),inset 0 0 28px rgba(236,72,153,.06)!important;
+}
+html[data-style="cosmic"] .app-shell .universe .orbit--two{
+  width:74%!important;height:74%!important;transform:translate(-50%,-50%)!important;
+  border:1px solid rgba(192,132,252,.18)!important;
+}
+html[data-style="cosmic"] .app-shell .universe .orbit--three{
+  width:98%!important;height:98%!important;transform:translate(-50%,-50%)!important;
+  border:1px dashed rgba(249,168,212,.17)!important;
+}
+html[data-style="cosmic"] .app-shell .universe .orbit-dash{
+  width:84%!important;height:84%!important;transform:translate(-50%,-50%) rotate(45deg)!important;
+  border-color:rgba(192,132,252,.12)!important;
+}
+html[data-style="cosmic"] .app-shell .universe .core{
+  left:50%!important;top:50%!important;width:27%!important;
+  margin:0!important;translate:-50% -50%!important;
+  border:1px solid rgba(249,168,212,.72)!important;
+  background:radial-gradient(circle at 34% 22%,#71345f 0%,#3d204b 47%,#1b1028 100%)!important;
+  box-shadow:0 0 0 8px rgba(236,72,153,.09),0 0 52px rgba(236,72,153,.3),inset 0 0 34px rgba(249,168,212,.13)!important;
+}
+html[data-style="cosmic"] .app-shell .universe .core:before{
+  border-color:rgba(249,168,212,.3)!important;
+}
+html[data-style="cosmic"] .app-shell .universe .core-star{color:#f9a8d4!important}
+html[data-style="cosmic"] .app-shell .universe .core strong{color:#fff5fb!important}
+html[data-style="cosmic"] .app-shell .universe .core small{color:#e9cce2!important;letter-spacing:.18em!important}
+
+/* Exact equal-radius compass points. Same node size and centering on every viewport. */
+html[data-style="cosmic"] .app-shell .universe .orb-node{
+  left:var(--orb-x)!important;top:var(--orb-y)!important;
+  width:var(--orbital-node-size)!important;aspect-ratio:1/1!important;height:auto!important;
+  margin:0!important;padding:clamp(5px,1.1vw,12px)!important;
+  translate:-50% -50%!important;
+  border:1px solid rgba(249,168,212,.4)!important;
+  border-radius:clamp(18px,4.2vw,30px)!important;
+  background:linear-gradient(145deg,rgba(67,37,76,.92),rgba(24,17,39,.96))!important;
+  box-shadow:0 0 0 4px rgba(236,72,153,.055),0 12px 30px rgba(8,4,20,.28),inset 0 1px 0 rgba(255,255,255,.12)!important;
+  backdrop-filter:blur(18px)!important;
+  gap:0!important;
+}
+html[data-style="cosmic"] .app-shell .universe .orb-node:before{
+  inset:6px!important;border:1px solid rgba(249,168,212,.13)!important;border-radius:calc(clamp(18px,4.2vw,30px) - 5px)!important;
+}
+html[data-style="cosmic"] .app-shell .universe .orb-node__icon{
+  margin:0 0 clamp(4px,1vw,9px)!important;
+  color:#f9a8d4!important;filter:drop-shadow(0 0 9px rgba(236,72,153,.42))!important;
+}
+html[data-style="cosmic"] .app-shell .universe .orb-node__icon svg{width:clamp(18px,3vw,30px)!important;height:clamp(18px,3vw,30px)!important}
+html[data-style="cosmic"] .app-shell .universe .orb-node__title{
+  color:#fff7fc!important;font-family:var(--gk-font-display)!important;
+  font-size:clamp(9px,1.45vw,15px)!important;line-height:1.22!important;
+  letter-spacing:.045em!important;text-wrap:balance!important;
+}
+html[data-style="cosmic"] .app-shell .universe .orb-node__sub{
+  display:none!important;
+}
+html[data-style="cosmic"] .app-shell .universe .orb-node__arrow{
+  width:clamp(22px,3.8vw,30px)!important;height:clamp(22px,3.8vw,30px)!important;
+  margin:clamp(4px,1vw,9px) 0 0!important;
+  border:1px solid rgba(249,168,212,.52)!important;color:#f9a8d4!important;
+  background:rgba(236,72,153,.08)!important;
+}
+html[data-style="cosmic"] .app-shell .universe .orb-node:hover{
+  border-color:#f9a8d4!important;
+  box-shadow:0 0 0 6px rgba(236,72,153,.12),0 18px 38px rgba(8,4,20,.36),0 0 28px rgba(236,72,153,.22)!important;
+}
+/* Compass: 0°, 45°, 90° ... 315° — all eight anchors use the same 37% radius. */
+html[data-style="cosmic"] .app-shell .universe .orb-node--drill{--orb-x:50%;--orb-y:13%}
+html[data-style="cosmic"] .app-shell .universe .orb-node--mock{--orb-x:76.2%;--orb-y:23.8%}
+html[data-style="cosmic"] .app-shell .universe .orb-node--progress{--orb-x:87%;--orb-y:50%}
+html[data-style="cosmic"] .app-shell .universe .orb-node--syllabus{--orb-x:76.2%;--orb-y:76.2%}
+html[data-style="cosmic"] .app-shell .universe .orb-node--ai{--orb-x:50%;--orb-y:87%}
+html[data-style="cosmic"] .app-shell .universe .orb-node--live{--orb-x:23.8%;--orb-y:76.2%}
+html[data-style="cosmic"] .app-shell .universe .orb-node--library{--orb-x:13%;--orb-y:50%}
+html[data-style="cosmic"] .app-shell .universe .orb-node--editorial{--orb-x:23.8%;--orb-y:23.8%}
+html[data-style="cosmic"] .app-shell .universe :is(.planet,.orbit-dash){opacity:.55}
+@media(min-width:761px){
+  html[data-style="cosmic"] .app-shell .universe{width:min(66vw,700px)!important}
+}
+@media(max-width:430px){
+  html[data-style="cosmic"] .app-shell .hero{padding-top:8px!important}
+  html[data-style="cosmic"] .app-shell .universe{width:calc(100vw - 34px)!important;margin:28px auto 34px!important}
+  html[data-style="cosmic"] .app-shell .universe .orb-node{--orbital-node-size:23.5%;padding:4px!important}
+  html[data-style="cosmic"] .app-shell .universe .core{width:27%!important}
+  html[data-style="cosmic"] .app-shell .universe .orb-node__title{font-size:clamp(8px,2.5vw,11px)!important}
+  html[data-style="cosmic"] .app-shell .universe .orb-node__arrow{width:22px!important;height:22px!important;margin-top:4px!important}
+}
