@@ -10,6 +10,7 @@ import {getSupabaseBrowserClient} from "@/lib/supabase/client";
 type Editorial={id:string;slug:string;category:string;title_hi:string;title_en:string;summary_hi:string;summary_en:string;mains_question:string|null;read_minutes:number;published_at:string|null;created_at:string};
 type Assessment={id:string;title:string;duration_minutes:number;created_at:string;published_at:string|null;subject_id:string|null};
 type Question={id:string;question_hi:string;question_en:string;topic:string|null};
+type GlimpseQuestionLink={position:number;question:Question|Question[]|null};
 function Icon({icon,size=19}:{icon:typeof ArrowLeft01Icon;size?:number}){return <HugeiconsIcon icon={icon} size={size} strokeWidth={1.8}/>}
 function indiaDayBounds(){const parts=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());const get=(t:string)=>parts.find(p=>p.type===t)?.value||"";const key=get("year")+"-"+get("month")+"-"+get("day");const start=new Date(key+"T00:00:00+05:30");return {key,start:start.toISOString(),end:new Date(start.getTime()+86400000).toISOString()};}
 function isTodayIndia(value:string|null|undefined,key:string){if(!value)return false;return new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date(value))===key;}
@@ -29,7 +30,7 @@ export default function TodaysGlimpsesPage(){
    const {data:{user},error:authError}=await supabase.auth.getUser();
    if(authError)throw authError;
    if(!user){router.replace("/login");return;}
-   const {key,start,end}=indiaDayBounds();
+   const {key}=indiaDayBounds();
    const label=new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(new Date());
    const [editorialResult,assessmentResult]=await Promise.all([
     supabase.from("editorial_articles").select("id,slug,category,title_hi,title_en,summary_hi,summary_en,mains_question,read_minutes,published_at,created_at").eq("is_published",true).order("published_at",{ascending:false,nullsFirst:false}).order("created_at",{ascending:false}).limit(50),
@@ -43,7 +44,7 @@ export default function TodaysGlimpsesPage(){
    if(todaysDrill){
     const {data:linked,error:linkedError}=await supabase.from("assessment_questions").select("position,question:questions(id,question_hi,question_en,topic)").eq("assessment_id",todaysDrill.id).order("position",{ascending:true});
     if(linkedError)throw linkedError;
-    nextQuestions=(linked||[]).map((item:any)=>item.question).filter(Boolean) as Question[];
+    nextQuestions=((linked||[]) as GlimpseQuestionLink[]).flatMap(item=>item.question?(Array.isArray(item.question)?item.question:[item.question]):[]);
     if(nextQuestions.length===0){
      const {data,error:qError}=await supabase.from("questions").select("id,question_hi,question_en,topic").eq("assessment_id",todaysDrill.id).order("created_at",{ascending:true});
      if(qError)throw qError;
