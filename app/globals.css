@@ -4189,3 +4189,72 @@ html[data-style="cosmic"][data-theme="dark"] .question-rail {
 body:has(.drill-app) .floating-dock,
 body:has(.drill-app) .gk-studio-launcher{display:none!important}
 body:has(.drill-app) .drill-app{padding-bottom:max(36px,env(safe-area-inset-bottom))!important}
+
+
+/* FINAL OVERRIDE — force the rose-magenta identity over the legacy Cosmic
+   theme selectors. This is intentionally last in globals.css. */
+html[data-style="cosmic"] .app-shell{
+  background:
+    radial-gradient(ellipse at 50% 28%,rgba(236,72,153,.24),transparent 38%),
+    radial-gradient(ellipse at 8% 66%,rgba(168,85,247,.18),transparent 30%),
+    radial-gradient(ellipse at 92% 72%,rgba(219,39,119,.16),transparent 32%),
+    #160d1b!important;
+}
+html[data-style="cosmic"] .app-shell .brand-mark{color:#f9a8d4!important;text-shadow:0 0 26px #ec4899aa!important}
+html[data-style="cosmic"] .app-shell .brand small{color:#e8b9d9!important}
+html[data-style="cosmic"] .app-shell .searchbox{
+  background:linear-gradient(120deg,rgba(66,35,70,.9),rgba(32,19,43,.92))!important;
+  border:1px solid #f9a8d455!important;box-shadow:0 12px 35px #08030f88!important;
+}
+html[data-style="cosmic"] .app-shell .avatar{background:linear-gradient(135deg,#f9a8d4,#db2777 55%,#7e22ce)!important;border-color:#f9a8d4!important}
+html[data-style="cosmic"] .app-shell .hero-copy .eyebrow,
+html[data-style="cosmic"] .app-shell .hero-caption,
+html[data-style="cosmic"] .app-shell .vertical-index{color:#f9a8d4!important}
+html[data-style="cosmic"] .app-shell .core{
+  border:1px solid #f9a8d4aa!important;
+  background:radial-gradient(circle at 35% 22%,#71375f 0%,#3b2047 40%,#1d142a 78%)!important;
+  box-shadow:0 0 0 9px #ec48991a,0 0 48px #ec489966,inset 0 0 35px #f9a8d422!important;
+}
+html[data-style="cosmic"] .app-shell .core-star{color:#f9a8d4!important;text-shadow:0 0 24px #ec4899!important}
+html[data-style="cosmic"] .app-shell .core strong{color:#fff5fb!important}
+html[data-style="cosmic"] .app-shell .core small{color:#e7b9d7!important}
+html[data-style="cosmic"] .app-shell .orbit--one{border-color:#f9a8d477!important;box-shadow:0 0 38px #ec489922!important}
+html[data-style="cosmic"] .app-shell .orbit--two{border-color:#c084fc66!important}
+html[data-style="cosmic"] .app-shell .orbit--three{border-color:#ec489944!important}
+html[data-style="cosmic"] .app-shell .orb-node{
+  border:1px solid #f9a8d477!important;border-radius:24px!important;
+  background:linear-gradient(145deg,rgba(69,38,73,.97),rgba(28,17,40,.98))!important;
+  box-shadow:0 12px 34px #08030f88,0 0 22px #ec489933!important;
+}
+html[data-style="cosmic"] .app-shell .orb-node__icon{color:#f9a8d4!important}
+html[data-style="cosmic"] .app-shell .orb-node__title{color:#fff5fb!important}
+html[data-style="cosmic"] .app-shell .orb-node__sub{color:#d2b7cd!important}
+html[data-style="cosmic"] .app-shell .orb-node__arrow{color:#f9a8d4!important}
+html[data-style="cosmic"] .app-shell .orb-node:hover{border-color:#f9a8d4!important;box-shadow:0 16px 42px #08030f99,0 0 28px #ec489955!important}
+html[data-style="cosmic"] .app-shell .editorial-bento{
+  border:1px solid #f9a8d455!important;border-radius:28px!important;
+  background:radial-gradient(ellipse at 88% 18%,#a855f733,transparent 38%),linear-gradient(145deg,#39203e,#211329 72%)!important;
+  color:#fff5fb!important;box-shadow:0 24px 70px #09031199,0 0 36px #ec489922!important;
+}
+html[data-style="cosmic"] .app-shell .editorial-bento__top,
+html[data-style="cosmic"] .app-shell .editorial-bento__ticker{color:#e7bdd9!important;border-color:#f9a8d433!important}
+html[data-style="cosmic"] .app-shell .editorial-bento__eyebrow{color:#f9a8d4!important}
+html[data-style="cosmic"] .app-shell .editorial-bento__copy h1{color:#fff5fb!important}
+html[data-style="cosmic"] .app-shell .editorial-bento__copy p{color:#e0c7dc!important}
+html[data-style="cosmic"] .app-shell .drill-panel,
+html[data-style="cosmic"] .app-shell .learning-metric,
+html[data-style="cosmic"] .app-shell .learning-activity{
+  border:1px solid #f9a8d444!important;border-radius:23px!important;
+  background:linear-gradient(145deg,rgba(64,36,70,.96),rgba(29,18,42,.98))!important;
+  color:#fff5fb!important;
+}
+html[data-style="cosmic"] .app-shell .drill-heading,
+html[data-style="cosmic"] .app-shell .learning-intelligence__heading h2 em,
+html[data-style="cosmic"] .app-shell .learning-intelligence__heading>a{color:#f9a8d4!important}
+html[data-style="cosmic"] .app-shell .learning-metric strong,
+html[data-style="cosmic"] .app-shell .learning-intelligence__heading h2{color:#fff5fb!important}
+html[data-style="cosmic"] .app-shell .subject-pill{
+  border:1px solid #f9a8d444!important;border-radius:18px!important;
+  background:linear-gradient(145deg,#39213f,#211329)!important;color:#fff5fb!important;
+}
+html[data-style="cosmic"] .app-shell .subject-pill:hover{border-color:#f9a8d4!important;background:#51264b!important}
