@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  Home01Icon, Search01Icon, Notification01Icon, UserCircleIcon,
+  Home01Icon, Search01Icon, Notification01Icon,
   Notebook01Icon, NewspaperIcon, BookOpen01Icon, Layers01Icon,
   ChartLineData01Icon, UserGroupIcon, Brain01Icon, Compass01Icon,
   ArrowUpRight01Icon, FireIcon, Target01Icon, SparklesIcon,
@@ -58,7 +58,6 @@ function OrbitalNode({item,index,reduceMotion,onSelect}: {item:NodeItem;index:nu
 
 export default function Dashboard() {
   const reduceMotion = useReducedMotion() ?? false;
-  const [active,setActive] = useState("Home");
   const [search,setSearch] = useState("");
   const [notice,setNotice] = useState(false);
   const [studentInitials,setStudentInitials]=useState("GK");
