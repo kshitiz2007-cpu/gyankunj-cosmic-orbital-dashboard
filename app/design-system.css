@@ -1,5 +1,5 @@
 /* Gyankunj unified page design system — shared visual language across every route. */
-:root{--gk-bg:#090817;--gk-bg-elevated:#121126;--gk-panel:#19152a;--gk-panel-2:#21172f;--gk-text:#f8eff7;--gk-muted:#b8a9bc;--gk-subtle:#8d7e94;--gk-accent:#e66bb0;--gk-accent-strong:#b83b88;--gk-accent-soft:#f3a4cf;--gk-cyan:#75d2dc;--gk-line:rgba(235,169,211,.18);--gk-glass:linear-gradient(145deg,rgba(39,29,54,.94),rgba(17,19,37,.94));--gk-gradient:linear-gradient(120deg,#ed83bd,#b53b88);--gk-shadow:0 18px 50px rgba(0,0,0,.22);--gk-radius:22px}
+:root{--gk-bg:#160d1b;--gk-bg-elevated:#211329;--gk-panel:#291a30;--gk-panel-2:#35203d;--gk-text:#fff7fb;--gk-muted:#c7b7c5;--gk-subtle:#9d8a9d;--gk-accent:#ec4899;--gk-accent-strong:#db2777;--gk-accent-soft:#f9a8d4;--gk-cyan:#c084fc;--gk-line:rgba(255,211,235,.16);--gk-glass:linear-gradient(145deg,rgba(55,31,61,.92),rgba(25,14,34,.94));--gk-gradient-brand:linear-gradient(125deg,#f9a8d4 0%,#ec4899 48%,#a855f7 100%);--gk-gradient:var(--gk-gradient-brand);--gk-bg-aurora:radial-gradient(at 15% 10%,#ec4899 0%,transparent 45%),radial-gradient(at 85% 20%,#8b5cf6 0%,transparent 40%),#160d1b;--gk-shadow:0 18px 50px rgba(8,3,15,.34);--gk-shadow-glow:0 0 24px rgba(236,72,153,.28),0 0 48px rgba(139,92,246,.16);--gk-radius:24px;--gk-radius-card:24px;--gk-radius-pill:999px;--gk-motion-fast:150ms;--gk-motion-base:240ms;--gk-ease-standard:cubic-bezier(.2,.8,.2,1)}
 html,body{background:var(--gk-bg);color:var(--gk-text)}
 body{font-family:"DM Sans","Noto Sans Devanagari",sans-serif}
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--gk-accent-soft);outline-offset:3px}
@@ -107,3 +107,58 @@ button:not(:disabled):active,[role="button"]:active{transform:scale(.975);transi
  transition:background .18s ease,border-color .18s ease,transform .18s ease;
 }
 .gk-studio-preview-link:hover{background:rgba(230,107,176,.16);border-color:rgba(230,107,176,.65);transform:translateY(-1px)}
+
+
+/* ── Rose / Magenta Design System tokens ────────────────────────────────
+   Shared tokens are consumed by the dashboard and all student/admin routes.
+   Legacy aliases (--gk-gradient, --gk-radius, --gk-shadow) remain supported. */
+:root{
+  --gk-gradient-brand:linear-gradient(125deg,#f9a8d4 0%,#ec4899 48%,#a855f7 100%);
+  --gk-bg-aurora:radial-gradient(at 15% 10%,#ec4899 0%,transparent 45%),radial-gradient(at 85% 20%,#8b5cf6 0%,transparent 40%),#160d1b;
+  --gk-shadow-glow:0 0 24px rgba(236,72,153,.28),0 0 48px rgba(139,92,246,.16);
+  --gk-radius-card:24px;
+  --gk-radius-pill:999px;
+  --gk-button-primary:var(--gk-gradient-brand);
+  --gk-button-secondary-bg:rgba(255,255,255,.06);
+  --gk-button-secondary-border:rgba(244,114,182,.25);
+}
+/* Main orbital dashboard now shares the rose/magenta identity, not the old blue-gold wash. */
+.app-shell{
+  background:radial-gradient(ellipse at 50% 32%,rgba(236,72,153,.22),transparent 44%),
+    radial-gradient(ellipse at 12% 76%,rgba(168,85,247,.16),transparent 30%),
+    radial-gradient(ellipse at 88% 68%,rgba(219,39,119,.13),transparent 32%),
+    #160d1b!important;
+}
+.app-shell .orbit{
+  border-color:rgba(249,168,212,.25);
+}
+.app-shell .orbit--one{
+  box-shadow:0 0 28px rgba(236,72,153,.16),inset 0 0 22px rgba(168,85,247,.07);
+}
+/* Reusable button primitives; can be adopted by any route/component. */
+.gk-ds-button,
+:where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.button-primary,.submit-drill,.vault-mark,.vault-controls>button,.auth-submit,.ai-companion-submit){
+  background:var(--gk-button-primary)!important;
+  border:1px solid transparent!important;
+  border-radius:var(--gk-radius-pill)!important;
+  color:#fff!important;
+  box-shadow:0 8px 24px rgba(236,72,153,.18),var(--gk-shadow-glow);
+  transition:transform var(--gk-motion-base) var(--gk-ease-standard),box-shadow var(--gk-motion-base) var(--gk-ease-standard),filter var(--gk-motion-base) ease;
+}
+.gk-ds-button-secondary{
+  background:var(--gk-button-secondary-bg)!important;
+  border:1px solid var(--gk-button-secondary-border)!important;
+  border-radius:var(--gk-radius-pill)!important;
+  color:var(--gk-text)!important;
+  backdrop-filter:blur(16px);
+  transition:transform var(--gk-motion-base) var(--gk-ease-standard),background var(--gk-motion-base) ease,border-color var(--gk-motion-base) ease;
+}
+.gk-ds-button:hover,
+.gk-ds-button-secondary:hover{
+  transform:translateY(-2px);
+}
+.gk-ds-button:hover{box-shadow:var(--gk-shadow-glow),0 14px 32px rgba(236,72,153,.24)}
+.gk-ds-button-secondary:hover{background:rgba(236,72,153,.12)!important;border-color:rgba(244,114,182,.48)!important}
+@media(prefers-reduced-motion:reduce){
+  .gk-ds-button,.gk-ds-button-secondary{transition:none!important}
+}
