@@ -11,6 +11,8 @@ import {ArrowLeft01Icon,ArrowRight01Icon,ArrowUpRight01Icon,Clock01Icon,Flag01Ic
 import {getSupabaseBrowserClient} from "@/lib/supabase/client";
 
 type Question={id:string;subject:string;topic:string;prompt:string;options:string[];answer?:number;explanation:string};
+type DrillQuestionRow={id:string;subject_id:string|null;topic:string|null;question_en:string;question_hi:string|null;options_en:string[]|null;options_hi:string[]|null;explanation_en:string|null;explanation_hi:string|null};
+type DrillQuestionLink={position:number;question:DrillQuestionRow|DrillQuestionRow[]|null};
 type SubmitResult={attempt_id:string;score:number;correct_count:number;wrong_count:number;answered_count:number;question_count:number;accuracy:number;review:Array<{id:string;correct_option:number;explanation:string}>};
 function Icon({icon,size=19}:{icon:typeof ArrowLeft01Icon;size?:number}){return <HugeiconsIcon icon={icon} size={size} strokeWidth={1.8}/>}
 
@@ -45,16 +47,16 @@ export default function DailyDrillPage(){
    if(!assessment){if(active)setLoading(false);return;}
    const {data:linkedRows,error:linkedError}=await supabase.from("assessment_questions").select("position,question:questions(id,subject_id,topic,question_en,question_hi,options_en,options_hi,explanation_en,explanation_hi)").eq("assessment_id",assessment.id).order("position",{ascending:true});
    if(linkedError)throw linkedError;
-   let rows=(linkedRows||[]).map((item:any)=>item.question).filter(Boolean);
+   let rows:DrillQuestionRow[]=((linkedRows||[]) as DrillQuestionLink[]).flatMap(item=>item.question?(Array.isArray(item.question)?item.question:[item.question]):[]);
    if(rows.length===0){
     const {data:legacyRows,error:questionError}=await supabase.from("questions").select("id,subject_id,topic,question_en,question_hi,options_en,options_hi,explanation_en,explanation_hi").eq("assessment_id",assessment.id).order("created_at",{ascending:true});
     if(questionError)throw questionError;
-    rows=legacyRows||[];
+    rows=(legacyRows||[]) as DrillQuestionRow[];
    }
    if(!active)return;
    setAssessmentId(assessment.id);
    setSeconds(Math.max(1,Number(assessment.duration_minutes)||12)*60);
-   setQuestions((rows||[]).map((q:any)=>({
+   setQuestions(rows.map((q:DrillQuestionRow)=>({
     id:q.id,
     subject:"UPSC",
     topic:q.topic||"General Studies",
