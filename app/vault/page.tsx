@@ -2,19 +2,21 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import "./vault.css";
 
 type MemoryCard = {
   id:string; category:string; category_label_en:string; category_label_hi:string;
   prompt_en:string; prompt_hi:string; answer_en:string; answer_hi:string;
-  rationale_en:string|null; rationale_hi:string|null; exam_tags:string[]; sort_order:number;
+  rationale_en:string|null; rationale_hi:string|null; exam_tags:string[]; sort_order:number; image_path:string|null;
 };
 type MemoryProgress = {card_id:string;is_mastered:boolean;mastered_at:string|null;review_count:number;last_reviewed_at:string|null};
 type Language = "en"|"hi";
 
 export default function MemoryVaultPage(){
   const [cards,setCards]=useState<MemoryCard[]>([]);
+  const [imageUrls,setImageUrls]=useState<Record<string,string>>({});
   const [progress,setProgress]=useState<Record<string,MemoryProgress>>({});
   const [category,setCategory]=useState("all");
   const [index,setIndex]=useState(0);
@@ -33,12 +35,15 @@ export default function MemoryVaultPage(){
     if(authError)throw authError;
     if(!user){window.location.href="/login?next=/vault";return;}
     const [cardResult,progressResult]=await Promise.all([
-      supabase.from("memory_cards").select("id,category,category_label_en,category_label_hi,prompt_en,prompt_hi,answer_en,answer_hi,rationale_en,rationale_hi,exam_tags,sort_order").eq("is_published",true).order("sort_order",{ascending:true}),
+      supabase.from("memory_cards").select("id,category,category_label_en,category_label_hi,prompt_en,prompt_hi,answer_en,answer_hi,rationale_en,rationale_hi,exam_tags,sort_order,image_path").eq("is_published",true).order("sort_order",{ascending:true}),
       supabase.from("student_memory_progress").select("card_id,is_mastered,mastered_at,review_count,last_reviewed_at").eq("student_id",user.id)
     ]);
     if(cardResult.error)throw cardResult.error;
     if(progressResult.error)throw progressResult.error;
-    setCards((cardResult.data||[]) as MemoryCard[]);
+    const loadedCards=(cardResult.data||[]) as MemoryCard[];
+    setCards(loadedCards);
+    const signedEntries=await Promise.all(loadedCards.filter(c=>c.image_path).map(async c=>{const {data}=await supabase.storage.from("memory-card-images").createSignedUrl(c.image_path!,60*60*24);return [c.id,data?.signedUrl||""] as const;}));
+    setImageUrls(Object.fromEntries(signedEntries.filter((entry):entry is readonly [string,string]=>Boolean(entry[1]))));
     setProgress(Object.fromEntries(((progressResult.data||[]) as MemoryProgress[]).map(p=>[p.card_id,p])));
     setLoading(false);
   },[]);
@@ -118,6 +123,7 @@ export default function MemoryVaultPage(){
       {loading?<div className="vault-state">Loading your Memory Vault…</div>:error&&!cards.length?<div className="vault-state" role="alert">{error}<button onClick={()=>void load()}>Retry</button></div>:!card?<div className="vault-state">{text("No published memory cards yet. Ask your administrator to publish a card set.","अभी कोई मेमोरी कार्ड प्रकाशित नहीं है। एडमिन से कार्ड प्रकाशित करने को कहें।")}</div>:<>
         <button type="button" className={"vault-flashcard"+(flipped?" is-flipped":"")} onClick={()=>setFlipped(v=>!v)} aria-label={flipped?"Show question":"Reveal answer"}>
           <span className="vault-card-top"><span>{text(card.category_label_en,card.category_label_hi)} · UPSC PRELIMS REPEATED</span><span>✧ {text("TAP TO FLIP","पलटने के लिए टैप करें")}</span></span>
+          {imageUrls[card.id]&&<span className="vault-card-image-wrap"><Image src={imageUrls[card.id]} alt="Memory card visual aid" width={900} height={480} unoptimized className="vault-card-image"/></span>}
           {!flipped?<span className="vault-card-content"><small>{text("PROMPT / CONCEPT","प्रश्न / अवधारणा")}</small><strong>{text(card.prompt_en,card.prompt_hi)}</strong><em>{text(card.prompt_hi,card.prompt_en)}</em></span>:<span className="vault-card-content vault-answer"><small>{text("RECALL / ANSWER","उत्तर / स्मरण")}</small><strong>{text(card.answer_en,card.answer_hi)}</strong><em>{text(card.answer_hi,card.answer_en)}</em><p>{text(card.rationale_en||"",card.rationale_hi||"")}</p></span>}
           <span className="vault-card-foot"><span>{currentProgress?.is_mastered?"✓ "+text("MASTERED","मास्टर्ड"):text("ACTIVE REVIEW REQUIRED","सक्रिय पुनरावृत्ति आवश्यक")}</span><span>{flipped?text("TAP TO RETURN","वापस जाने के लिए टैप करें"):text("TAP ANYWHERE TO REVEAL ANSWER","उत्तर देखने के लिए कहीं भी टैप करें")}</span></span>
         </button>
