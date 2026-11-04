@@ -59,3 +59,18 @@
  .profile-stats b{font-size:32px;margin:10px 0 7px}
  .profile-stats span{font-size:8px}
 }
+
+
+/* Secure student profile photo controls */
+.profile-avatar{overflow:visible}
+.profile-avatar-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.profile-avatar-mark{z-index:2;position:absolute;right:-7px;top:-9px;color:#fff;font-size:25px;pointer-events:none}
+.profile-avatar-change{position:absolute;z-index:3;left:50%;bottom:-10px;transform:translateX(-50%);white-space:nowrap;padding:6px 9px;border:1px solid rgba(255,255,255,.72);border-radius:999px;background:#8f3674;color:#fff;font-size:8px;letter-spacing:.04em;cursor:pointer;box-shadow:0 5px 14px rgba(95,31,73,.18)}
+.profile-avatar-input{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.profile-avatar-settings{display:flex;align-items:center;gap:16px;padding:15px;border:1px solid #edc5da;border-radius:15px;background:rgba(255,255,255,.58)}
+.profile-avatar-settings>img,.profile-avatar-settings>span{width:68px;height:68px;flex:0 0 68px;display:grid;place-items:center;object-fit:cover;border-radius:23px;background:linear-gradient(135deg,#f6bfd8,#d45a9d);color:white;font-size:22px;font-weight:700}
+.profile-avatar-settings>div{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.profile-avatar-upload-button{display:inline-flex!important;align-items:center;justify-content:center;padding:10px 13px;border-radius:9px;background:linear-gradient(120deg,#c64c93,#9d3b82);color:#fff!important;font-size:9px!important;letter-spacing:.04em!important;cursor:pointer}
+.profile-avatar-remove{padding:9px 11px;border:1px solid #e5b7d0;border-radius:9px;background:#fffafd;color:#9c477e;font-size:9px;cursor:pointer}
+.profile-avatar-settings small{width:100%;color:#98748e;font-size:8px}
+@media(max-width:700px){.profile-avatar-change{font-size:7px;padding:5px 7px}.profile-avatar-settings{align-items:flex-start}.profile-avatar-settings>img,.profile-avatar-settings>span{width:58px;height:58px;flex-basis:58px}}
