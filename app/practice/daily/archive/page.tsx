@@ -62,22 +62,32 @@ export default function DailyDrillArchivePage() {
       const ids = published.map(item => item.id);
 
       if (ids.length) {
-        const [attemptResult, questionResult] = await Promise.all([
+        const [attemptResult, membershipResult] = await Promise.all([
           supabase.from("assessment_attempts")
             .select("id,assessment_id,score,correct_count,question_count,submitted_at")
             .eq("student_id", user.id)
             .in("assessment_id", ids)
             .not("submitted_at", "is", null)
             .order("submitted_at", { ascending: false }),
-          supabase.from("questions")
-            .select("id,assessment_id")
+          supabase.from("assessment_questions")
+            .select("assessment_id")
             .in("assessment_id", ids)
         ]);
         if (attemptResult.error) throw attemptResult.error;
-        if (questionResult.error) throw questionResult.error;
+        if (membershipResult.error) throw membershipResult.error;
         const counts: Record<string, number> = {};
-        for (const question of questionResult.data || []) {
-          counts[question.assessment_id] = (counts[question.assessment_id] || 0) + 1;
+        for (const item of membershipResult.data || []) {
+          counts[item.assessment_id] = (counts[item.assessment_id] || 0) + 1;
+        }
+        const legacyIds = ids.filter(id => !counts[id]);
+        if (legacyIds.length) {
+          const { data: legacyQuestions, error: legacyError } = await supabase.from("questions")
+            .select("id,assessment_id")
+            .in("assessment_id", legacyIds);
+          if (legacyError) throw legacyError;
+          for (const question of legacyQuestions || []) {
+            counts[question.assessment_id] = (counts[question.assessment_id] || 0) + 1;
+          }
         }
         if (active) {
           setAttempts((attemptResult.data || []) as Attempt[]);
