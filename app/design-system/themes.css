@@ -1,0 +1,31 @@
+/* Theme values are activated only when the experiment attribute is present on <html>. */
+:root[data-gk-design="experimental"][data-theme="light"] {
+  color-scheme: light;
+  --gk-color-ink: #291525;
+  --gk-color-ink-muted: #694c61;
+  --gk-color-ink-subtle: #8a7183;
+  --gk-color-canvas: #fff7fb;
+  --gk-color-canvas-raised: #fff0f7;
+  --gk-color-surface: rgba(255, 255, 255, .84);
+  --gk-color-surface-strong: #ffffff;
+  --gk-color-surface-soft: rgba(130, 48, 91, .045);
+  --gk-color-border: rgba(119, 48, 88, .13);
+  --gk-color-border-strong: rgba(219, 39, 119, .28);
+  --gk-color-primary: #db2777;
+  --gk-color-primary-strong: #be185d;
+  --gk-color-secondary: #9333ea;
+  --gk-color-accent: #ec4899;
+  --gk-color-success: #237b58;
+  --gk-color-warning: #95600b;
+  --gk-gradient-brand: linear-gradient(125deg, #f9a8d4 0%, #ec4899 48%, #a855f7 100%);
+  --gk-gradient-ambient: radial-gradient(ellipse at 12% 0%, rgba(236,72,153,.12), transparent 42%), radial-gradient(ellipse at 88% 12%, rgba(168,85,247,.10), transparent 40%), linear-gradient(145deg, #fff7fb, #fff0f7 58%, #f8f2ff);
+  --gk-gradient-card: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,246,251,.82));
+  --gk-shadow-xs: 0 1px 2px rgba(70, 22, 49, .05);
+  --gk-shadow-sm: 0 8px 24px rgba(70, 22, 49, .07);
+  --gk-shadow-md: 0 16px 42px rgba(70, 22, 49, .10);
+  --gk-shadow-lg: 0 28px 80px rgba(70, 22, 49, .14);
+  --gk-shadow-glow: 0 0 32px rgba(236, 72, 153, .12);
+}
+:root[data-gk-design="experimental"][data-theme="dark"] {
+  color-scheme: dark;
+}
