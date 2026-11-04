@@ -134,8 +134,6 @@ export default function MemoryVaultPage(){
       </>}
       <footer className="vault-footer"><span>GYANKUNJ · CIVILPREP</span><span>RECALL · REPEAT · RETAIN</span></footer>
     </div>
-    <nav className="vault-bottom-nav" aria-label="Student navigation">
-      <Link href="/">◉<small>Universe</small></Link><Link href="/practice/daily">◎<small>Drill</small></Link><Link href="/current-affairs">▤<small>Editorial</small></Link><Link href="/vault" className="active">✧<small>Vault</small></Link><Link href="/library">▥<small>Library</small></Link><Link href="/progress">↗<small>Progress</small></Link><Link href="/syllabus">◉<small>Syllabus</small></Link>
-    </nav>
+    
   </main>;
 }
