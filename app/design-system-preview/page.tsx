@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import "./preview.css";
 
 type Theme = "light" | "dark";
@@ -21,9 +23,34 @@ const spacing = [4, 8, 12, 16, 20, 24, 32, 40, 48, 64];
 const radii = ["8px", "12px", "18px", "24px", "32px", "999px"];
 
 export default function DesignSystemPreviewPage() {
+  const router = useRouter();
+  const [access, setAccess] = useState<"checking" | "allowed" | "denied">("checking");
   const [theme, setTheme] = useState<Theme>("dark");
   const [density, setDensity] = useState("comfortable");
   const [copied, setCopied] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    const supabase = getSupabaseBrowserClient();
+    const verify = async () => {
+      if (!supabase) { setAccess("denied"); return; }
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      if (!active) return;
+      if (authError || !user) { setAccess("denied"); router.replace("/"); return; }
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles").select("role,is_active").eq("id", user.id).maybeSingle();
+      if (!active) return;
+      if (profileError || profile?.role !== "admin" || profile.is_active !== true) {
+        setAccess("denied"); router.replace("/"); return;
+      }
+      setAccess("allowed");
+    };
+    void verify();
+    const { data: { subscription } } = supabase?.auth.onAuthStateChange(() => { void verify(); }) ?? { data: { subscription: null } };
+    return () => { active = false; subscription?.unsubscribe(); };
+  }, [router]);
+
+  if (access !== "allowed") return <main className="gk-preview"><p className="gk-preview-label">Verifying administrator access…</p></main>;
 
   async function copy(value: string) {
     try {
