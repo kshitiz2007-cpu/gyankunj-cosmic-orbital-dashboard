@@ -61,7 +61,7 @@ export default function DailyDrillPage(){
     subject:"UPSC",
     topic:q.topic||"General Studies",
     prompt:q.question_hi||q.question_en,
-    options:Array.isArray(q.options_hi)&&q.options_hi.length===4?q.options_hi:q.options_en,
+    options:Array.isArray(q.options_hi)&&q.options_hi.length===4?q.options_hi:(q.options_en??[]),
     explanation:q.explanation_hi||q.explanation_en||""
    })));
    setLoading(false);
