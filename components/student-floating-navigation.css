@@ -28,3 +28,37 @@
 @media(max-width:430px){.gk-student-dock{width:calc(100% - 18px);padding:8px 5px;gap:0;border-radius:23px}.gk-dock-item small{font-size:7px}.gk-dock-icon{width:30px;height:27px}.gk-dock-orb{flex-basis:48px;margin-top:-22px}.gk-orb-core{width:47px;height:47px}.gk-quick-panel,.gk-orb-panel{bottom:calc(max(10px,env(safe-area-inset-bottom)) + 75px)}}
 @media(min-width:900px){.gk-student-dock{bottom:20px}.gk-dock-item small{font-size:9px}.gk-dock-icon{width:40px;height:34px}}
 @media(prefers-reduced-motion:reduce){.gk-student-dock,.gk-dock-item,.gk-orb-core,.gk-quick-panel,.gk-orb-panel{animation:none!important;transition:none!important}}
+
+
+/* Rose-magenta floating dock — real app navigation */
+.gk-student-dock{
+  border:1px solid rgba(249,168,212,.34)!important;
+  background:linear-gradient(115deg,rgba(47,25,54,.94),rgba(26,15,38,.96))!important;
+  box-shadow:0 18px 54px rgba(8,2,14,.52),0 0 34px rgba(236,72,153,.15),inset 0 1px 0 rgba(255,255,255,.09)!important;
+}
+.gk-dock-item{color:#c9b1c8!important}
+.gk-dock-item.is-active{color:#f9a8d4!important}
+.gk-dock-icon{color:inherit}
+.gk-dock-item.is-active .gk-dock-icon{
+  background:linear-gradient(145deg,#f9a8d4,#ec4899 58%,#a855f7)!important;
+  color:#fff!important;box-shadow:0 5px 18px rgba(236,72,153,.38)!important;
+}
+.gk-dock-item.is-active:after{background:#f9a8d4!important;box-shadow:0 0 12px #ec4899!important}
+.gk-dock-orb{color:#f9a8d4!important}
+.gk-orb-core{
+  border:1px solid #f9a8d4!important;
+  background:radial-gradient(circle at 35% 25%,#fff2fb,#f472b6 38%,#db2777 72%,#7e22ce)!important;
+  box-shadow:0 0 0 5px rgba(42,23,50,.96),0 8px 26px #ec489966,inset 0 2px 8px #fff9!important;
+}
+.gk-orb-core:before{border-color:#f9a8d477!important}
+.gk-orb-core:after{border-color:#c084fc55!important}
+.gk-quick-panel,.gk-orb-panel{
+  border:1px solid #f9a8d455!important;
+  background:linear-gradient(145deg,rgba(57,31,65,.98),rgba(25,14,36,.99))!important;
+  box-shadow:0 24px 70px #08020ecc,0 0 34px #ec489922!important;
+}
+.gk-quick-kicker{color:#f9a8d4!important}
+.gk-quick-panel>button:hover,.gk-orb-panel>button:hover{background:#ec48991c!important}
+.gk-orb-action-icon{border-color:#f9a8d455!important;background:#ec489922!important;color:#f9a8d4!important}
+.gk-orb-action-copy small{color:#d0b5ce!important}
+@media(prefers-reduced-motion:reduce){.gk-student-dock,.gk-dock-item,.gk-orb-core{transition:none!important}}
