@@ -99,7 +99,7 @@ export default function ProgressPage(){
   while(dates.has(dayKey(d))){n++;d.setDate(d.getDate()-1);}return n;
  },[activities,completed]);
  const trend=useMemo(()=>{
-  const buckets=Array.from({length:period==="7D"?7:period==="30D"?6:9},(_,i)=>({label:"",answered:0,correct:0}));
+  const buckets=Array.from({length:period==="7D"?7:period==="30D"?6:9},()=>({label:"",answered:0,correct:0}));
   const step=period==="7D"?1:period==="30D"?5:10;
   periodAttempts.forEach(a=>{
    const date=new Date(a.submitted_at||a.started_at);const offset=Math.floor((date.getTime()-cutoff.getTime())/86400000);const index=Math.max(0,Math.min(buckets.length-1,Math.floor(offset/step)));
