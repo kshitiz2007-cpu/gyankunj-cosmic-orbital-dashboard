@@ -8,7 +8,7 @@ import "./vault.css";
 
 type MemoryCard = {
   id:string; category:string; category_label_en:string; category_label_hi:string;
-  prompt_en:string; prompt_hi:string; answer_en:string; answer_hi:string;
+  prompt_en:string|null; prompt_hi:string|null; answer_en:string|null; answer_hi:string|null;
   rationale_en:string|null; rationale_hi:string|null; exam_tags:string[]; sort_order:number; image_path:string|null;
 };
 type MemoryProgress = {card_id:string;is_mastered:boolean;mastered_at:string|null;review_count:number;last_reviewed_at:string|null};
@@ -124,7 +124,7 @@ export default function MemoryVaultPage(){
         <button type="button" className={"vault-flashcard"+(flipped?" is-flipped":"")} onClick={()=>setFlipped(v=>!v)} aria-label={flipped?"Show question":"Reveal answer"}>
           <span className="vault-card-top"><span>{text(card.category_label_en,card.category_label_hi)} · UPSC PRELIMS REPEATED</span><span>✧ {text("TAP TO FLIP","पलटने के लिए टैप करें")}</span></span>
           {imageUrls[card.id]&&<span className="vault-card-image-wrap"><Image src={imageUrls[card.id]} alt="Memory card visual aid" width={900} height={480} unoptimized className="vault-card-image"/></span>}
-          {!flipped?<span className="vault-card-content"><small>{text("PROMPT / CONCEPT","प्रश्न / अवधारणा")}</small><strong>{text(card.prompt_en,card.prompt_hi)}</strong><em>{text(card.prompt_hi,card.prompt_en)}</em></span>:<span className="vault-card-content vault-answer"><small>{text("RECALL / ANSWER","उत्तर / स्मरण")}</small><strong>{text(card.answer_en,card.answer_hi)}</strong><em>{text(card.answer_hi,card.answer_en)}</em><p>{text(card.rationale_en||"",card.rationale_hi||"")}</p></span>}
+          {!flipped?<span className="vault-card-content"><small>{text("PROMPT / CONCEPT","प्रश्न / अवधारणा")}</small><strong>{text(card.prompt_en||"Study this visual",card.prompt_hi||"इस चित्र का अध्ययन करें")}</strong><em>{text(card.prompt_hi||"इस चित्र का अध्ययन करें",card.prompt_en||"Study this visual")}</em></span>:<span className="vault-card-content vault-answer"><small>{text("RECALL / ANSWER","उत्तर / स्मरण")}</small><strong>{text(card.answer_en||"No written answer provided.",card.answer_hi||"लिखित उत्तर उपलब्ध नहीं है।")}</strong><em>{text(card.answer_hi||"लिखित उत्तर उपलब्ध नहीं है।",card.answer_en||"No written answer provided.")}</em><p>{text(card.rationale_en||"",card.rationale_hi||"")}</p></span>}
           <span className="vault-card-foot"><span>{currentProgress?.is_mastered?"✓ "+text("MASTERED","मास्टर्ड"):text("ACTIVE REVIEW REQUIRED","सक्रिय पुनरावृत्ति आवश्यक")}</span><span>{flipped?text("TAP TO RETURN","वापस जाने के लिए टैप करें"):text("TAP ANYWHERE TO REVEAL ANSWER","उत्तर देखने के लिए कहीं भी टैप करें")}</span></span>
         </button>
         {notice&&<p className="vault-notice" role="status">{notice}</p>}
