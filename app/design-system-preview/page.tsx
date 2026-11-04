@@ -42,7 +42,7 @@ export default function DesignSystemPreviewPage() {
         <Link className="gk-preview-brand" href="/" aria-label="Gyankunj home">
           <span className="gk-preview-mark">✳</span>
           <span><strong>GYANKUNJ</strong><small>DESIGN SYSTEM LAB</small></span>
-        </a>
+        </Link>
         <div className="gk-preview-controls">
           <div className="gk-preview-segment" aria-label="Theme selection">
             <button className={theme === "light" ? "active" : ""} onClick={() => setTheme("light")}>☼ Light</button>
