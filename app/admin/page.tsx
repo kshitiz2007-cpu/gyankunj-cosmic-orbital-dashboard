@@ -6,6 +6,7 @@ import Link from "next/link";
 import "./admin.css";
 import QuestionBankWorkspace from "./question-bank-workspace";
 import MemoryVaultManager from "./memory-vault-manager";
+import { Badge, BentoCard, Button, Divider, EmptyState, ProgressBar, SectionHeading, Skeleton, TextInput } from "@/components/ui";
 type Section="Overview"|"Students"|"Courses"|"Content Studio"|"Editorial CMS"|"Question Bank"|"Memory Vault"|"Tests"|"Live Classes"|"Faculty"|"Batches"|"Payments"|"Analytics"|"Notifications"|"Settings"|"Audit Logs";
 const sections:Section[]=["Overview","Students","Courses","Content Studio","Editorial CMS","Question Bank","Memory Vault","Tests","Live Classes","Faculty","Batches","Payments","Analytics","Notifications","Settings","Audit Logs"];
 const icons=["◈","♙","▤","✎","✧","◉","✧","◎","◷","♧","▦","₹","⌁","◇","⚙","≡"];
