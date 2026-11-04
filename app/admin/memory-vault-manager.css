@@ -50,3 +50,8 @@
 .mv-status-draft{background:#45334b;color:#e2b9dc}
 @media(max-width:800px){.mv-admin-card-row{grid-template-columns:64px minmax(0,1fr)}.mv-admin-thumb{width:64px;height:58px}.mv-admin-card-actions{grid-column:1/-1;justify-content:flex-start}.mv-admin-intro h2{font-size:26px}}
 @media(max-width:560px){.mv-admin-builder{padding:15px}.mv-admin-grid{grid-template-columns:1fr}.mv-admin-wide{grid-column:auto}.mv-admin-image{grid-template-columns:1fr}.mv-image-picker{justify-self:start}.mv-admin-image>small{grid-column:auto}.mv-admin-list-head{display:grid}.mv-admin-filters{min-width:0;width:100%}.mv-admin-actions{justify-content:stretch}.mv-admin-actions>span{width:100%}.mv-admin-actions>button{flex:1}.mv-admin-intro{gap:8px}.mv-admin-count{min-width:80px;padding:10px}.mv-admin-count strong{font-size:24px}}
+
+
+.mv-inline-feedback{grid-column:1/-1;width:100%;padding:12px 14px;border:1px solid;border-radius:11px;font-size:11px;line-height:1.6;overflow-wrap:anywhere}
+.mv-inline-error{border-color:#d56b8d;background:#5a203b;color:#ffd5e2}
+.mv-inline-success{border-color:#3d9d83;background:#153d39;color:#b5f4df}
