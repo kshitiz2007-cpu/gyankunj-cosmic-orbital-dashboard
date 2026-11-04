@@ -25,7 +25,7 @@ const orbActions=[
  {label:"Daily Editorial",href:"/todays-glimpses#editorial",icon:NewspaperIcon,sub:"READ & ANALYSE"},
  {label:"Mains Practice",href:"/todays-glimpses#mains",icon:PenTool01Icon,sub:"WRITE YOUR ANSWER"}
 ];
-function activeFor(path:string,href:string){return href==="/"?path==="/":path===href||path.startsWith(href+"/");}
+function activeFor(path:string,item:NavItem){if(item.id==="editorial"&&path.startsWith("/todays-glimpses"))return true;return item.href==="/"?path==="/":path===item.href||path.startsWith(item.href+"/");}
 export default function StudentFloatingNavigation(){
  const pathname=usePathname()||"/";const router=useRouter();
  const [orbOpen,setOrbOpen]=useState(false);const [quickFor,setQuickFor]=useState<string|null>(null);
@@ -49,8 +49,9 @@ export default function StudentFloatingNavigation(){
    {orbActions.map(action=><button key={action.label} role="menuitem" onClick={()=>{setOrbOpen(false);router.push(action.href);}}><span className="gk-orb-action-icon"><HugeiconsIcon icon={action.icon} size={20}/></span><span className="gk-orb-action-copy"><b>{action.label}</b><small>{action.sub}</small></span><HugeiconsIcon icon={ArrowUpRight01Icon} size={16}/></button>)}
   </div>}
   <nav className="gk-student-dock" aria-label="Student navigation">
-   {items.map((item,index)=><button key={item.id} type="button" className={"gk-dock-item"+(activeFor(pathname,item.href)?" is-active":"")} aria-current={activeFor(pathname,item.href)?"page":undefined} aria-label={item.label+"; long press for quick actions"} onPointerDown={()=>beginPress(item.id)} onPointerUp={endPress} onPointerLeave={endPress} onPointerCancel={endPress} onContextMenu={e=>{e.preventDefault();clearPress();setQuickFor(item.id);}} onClick={()=>handleItemClick(item)}><span className="gk-dock-icon"><HugeiconsIcon icon={item.icon} size={19}/></span><small>{item.label}</small></button>)}
+   {items.slice(0,3).map(item=><button key={item.id} type="button" className={"gk-dock-item"+(activeFor(pathname,item)?" is-active":"")} aria-current={activeFor(pathname,item.href)?"page":undefined} aria-label={item.label+"; long press for quick actions"} onPointerDown={()=>beginPress(item.id)} onPointerUp={endPress} onPointerLeave={endPress} onPointerCancel={endPress} onContextMenu={e=>{e.preventDefault();clearPress();setQuickFor(item.id);}} onClick={()=>handleItemClick(item)}><span className="gk-dock-icon"><HugeiconsIcon icon={item.icon} size={19}/></span><small>{item.label}</small></button>)}
    <button type="button" className={"gk-dock-orb"+(orbOpen?" is-open":"")} aria-label="Open Daily Drill, Editorial and Mains Practice shortcuts" aria-expanded={orbOpen} onClick={()=>{setQuickFor(null);setOrbOpen(v=>!v);}}><span className="gk-orb-core"><HugeiconsIcon icon={SparklesIcon} size={24}/></span><small>QUICK</small></button>
+   {items.slice(3).map(item=><button key={item.id} type="button" className={"gk-dock-item"+(activeFor(pathname,item)?" is-active":"")} aria-current={activeFor(pathname,item)?"page":undefined} aria-label={item.label+"; long press for quick actions"} onPointerDown={()=>beginPress(item.id)} onPointerUp={endPress} onPointerLeave={endPress} onPointerCancel={endPress} onContextMenu={e=>{e.preventDefault();clearPress();setQuickFor(item.id);}} onClick={()=>handleItemClick(item)}><span className="gk-dock-icon"><HugeiconsIcon icon={item.icon} size={19}/></span><small>{item.label}</small></button>)}
   </nav>
  </div>;
 }
