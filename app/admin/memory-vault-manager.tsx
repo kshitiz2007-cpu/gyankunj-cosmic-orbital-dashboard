@@ -87,14 +87,14 @@ export default function MemoryVaultManager(){
     answer_en:form.answer_en.trim(),answer_hi:form.answer_hi.trim(),
     rationale_en:form.rationale_en.trim()||null,rationale_hi:form.rationale_hi.trim()||null,
     exam_tags:form.exam_tags.split(",").map(x=>x.trim()).filter(Boolean),
-    sort_order:Number(form.sort_order)||0,is_published:publish,updated_at:new Date().toISOString()
+    sort_order:Number(form.sort_order)||0,updated_at:new Date().toISOString()
    };
    let cardId=editingId;
    if(cardId){
     const {error:updateError}=await supabase.from("memory_cards").update(payload).eq("id",cardId);
     if(updateError)throw updateError;
    }else{
-    const {data,error:insertError}=await supabase.from("memory_cards").insert(payload).select("id").single();
+    const {data,error:insertError}=await supabase.from("memory_cards").insert({...payload,is_published:false}).select("id").single();
     if(insertError)throw insertError;cardId=data.id;
    }
    if(!cardId)throw new Error("Card ID was not returned.");
@@ -116,9 +116,11 @@ export default function MemoryVaultManager(){
     imagePath=null;
     if(previous)await supabase.storage.from("memory-card-images").remove([previous]);
    }
+   const {error:publishError}=await supabase.from("memory_cards").update({is_published:publish,updated_at:new Date().toISOString()}).eq("id",cardId);
+   if(publishError)throw publishError;
    setNotice(publish?"Card published to the student Memory Vault.":"Card saved as draft.");
    reset();await loadCards();
-  }catch(e){setError(e instanceof Error?e.message:"Unable to save Memory Vault card.");}
+  }catch(e){const detail=e instanceof Error?e.message:"Unknown Supabase error";setError("Card was not published. "+detail+(detail.toLowerCase().includes("bucket")?" — run migration 0012 to create the image bucket.":""));}
   finally{setSaving(false);}
  };
 
@@ -163,6 +165,7 @@ export default function MemoryVaultManager(){
     {imagePreview&&<div className="mv-image-preview"><img src={imagePreview} alt="Memory card preview"/><button type="button" onClick={()=>{setImageFile(null);setImagePreview("");setRemoveImage(true);}}>Remove image</button></div>}
     <small>JPG · PNG · WEBP · Maximum 8 MB. Images are private and shown to signed-in students.</small>
    </div>
+   {(error||notice)&&<div className={error?"mv-inline-feedback mv-inline-error":"mv-inline-feedback mv-inline-success"} role={error?"alert":"status"}>{error||notice}</div>}
    <div className="mv-admin-actions"><span>{editingId?"Changes apply to this card":"New cards are saved as drafts until published"}</span>{editingId&&<button type="button" className="mv-secondary" onClick={reset}>Cancel</button>}<button type="button" disabled={saving} onClick={()=>void save(false)}>{saving?"Saving…":"Save draft"}</button><button type="button" className="mv-publish" disabled={saving} onClick={()=>void save(true)}>{saving?"Saving…":"Publish to students ↗"}</button></div>
   </div>
   <div className="mv-admin-list-head"><div><span className="admin-kicker">CONTENT LIBRARY</span><h3>Card <em>management.</em></h3></div><div className="mv-admin-filters"><input aria-label="Search memory cards" placeholder="Search cards…" value={query} onChange={e=>setQuery(e.target.value)}/><select value={filter} onChange={e=>setFilter(e.target.value)}><option value="all">All cards</option><option value="published">Published</option><option value="draft">Drafts</option></select></div></div>
