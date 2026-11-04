@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import "./preview.css";
-import { Badge, BentoCard, Button, Divider, EmptyState, ProgressBar, SectionHeading, Skeleton, TextInput } from "@/components/ui";
 
 type Theme = "light" | "dark";
 
@@ -33,8 +32,12 @@ export default function DesignSystemPreviewPage() {
   useEffect(() => {
     let active = true;
     const supabase = getSupabaseBrowserClient();
+    if (!supabase) {
+      setAccess("denied");
+      router.replace("/login?next=/design-system-preview");
+      return () => { active = false; };
+    }
     const verify = async () => {
-      if (!supabase) { setAccess("denied"); router.replace("/login?next=/design-system-preview"); return; }
       const { data: { user }, error: authError } = await supabase.auth.getUser();
       if (!active) return;
       if (authError || !user) { setAccess("denied"); router.replace("/"); return; }
