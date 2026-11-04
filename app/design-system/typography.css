@@ -1,0 +1,16 @@
+/* Type scale and pairing: Space Grotesk for UI, DM Sans for reading, Playfair for editorial accents. */
+:root[data-gk-design="experimental"] {
+  --gk-text-xs: .75rem;
+  --gk-text-sm: .875rem;
+  --gk-text-base: 1rem;
+  --gk-text-lg: 1.125rem;
+  --gk-text-xl: 1.25rem;
+  --gk-text-2xl: clamp(1.5rem, 2.5vw, 2rem);
+  --gk-text-3xl: clamp(2rem, 4vw, 3.25rem);
+  --gk-text-4xl: clamp(2.5rem, 6vw, 4.5rem);
+}
+.gk-ds-type-display { font-family: var(--gk-font-display); font-size: var(--gk-text-4xl); font-weight: 700; line-height: 1.02; letter-spacing: -.055em; }
+.gk-ds-type-heading { font-family: var(--gk-font-display); font-size: var(--gk-text-2xl); font-weight: 650; line-height: 1.15; letter-spacing: -.035em; }
+.gk-ds-type-editorial { font-family: var(--gk-font-editorial); font-weight: 600; letter-spacing: -.025em; }
+.gk-ds-type-body { font-family: var(--gk-font-body); font-size: var(--gk-text-base); line-height: 1.65; }
+.gk-ds-type-caption { font-family: var(--gk-font-display); font-size: var(--gk-text-xs); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
