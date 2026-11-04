@@ -89,3 +89,9 @@
 .vault-card-image-wrap{display:block;width:100%;max-height:230px;overflow:hidden;border:1px solid #ffffff24;border-radius:16px;background:#111827}
 .vault-card-image{display:block;width:100%;max-height:230px;object-fit:contain}
 @media(max-width:700px){.vault-card-image-wrap,.vault-card-image{max-height:190px}}
+
+.vault-notice{position:relative;overflow:visible;animation:vault-notice-glow 1.4s ease-out both}
+.vault-xp-pop{display:inline-block;margin-left:10px;color:#f5c3e3;font:700 12px "Space Grotesk",sans-serif;text-shadow:0 0 14px #f06bb9;white-space:nowrap}
+.vault-mark:active,.vault-controls>button:active{filter:brightness(1.12)}
+@keyframes vault-notice-glow{0%{box-shadow:0 0 0 0 #d84b9d00}35%{box-shadow:0 0 0 5px #d84b9d20}100%{box-shadow:0 0 0 0 #d84b9d00}}
+@media(prefers-reduced-motion:reduce){.vault-notice,.vault-xp-pop{animation:none!important}}
