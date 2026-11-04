@@ -29,12 +29,12 @@ function activeFor(path:string,item:NavItem){if(item.id==="editorial"&&path.star
 export default function StudentFloatingNavigation(){
  const pathname=usePathname()||"/";const router=useRouter();
  const [orbOpen,setOrbOpen]=useState(false);const [quickFor,setQuickFor]=useState<string|null>(null);
- const timer=useRef<ReturnType<typeof setTimeout>|null>(null);const longPressed=useRef(false);const suppressClick=useRef(false);
+ const timer=useRef<ReturnType<typeof setTimeout>|null>(null);const suppressClick=useRef(false);
  const hidden=pathname.startsWith("/admin")||pathname==="/login"||pathname.startsWith("/auth/");
  const clearPress=()=>{if(timer.current){clearTimeout(timer.current);timer.current=null;}};
  useEffect(()=>{setOrbOpen(false);setQuickFor(null);},[pathname]);
- useEffect(()=>()=>clearPress(),[]);
- const beginPress=(id:string)=>{clearPress();longPressed.current=false;timer.current=setTimeout(()=>{longPressed.current=true;suppressClick.current=true;setOrbOpen(false);setQuickFor(id);if(typeof navigator!=="undefined"&&"vibrate" in navigator)navigator.vibrate?.(12);},520);};
+ useEffect(()=>()=>{if(timer.current)clearTimeout(timer.current);},[]);
+ const beginPress=(id:string)=>{clearPress();timer.current=setTimeout(()=>{suppressClick.current=true;setOrbOpen(false);setQuickFor(id);if(typeof navigator!=="undefined"&&"vibrate" in navigator)navigator.vibrate?.(12);},520);};
  const endPress=()=>clearPress();
  const handleItemClick=(item:NavItem)=>{if(suppressClick.current){suppressClick.current=false;return;}setQuickFor(null);router.push(item.href);};
  if(hidden)return null;
@@ -49,7 +49,7 @@ export default function StudentFloatingNavigation(){
    {orbActions.map(action=><button key={action.label} role="menuitem" onClick={()=>{setOrbOpen(false);router.push(action.href);}}><span className="gk-orb-action-icon"><HugeiconsIcon icon={action.icon} size={20}/></span><span className="gk-orb-action-copy"><b>{action.label}</b><small>{action.sub}</small></span><HugeiconsIcon icon={ArrowUpRight01Icon} size={16}/></button>)}
   </div>}
   <nav className="gk-student-dock" aria-label="Student navigation">
-   {items.slice(0,3).map(item=><button key={item.id} type="button" className={"gk-dock-item"+(activeFor(pathname,item)?" is-active":"")} aria-current={activeFor(pathname,item.href)?"page":undefined} aria-label={item.label+"; long press for quick actions"} onPointerDown={()=>beginPress(item.id)} onPointerUp={endPress} onPointerLeave={endPress} onPointerCancel={endPress} onContextMenu={e=>{e.preventDefault();clearPress();setQuickFor(item.id);}} onClick={()=>handleItemClick(item)}><span className="gk-dock-icon"><HugeiconsIcon icon={item.icon} size={19}/></span><small>{item.label}</small></button>)}
+   {items.slice(0,3).map(item=><button key={item.id} type="button" className={"gk-dock-item"+(activeFor(pathname,item)?" is-active":"")} aria-current={activeFor(pathname,item)?"page":undefined} aria-label={item.label+"; long press for quick actions"} onPointerDown={()=>beginPress(item.id)} onPointerUp={endPress} onPointerLeave={endPress} onPointerCancel={endPress} onContextMenu={e=>{e.preventDefault();clearPress();setQuickFor(item.id);}} onClick={()=>handleItemClick(item)}><span className="gk-dock-icon"><HugeiconsIcon icon={item.icon} size={19}/></span><small>{item.label}</small></button>)}
    <button type="button" className={"gk-dock-orb"+(orbOpen?" is-open":"")} aria-label="Open Daily Drill, Editorial and Mains Practice shortcuts" aria-expanded={orbOpen} onClick={()=>{setQuickFor(null);setOrbOpen(v=>!v);}}><span className="gk-orb-core"><HugeiconsIcon icon={SparklesIcon} size={24}/></span><small>QUICK</small></button>
    {items.slice(3).map(item=><button key={item.id} type="button" className={"gk-dock-item"+(activeFor(pathname,item)?" is-active":"")} aria-current={activeFor(pathname,item)?"page":undefined} aria-label={item.label+"; long press for quick actions"} onPointerDown={()=>beginPress(item.id)} onPointerUp={endPress} onPointerLeave={endPress} onPointerCancel={endPress} onContextMenu={e=>{e.preventDefault();clearPress();setQuickFor(item.id);}} onClick={()=>handleItemClick(item)}><span className="gk-dock-icon"><HugeiconsIcon icon={item.icon} size={19}/></span><small>{item.label}</small></button>)}
   </nav>
