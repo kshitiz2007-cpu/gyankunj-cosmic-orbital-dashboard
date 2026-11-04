@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import "./preview.css";
 
 type Theme = "light" | "dark";
@@ -38,7 +39,7 @@ export default function DesignSystemPreviewPage() {
     <main className="gk-preview" data-theme={theme} data-density={density}>
       <div className="gk-preview-ambient" aria-hidden="true" />
       <header className="gk-preview-topbar">
-        <a className="gk-preview-brand" href="/" aria-label="Gyankunj home">
+        <Link className="gk-preview-brand" href="/" aria-label="Gyankunj home">
           <span className="gk-preview-mark">✳</span>
           <span><strong>GYANKUNJ</strong><small>DESIGN SYSTEM LAB</small></span>
         </a>
@@ -47,7 +48,7 @@ export default function DesignSystemPreviewPage() {
             <button className={theme === "light" ? "active" : ""} onClick={() => setTheme("light")}>☼ Light</button>
             <button className={theme === "dark" ? "active" : ""} onClick={() => setTheme("dark")}>◐ Dark</button>
           </div>
-          <a className="gk-preview-back" href="/">Back to dashboard ↗</a>
+          <Link className="gk-preview-back" href="/">Back to dashboard ↗</Link>
         </div>
       </header>
 
@@ -89,7 +90,7 @@ export default function DesignSystemPreviewPage() {
         <div className="gk-preview-section-head"><div><span>03 / COMPONENTS</span><h2>Surfaces with purpose</h2></div><p>Reusable patterns, not one-off decoration.</p></div>
         <div className="gk-preview-components">
           <article className="gk-preview-card gk-preview-featured">
-            <div className="gk-preview-card-top"><span className="gk-preview-label">FEATURED / GLASS BENTO</span><span className="gk-preview-chip">TODAY'S FOCUS</span></div>
+            <div className="gk-preview-card-top"><span className="gk-preview-label">FEATURED / GLASS BENTO</span><span className="gk-preview-chip">TODAY&apos;S FOCUS</span></div>
             <h3>Build a stronger<br /><em>learning rhythm.</em></h3>
             <p>Small daily actions compound into lasting progress. Keep your focus clear and your momentum steady.</p>
             <div className="gk-preview-card-bottom"><span>DAILY PRACTICE · 15 MIN</span><button className="gk-preview-primary" onClick={() => copy("gk-ds-card--featured")}>Explore component ↗</button></div>
@@ -130,7 +131,7 @@ export default function DesignSystemPreviewPage() {
         </div>
       </section>
 
-      <footer className="gk-preview-footer"><span>GYANKUNJ / DESIGN SYSTEM EXPERIMENT</span><span>{copied ? copied : "Built for clarity. Designed for momentum."}</span><a href="/">Return to your learning universe ↑</a></footer>
+      <footer className="gk-preview-footer"><span>GYANKUNJ / DESIGN SYSTEM EXPERIMENT</span><span>{copied ? copied : "Built for clarity. Designed for momentum."}</span><Link href="/">Return to your learning universe ↑</Link></footer>
     </main>
   );
 }
