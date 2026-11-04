@@ -906,3 +906,90 @@ html[data-style="cosmic"] .app-shell .universe :is(.planet,.orbit-dash){opacity:
     margin:0!important;translate:-50% -50%!important;
   }
 }
+
+
+/* MOBILE CONSTELLATION RESET — replace the broken overlapping orbit with a
+   true 3×3 spatial grid. The centre hub occupies the middle cell; eight
+   feature cards occupy the surrounding cells. No absolute positioning. */
+@media(max-width:760px){
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero{
+    display:block!important;position:relative!important;
+    left:auto!important;width:100%!important;min-width:0!important;max-width:none!important;
+    margin:0!important;padding:18px 0 24px!important;
+    transform:none!important;overflow:visible!important;box-sizing:border-box!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe{
+    display:grid!important;position:relative!important;
+    left:auto!important;right:auto!important;
+    width:min(100%,520px)!important;max-width:520px!important;min-width:0!important;
+    height:auto!important;max-height:none!important;min-height:0!important;
+    aspect-ratio:auto!important;
+    margin:12px auto 26px!important;padding:8px!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    grid-template-rows:repeat(3,minmax(108px,auto))!important;
+    grid-template-areas:
+      "editorial drill mock"
+      "library core progress"
+      "live ai syllabus"!important;
+    gap:9px!important;
+    transform:none!important;translate:none!important;
+    filter:drop-shadow(0 18px 34px rgba(8,4,20,.3))!important;
+    box-sizing:border-box!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orbit,
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orbit-dash,
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.planet{display:none!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.core{
+    grid-area:core!important;position:relative!important;
+    inset:auto!important;left:auto!important;top:auto!important;
+    justify-self:center!important;align-self:center!important;
+    width:92%!important;height:auto!important;aspect-ratio:1!important;
+    margin:0!important;translate:none!important;transform:none!important;
+    display:flex!important;z-index:2!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node{
+    position:relative!important;inset:auto!important;
+    left:auto!important;top:auto!important;right:auto!important;bottom:auto!important;
+    grid-column:auto!important;grid-row:auto!important;
+    width:100%!important;min-width:0!important;max-width:none!important;
+    min-height:108px!important;height:100%!important;aspect-ratio:auto!important;
+    margin:0!important;padding:8px 5px!important;
+    translate:none!important;transform:none!important;
+    display:flex!important;flex-direction:column!important;
+    justify-content:center!important;align-items:center!important;
+    border-radius:20px!important;box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--editorial{grid-area:editorial!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--drill{grid-area:drill!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--mock{grid-area:mock!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--library{grid-area:library!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--progress{grid-area:progress!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--live{grid-area:live!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--ai{grid-area:ai!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--syllabus{grid-area:syllabus!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node:before{
+    inset:5px!important;border-radius:15px!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node .orb-node__icon{margin:0 0 6px!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node .orb-node__title{
+    font-size:clamp(9px,2.8vw,12px)!important;line-height:1.2!important;
+    text-wrap:balance!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node .orb-node__sub{display:none!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node .orb-node__arrow{
+    width:24px!important;height:24px!important;margin:6px 0 0!important;flex:0 0 auto!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.core strong{
+    font-size:clamp(10px,2.8vw,15px)!important;letter-spacing:.06em!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.core small{
+    margin-top:5px!important;font-size:8px!important;line-height:1.5!important;letter-spacing:.12em!important;
+  }
+}
+@media(max-width:360px){
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe{
+    grid-template-rows:repeat(3,minmax(98px,auto))!important;gap:6px!important;padding:4px!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node{min-height:98px!important;padding:6px 3px!important}
+}
