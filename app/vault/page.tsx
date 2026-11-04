@@ -47,7 +47,7 @@ export default function MemoryVaultPage(){
 
   const categories=useMemo(()=>[
     {id:"all",label:"ALL"},
-    ...Array.from(new Map(cards.map(c=>[c.category,{id:c.category,label:language==="hi"?c.category_label_hi:c.category_label_en}])).values())
+    ...Array.from(new Set(cards.map(c=>c.category))).map(id=>{const item=cards.find(c=>c.category===id)!;return {id,label:language==="hi"?item.category_label_hi:item.category_label_en};})
   ],[cards,language]);
   const filtered=useMemo(()=>cards.filter(c=>category==="all"||c.category===category),[cards,category]);
   const card=filtered[index]||null;
