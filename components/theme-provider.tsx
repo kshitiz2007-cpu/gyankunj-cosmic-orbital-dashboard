@@ -16,7 +16,6 @@ function valid<T extends string>(value: unknown, values: readonly T[], fallback:
 function readPreferences(): Preferences {
   try {
     const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "null");
-    const oldTheme = window.localStorage.getItem("gyankunj-theme-v3");
     return {
       // Cosmic Orbital is the single supported identity. Ignore legacy style values.
       style: "cosmic",
