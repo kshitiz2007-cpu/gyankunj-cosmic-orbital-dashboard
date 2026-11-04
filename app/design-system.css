@@ -536,3 +536,160 @@ html[data-motion="minimal"] *,html[data-motion="minimal"] *:before,html[data-mot
 @media(max-width:640px){
   html[data-style="cosmic"] :where(.library-app,.drill-app,.progress-app,.syllabus-app,.profile-app,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(.card,.panel,.library-topic-card,.library-resource-card,.glimpse-card,.profile-panel,.profile-goals,.profile-form-panel,.editorial-reading-card){border-radius:20px!important}
 }
+
+
+/* ==========================================================================
+   ROUTE PARITY PASS — remove legacy teal/cyan/white theme islands.
+   Explicit route selectors intentionally outrank each page's legacy CSS.
+   Keep each page's layout and functionality; normalize only visual language.
+   ========================================================================== */
+html[data-style="cosmic"] :is(.drill-app,.editorial-app,.vault-app,.progress-app,.syllabus-app,.mock-app,.library-app,.profile-app,.glimpses-app,.ai-companion-app,.auth-shell,.admin-root){
+  --page-bg:var(--gk-bg);--page-panel:var(--gk-gradient-panel);
+  --page-line:var(--gk-line-strong);--page-accent:var(--gk-accent);
+  background-color:var(--gk-bg)!important;color:var(--gk-text)!important;
+  font-family:var(--gk-font-ui)!important;
+}
+html[data-style="cosmic"] :is(.drill-app,.editorial-app,.vault-app,.progress-app,.syllabus-app,.mock-app,.library-app,.profile-app,.glimpses-app,.ai-companion-app,.auth-shell,.admin-root) :is(h1,h2,h3,h4,h5){
+  color:var(--gk-text)!important;font-family:var(--gk-font-display)!important;
+}
+html[data-style="cosmic"] :is(.drill-app,.editorial-app,.vault-app,.progress-app,.syllabus-app,.mock-app,.library-app,.profile-app,.glimpses-app,.ai-companion-app,.auth-shell,.admin-root) :is(p,small,.muted,.description){
+  color:var(--gk-muted);
+}
+
+/* Daily Drill — replace the old blue question/progress palette. */
+html[data-style="cosmic"] .drill-app .drill-wrap{background:transparent!important}
+html[data-style="cosmic"] .drill-app :is(.drill-topbar,.drill-progress-card,.question-card,.question-rail,.result-card,.answer-explanation){
+  background:var(--gk-gradient-panel)!important;border:1px solid var(--gk-line-strong)!important;
+  border-radius:var(--gk-radius-card)!important;color:var(--gk-text)!important;
+  box-shadow:var(--gk-shadow-sm)!important;
+}
+html[data-style="cosmic"] .drill-app :is(.drill-kicker,.question-number,.rail-heading,.drill-session-label){color:var(--gk-accent-soft)!important}
+html[data-style="cosmic"] .drill-app .question-card :is(h1,h2,h3,.question-text){color:var(--gk-text)!important;font-family:var(--gk-font-ui)!important}
+html[data-style="cosmic"] .drill-app .option-list>button,
+html[data-style="cosmic"] .drill-app .option-list>label{
+  background:rgba(236,72,153,.075)!important;border:1px solid var(--gk-line)!important;
+  border-radius:15px!important;color:var(--gk-text-secondary)!important;
+}
+html[data-style="cosmic"] .drill-app .option-list>button:hover,
+html[data-style="cosmic"] .drill-app .option-list>label:hover,
+html[data-style="cosmic"] .drill-app .option-list>button[aria-pressed="true"],
+html[data-style="cosmic"] .drill-app .option-list>label:has(input:checked){
+  background:rgba(236,72,153,.18)!important;border-color:var(--gk-accent)!important;color:var(--gk-text)!important;
+}
+html[data-style="cosmic"] .drill-app :is(.option-letter,.question-nav,.question-grid button){
+  background:rgba(236,72,153,.12)!important;border-color:var(--gk-line-strong)!important;color:var(--gk-accent-soft)!important;
+}
+html[data-style="cosmic"] .drill-app .question-grid button[aria-current="step"],
+html[data-style="cosmic"] .drill-app .question-grid button[aria-current="true"]{
+  background:var(--gk-gradient-brand)!important;color:#fff!important;
+}
+html[data-style="cosmic"] .drill-app :is(.drill-progress-track,.progress-track){background:#ffffff14!important}
+html[data-style="cosmic"] .drill-app :is(.drill-progress-track>i,.drill-progress-track span,.progress-track>i){background:var(--gk-gradient-brand)!important}
+html[data-style="cosmic"] .drill-app :is(.submit-drill,.next-question,.question-actions button.primary){
+  background:var(--gk-gradient-brand)!important;border:1px solid var(--gk-line-strong)!important;color:#fff!important;
+  border-radius:var(--gk-radius-pill)!important;box-shadow:var(--gk-shadow-glow)!important;
+}
+html[data-style="cosmic"] .drill-app :is(.legend-current,.legend-answered,.legend-flagged){background:var(--gk-accent)!important}
+
+/* Editorial — teal feature art and cyan CTAs become the shared rose-violet identity. */
+html[data-style="cosmic"] .editorial-app :is(.editorial-hero,.editorial-featured,.editorial-list-card){
+  background:var(--gk-gradient-panel)!important;border:1px solid var(--gk-line-strong)!important;
+  border-radius:var(--gk-radius-card)!important;color:var(--gk-text)!important;
+  box-shadow:var(--gk-shadow-sm)!important;
+}
+html[data-style="cosmic"] .editorial-app :is(.editorial-visual,.editorial-featured-art){
+  background:radial-gradient(circle at 50% 45%,#a855f755,transparent 48%),linear-gradient(145deg,#512344,#24152f 78%)!important;
+  border-color:var(--gk-line-strong)!important;
+}
+html[data-style="cosmic"] .editorial-app :is(.editorial-kicker,.editorial-section-heading,.editorial-list-number){color:var(--gk-accent-soft)!important}
+html[data-style="cosmic"] .editorial-app :is(.editorial-cta,.editorial-search input,.editorial-filters button){
+  border-color:var(--gk-line-strong)!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-cta{
+  background:var(--gk-gradient-brand)!important;color:#fff!important;border-radius:var(--gk-radius-pill)!important;
+}
+
+/* Memory Vault — eliminate white chips/buttons and teal page wash. */
+html[data-style="cosmic"] .vault-app{background:var(--gk-bg)!important}
+html[data-style="cosmic"] .vault-app :is(.vault-flashcard,.vault-state,.vault-card-content,.vault-stats,.vault-notice){
+  background:var(--gk-gradient-panel)!important;border:1px solid var(--gk-line-strong)!important;
+  border-radius:var(--gk-radius-card)!important;color:var(--gk-text)!important;box-shadow:var(--gk-shadow-sm)!important;
+}
+html[data-style="cosmic"] .vault-app .vault-categories button{
+  background:rgba(255,255,255,.045)!important;border:1px solid var(--gk-line)!important;
+  color:var(--gk-text-secondary)!important;border-radius:var(--gk-radius-pill)!important;
+}
+html[data-style="cosmic"] .vault-app .vault-categories button.active{
+  background:var(--gk-gradient-brand)!important;border-color:transparent!important;color:#fff!important;
+}
+html[data-style="cosmic"] .vault-app :is(.vault-controls>button,.vault-mark,.vault-state button){
+  background:var(--gk-gradient-brand)!important;border:1px solid var(--gk-line-strong)!important;
+  color:#fff!important;border-radius:var(--gk-radius-pill)!important;
+}
+html[data-style="cosmic"] .vault-app :is(.vault-progress-track,.vault-progress-track i){background-color:#ffffff18!important}
+html[data-style="cosmic"] .vault-app .vault-progress-track i{background:var(--gk-gradient-brand)!important}
+
+/* Progress — chart bars, rings, activity tiles and KPI cards share the palette. */
+html[data-style="cosmic"] .progress-app :is(.progress-hero,.progress-panel,.progress-kpis article,.progress-kpis>div,.si-insight-card,.progress-insight,.progress-recent){
+  background:var(--gk-gradient-panel)!important;border:1px solid var(--gk-line-strong)!important;
+  border-radius:var(--gk-radius-card)!important;color:var(--gk-text)!important;box-shadow:var(--gk-shadow-sm)!important;
+}
+html[data-style="cosmic"] .progress-app :is(.progress-kicker,.progress-heading,.progress-recent-row strong){color:var(--gk-accent-soft)!important}
+html[data-style="cosmic"] .progress-app :is(.progress-bar,.si-trend-bar-track,.progress-heatmap){background-color:#ffffff12!important}
+html[data-style="cosmic"] .progress-app :is(.progress-bar i,.si-trend-bar-track i,.si-trend-bar,.progress-hero-ring,.si-mastery-ring){border-color:var(--gk-accent)!important;background-color:var(--gk-accent)!important}
+html[data-style="cosmic"] .progress-app :is(.progress-hero-ring,.si-mastery-ring){background:conic-gradient(var(--gk-accent) var(--progress,75%),#ffffff18 0)!important}
+html[data-style="cosmic"] .progress-app .progress-recent-icon{background:rgba(236,72,153,.14)!important;color:var(--gk-accent-soft)!important}
+
+/* Syllabus — unify sidebar, paper panels, topic rows and metrics. */
+html[data-style="cosmic"] .syllabus-app :is(.syllabus-hero,.syllabus-stats,.syllabus-sidebar,.syllabus-content,.syllabus-paper-head,.syllabus-topic){
+  background:var(--gk-gradient-panel)!important;border:1px solid var(--gk-line-strong)!important;
+  border-radius:var(--gk-radius-card)!important;color:var(--gk-text)!important;box-shadow:var(--gk-shadow-sm)!important;
+}
+html[data-style="cosmic"] .syllabus-app :is(.syllabus-nav-group button,.syllabus-topic-head,.syllabus-tools input){
+  background:rgba(236,72,153,.075)!important;border-color:var(--gk-line)!important;color:var(--gk-text-secondary)!important;
+}
+html[data-style="cosmic"] .syllabus-app :is(.syllabus-nav-group button.active,.syllabus-topic-head[aria-expanded="true"]){
+  background:rgba(236,72,153,.19)!important;border-color:var(--gk-accent)!important;color:var(--gk-text)!important;
+}
+html[data-style="cosmic"] .syllabus-app :is(.syllabus-kicker,.syllabus-topic-no,.syllabus-sync-status){color:var(--gk-accent-soft)!important}
+html[data-style="cosmic"] .syllabus-app .syllabus-orbit{border-color:var(--gk-line-strong)!important}
+
+/* Library, mock tests, AI companion, profile and glimpses: shared page surfaces. */
+html[data-style="cosmic"] .library-app :is(.library-hero,.library-tools,.library-subject-card,.library-resource-card){
+  background:var(--gk-gradient-panel)!important;border:1px solid var(--gk-line-strong)!important;
+  border-radius:var(--gk-radius-card)!important;color:var(--gk-text)!important;
+}
+html[data-style="cosmic"] .library-app :is(.library-subject-icon,.library-resource-icon){background:rgba(236,72,153,.15)!important;color:var(--gk-accent-soft)!important}
+html[data-style="cosmic"] .mock-app :is(.mock-hero,.mock-test-card,.mock-guidelines){
+  background:var(--gk-gradient-panel)!important;border:1px solid var(--gk-line-strong)!important;
+  border-radius:var(--gk-radius-card)!important;color:var(--gk-text)!important;
+}
+html[data-style="cosmic"] .ai-companion-app :is(.ai-companion-composer,.ai-companion-prompts,.ai-companion-answer){
+  background:var(--gk-gradient-panel)!important;border:1px solid var(--gk-line-strong)!important;
+  border-radius:var(--gk-radius-card)!important;color:var(--gk-text)!important;
+}
+html[data-style="cosmic"] .ai-companion-app .ai-companion-prompts button{
+  background:rgba(236,72,153,.08)!important;border:1px solid var(--gk-line)!important;color:var(--gk-text-secondary)!important;
+}
+html[data-style="cosmic"] .glimpses-app :is(.glimpse-card,.glimpse-drill,.glimpses-orbit){
+  background:var(--gk-gradient-panel)!important;border:1px solid var(--gk-line-strong)!important;
+  border-radius:var(--gk-radius-card)!important;color:var(--gk-text)!important;
+}
+html[data-style="cosmic"] .glimpses-app :is(.glimpses-kicker,.glimpse-category){color:var(--gk-accent-soft)!important}
+html[data-style="cosmic"] .profile-app :is(.profile-panel,.profile-goals,.profile-form-panel,.profile-stats article){
+  background:var(--gk-gradient-panel)!important;border:1px solid var(--gk-line-strong)!important;color:var(--gk-text)!important;
+}
+
+/* Admin is included too; preserve its dense workspace geometry, unify its chrome. */
+html[data-style="cosmic"] .admin-root :is(.admin-sidebar,.admin-topbar,.admin-module,.admin-metric,.admin-panel,.admin-card,.admin-table-wrap,.admin-builder){
+  background:var(--gk-gradient-panel)!important;border-color:var(--gk-line)!important;color:var(--gk-text)!important;
+}
+html[data-style="cosmic"] .admin-root :is(.admin-nav-item.selected,.admin-nav-item:hover){
+  background:rgba(236,72,153,.16)!important;border-color:var(--gk-accent)!important;color:var(--gk-text)!important;
+}
+html[data-style="cosmic"] .admin-root :is(.admin-primary,.admin-submit,.admin-builder button[type="submit"]){
+  background:var(--gk-gradient-brand)!important;border-color:var(--gk-line-strong)!important;color:#fff!important;
+}
+html[data-style="cosmic"] .admin-root :is(input,textarea,select){
+  background:#1b1024!important;border-color:var(--gk-line-strong)!important;color:var(--gk-text)!important;
+}
