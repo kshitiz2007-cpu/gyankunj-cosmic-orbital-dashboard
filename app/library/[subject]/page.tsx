@@ -3,7 +3,7 @@ import Link from "next/link";
 import {useEffect,useMemo,useState} from "react";
 import {useParams,useRouter} from "next/navigation";
 import {HugeiconsIcon} from "@hugeicons/react";
-import {ArrowLeft01Icon,ArrowUpRight01Icon,Search01Icon,BookOpen01Icon,File01Icon,Clock01Icon} from "@hugeicons/core-free-icons";
+import {ArrowLeft01Icon,ArrowUpRight01Icon,Search01Icon,BookOpen01Icon,File01Icon} from "@hugeicons/core-free-icons";
 import {getSupabaseBrowserClient} from "@/lib/supabase/client";
 type Resource={id:string;title_en:string;title_hi:string|null;topic:string|null;resource_type:"text"|"pdf"|"image";category:string;created_at:string};
 function slugify(value:string){return value.toLowerCase().trim().replace(/[^a-z0-9\u0900-\u097f]+/g,"-").replace(/^-|-$/g,"")||"general";}
