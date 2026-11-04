@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import {motion} from "motion/react";
+import {triggerHaptic} from "@/lib/ui-feedback";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import "./vault.css";
 
@@ -99,7 +101,7 @@ export default function MemoryVaultPage(){
       const payload={student_id:user.id,card_id:card.id,is_mastered:false,mastered_at:null,review_count:previous?.review_count||0,last_reviewed_at:new Date().toISOString(),updated_at:new Date().toISOString()};
       const {data,error:saveError}=await supabase.from("student_memory_progress").upsert(payload,{onConflict:"student_id,card_id"}).select("card_id,is_mastered,mastered_at,review_count,last_reviewed_at").single();
       if(saveError)throw saveError;
-      setProgress(p=>({...p,[card.id]:data as MemoryProgress}));setNotice("Card moved back to active review.");
+      setProgress(p=>({...p,[card.id]:data as MemoryProgress}));triggerHaptic(8);setNotice("Card moved back to active review.");
     }catch(e){setError(e instanceof Error?e.message:"Unable to update mastery.");}
     finally{setSaving(false);}
   };
@@ -127,9 +129,9 @@ export default function MemoryVaultPage(){
           {!flipped?<span className="vault-card-content"><small>{text("PROMPT / CONCEPT","प्रश्न / अवधारणा")}</small><strong>{text(card.prompt_en||"Study this visual",card.prompt_hi||"इस चित्र का अध्ययन करें")}</strong><em>{text(card.prompt_hi||"इस चित्र का अध्ययन करें",card.prompt_en||"Study this visual")}</em></span>:<span className="vault-card-content vault-answer"><small>{text("RECALL / ANSWER","उत्तर / स्मरण")}</small><strong>{text(card.answer_en||"No written answer provided.",card.answer_hi||"लिखित उत्तर उपलब्ध नहीं है।")}</strong><em>{text(card.answer_hi||"लिखित उत्तर उपलब्ध नहीं है।",card.answer_en||"No written answer provided.")}</em><p>{text(card.rationale_en||"",card.rationale_hi||"")}</p></span>}
           <span className="vault-card-foot"><span>{currentProgress?.is_mastered?"✓ "+text("MASTERED","मास्टर्ड"):text("ACTIVE REVIEW REQUIRED","सक्रिय पुनरावृत्ति आवश्यक")}</span><span>{flipped?text("TAP TO RETURN","वापस जाने के लिए टैप करें"):text("TAP ANYWHERE TO REVEAL ANSWER","उत्तर देखने के लिए कहीं भी टैप करें")}</span></span>
         </button>
-        {notice&&<p className="vault-notice" role="status">{notice}</p>}
+        {notice&&<motion.p className="vault-notice" role="status" initial={{opacity:0,y:10,scale:.96}} animate={{opacity:1,y:0,scale:1}} transition={{type:"spring",stiffness:240,damping:18}} key={notice}>{notice}{notice.includes("+10")&&<motion.span className="vault-xp-pop" initial={{opacity:0,y:12,scale:.7}} animate={{opacity:1,y:-8,scale:1}} transition={{delay:.12,type:"spring",stiffness:220,damping:12}}>+10 XP ✦</motion.span>}</motion.p>}
         {error&&<p className="vault-error" role="alert">{error}</p>}
-        <div className="vault-controls"><button onClick={()=>move(index-1)} disabled={index===0}>‹ &nbsp;{text("PREV","पिछला")}</button><div>{currentProgress?.is_mastered?<button className="vault-mastered" onClick={()=>void undoMastery()} disabled={saving}>✓ {text("MASTERED","मास्टर्ड")}<small>{text("Undo","वापस लें")}</small></button>:<button className="vault-mark" onClick={()=>void reviewCard()} disabled={saving||!flipped}>{saving?text("SAVING…","सेव हो रहा है…"):<>✓ {text("MARK AS MASTERED","मास्टर्ड के रूप में चिह्नित")}<small>(+10 XP)</small></>}</button>}</div><button onClick={()=>move(index+1)} disabled={index===filtered.length-1}>{text("NEXT","अगला")} &nbsp;›</button></div>
+        <div className="vault-controls"><motion.button whileTap={{scale:.95}} onClick={()=>move(index-1)} disabled={index===0}>‹ &nbsp;{text("PREV","पिछला")}</motion.button><div>{currentProgress?.is_mastered?<button className="vault-mastered" onClick={()=>void undoMastery()} disabled={saving}>✓ {text("MASTERED","मास्टर्ड")}<small>{text("Undo","वापस लें")}</small></button>:<motion.button whileTap={{scale:.96}} className="vault-mark" onClick={()=>void reviewCard()} disabled={saving||!flipped}>{saving?text("SAVING…","सेव हो रहा है…"):<>✓ {text("MARK AS MASTERED","मास्टर्ड के रूप में चिह्नित")}<small>(+10 XP)</small></>}</motion.button>}</div><motion.button whileTap={{scale:.95}} onClick={()=>move(index+1)} disabled={index===filtered.length-1}>{text("NEXT","अगला")} &nbsp;›</motion.button></div>
         <div className="vault-progress-track"><i style={{width:(cards.length?masteredCount/cards.length*100:0)+"%"}}/></div>
       </>}
       <footer className="vault-footer"><span>GYANKUNJ · CIVILPREP</span><span>RECALL · REPEAT · RETAIN</span></footer>
