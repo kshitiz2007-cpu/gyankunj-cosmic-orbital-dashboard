@@ -38,6 +38,7 @@ const nav = [
   {name:"AI",icon:SparklesIcon,href:"/ai"},
   {name:"Live",icon:UserGroupIcon,href:"/live"},
   {name:"Library",icon:Layers01Icon,href:"/library"},
+  {name:"Memory Vault",icon:Brain01Icon,href:"/vault"},
   {name:"Profile",icon:UserCircleIcon,href:"/profile"},
 ];
 
