@@ -34,7 +34,7 @@ export default function DesignSystemPreviewPage() {
     let active = true;
     const supabase = getSupabaseBrowserClient();
     const verify = async () => {
-      if (!supabase) { setAccess("denied"); return; }
+      if (!supabase) { setAccess("denied"); router.replace("/login?next=/design-system-preview"); return; }
       const { data: { user }, error: authError } = await supabase.auth.getUser();
       if (!active) return;
       if (authError || !user) { setAccess("denied"); router.replace("/"); return; }
@@ -47,7 +47,11 @@ export default function DesignSystemPreviewPage() {
       setAccess("allowed");
     };
     void verify();
-    const { data: { subscription } } = supabase?.auth.onAuthStateChange(() => { void verify(); }) ?? { data: { subscription: null } };
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session?.user) { setAccess("denied"); router.replace("/login?next=/design-system-preview"); return; }
+      setAccess("checking");
+      void verify();
+    });
     return () => { active = false; subscription?.unsubscribe(); };
   }, [router]);
 
