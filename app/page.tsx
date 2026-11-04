@@ -202,12 +202,18 @@ export default function Dashboard() {
       if(!assessment){if(active)setDrillStats({total:0,correct:0,subject:"NO DRILL PUBLISHED",dateLabel:"",loading:false});return;}
       // The secure-scoring migration intentionally revokes SELECT on correct_option.
       // The dashboard only needs question IDs for the total; score comes from the server RPC attempt.
-      const [{data:questionRows,error:questionError},{data:attempt,error:attemptError}]=await Promise.all([
-        supabase.from("questions").select("id").eq("assessment_id",assessment.id),
+      const [{data:membershipRows,error:membershipError},{data:attempt,error:attemptError}]=await Promise.all([
+        supabase.from("assessment_questions").select("question_id").eq("assessment_id",assessment.id),
         supabase.from("assessment_attempts").select("correct_count,submitted_at").eq("assessment_id",assessment.id).eq("student_id",user.id).not("submitted_at","is",null).order("submitted_at",{ascending:false}).limit(1).maybeSingle()
       ]);
-      if(questionError)throw questionError;
+      if(membershipError)throw membershipError;
       if(attemptError)throw attemptError;
+      let questionTotal=(membershipRows||[]).length;
+      if(questionTotal===0){
+        const {count,error:questionError}=await supabase.from("questions").select("id",{count:"exact",head:true}).eq("assessment_id",assessment.id);
+        if(questionError)throw questionError;
+        questionTotal=count||0;
+      }
       let subject="GENERAL STUDIES";
       if(assessment.subject_id){
         const {data:subjectRow,error:subjectError}=await supabase.from("subjects").select("name_en").eq("id",assessment.subject_id).maybeSingle();
