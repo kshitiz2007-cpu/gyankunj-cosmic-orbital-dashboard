@@ -1,0 +1,39 @@
+/* Opt-in preview primitives. Existing application classes are intentionally untouched. */
+.gk-ds-lab {
+  color: var(--gk-color-ink);
+  background: var(--gk-gradient-ambient);
+  font-family: var(--gk-font-body);
+  padding: clamp(16px, 3vw, 40px);
+  border-radius: var(--gk-radius-xl);
+}
+.gk-ds-card {
+  color: var(--gk-color-ink);
+  background: var(--gk-gradient-card), var(--gk-color-surface);
+  border: 1px solid var(--gk-color-border);
+  border-radius: var(--gk-radius-lg);
+  box-shadow: var(--gk-shadow-md), inset 0 1px 0 rgba(255,255,255,.08);
+  padding: clamp(16px, 2.5vw, 28px);
+  backdrop-filter: blur(18px);
+}
+.gk-ds-card--featured { border-color: var(--gk-color-border-strong); box-shadow: var(--gk-shadow-md), var(--gk-shadow-glow); }
+.gk-ds-button {
+  display: inline-flex; min-height: var(--gk-control-height); align-items: center; justify-content: center;
+  gap: var(--gk-space-2); padding: 0 var(--gk-space-5); border: 1px solid transparent;
+  border-radius: var(--gk-radius-pill); background: var(--gk-gradient-brand); color: #fff;
+  font: 650 var(--gk-text-sm)/1 var(--gk-font-display); cursor: pointer;
+  box-shadow: var(--gk-shadow-sm); transition: transform var(--gk-motion-base), box-shadow var(--gk-motion-base);
+}
+.gk-ds-button:hover { transform: translateY(-2px); box-shadow: var(--gk-shadow-md), var(--gk-shadow-glow); }
+.gk-ds-button:focus-visible, .gk-ds-surface:focus-visible { outline: 3px solid var(--gk-color-primary); outline-offset: 3px; }
+.gk-ds-chip {
+  display: inline-flex; align-items: center; gap: var(--gk-space-2); padding: 6px 11px;
+  border: 1px solid var(--gk-color-border); border-radius: var(--gk-radius-pill);
+  background: var(--gk-color-surface-soft); color: var(--gk-color-ink-muted);
+  font: 600 var(--gk-text-xs)/1.2 var(--gk-font-display);
+}
+.gk-ds-surface { border: 1px solid var(--gk-color-border); border-radius: var(--gk-radius-md); background: var(--gk-color-surface); box-shadow: var(--gk-shadow-sm); }
+.gk-ds-divider { height: 1px; border: 0; background: var(--gk-color-border); }
+@media (prefers-reduced-motion: reduce) {
+  .gk-ds-button { transition: none; }
+  .gk-ds-button:hover { transform: none; }
+}
