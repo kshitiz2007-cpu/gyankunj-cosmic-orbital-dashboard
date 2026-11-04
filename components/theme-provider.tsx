@@ -90,7 +90,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
       {open && <div className="gk-studio-backdrop" onClick={() => setOpen(false)}>
         <section id="gk-design-studio" className="gk-studio-panel" role="dialog" aria-modal="true" aria-labelledby="gk-studio-title" onClick={e => e.stopPropagation()}>
           <header className="gk-studio-header">
-            <div><span className="gk-studio-kicker">GYANKUNJ / APPEARANCE LAB</span><h2 id="gk-studio-title">Design Studio</h2><p>One consistent visual identity for the entire learning universe.</p></div>
+            <div><span className="gk-studio-kicker">GYANKUNJ / APPEARANCE LAB</span><h2 id="gk-studio-title">Design Studio</h2><p>One consistent visual identity for the entire learning universe.</p><a className="gk-studio-preview-link" href="/design-system-preview">OPEN FULL DESIGN SYSTEM LAB ↗</a></div>
             <button className="gk-studio-close" onClick={() => setOpen(false)} aria-label="Close design studio">×</button>
           </header>
 
