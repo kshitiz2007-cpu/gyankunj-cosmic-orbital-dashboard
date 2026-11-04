@@ -381,3 +381,158 @@ button:not(:disabled):active,[role="button"]:active{transform:scale(.975);transi
   .profile-app .profile-avatar{width:68px!important;height:68px!important}
   .profile-app .profile-streak{grid-column:1/-1;border-left:0!important;border-top:1px solid #f9a8d433;padding:16px 0 0!important;text-align:left!important}
 }
+
+
+/* ==========================================================================
+   GYANKUNJ DESIGN SYSTEM — SINGLE SOURCE OF TRUTH
+   Synced with Design Studio Lab. Loaded after legacy route styles on purpose.
+   All routes: dashboard, study, library, drill, mock, editorial, progress,
+   syllabus, profile, vault, AI companion, auth and admin.
+   ========================================================================== */
+:root{
+  color-scheme:dark;
+  --gk-bg:#160d1b;
+  --gk-bg-elevated:#211329;
+  --gk-surface:#291a30;
+  --gk-surface-raised:#35203d;
+  --gk-surface-soft:rgba(55,31,61,.72);
+  --gk-text:#fff7fb;
+  --gk-text-secondary:#e3cddd;
+  --gk-muted:#c7b7c5;
+  --gk-subtle:#a990a5;
+  --gk-accent:#f472b6;
+  --gk-accent-strong:#db2777;
+  --gk-accent-soft:#f9a8d4;
+  --gk-violet:#a855f7;
+  --gk-magenta:#c02683;
+  --gk-line:rgba(255,211,235,.16);
+  --gk-line-strong:rgba(249,168,212,.38);
+  --gk-gradient-brand:linear-gradient(125deg,#f9a8d4 0%,#ec4899 48%,#a855f7 100%);
+  --gk-gradient-aurora:radial-gradient(at 15% 10%,#ec4899 0%,transparent 45%),radial-gradient(at 85% 20%,#8b5cf6 0%,transparent 40%),#160d1b;
+  --gk-gradient-panel:linear-gradient(145deg,rgba(55,31,61,.96),rgba(25,14,34,.98));
+  --gk-shadow-sm:0 8px 24px rgba(10,3,15,.22);
+  --gk-shadow:0 18px 50px rgba(8,3,15,.34);
+  --gk-shadow-lg:0 28px 80px rgba(10,3,15,.40);
+  --gk-shadow-glow:0 0 24px rgba(236,72,153,.28),0 0 48px rgba(139,92,246,.16);
+  --gk-radius-xs:8px;--gk-radius-sm:12px;--gk-radius-md:18px;
+  --gk-radius-card:24px;--gk-radius-xl:32px;--gk-radius-pill:999px;
+  --gk-space-1:4px;--gk-space-2:8px;--gk-space-3:12px;--gk-space-4:16px;
+  --gk-space-5:20px;--gk-space-6:24px;--gk-space-8:32px;--gk-space-10:40px;
+  --gk-font-ui:"DM Sans","Noto Sans Devanagari",sans-serif;
+  --gk-font-display:"Space Grotesk","Noto Sans Devanagari",sans-serif;
+  --gk-font-editorial:"Playfair Display","Noto Serif Devanagari",serif;
+  --gk-motion-fast:150ms;--gk-motion-base:240ms;--gk-ease:cubic-bezier(.2,.8,.2,1);
+}
+html[data-style="cosmic"]{color-scheme:dark;background:var(--gk-bg)}
+html[data-style="cosmic"] body{
+  background:var(--gk-bg)!important;color:var(--gk-text)!important;
+  font-family:var(--gk-font-ui)!important;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app){
+  color:var(--gk-text)!important;font-family:var(--gk-font-ui)!important;
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(h1,h2,h3,h4,h5,h6){
+  color:var(--gk-text)!important;font-family:var(--gk-font-display)!important;
+  letter-spacing:-.035em;line-height:1.16;font-weight:650;
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(p,.muted,.description,.helper-text,.empty-state){
+  color:var(--gk-muted);
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(em,.accent,.highlight,.text-accent){
+  color:var(--gk-accent-soft);
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(a:not([class*="button"]):not([class*="btn"]),.link){
+  color:var(--gk-accent-soft);text-decoration-color:#f472b655;
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(input,textarea,select){
+  min-height:42px;border:1px solid var(--gk-line-strong)!important;border-radius:14px!important;
+  background:rgba(24,13,31,.88)!important;color:var(--gk-text)!important;
+  font:500 14px/1.5 var(--gk-font-ui)!important;box-shadow:inset 0 1px 0 #ffffff08;
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(input,textarea,select)::placeholder{color:var(--gk-subtle)!important}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(input,textarea,select):focus{
+  outline:2px solid #f472b6!important;outline-offset:2px;border-color:#f9a8d4!important;
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) button:not(:disabled):not(.orb-node):not(.gk-dock-item):not(.gk-orb-core){
+  font-family:var(--gk-font-ui);transition:background var(--gk-motion-fast) var(--gk-ease),border-color var(--gk-motion-fast) var(--gk-ease),color var(--gk-motion-fast) var(--gk-ease),transform var(--gk-motion-fast) var(--gk-ease);
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(.card,.panel,.library-topic-card,.library-resource-card,.glimpse-card,.drill-archive-card,.progress-kpi,.si-insight-card,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-goals,.profile-form-panel,.ai-companion-composer,.ai-companion-prompts,.ai-companion-answer,.vault-state,.editorial-reading-card,.question-card,.result-card,.drill-progress-card,.preview-question,.preview-palette,.admin-panel,.admin-card,.admin-module,.admin-metric,.admin-table-wrap){
+  border:1px solid var(--gk-line-strong)!important;border-radius:var(--gk-radius-card)!important;
+  background:var(--gk-gradient-panel)!important;color:var(--gk-text)!important;
+  box-shadow:var(--gk-shadow-sm),inset 0 1px 0 #ffffff0a!important;
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(.button-primary,.submit-drill,.vault-mark,.vault-controls>button,.auth-submit,.ai-companion-submit,.gk-ds-button){
+  border:1px solid #f9a8d477!important;border-radius:var(--gk-radius-pill)!important;
+  background:var(--gk-gradient-brand)!important;color:#fff!important;
+  box-shadow:var(--gk-shadow-sm),var(--gk-shadow-glow)!important;font-weight:700;
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(.button-secondary,.btn-secondary,.gk-ds-button-secondary,.filter-chip,.tab-button){
+  border:1px solid var(--gk-line-strong)!important;border-radius:var(--gk-radius-pill)!important;
+  background:rgba(255,255,255,.045)!important;color:var(--gk-text-secondary)!important;
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(button,a,[role="button"]):focus-visible{
+  outline:2px solid var(--gk-accent-soft)!important;outline-offset:3px;
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(.badge,.tag,.chip,.pill,.status-badge,.topic-tag){
+  border-color:var(--gk-line-strong)!important;border-radius:var(--gk-radius-pill)!important;
+  background:rgba(236,72,153,.11);color:var(--gk-accent-soft);
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(table,thead,tbody,tr,th,td){
+  border-color:var(--gk-line)!important;color:var(--gk-text-secondary);
+}
+html[data-style="cosmic"] :where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(hr,.divider){border-color:var(--gk-line)!important}
+html[data-style="cosmic"] .app-shell{
+  background:var(--gk-gradient-aurora)!important;
+}
+html[data-style="cosmic"] .app-shell .orb-node{
+  border:1px solid var(--gk-line-strong)!important;border-radius:22px!important;
+  background:linear-gradient(145deg,rgba(69,38,73,.96),rgba(28,17,40,.98))!important;
+  box-shadow:var(--gk-shadow-sm),0 0 22px #ec489933!important;
+}
+html[data-style="cosmic"] .app-shell .orb-node__icon,
+html[data-style="cosmic"] .app-shell .orb-node__arrow{color:var(--gk-accent-soft)!important}
+html[data-style="cosmic"] .app-shell .orb-node__title{font-family:var(--gk-font-display)!important;color:var(--gk-text)!important}
+html[data-style="cosmic"] .app-shell .orb-node__sub{color:var(--gk-muted)!important}
+html[data-style="cosmic"] .app-shell .core{
+  border-color:var(--gk-accent-soft)!important;
+  background:radial-gradient(circle at 35% 22%,#71375f 0%,#3b2047 40%,#1d142a 78%)!important;
+  box-shadow:0 0 0 9px #ec48991a,0 0 48px #ec489966,inset 0 0 35px #f9a8d422!important;
+}
+html[data-style="cosmic"] .app-shell .core-star{color:var(--gk-accent-soft)!important;text-shadow:0 0 24px var(--gk-accent)!important}
+html[data-style="cosmic"] .app-shell .editorial-bento{
+  border:1px solid var(--gk-line-strong)!important;border-radius:var(--gk-radius-card)!important;
+  background:radial-gradient(ellipse at 88% 18%,#a855f733,transparent 38%),var(--gk-gradient-panel)!important;
+  color:var(--gk-text)!important;box-shadow:var(--gk-shadow),var(--gk-shadow-glow)!important;
+}
+html[data-style="cosmic"] .app-shell .editorial-bento :is(h1,h2,h3,p,span){color:var(--gk-text-secondary)}
+html[data-style="cosmic"] .app-shell .editorial-bento :is(h1,h2,h3){font-family:var(--gk-font-display)!important;color:var(--gk-text)!important}
+html[data-style="cosmic"] .app-shell .editorial-bento :is(.editorial-bento__eyebrow,.editorial-bento__top){color:var(--gk-accent-soft)!important}
+html[data-style="cosmic"] .gk-student-dock{
+  border:1px solid var(--gk-line-strong)!important;border-radius:28px!important;
+  background:linear-gradient(115deg,rgba(47,25,54,.97),rgba(26,15,38,.98))!important;
+  box-shadow:var(--gk-shadow-lg),0 0 34px #ec489933!important;backdrop-filter:blur(24px) saturate(150%);
+}
+html[data-style="cosmic"] .gk-student-dock .gk-dock-item{color:var(--gk-muted)!important}
+html[data-style="cosmic"] .gk-student-dock .gk-dock-item.is-active{color:var(--gk-accent-soft)!important}
+html[data-style="cosmic"] .gk-student-dock .gk-dock-item.is-active .gk-dock-icon,
+html[data-style="cosmic"] .gk-student-dock .gk-orb-core{background:var(--gk-gradient-brand)!important;color:#fff!important;box-shadow:0 0 22px #ec489966!important}
+html[data-style="cosmic"] .gk-studio-launcher{
+  border:1px solid var(--gk-line-strong)!important;border-radius:var(--gk-radius-pill)!important;
+  background:var(--gk-gradient-panel)!important;color:var(--gk-text)!important;box-shadow:var(--gk-shadow),var(--gk-shadow-glow)!important;
+}
+html[data-style="cosmic"] .gk-studio-panel{
+  border:1px solid var(--gk-line-strong)!important;border-radius:28px!important;
+  background:linear-gradient(145deg,#2c1933,#160d1b)!important;color:var(--gk-text)!important;
+  box-shadow:var(--gk-shadow-lg),var(--gk-shadow-glow)!important;
+}
+html[data-style="cosmic"] .gk-studio-panel :is(h2,h3,strong){font-family:var(--gk-font-display)!important;color:var(--gk-text)!important}
+html[data-style="cosmic"] .gk-studio-panel :is(p,small,footer){color:var(--gk-muted)}
+html[data-density="compact"]{--gk-density-scale:.86}
+html[data-density="comfortable"]{--gk-density-scale:1}
+html[data-density="spacious"]{--gk-density-scale:1.12}
+html[data-motion="minimal"] *,html[data-motion="minimal"] *:before,html[data-motion="minimal"] *:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+@media(prefers-reduced-motion:reduce){html[data-style="cosmic"] *,html[data-style="cosmic"] *:before,html[data-style="cosmic"] *:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+@media(max-width:640px){
+  html[data-style="cosmic"] :where(.library-app,.drill-app,.progress-app,.syllabus-app,.profile-app,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app) :is(.card,.panel,.library-topic-card,.library-resource-card,.glimpse-card,.profile-panel,.profile-goals,.profile-form-panel,.editorial-reading-card){border-radius:20px!important}
+}
