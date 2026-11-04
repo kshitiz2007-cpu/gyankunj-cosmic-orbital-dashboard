@@ -62,3 +62,25 @@
 .gk-orb-action-icon{border-color:#f9a8d455!important;background:#ec489922!important;color:#f9a8d4!important}
 .gk-orb-action-copy small{color:#d0b5ce!important}
 @media(prefers-reduced-motion:reduce){.gk-student-dock,.gk-dock-item,.gk-orb-core{transition:none!important}}
+
+
+/* Last-loaded dock palette override */
+.gk-student-dock.gk-student-dock{
+  border:1px solid #f9a8d477!important;
+  background:linear-gradient(115deg,rgba(47,25,54,.97),rgba(26,15,38,.98))!important;
+  box-shadow:0 18px 54px #08020eaa,0 0 34px #ec489933,inset 0 1px 0 #ffffff18!important;
+}
+.gk-student-dock .gk-dock-item{color:#d7bfd3!important}
+.gk-student-dock .gk-dock-item.is-active{color:#f9a8d4!important}
+.gk-student-dock .gk-dock-item.is-active .gk-dock-icon{
+  background:linear-gradient(145deg,#f9a8d4,#ec4899 58%,#a855f7)!important;color:#fff!important;
+  box-shadow:0 5px 18px #ec489966!important;
+}
+.gk-student-dock .gk-dock-item.is-active:after{background:#f9a8d4!important;box-shadow:0 0 12px #ec4899!important}
+.gk-student-dock .gk-orb-core{
+  border:1px solid #f9a8d4!important;
+  background:radial-gradient(circle at 35% 25%,#fff2fb,#f472b6 38%,#db2777 72%,#7e22ce)!important;
+  box-shadow:0 0 0 5px #2a1732,0 8px 26px #ec489977,inset 0 2px 8px #fff9!important;
+}
+.gk-student-dock .gk-orb-core:before{border-color:#f9a8d477!important}
+.gk-student-dock .gk-orb-core:after{border-color:#c084fc66!important}
