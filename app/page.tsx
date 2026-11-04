@@ -260,9 +260,7 @@ export default function Dashboard() {
             <p>{featuredEditorial?.summary_hi?.trim()||featuredEditorial?.summary_en?.trim()||"नवीनतम UPSC-केंद्रित संपादकीय यहाँ प्रकाशित होते ही दिखाई देगा।"}</p>
             <div className="editorial-bento__bottom"><span>◷ &nbsp;{featuredEditorial?.read_minutes||"—"} MIN READ</span><span>{featuredEditorial?.category||"UPSC CURRENT AFFAIRS"}</span><Link href={featuredEditorial?"/current-affairs/"+featuredEditorial.slug:"/current-affairs"} className="editorial-bento__cta">READ THE EDITORIAL <b>↗</b></Link></div>
           </div>
-          <div className="editorial-bento__visual" aria-hidden="true"><div className="editorial-bento__visual-grid"/><div className="editorial-bento__orbit editorial-bento__orbit--one"/><div className="editorial-bento__orbit editorial-bento__orbit--two"/><div className="editorial-bento__chip"><span>INDIA</span><b>Si</b><small>SEMICONDUCTOR<br/>ECOSYSTEM</small></div><div className="editorial-bento__serial">01 / 12</div><div className="editorial-bento__vertical">KNOWLEDGE IN MOTION</div></div>
         </div>
-        <div className="editorial-bento__ticker"><span>READ · REFLECT · REVISE</span><span>DAILY CRUX <b>✳</b> DAILY CRUX <b>✳</b> DAILY CRUX</span></div>
       </motion.article>
       <motion.article className="drill-panel" id="practice" initial={reduceMotion?false:{opacity:0,y:22}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}}>
         <div className="drill-heading"><span className="target-icon"><Icon icon={Target01Icon} size={27}/></span><Badge tone="brand" dot>TODAY&apos;S DRILL</Badge><Link className="drill-open-link" aria-label="Continue drill" href="/practice/daily"><Icon icon={ArrowUpRight01Icon}/></Link></div>
