@@ -855,3 +855,54 @@ html[data-style="cosmic"] .app-shell .universe :is(.planet,.orbit-dash){opacity:
     margin:0!important;translate:-50% -50%!important;
   }
 }
+
+
+/* HARD CENTERING FIX v2 — use geometric viewport centering, not auto margins.
+   Parent app-shell has horizontal padding; anchor the hero to the viewport and
+   independently centre the square orbital stage inside that full-width hero. */
+@media(max-width:760px){
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero{
+    position:relative!important;
+    display:block!important;
+    left:50%!important;right:auto!important;
+    width:100vw!important;max-width:100vw!important;min-width:100vw!important;
+    margin:0!important;
+    padding:12px 0 24px!important;
+    transform:translateX(-50%)!important;
+    box-sizing:border-box!important;
+    overflow:visible!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe{
+    position:relative!important;
+    display:block!important;
+    left:50%!important;right:auto!important;
+    width:min(calc(100vw - 36px),620px)!important;
+    min-width:0!important;max-width:620px!important;
+    height:auto!important;aspect-ratio:1/1!important;max-height:none!important;
+    margin:26px 0 30px!important;padding:0!important;
+    transform:translateX(-50%)!important;
+    translate:none!important;
+    box-sizing:border-box!important;
+    overflow:visible!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node{
+    position:absolute!important;
+    width:23%!important;height:auto!important;aspect-ratio:1/1!important;
+    margin:0!important;
+    translate:-50% -50%!important;
+    transform:translateY(var(--motion-y,0px)) scale(var(--motion-scale,1))!important;
+  }
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--drill{left:50%!important;top:15.5%!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--mock{left:74.4%!important;top:25.6%!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--progress{left:84.5%!important;top:50%!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--syllabus{left:74.4%!important;top:74.4%!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--ai{left:50%!important;top:84.5%!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--live{left:25.6%!important;top:74.4%!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--library{left:15.5%!important;top:50%!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.orb-node--editorial{left:25.6%!important;top:25.6%!important}
+  html[data-style="cosmic"] body:has(.app-shell) .app-shell .hero>.universe>.core{
+    position:absolute!important;left:50%!important;top:50%!important;
+    width:26%!important;height:auto!important;aspect-ratio:1/1!important;
+    margin:0!important;translate:-50% -50%!important;
+  }
+}
