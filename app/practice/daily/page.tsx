@@ -43,12 +43,18 @@ export default function DailyDrillPage(){
    const {data:assessment,error:assessmentError}=await assessmentQuery.order("created_at",{ascending:false}).limit(1).maybeSingle();
    if(assessmentError)throw assessmentError;
    if(!assessment){if(active)setLoading(false);return;}
-   const {data:rows,error:questionError}=await supabase.from("questions").select("id,subject_id,topic,question_en,question_hi,options_en,options_hi,explanation_en,explanation_hi").eq("assessment_id",assessment.id).order("created_at",{ascending:true});
-   if(questionError)throw questionError;
+   const {data:linkedRows,error:linkedError}=await supabase.from("assessment_questions").select("position,question:questions(id,subject_id,topic,question_en,question_hi,options_en,options_hi,explanation_en,explanation_hi)").eq("assessment_id",assessment.id).order("position",{ascending:true});
+   if(linkedError)throw linkedError;
+   let rows=(linkedRows||[]).map((item:any)=>item.question).filter(Boolean);
+   if(rows.length===0){
+    const {data:legacyRows,error:questionError}=await supabase.from("questions").select("id,subject_id,topic,question_en,question_hi,options_en,options_hi,explanation_en,explanation_hi").eq("assessment_id",assessment.id).order("created_at",{ascending:true});
+    if(questionError)throw questionError;
+    rows=legacyRows||[];
+   }
    if(!active)return;
    setAssessmentId(assessment.id);
    setSeconds(Math.max(1,Number(assessment.duration_minutes)||12)*60);
-   setQuestions((rows||[]).map((q)=>({
+   setQuestions((rows||[]).map((q:any)=>({
     id:q.id,
     subject:"UPSC",
     topic:q.topic||"General Studies",
