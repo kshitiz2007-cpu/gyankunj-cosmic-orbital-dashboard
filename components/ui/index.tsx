@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, type ButtonHTMLAttributes, type InputHTMLAttributes, type HTMLAttributes, type ReactNode } from "react";
+import { useEffect, useId, useRef, type ButtonHTMLAttributes, type InputHTMLAttributes, type SelectHTMLAttributes, type TextareaHTMLAttributes, type HTMLAttributes, type ReactNode } from "react";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
 type ButtonSize = "sm" | "md" | "lg";
@@ -144,4 +144,67 @@ export function EmptyState({title,description,action,icon,className=""}:{title:s
 
 export function Divider({className=""}:{className?:string}){
   return <hr className={["gk-divider",className].filter(Boolean).join(" ")}/>;
+}
+
+
+/** Accessible native controls sharing the Gyankunj visual language. */
+export function SelectInput({ label, hint, error, id, className = "", children, ...props }: SelectHTMLAttributes<HTMLSelectElement> & { label?: string; hint?: string; error?: string }) {
+  const generatedId = useId();
+  const selectId = id || generatedId;
+  return <div className="gk-field">
+    {label && <label className="gk-field__label" htmlFor={selectId}>{label}{props.required && <span aria-hidden="true"> *</span>}</label>}
+    <div className={["gk-select-wrap", error ? "gk-input-wrap--error" : ""].filter(Boolean).join(" ")}>
+      <select id={selectId} className={["gk-select", className].filter(Boolean).join(" ")} aria-invalid={Boolean(error)} {...props}>{children}</select>
+      <span aria-hidden="true" className="gk-select-chevron">⌄</span>
+    </div>
+    {hint && <small className="gk-field__hint">{hint}</small>}
+    {error && <small className="gk-field__error" role="alert">{error}</small>}
+  </div>;
+}
+
+export function TextArea({ label, hint, error, id, className = "", ...props }: TextareaHTMLAttributes<HTMLTextAreaElement> & { label?: string; hint?: string; error?: string }) {
+  const generatedId = useId();
+  const areaId = id || generatedId;
+  return <div className="gk-field">
+    {label && <label className="gk-field__label" htmlFor={areaId}>{label}{props.required && <span aria-hidden="true"> *</span>}</label>}
+    <textarea id={areaId} className={["gk-textarea", className].filter(Boolean).join(" ")} aria-invalid={Boolean(error)} {...props} />
+    {hint && <small className="gk-field__hint">{hint}</small>}
+    {error && <small className="gk-field__error" role="alert">{error}</small>}
+  </div>;
+}
+
+export function Switch({ checked, onChange, label, description, disabled = false, className = "" }: {
+  checked: boolean; onChange: (checked: boolean) => void; label: ReactNode; description?: ReactNode; disabled?: boolean; className?: string;
+}) {
+  return <label className={["gk-switch", className].filter(Boolean).join(" ")}>
+    <span className="gk-switch__copy"><strong>{label}</strong>{description && <small>{description}</small>}</span>
+    <input type="checkbox" role="switch" checked={checked} disabled={disabled} onChange={event => onChange(event.currentTarget.checked)} />
+    <i className="gk-switch__track" aria-hidden="true"><b /></i>
+  </label>;
+}
+
+export function Tabs({ items, value, onChange, ariaLabel = "Sections", className = "" }: {
+  items: Array<{ label: string; value: string; badge?: ReactNode }>; value: string; onChange: (value: string) => void; ariaLabel?: string; className?: string;
+}) {
+  return <div className={["gk-tabs", className].filter(Boolean).join(" ")} role="tablist" aria-label={ariaLabel}>
+    {items.map(item => <button key={item.value} type="button" role="tab" aria-selected={value === item.value} className={value === item.value ? "is-active" : ""} onClick={() => onChange(item.value)}>
+      <span>{item.label}</span>{item.badge && <span className="gk-tabs__badge">{item.badge}</span>}
+    </button>)}
+  </div>;
+}
+
+export function StatCard({ label, value, change, icon, tone = "rose", className = "" }: {
+  label: ReactNode; value: ReactNode; change?: ReactNode; icon?: ReactNode; tone?: "rose" | "plum" | "neutral"; className?: string;
+}) {
+  return <article className={["gk-stat-card", "gk-stat-card--" + tone, className].filter(Boolean).join(" ")}>
+    <div className="gk-stat-card__top"><span>{label}</span>{icon && <i>{icon}</i>}</div>
+    <strong className="gk-stat-card__value">{value}</strong>
+    {change && <small className="gk-stat-card__change">{change}</small>}
+  </article>;
+}
+
+export function Surface({ children, as: Tag = "div", tone = "default", className = "", ...props }: HTMLAttributes<HTMLElement> & {
+  children: ReactNode; as?: "div" | "section" | "article"; tone?: "default" | "rose" | "plum"; className?: string;
+}) {
+  return <Tag className={["gk-surface", "gk-surface--" + tone, className].filter(Boolean).join(" ")} {...props}>{children}</Tag>;
 }
