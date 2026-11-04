@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import "./preview.css";
+import { Badge, BentoCard, Button, Divider, EmptyState, ProgressBar, SectionHeading, Skeleton, TextInput } from "@/components/ui";
 
 type Theme = "light" | "dark";
 
