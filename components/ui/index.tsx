@@ -112,3 +112,36 @@ export function Navigation({ items, activeHref, brand, trailing, ariaLabel = "Pr
     {trailing && <div className="gk-navigation__trailing">{trailing}</div>}
   </nav>;
 }
+
+
+export interface SkeletonProps { className?: string; width?: string | number; height?: string | number; radius?: string | number; }
+export function Skeleton({className="",width="100%",height=16,radius=12}:SkeletonProps){
+  return <span aria-hidden="true" className={["gk-skeleton",className].filter(Boolean).join(" ")} style={{width,height,borderRadius:radius}}/>;
+}
+
+export function SectionHeading({eyebrow,title,description,action,className=""}:{eyebrow?:string;title:ReactNode;description?:ReactNode;action?:ReactNode;className?:string}){
+  return <header className={["gk-section-heading",className].filter(Boolean).join(" ")}>
+    <div>{eyebrow&&<span className="gk-eyebrow">{eyebrow}</span>}<h2>{title}</h2>{description&&<p>{description}</p>}</div>
+    {action&&<div className="gk-section-heading__action">{action}</div>}
+  </header>;
+}
+
+export function ProgressBar({value,max=100,label,className=""}:{value:number;max?:number;label?:string;className?:string}){
+  const safeMax=max>0?max:100;
+  const percent=Math.min(100,Math.max(0,(value/safeMax)*100));
+  return <div className={["gk-progress",className].filter(Boolean).join(" ")} role="progressbar" aria-valuenow={Math.round(percent)} aria-valuemin={0} aria-valuemax={100} aria-label={label||"Progress"}>
+    <span className="gk-progress__track"><i style={{width:percent+"%"}}/></span>
+    {label&&<span className="gk-progress__label">{label}</span>}
+  </div>;
+}
+
+export function EmptyState({title,description,action,icon,className=""}:{title:string;description?:string;action?:ReactNode;icon?:ReactNode;className?:string}){
+  return <section className={["gk-empty-state",className].filter(Boolean).join(" ")}>
+    {icon&&<span className="gk-empty-state__icon">{icon}</span>}
+    <h3>{title}</h3>{description&&<p>{description}</p>}{action&&<div className="gk-empty-state__action">{action}</div>}
+  </section>;
+}
+
+export function Divider({className=""}:{className?:string}){
+  return <hr className={["gk-divider",className].filter(Boolean).join(" ")}/>;
+}
