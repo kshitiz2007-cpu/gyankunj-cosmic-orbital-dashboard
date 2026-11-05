@@ -25,7 +25,7 @@ export default function Home() {
         </div>
         <div className="landing-orbit-art" aria-label="Decorative orbital illustration">
           <div className="landing-orbit-ring landing-ring-one" /><div className="landing-orbit-ring landing-ring-two" /><div className="landing-orbit-ring landing-ring-three" />
-          <div className="planet landing-planet-main"><GraduationCap size={42} strokeWidth={1.2} /></div>
+          <div className="landing-planet-main"><GraduationCap size={42} strokeWidth={1.2} /></div>
           <span className="landing-orbit-node landing-node-one"><Sparkles size={17} /></span><span className="landing-orbit-node landing-node-two"><BookOpen size={16} /></span><span className="landing-orbit-node landing-node-three"><Atom size={17} /></span>
           <span className="landing-orbit-caption">KNOWLEDGE IN MOTION</span>
         </div>
@@ -35,11 +35,11 @@ export default function Home() {
       <section className="landing-welcome-row" id="today"><div><span className="landing-section-kicker">THURSDAY · YOUR DAILY PULSE</span><h2>Good to see you again.</h2><p>Your goals are closer than they feel. Let&apos;s make today meaningful.</p></div><div className="landing-streak"><Flame size={20} /><div><strong>Keep your rhythm</strong><span>Show up. Learn. Repeat.</span></div></div></section>
 
       <section className="landing-module-section" id="modules"><div className="landing-section-heading"><div><span className="landing-section-kicker">THE LEARNING CONSTELLATION</span><h2>Choose your next move</h2></div><a href="#progress" className="landing-text-link">Explore all <ArrowUpRight size={16} /></a></div>
-        <div className="landing-module-grid">{modules.map((item, index) => { const Icon = item.icon; return <a className={`module-card ${item.tone}`} href="#progress" key={item.title}><div className="landing-module-top"><span className="landing-module-icon"><Icon size={21} /></span><span className="landing-module-index">0{index + 1}</span></div><div><span className="landing-module-tag">{item.tag}</span><h3>{item.title}</h3><p>{item.subtitle}</p></div><span className="landing-module-arrow"><ArrowUpRight size={18} /></span></a>; })}</div>
+        <div className="landing-module-grid">{modules.map((item, index) => { const Icon = item.icon; return <a className={`landing-module-card ${item.tone}`} href="#progress" key={item.title}><div className="landing-module-top"><span className="landing-module-icon"><Icon size={21} /></span><span className="landing-module-index">0{index + 1}</span></div><div><span className="landing-module-tag">{item.tag}</span><h3>{item.title}</h3><p>{item.subtitle}</p></div><span className="landing-module-arrow"><ArrowUpRight size={18} /></span></a>; })}</div>
       </section>
 
-      <section className="landing-progress-panel" id="progress"><div><span className="landing-section-kicker">A JOURNEY, NOT A RACE</span><h2>Consistency creates momentum.</h2><p>Your personal learning dashboard will bring your study landing-streaks, quiz accuracy, saved resources and milestones together.</p></div><div className="landing-progress-orb"><Trophy size={27} /><span>YOUR</span><strong>ORBIT</strong></div></section>
-      <footer><a className="landing-brand footer-brand" href="#home"><span className="landing-brand-mark"><Orbit size={18} /></span><span>gyankunj<span className="landing-brand-dot">.</span></span></a><span>LEARN WITH PURPOSE. GROW WITHOUT LIMITS.</span><span>© 2026 GYANKUNJ ACADEMY</span></footer>
+      <section className="landing-progress-panel" id="progress"><div><span className="landing-section-kicker">A JOURNEY, NOT A RACE</span><h2>Consistency creates momentum.</h2><p>Your personal learning dashboard will bring your study streaks, quiz accuracy, saved resources and milestones together.</p></div><div className="landing-progress-orb"><Trophy size={27} /><span>YOUR</span><strong>ORBIT</strong></div></section>
+      <footer><a className="landing-brand landing-footer-brand" href="#home"><span className="landing-brand-mark"><Orbit size={18} /></span><span>gyankunj<span className="landing-brand-dot">.</span></span></a><span>LEARN WITH PURPOSE. GROW WITHOUT LIMITS.</span><span>© 2026 GYANKUNJ ACADEMY</span></footer>
     </main>
   );
 }
