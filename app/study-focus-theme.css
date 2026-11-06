@@ -629,3 +629,109 @@ body{background:var(--gk-bg-aurora)!important;background-attachment:fixed!import
  :where(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.card,.panel,.library-subject-card,.library-topic-card,.library-resource-card,.library-reader,.question-card,.drill-progress-card,.question-rail,.progress-panel,.syllabus-sidebar,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-form-panel,.glimpse-card,.drill-archive-card,.vault-flashcard){border-radius:20px!important}
 }
 @media(prefers-reduced-motion:reduce){:where(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) *{transition:none!important;animation:none!important}}
+
+
+/* AETHER HOTFIX 02 — high-specificity route overrides.
+   Page stylesheets load after the root stylesheet; these selectors intentionally
+   outrank their route-level selectors so the shared system actually renders. */
+html body{background:#eee8f6!important;color:#30213f!important;color-scheme:light!important}
+html body .glimpses-app,html body .drill-app,html body .vault-app,html body .progress-app,
+html body .syllabus-app,html body .library-app,html body .profile-app,html body .admin-root{
+ background:radial-gradient(ellipse at 12% 8%,rgba(216,187,240,.55),transparent 40%),radial-gradient(ellipse at 88% 24%,rgba(244,204,229,.42),transparent 40%),#eee8f6!important;
+ color:#30213f!important;
+}
+html body .glimpses-app .glimpse-card,
+html body .glimpses-app .glimpse-card.glimpse-editorial,
+html body .glimpses-app .glimpse-card.glimpse-drill,
+html body .glimpses-app .glimpse-card.glimpse-mains,
+html body .drill-app .question-card,
+html body .drill-app .drill-progress-card,
+html body .drill-app .question-rail,
+html body .drill-app .result-card,
+html body .vault-app .vault-state,
+html body .vault-app .vault-flashcard,
+html body .progress-app .progress-hero,
+html body .progress-app .progress-kpis>div,
+html body .progress-app .si-insight-card,
+html body .progress-app .progress-panel,
+html body .syllabus-app .syllabus-sidebar,
+html body .syllabus-app .syllabus-paper,
+html body .syllabus-app .syllabus-topic,
+html body .library-app .library-subject-card,
+html body .library-app .library-resource-card,
+html body .profile-app .profile-panel,
+html body .profile-app .profile-form-panel,
+html body .profile-app .profile-stats article,
+html body .profile-app .profile-goals,
+html body .admin-root .admin-metric,
+html body .admin-root .admin-module,
+html body .admin-root .admin-panel,
+html body .admin-root .admin-card{
+ background:linear-gradient(145deg,#3c304e 0%,#344655 100%)!important;
+ color:#fffaff!important;border:1px solid rgba(231,213,248,.3)!important;
+ border-radius:24px!important;
+ box-shadow:0 18px 42px rgba(48,30,66,.2),inset 0 1px 0 rgba(255,255,255,.1)!important;
+ backdrop-filter:blur(18px) saturate(140%)!important;
+ -webkit-backdrop-filter:blur(18px) saturate(140%)!important;
+}
+html body .glimpses-app .glimpse-card h2,
+html body .glimpses-app .glimpse-card p,
+html body .glimpses-app .glimpse-card strong,
+html body .drill-app .question-card h1,
+html body .drill-app .question-card h2,
+html body .drill-app .question-card h3,
+html body .drill-app .question-card p,
+html body .drill-app .question-card label,
+html body .drill-app .question-rail *,
+html body .vault-app .vault-state *,
+html body .vault-app .vault-flashcard *,
+html body .progress-app .progress-hero *,
+html body .progress-app .progress-kpis *,
+html body .progress-app .si-insight-card *,
+html body .progress-app .progress-panel *,
+html body .syllabus-app .syllabus-sidebar *,
+html body .syllabus-app .syllabus-paper *,
+html body .syllabus-app .syllabus-topic *,
+html body .library-app .library-subject-card *,
+html body .library-app .library-resource-card *,
+html body .profile-app .profile-panel *,
+html body .profile-app .profile-form-panel *,
+html body .profile-app .profile-goals *,
+html body .admin-root .admin-metric *,
+html body .admin-root .admin-module *,
+html body .admin-root .admin-panel *,
+html body .admin-root .admin-card *{color:#f7f2fb!important}
+html body .glimpses-app .glimpses-hero *,
+html body .vault-app .vault-title-row *,
+html body .vault-app .vault-topbar *,
+html body .progress-app .progress-top *,
+html body .syllabus-app .syllabus-top *,
+html body .library-app .library-top *,
+html body .library-app .library-hero *,
+html body .profile-app .profile-top *,
+html body .admin-root .admin-topbar{color:#554365!important}
+html body .drill-app .drill-topbar{background:rgba(248,244,252,.96)!important;border:1px solid #d8c9e6!important}
+html body .drill-app .drill-back,html body .drill-app .drill-session-label,
+html body .drill-app .drill-kicker{color:#58476a!important}
+html body .drill-app .option-list button,
+html body .drill-app .option-list [role="button"]{
+ background:rgba(255,255,255,.1)!important;color:#fffaff!important;
+ border:1px solid rgba(224,205,245,.3)!important;border-radius:16px!important;
+}
+html body .drill-app .option-list button *,
+html body .drill-app .option-list [role="button"] *{color:#fffaff!important}
+html body .vault-app .vault-categories button,
+html body .vault-app .vault-language{background:rgba(255,255,255,.85)!important;color:#554365!important;border:1px solid #d8c6e8!important}
+html body .vault-app .vault-categories button.active{background:linear-gradient(115deg,#b879ec,#9b68d5 48%,#dc79b4)!important;color:#fff!important}
+html body .library-app .library-tools input,
+html body .drill-app input,html body .drill-app textarea,html body .drill-app select,
+html body .admin-root input,html body .admin-root textarea,html body .admin-root select,
+html body .profile-app input,html body .profile-app textarea,html body .profile-app select{
+ background:#fff!important;color:#30213f!important;border:1px solid #d7c6e7!important;border-radius:14px!important;
+}
+html body .gk-student-dock{
+ background:rgba(249,245,253,.97)!important;border:1px solid rgba(194,171,218,.8)!important;
+ box-shadow:0 12px 36px rgba(65,44,83,.2),inset 0 1px 0 #fff!important;
+}
+html body .gk-student-dock .gk-dock-item{color:#766783!important}
+html body .gk-student-dock .gk-dock-item.is-active{color:#7d42b2!important}
