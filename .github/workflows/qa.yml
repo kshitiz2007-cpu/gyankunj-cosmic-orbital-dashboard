@@ -1,0 +1,58 @@
+name: Gyankunj QA
+
+on:
+  pull_request:
+    branches:
+      - experiment/canva-design-system-preview
+  push:
+    branches:
+      - experiment/canva-design-system-preview
+      - qa/automated-smoke-and-rls
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gyankunj-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint and production build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+  browser-smoke:
+    name: Chromium responsive smoke tests
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Install Playwright for CI
+        run: npm install --no-save @playwright/test
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run browser smoke tests
+        run: npx playwright test
+      - name: Upload browser report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gyankunj-playwright-report
+          path: playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7
