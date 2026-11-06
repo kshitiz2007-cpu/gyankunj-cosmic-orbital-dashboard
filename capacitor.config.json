@@ -1,0 +1,13 @@
+{
+  "appId": "com.gyankunj.academy",
+  "appName": "Gyankunj",
+  "webDir": "public",
+  "server": {
+    "url": "https://upsc-compass.onrender.com",
+    "cleartext": false,
+    "allowNavigation": [
+      "upsc-compass.onrender.com"
+    ]
+  },
+  "android": {}
+}

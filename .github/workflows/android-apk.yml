@@ -1,0 +1,58 @@
+name: Android APK (Capacitor)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/capacitor-android-wrapper
+  pull_request:
+    branches:
+      - experiment/canva-design-system-preview
+      - qa/automated-smoke-and-rls
+
+permissions:
+  contents: read
+
+jobs:
+  build-debug-apk:
+    name: Build Capacitor debug APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Install project dependencies
+        run: npm install
+
+      - name: Install Capacitor Android tooling
+        run: npm install --no-save @capacitor/core@7 @capacitor/android@7 @capacitor/cli@7
+
+      - name: Generate Android project
+        run: npx cap add android
+
+      - name: Sync Capacitor
+        run: npx cap sync android
+
+      - name: Build debug APK
+        working-directory: android
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: gyankunj-android-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
