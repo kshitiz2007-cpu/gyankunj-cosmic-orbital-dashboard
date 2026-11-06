@@ -1,0 +1,598 @@
+/* Gyankunj Focus Nebula — study-first glassmorphism theme
+   Visual intent: calm midnight indigo canvas, violet focus accent, rose action glow,
+   restrained cyan information states and warm amber progress markers. */
+:root{
+  color-scheme:dark;
+  --gk-bg:#0c1020;
+  --gk-bg-elevated:#131a31;
+  --gk-panel:#18213d;
+  --gk-panel-2:#202b4b;
+  --gk-text:#f4f5ff;
+  --gk-muted:#c2c9e0;
+  --gk-subtle:#929bb9;
+  --gk-accent:#a78bfa;
+  --gk-accent-strong:#8b5cf6;
+  --gk-accent-soft:#d8ccff;
+  --gk-cyan:#7dd3fc;
+  --gk-line:rgba(190,181,255,.18);
+  --gk-glass:linear-gradient(145deg,rgba(33,42,75,.82),rgba(17,23,45,.88));
+  --gk-gradient-brand:linear-gradient(120deg,#8b5cf6 0%,#c084fc 48%,#ec4899 100%);
+  --gk-gradient:var(--gk-gradient-brand);
+  --gk-bg-aurora:radial-gradient(ellipse at 18% 8%,rgba(99,102,241,.25),transparent 38%),radial-gradient(ellipse at 86% 18%,rgba(192,132,252,.18),transparent 36%),radial-gradient(ellipse at 52% 88%,rgba(236,72,153,.12),transparent 40%),#0c1020;
+  --gk-shadow:0 18px 52px rgba(3,6,20,.42);
+  --gk-shadow-glow:0 0 22px rgba(167,139,250,.24),0 0 46px rgba(236,72,153,.12);
+  --gk-radius:22px;
+  --gk-radius-card:22px;
+  --gk-radius-pill:999px;
+  --gk-button-primary:var(--gk-gradient-brand);
+  --gk-button-secondary-bg:rgba(255,255,255,.055);
+  --gk-button-secondary-border:rgba(190,181,255,.24);
+  --gk-focus-ring:rgba(192,132,252,.42);
+}
+html,body{background:var(--gk-bg)!important;color:var(--gk-text)}
+body{background-image:var(--gk-bg-aurora)!important;background-attachment:fixed}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--gk-accent-soft)!important;outline-offset:3px}
+:where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app){
+  color:var(--gk-text)!important;
+  background:radial-gradient(ellipse at 82% 4%,rgba(129,140,248,.13),transparent 34%),radial-gradient(ellipse at 8% 76%,rgba(192,132,252,.09),transparent 32%),var(--gk-bg)!important;
+}
+.app-shell{
+  --gold:#f4c879;
+  --line:var(--gk-line);
+  background:radial-gradient(ellipse at 50% 28%,rgba(99,102,241,.23),transparent 40%),radial-gradient(ellipse at 10% 72%,rgba(192,132,252,.14),transparent 32%),radial-gradient(ellipse at 90% 72%,rgba(236,72,153,.11),transparent 34%),#0c1020!important;
+}
+.app-shell .cosmos-noise{opacity:.22!important;filter:hue-rotate(20deg) saturate(.8)}
+.app-shell .brand-mark{color:#d8ccff!important;text-shadow:0 0 24px rgba(167,139,250,.72)!important}
+.app-shell .brand small{color:#c4b5fd!important}
+.app-shell .eyebrow,.app-shell .vertical-index,.app-shell .hero-caption,.app-shell .section-kicker{color:#c4b5fd!important}
+.app-shell .streak{color:#f4c879!important}
+.app-shell .searchbox,.app-shell .icon-button,.app-shell .avatar{
+  border-color:rgba(190,181,255,.24)!important;
+}
+.app-shell .searchbox{
+  background:linear-gradient(120deg,rgba(38,48,85,.76),rgba(18,25,49,.82))!important;
+  backdrop-filter:blur(20px) saturate(145%);
+  -webkit-backdrop-filter:blur(20px) saturate(145%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 14px 36px rgba(2,5,18,.3)!important;
+}
+.app-shell .avatar{background:linear-gradient(135deg,#8b5cf6,#c084fc 55%,#db2777)!important;box-shadow:0 0 20px rgba(167,139,250,.25)}
+.app-shell .orbit{border-color:rgba(196,181,253,.26)!important}
+.app-shell .orbit--one{box-shadow:0 0 28px rgba(139,92,246,.16),inset 0 0 22px rgba(192,132,252,.07)!important}
+.app-shell .orbit--two{border-color:rgba(125,211,252,.16)!important}
+.app-shell .orbit--three{border-color:rgba(196,181,253,.16)!important}
+.app-shell .core{
+  border-color:rgba(216,204,255,.52)!important;
+  background:radial-gradient(circle at 35% 25%,rgba(82,79,145,.94),rgba(15,20,43,.97) 60%,#090d1c)!important;
+  box-shadow:0 0 0 8px rgba(167,139,250,.055),0 0 38px rgba(139,92,246,.3),inset 0 0 34px rgba(125,211,252,.1)!important;
+}
+.app-shell .core-star{color:#e9ddff!important;text-shadow:0 0 18px #a78bfa!important}
+.app-shell .orb-node{
+  border-color:color-mix(in srgb,var(--node) 72%,rgba(210,205,255,.35))!important;
+  background:radial-gradient(circle at 34% 22%,color-mix(in srgb,var(--node) 22%,rgba(255,255,255,.08)),rgba(15,21,43,.94) 70%)!important;
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--node) 7%,transparent),0 0 25px color-mix(in srgb,var(--node) 25%,transparent),inset 0 0 24px color-mix(in srgb,var(--node) 12%,transparent),inset 0 1px 1px #fff5!important;
+  backdrop-filter:blur(16px) saturate(145%);
+  -webkit-backdrop-filter:blur(16px) saturate(145%);
+}
+.app-shell .orb-node--drill{--node:#c4b5fd!important}
+.app-shell .orb-node--editorial{--node:#f0abfc!important}
+.app-shell .orb-node--mock{--node:#93c5fd!important}
+.app-shell .orb-node--library{--node:#a5b4fc!important}
+.app-shell .orb-node--progress{--node:#f4c879!important}
+.app-shell .orb-node--live{--node:#7dd3fc!important}
+.app-shell .orb-node--ai{--node:#f9a8d4!important}
+.app-shell .orb-node--syllabus{--node:#a7f3d0!important}
+.app-shell .orb-node__title{color:#f5f3ff!important}
+.app-shell .orb-node__sub{color:#c5cbe0!important}
+.app-shell .orb-node__arrow{color:var(--node)!important}
+.app-shell .planet{filter:hue-rotate(22deg) saturate(.8)}
+/* Feature content uses one calm, readable glass family rather than a paper card beside glass. */
+.app-shell .editorial{
+  border:1px solid rgba(190,181,255,.22)!important;border-radius:22px!important;
+  background:radial-gradient(ellipse at 92% 18%,rgba(236,72,153,.14),transparent 42%),linear-gradient(145deg,rgba(39,48,83,.88),rgba(16,23,45,.94))!important;
+  color:var(--gk-text)!important;box-shadow:var(--gk-shadow),inset 0 1px 0 rgba(255,255,255,.07)!important;
+  backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+}
+.app-shell .editorial:after{background:radial-gradient(ellipse at 88% 55%,rgba(139,92,246,.16),transparent 48%)!important}
+.app-shell .editorial-kicker{color:#d8ccff!important}
+.app-shell .editorial-kicker i{background:#c4b5fd!important;box-shadow:0 0 12px rgba(167,139,250,.6)}
+.app-shell .editorial h1{color:#f7f5ff!important}
+.app-shell .editorial p{color:#c8cde1!important}
+.app-shell .editorial-meta{color:#d9d6ed!important}
+.app-shell .editorial-meta b{border-color:rgba(196,181,253,.35)!important;color:#e9ddff!important;border-radius:999px!important}
+.app-shell .chip-art{border-color:#a78bfa!important;background:linear-gradient(135deg,#26335a,#11182e)!important;box-shadow:0 15px 30px rgba(3,6,20,.45),0 0 24px rgba(139,92,246,.2)!important}
+.app-shell .chip-art:before{border-color:#c4b5fd!important}.app-shell .chip-art:after{border-color:#7dd3fc!important}
+.app-shell .chip-core{background:linear-gradient(135deg,#f4c879,#c084fc)!important;box-shadow:0 0 24px rgba(192,132,252,.4)!important}
+.app-shell .round-action{border-color:rgba(196,181,253,.4)!important;background:linear-gradient(135deg,#7c3aed,#be185d)!important;box-shadow:0 0 20px rgba(139,92,246,.25)}
+.app-shell .drill-panel{
+  border:1px solid rgba(190,181,255,.22)!important;border-radius:22px!important;
+  background:radial-gradient(circle at 82% 18%,rgba(125,211,252,.1),transparent 44%),linear-gradient(145deg,rgba(35,45,78,.9),rgba(14,21,43,.96))!important;
+  box-shadow:var(--gk-shadow),inset 0 1px 0 rgba(255,255,255,.07)!important;
+  backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+}
+.app-shell .drill-heading{color:#e9ddff!important}
+.app-shell .target-icon{color:#d8ccff!important;background:rgba(167,139,250,.13)!important}
+.app-shell .drill-heading button{border-color:rgba(196,181,253,.4)!important;background:rgba(255,255,255,.045)!important}
+.app-shell .feature-card,.app-shell .editorial-bento,.app-shell .quick-card,.app-shell .dashboard-card{
+  border-color:var(--gk-line)!important;box-shadow:var(--gk-shadow)!important;
+}
+/* Student routes: glass for navigation and summary cards; dense reading/data surfaces stay opaque. */
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(.card,.panel,.library-topic-card,.library-resource-card,.glimpse-card,.drill-archive-card,.progress-kpi,.si-insight-card,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-goals,.profile-form-panel,.ai-companion-composer,.ai-companion-prompts,.ai-companion-answer,.vault-state,.editorial-reading-card){
+  border-color:var(--gk-line)!important;border-radius:var(--gk-radius-card)!important;
+  background:var(--gk-glass)!important;color:var(--gk-text)!important;
+  box-shadow:var(--gk-shadow),inset 0 1px 0 rgba(255,255,255,.045)!important;
+  backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%);
+}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(.library-reader,.editorial-article,.drill-question-card,.result-card,.admin-table-wrap){background:rgba(14,20,40,.94)!important}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(h1,h2,h3,h4){color:var(--gk-text)}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(p,.muted,.description){color:var(--gk-muted)}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(input,textarea,select){background:rgba(12,16,32,.88)!important;color:var(--gk-text)!important;border-color:var(--gk-line)!important}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.button-primary,.submit-drill,.vault-mark,.vault-controls>button,.auth-submit,.ai-companion-submit){background:var(--gk-gradient-brand)!important;box-shadow:0 8px 26px rgba(139,92,246,.24),0 0 28px rgba(236,72,153,.13)!important}
+.admin-root :is(.admin-sidebar,.admin-main,.admin-builder,.admin-module,.admin-metric,.admin-table-wrap,.admin-panel,.admin-card){background:var(--gk-glass)!important;border-color:var(--gk-line)!important;color:var(--gk-text)!important}
+.gk-bento-card,.gk-surface,.gk-stat-card{border-color:var(--gk-line-strong,var(--gk-line))!important;background:var(--gk-glass)!important;box-shadow:var(--gk-shadow),inset 0 1px 0 rgba(255,255,255,.05)!important}
+.gk-bento-card--rose,.gk-stat-card--rose,.gk-surface--rose{background:radial-gradient(ellipse at 90% 0%,rgba(236,72,153,.12),transparent 48%),var(--gk-glass)!important}
+.gk-bento-card--plum,.gk-stat-card--plum,.gk-surface--plum{background:radial-gradient(ellipse at 90% 0%,rgba(139,92,246,.16),transparent 48%),var(--gk-glass)!important}
+.gk-input-wrap,.gk-select-wrap{background:rgba(12,16,32,.82)!important;border-color:var(--gk-line)!important}
+.gk-navigation{background:rgba(18,24,47,.86)!important;border-color:var(--gk-line)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.gk-navigation__link.is-active,.gk-tabs button.is-active{background:var(--gk-gradient-brand)!important;box-shadow:var(--gk-shadow-glow)!important}
+.gk-eyebrow,.gk-field__label,.gk-section-heading .gk-eyebrow{color:var(--gk-accent-soft)!important}
+.gk-progress__track i{background:linear-gradient(90deg,#8b5cf6,#c084fc,#ec4899)!important;box-shadow:0 0 14px rgba(167,139,250,.35)!important}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .app-shell .orb-node,.app-shell .editorial,.app-shell .drill-panel,:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.profile-app,.glimpses-app,.vault-app) .card{background:rgba(20,27,52,.96)!important}
+}
+@media(max-width:700px){
+  .app-shell .editorial,.app-shell .drill-panel{border-radius:18px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .app-shell .orb-node,.app-shell .editorial,.app-shell .drill-panel{transition:none!important}
+}
+
+
+/* ── Palette presets: one interaction changes the entire learning canvas ── */
+:root{--gk-glass-intensity:.72;--gk-glass-blur:22px}
+html[data-palette="nebula"]{--gk-bg:#0c1020;--gk-bg-elevated:#131a31;--gk-panel:#18213d;--gk-text:#f4f5ff;--gk-muted:#c2c9e0;--gk-accent:#a78bfa;--gk-accent-soft:#d8ccff;--gk-cyan:#7dd3fc;--gk-line:rgba(190,181,255,.18);--gk-gradient-brand:linear-gradient(120deg,#8b5cf6,#c084fc 48%,#ec4899);--gk-glass:linear-gradient(145deg,rgba(45,54,92,var(--gk-glass-intensity)),rgba(17,23,45,.92))}
+html[data-palette="rose"]{--gk-bg:#160d1b;--gk-bg-elevated:#211329;--gk-panel:#291a30;--gk-text:#fff7fb;--gk-muted:#c7b7c5;--gk-accent:#ec4899;--gk-accent-soft:#f9a8d4;--gk-cyan:#c084fc;--gk-line:rgba(255,211,235,.17);--gk-gradient-brand:linear-gradient(125deg,#f9a8d4,#ec4899 48%,#a855f7);--gk-glass:linear-gradient(145deg,rgba(67,38,73,var(--gk-glass-intensity)),rgba(25,14,34,.93))}
+html[data-palette="ocean"]{--gk-bg:#071521;--gk-bg-elevated:#0d2033;--gk-panel:#12304a;--gk-text:#effaff;--gk-muted:#b7d0df;--gk-accent:#38bdf8;--gk-accent-soft:#bae6fd;--gk-cyan:#5eead4;--gk-line:rgba(125,211,252,.2);--gk-gradient-brand:linear-gradient(120deg,#0891b2,#38bdf8 52%,#818cf8);--gk-glass:linear-gradient(145deg,rgba(20,68,94,var(--gk-glass-intensity)),rgba(8,27,46,.94))}
+html[data-palette="aurora"]{--gk-bg:#10172b;--gk-bg-elevated:#19223d;--gk-panel:#202d49;--gk-text:#f2fff9;--gk-muted:#c0d7d0;--gk-accent:#2dd4bf;--gk-accent-soft:#a7f3d0;--gk-cyan:#a3e635;--gk-line:rgba(110,231,183,.2);--gk-gradient-brand:linear-gradient(120deg,#14b8a6,#8b5cf6 55%,#a3e635);--gk-glass:linear-gradient(145deg,rgba(31,86,79,var(--gk-glass-intensity)),rgba(15,26,48,.94))}
+html[data-palette="coral"]{--gk-bg:#241521;--gk-bg-elevated:#321d2b;--gk-panel:#452433;--gk-text:#fff8f3;--gk-muted:#e5c8bd;--gk-accent:#fb7185;--gk-accent-soft:#fecaca;--gk-cyan:#fdba9a;--gk-line:rgba(255,190,170,.2);--gk-gradient-brand:linear-gradient(120deg,#fb7185,#fdba9a 52%,#fbbf24);--gk-glass:linear-gradient(145deg,rgba(106,48,61,var(--gk-glass-intensity)),rgba(39,20,37,.94))}
+html[data-palette] body{background:var(--gk-bg)!important;color:var(--gk-text)!important}
+html[data-palette] .app-shell{background:radial-gradient(ellipse at 50% 28%,color-mix(in srgb,var(--gk-accent) 22%,transparent),transparent 42%),radial-gradient(ellipse at 10% 75%,color-mix(in srgb,var(--gk-cyan) 12%,transparent),transparent 32%),var(--gk-bg)!important}
+html[data-palette] .app-shell .orb-node{border-color:color-mix(in srgb,var(--node) 70%,var(--gk-line))!important}
+html[data-palette] .app-shell .core{border-color:color-mix(in srgb,var(--gk-accent-soft) 65%,transparent)!important}
+html[data-palette] :is(.gk-studio-panel,.gk-navigation,.gk-bento-card,.gk-surface,.gk-stat-card){color:var(--gk-text)}
+/* Material presets inspired by liquid-glass lenses and frosted panes. */
+html[data-glass="frosted"]{--gk-glass-blur:22px}
+html[data-glass="clear"]{--gk-glass-blur:9px}
+html[data-glass="chromatic"]{--gk-glass-blur:17px}
+html[data-glass="liquid"]{--gk-glass-blur:26px}
+html[data-glass] .app-shell .orb-node,
+html[data-glass] .app-shell .editorial,
+html[data-glass] .app-shell .drill-panel,
+html[data-glass] :where(.library-app,.drill-app,.progress-app,.syllabus-app,.profile-app,.glimpses-app,.vault-app) :is(.card,.panel,.glimpse-card,.profile-panel,.library-topic-card){
+  backdrop-filter:blur(var(--gk-glass-blur)) saturate(155%);
+  -webkit-backdrop-filter:blur(var(--gk-glass-blur)) saturate(155%);
+}
+html[data-glass="clear"] .app-shell .orb-node{background:rgba(255,255,255,.055)!important;box-shadow:inset 0 1px 0 #ffffff45,0 12px 35px #05081744!important}
+html[data-glass="chromatic"] .app-shell .orb-node,
+html[data-glass="chromatic"] .app-shell .editorial,
+html[data-glass="chromatic"] .app-shell .drill-panel{border-image:linear-gradient(125deg,#7dd3fc99,#c084fcaa,#f9a8d4aa) 1}
+html[data-glass="liquid"] .app-shell .orb-node,
+html[data-glass="liquid"] .app-shell .editorial,
+html[data-glass="liquid"] .app-shell .drill-panel{position:relative;overflow:hidden;box-shadow:inset 0 1px 0 #ffffff6b,inset 0 -1px 0 #ffffff12,0 18px 48px #03061755,0 0 26px color-mix(in srgb,var(--gk-accent) 18%,transparent)!important}
+html[data-glass="liquid"] .app-shell .orb-node:after,
+html[data-glass="liquid"] .app-shell .editorial:before,
+html[data-glass="liquid"] .app-shell .drill-panel:after{content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;background:linear-gradient(135deg,#ffffff35,transparent 28%,transparent 70%,#ffffff12);opacity:.8}
+html[data-glass="chromatic"] .gk-bento-card,html[data-glass="chromatic"] .gk-surface{box-shadow:var(--gk-shadow),inset 0 1px 0 #ffffff55,0 0 22px color-mix(in srgb,var(--gk-accent) 16%,transparent)!important}
+html[data-glass="clear"] .gk-bento-card,html[data-glass="clear"] .gk-surface{backdrop-filter:blur(9px) saturate(180%)}
+html[data-glass="liquid"] .gk-bento-card,html[data-glass="liquid"] .gk-surface{backdrop-filter:blur(26px) saturate(180%);box-shadow:inset 0 1px 0 #ffffff55,var(--gk-shadow),var(--gk-shadow-glow)!important}
+/* Admin-only Liquid Glass Studio controls. */
+.gk-palette-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.gk-palette-option,.gk-glass-option{min-width:0;padding:10px;border:1px solid var(--gk-line);border-radius:16px;background:rgba(255,255,255,.035);color:var(--gk-text);text-align:left;cursor:pointer;transition:transform .2s,border-color .2s,background .2s}
+.gk-palette-option.is-active,.gk-glass-option.is-active{border-color:var(--gk-accent);background:color-mix(in srgb,var(--gk-accent) 12%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--gk-accent) 28%,transparent),0 0 24px color-mix(in srgb,var(--gk-accent) 14%,transparent)}
+.gk-palette-option:hover,.gk-glass-option:hover{transform:translateY(-2px)}
+.gk-palette-swatches{display:flex;height:37px;overflow:hidden;border-radius:10px;margin-bottom:9px}
+.gk-palette-swatches i{flex:1;min-width:0}
+.gk-palette-option strong,.gk-glass-option strong{display:block;font-size:11px}
+.gk-palette-option small,.gk-glass-option small{display:block;margin-top:4px;color:var(--gk-muted);font-size:8px;line-height:1.4}
+.gk-glass-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.gk-glass-demo{position:relative;display:grid;place-items:center;height:58px;margin-bottom:9px;overflow:hidden;border:1px solid #ffffff45;border-radius:13px;background:linear-gradient(125deg,#fbcfe8,#a78bfa 48%,#10172b);box-shadow:inset 0 1px 0 #ffffff9c}
+.gk-glass-demo:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#ffffff80,transparent 42%,#ffffff18)}
+.gk-glass-demo i{position:relative;width:55%;height:22px;border:1px solid #ffffffb0;border-radius:999px;background:rgba(255,255,255,.26);backdrop-filter:blur(8px);box-shadow:0 0 18px #ffffff77,inset 0 1px 0 #fff}
+.gk-glass-demo--clear i{background:#ffffff12;backdrop-filter:blur(2px)}
+.gk-glass-demo--chromatic i{box-shadow:0 0 0 2px #7dd3fc88,0 0 0 4px #f9a8d466,0 0 18px #fff}
+.gk-glass-demo--liquid i{background:linear-gradient(120deg,#ffffffa0,#c084fc66,#ffffff24);box-shadow:inset 0 2px 4px #fff,0 0 24px #fff}
+.gk-glass-intensity{display:grid;grid-template-columns:1fr auto;gap:9px;margin-top:14px;color:var(--gk-muted);font-size:11px}
+.gk-glass-intensity input{grid-column:1/-1;width:100%;accent-color:var(--gk-accent)}
+.gk-glass-intensity output{color:var(--gk-accent-soft);font-variant-numeric:tabular-nums}
+@media(max-width:720px){.gk-palette-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.gk-glass-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* ── Strong palette propagation: override legacy hard-coded dashboard surfaces ── */
+html[data-palette]{
+  --gk-shadow-glow:0 0 22px color-mix(in srgb,var(--gk-accent) 28%,transparent),0 0 46px color-mix(in srgb,var(--gk-cyan) 15%,transparent);
+  --gk-button-secondary-border:color-mix(in srgb,var(--gk-accent) 30%,transparent);
+  --gk-bg-aurora:radial-gradient(ellipse at 18% 8%,color-mix(in srgb,var(--gk-accent) 25%,transparent),transparent 38%),radial-gradient(ellipse at 86% 18%,color-mix(in srgb,var(--gk-cyan) 18%,transparent),transparent 36%),radial-gradient(ellipse at 52% 88%,color-mix(in srgb,var(--gk-accent) 16%,transparent),transparent 40%),var(--gk-bg);
+}
+html[data-palette] body{background:var(--gk-bg-aurora)!important;background-color:var(--gk-bg)!important;color:var(--gk-text)!important}
+html[data-palette] .app-shell{
+  background:radial-gradient(ellipse at 50% 28%,color-mix(in srgb,var(--gk-accent) 24%,transparent),transparent 40%),radial-gradient(ellipse at 10% 72%,color-mix(in srgb,var(--gk-cyan) 15%,transparent),transparent 32%),radial-gradient(ellipse at 90% 72%,color-mix(in srgb,var(--gk-accent) 14%,transparent),transparent 34%),var(--gk-bg)!important;
+  color:var(--gk-text)!important;
+}
+html[data-palette] .app-shell .core{
+  border-color:color-mix(in srgb,var(--gk-accent-soft) 65%,transparent)!important;
+  background:radial-gradient(circle at 35% 25%,color-mix(in srgb,var(--gk-accent) 40%,var(--gk-panel)),var(--gk-bg) 72%)!important;
+  box-shadow:0 0 0 8px color-mix(in srgb,var(--gk-accent) 8%,transparent),0 0 42px color-mix(in srgb,var(--gk-accent) 35%,transparent),inset 0 0 34px color-mix(in srgb,var(--gk-cyan) 16%,transparent)!important;
+}
+html[data-palette] .app-shell .orb-node{
+  background:radial-gradient(circle at 34% 22%,color-mix(in srgb,var(--node) 24%,var(--gk-panel)),color-mix(in srgb,var(--gk-bg) 90%,transparent) 78%)!important;
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--node) 10%,transparent),0 0 28px color-mix(in srgb,var(--node) 30%,transparent),inset 0 0 24px color-mix(in srgb,var(--gk-accent) 15%,transparent),inset 0 1px 1px #fff5!important;
+}
+html[data-palette] .app-shell .editorial{
+  background:radial-gradient(ellipse at 92% 18%,color-mix(in srgb,var(--gk-accent) 25%,transparent),transparent 42%),linear-gradient(145deg,color-mix(in srgb,var(--gk-panel) 94%,var(--gk-accent)),color-mix(in srgb,var(--gk-bg) 96%,var(--gk-panel)))!important;
+  border-color:color-mix(in srgb,var(--gk-accent) 36%,var(--gk-line))!important;
+}
+html[data-palette] .app-shell .drill-panel{
+  background:radial-gradient(circle at 82% 18%,color-mix(in srgb,var(--gk-cyan) 16%,transparent),transparent 44%),linear-gradient(145deg,color-mix(in srgb,var(--gk-panel) 95%,var(--gk-accent)),var(--gk-bg))!important;
+  border-color:var(--gk-line)!important;
+}
+html[data-palette] .app-shell :is(.brand-mark,.brand small,.eyebrow,.vertical-index,.hero-caption,.section-kicker,.editorial-kicker,.drill-heading,.target-icon){color:var(--gk-accent-soft)!important}
+html[data-palette] .app-shell :is(.searchbox,.icon-button){border-color:var(--gk-line)!important}
+html[data-palette] .app-shell .searchbox{background:var(--gk-glass)!important}
+html[data-palette] .app-shell .avatar{background:var(--gk-gradient-brand)!important;box-shadow:0 0 22px color-mix(in srgb,var(--gk-accent) 32%,transparent)!important}
+html[data-palette] .app-shell .round-action{background:var(--gk-gradient-brand)!important;border-color:var(--gk-line)!important}
+html[data-palette] :is(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app){
+  background:radial-gradient(ellipse at 88% 5%,color-mix(in srgb,var(--gk-accent) 17%,transparent),transparent 38%),var(--gk-bg)!important;
+  color:var(--gk-text)!important;
+}
+html[data-palette] :is(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.card,.panel,.library-topic-card,.library-resource-card,.glimpse-card,.drill-archive-card,.progress-kpi,.si-insight-card,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-goals,.profile-form-panel,.ai-companion-composer,.ai-companion-prompts,.ai-companion-answer,.vault-state,.editorial-reading-card){
+  background:var(--gk-glass)!important;border-color:var(--gk-line)!important;color:var(--gk-text)!important;
+}
+html[data-palette] :is(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.button-primary,.submit-drill,.vault-mark,.auth-submit,.ai-companion-submit){
+  background:var(--gk-gradient-brand)!important;box-shadow:0 8px 26px color-mix(in srgb,var(--gk-accent) 25%,transparent)!important;
+}
+html[data-palette] .gk-navigation{background:color-mix(in srgb,var(--gk-panel) 88%,transparent)!important;border-color:var(--gk-line)!important}
+html[data-palette] .gk-navigation__link.is-active,html[data-palette] .gk-tabs button.is-active{background:var(--gk-gradient-brand)!important;box-shadow:var(--gk-shadow-glow)!important}
+html[data-palette] .gk-progress__track i{background:var(--gk-gradient-brand)!important}
+html[data-palette] .gk-palette-option.is-active,html[data-palette] .gk-glass-option.is-active{border-color:var(--gk-accent)!important;box-shadow:0 0 0 1px var(--gk-accent),0 0 25px color-mix(in srgb,var(--gk-accent) 25%,transparent)!important}
+html[data-palette] .gk-palette-option.is-active small{color:var(--gk-accent-soft)!important}
+
+
+/* Palette-aware studio chrome and student dock: remove the fixed rose-only surfaces. */
+html[data-palette] .gk-studio-panel{
+  background:radial-gradient(ellipse at 92% 0%,color-mix(in srgb,var(--gk-accent) 17%,transparent),transparent 48%),linear-gradient(145deg,color-mix(in srgb,var(--gk-panel) 94%,var(--gk-accent)),var(--gk-bg))!important;
+  border-color:var(--gk-line)!important;
+  box-shadow:var(--gk-shadow),var(--gk-shadow-glow)!important;
+}
+html[data-palette] .gk-studio-panel .gk-studio-section{border-color:var(--gk-line)!important}
+html[data-palette] .gk-studio-panel .gk-studio-kicker,
+html[data-palette] .gk-studio-panel .gk-studio-section-title,
+html[data-palette] .gk-studio-panel .gk-studio-section-title small{color:var(--gk-accent-soft)!important}
+html[data-palette] .gk-studio-panel .gk-studio-preview-link,
+html[data-palette] .gk-studio-panel .gk-studio-close{border-color:var(--gk-line)!important;background:var(--gk-glass)!important;color:var(--gk-accent-soft)!important}
+html[data-palette] .gk-student-dock{
+  background:linear-gradient(115deg,color-mix(in srgb,var(--gk-panel) 94%,var(--gk-accent)),color-mix(in srgb,var(--gk-bg) 96%,var(--gk-panel)))!important;
+  border-color:var(--gk-line)!important;box-shadow:var(--gk-shadow),var(--gk-shadow-glow)!important;
+}
+html[data-palette] .gk-student-dock .gk-dock-item.is-active,
+html[data-palette] .gk-student-dock .gk-orb-core{color:#fff!important}
+html[data-palette] .gk-student-dock .gk-dock-item.is-active .gk-dock-icon,
+html[data-palette] .gk-student-dock .gk-orb-core{background:var(--gk-gradient-brand)!important;box-shadow:var(--gk-shadow-glow)!important}
+html[data-palette="ocean"] .app-shell .orbit{border-color:rgba(56,189,248,.3)!important}
+html[data-palette="ocean"] .app-shell .orb-node__arrow{color:#38bdf8!important}
+html[data-palette="rose"] .app-shell .orbit{border-color:rgba(249,168,212,.3)!important}
+html[data-palette="aurora"] .app-shell .orbit{border-color:rgba(45,212,191,.3)!important}
+html[data-palette="coral"] .app-shell .orbit{border-color:rgba(251,113,133,.3)!important}
+
+
+/* ==========================================================================
+   GYANKUNJ PASTEL LILAC LIQUID GLASS — global study-first skin
+   Reference swatch: Pastel Lilac #BDB0D0 (PCK-D-BDB0D0)
+   Applies consistently across dashboard, study, library, quizzes, editorial,
+   progress, syllabus, profile, auth, admin and all nested routes.
+   ========================================================================== */
+html[data-palette="lilac"]{
+  color-scheme:light;
+  --gk-bg:#F5F1F8;
+  --gk-bg-elevated:#EEE8F4;
+  --gk-panel:#E8E0EF;
+  --gk-panel-2:#DDD2E8;
+  --gk-text:#292333;
+  --gk-muted:#655B70;
+  --gk-subtle:#82778D;
+  --gk-accent:#8C76AA;
+  --gk-accent-strong:#765E98;
+  --gk-accent-soft:#BDB0D0;
+  --gk-cyan:#A994C4;
+  --gk-line:rgba(115,91,145,.22);
+  --gk-glass:linear-gradient(145deg,rgba(255,255,255,.78),rgba(237,229,245,.64));
+  --gk-gradient-brand:linear-gradient(120deg,#BDB0D0 0%,#A994C4 48%,#8C76AA 100%);
+  --gk-gradient:var(--gk-gradient-brand);
+  --gk-gradient-panel:linear-gradient(145deg,rgba(255,255,255,.86),rgba(232,224,239,.72));
+  --gk-bg-aurora:radial-gradient(ellipse at 12% 0%,rgba(189,176,208,.54),transparent 40%),radial-gradient(ellipse at 92% 16%,rgba(221,210,232,.8),transparent 38%),radial-gradient(ellipse at 55% 100%,rgba(169,148,196,.22),transparent 42%),#F5F1F8;
+  --gk-shadow:0 16px 42px rgba(71,53,91,.11);
+  --gk-shadow-glow:0 0 22px rgba(169,148,196,.25),0 0 44px rgba(189,176,208,.18);
+  --gk-line-strong:rgba(115,91,145,.28);
+  --gk-button-primary:var(--gk-gradient-brand);
+  --gk-button-secondary-bg:rgba(255,255,255,.56);
+  --gk-button-secondary-border:rgba(115,91,145,.25);
+  --gk-focus-ring:rgba(140,118,170,.38);
+}
+html[data-palette="lilac"],html[data-palette="lilac"] body{
+  background:var(--gk-bg-aurora)!important;background-color:var(--gk-bg)!important;
+  color:var(--gk-text)!important;color-scheme:light;
+}
+html[data-palette="lilac"] body{background-attachment:fixed!important}
+html[data-palette="lilac"] :is(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app,.settings-app,.page-shell,.dashboard-shell){
+  color:var(--gk-text)!important;
+  background:var(--gk-bg-aurora)!important;
+}
+html[data-palette="lilac"] .app-shell{
+  background:radial-gradient(ellipse at 50% 20%,rgba(189,176,208,.48),transparent 42%),radial-gradient(ellipse at 8% 78%,rgba(169,148,196,.22),transparent 34%),var(--gk-bg)!important;
+}
+html[data-palette="lilac"] :is(
+  .card,.panel,.surface,.bento-card,.stat-card,.kpi-card,.topic-card,.resource-card,
+  .library-topic-card,.library-resource-card,.glimpse-card,.drill-archive-card,
+  .progress-kpi,.si-insight-card,.syllabus-paper,.syllabus-topic,.profile-panel,
+  .profile-goals,.profile-form-panel,.ai-companion-composer,.ai-companion-prompts,
+  .ai-companion-answer,.vault-state,.editorial-reading-card,.editorial-bento,
+  .admin-card,.admin-panel,.admin-widget,.quiz-card,.question-card,.answer-card,
+  .mock-card,.course-card,.batch-card,.student-card,.faculty-card,.resource-panel,
+  .content-card,.dashboard-card,.feature-card,.metric-card,.settings-card
+){
+  color:var(--gk-text)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(237,229,245,.64))!important;
+  border:1px solid rgba(255,255,255,.86)!important;
+  outline:1px solid rgba(115,91,145,.10);
+  box-shadow:0 12px 34px rgba(71,53,91,.09),inset 0 1px 0 rgba(255,255,255,.94)!important;
+  backdrop-filter:blur(22px) saturate(145%);
+  -webkit-backdrop-filter:blur(22px) saturate(145%);
+}
+html[data-palette="lilac"] :is(
+  .app-shell .core,.app-shell .orb-node,.app-shell .editorial,.app-shell .drill-panel,
+  .gk-navigation,.gk-student-dock,.gk-studio-panel,.gk-bento-card,.gk-surface
+){
+  color:var(--gk-text)!important;
+  border:1px solid rgba(255,255,255,.84)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(221,210,232,.52))!important;
+  box-shadow:0 16px 38px rgba(71,53,91,.12),inset 0 1px 0 rgba(255,255,255,.96),inset 0 -1px 0 rgba(140,118,170,.08)!important;
+  backdrop-filter:blur(24px) saturate(155%);
+  -webkit-backdrop-filter:blur(24px) saturate(155%);
+}
+html[data-palette="lilac"] .app-shell .core{
+  background:radial-gradient(circle at 32% 22%,rgba(255,255,255,.96),rgba(189,176,208,.76) 52%,rgba(140,118,170,.42))!important;
+  border-color:rgba(255,255,255,.96)!important;
+  box-shadow:0 0 0 8px rgba(189,176,208,.15),0 0 38px rgba(140,118,170,.24),inset 0 0 30px rgba(255,255,255,.72)!important;
+}
+html[data-palette="lilac"] .app-shell .orb-node{
+  background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(221,210,232,.58))!important;
+  border-color:rgba(255,255,255,.96)!important;
+  box-shadow:0 10px 28px rgba(71,53,91,.13),0 0 22px rgba(189,176,208,.24),inset 0 1px 0 #fff!important;
+}
+html[data-palette="lilac"] .app-shell :is(h1,h2,h3,h4,.orb-node__title,.editorial-kicker,.drill-heading,.brand-mark){color:#30283B!important}
+html[data-palette="lilac"] :is(p,small,.muted,.orb-node__sub,.editorial-meta,.caption){color:var(--gk-muted)}
+html[data-palette="lilac"] :is(.eyebrow,.section-kicker,.vertical-index,.hero-caption,.editorial-kicker,.target-icon){color:#765E98!important}
+html[data-palette="lilac"] :is(button,.button,.btn,.button-primary,.submit-drill,.auth-submit,.ai-companion-submit,.vault-mark,[role="button"]){
+  accent-color:var(--gk-accent);
+}
+html[data-palette="lilac"] :is(.button-primary,.submit-drill,.auth-submit,.ai-companion-submit,.vault-mark,.primary-button,.btn-primary){
+  color:#fff!important;background:linear-gradient(120deg,#9A83B7,#80699F)!important;
+  border:1px solid rgba(255,255,255,.58)!important;
+  box-shadow:0 8px 22px rgba(125,98,155,.24),inset 0 1px 0 rgba(255,255,255,.3)!important;
+}
+html[data-palette="lilac"] :is(button,.button,.btn,.icon-button,.searchbox,input,textarea,select){
+  border-color:rgba(115,91,145,.24);
+}
+html[data-palette="lilac"] :is(input,textarea,select,.searchbox){
+  color:#30283B!important;background:rgba(255,255,255,.68)!important;
+  box-shadow:inset 0 1px 3px rgba(71,53,91,.05);
+}
+html[data-palette="lilac"] input::placeholder,
+html[data-palette="lilac"] textarea::placeholder{color:#82778D!important}
+html[data-palette="lilac"] :is(a,.link){color:#765E98}
+html[data-palette="lilac"] :is(.gk-navigation__link.is-active,.gk-tabs button.is-active,.gk-dock-item.is-active .gk-dock-icon,.gk-student-dock .gk-orb-core){
+  color:#fff!important;background:linear-gradient(120deg,#A994C4,#80699F)!important;box-shadow:0 0 22px rgba(140,118,170,.25)!important;
+}
+html[data-palette="lilac"] .gk-studio-panel{
+  background:radial-gradient(ellipse at 90% 0%,rgba(189,176,208,.34),transparent 46%),linear-gradient(145deg,rgba(255,255,255,.88),rgba(237,229,245,.78))!important;
+}
+html[data-palette="lilac"] .gk-studio-panel :is(h2,h3,strong){color:#30283B!important}
+html[data-palette="lilac"] .gk-studio-panel :is(p,small,footer){color:#655B70!important}
+html[data-palette="lilac"] .gk-studio-panel .gk-studio-section-title,
+html[data-palette="lilac"] .gk-studio-panel .gk-studio-kicker{color:#765E98!important}
+html[data-palette="lilac"] :is(.gk-palette-option,.gk-glass-option){
+  color:#30283B!important;background:rgba(255,255,255,.55)!important;border-color:rgba(115,91,145,.18)!important;
+}
+html[data-palette="lilac"] :is(.gk-palette-option.is-active,.gk-glass-option.is-active){
+  border-color:#8C76AA!important;box-shadow:0 0 0 1px #8C76AA,0 0 22px rgba(140,118,170,.22)!important;
+}
+html[data-palette="lilac"] :is(.gk-student-dock,.gk-navigation){background:rgba(246,242,250,.82)!important}
+html[data-palette="lilac"] .app-shell .orbit{border-color:rgba(140,118,170,.32)!important}
+html[data-palette="lilac"] .app-shell .orb-node__arrow{color:#80699F!important}
+html[data-palette="lilac"] :is(.progress-bar,.progress-fill,.gk-progress__track i){background:linear-gradient(90deg,#BDB0D0,#8C76AA)!important}
+html[data-palette="lilac"] ::selection{background:#BDB0D0;color:#292333}
+@media(prefers-reduced-transparency:reduce){
+ html[data-palette="lilac"] :is(.card,.panel,.surface,.bento-card,.gk-navigation,.gk-student-dock,.gk-studio-panel){backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:#EEE8F4!important}
+}
+
+
+/* ==========================================================================
+   AETHER LIQUID GLASS — final app-wide component skin
+   Enforce the Lilac/Purple material system across legacy route-specific CSS.
+   ========================================================================== */
+html[data-palette="lilac"]{
+  --aether-canvas:#F5F1F8;
+  --aether-glass:rgba(255,255,255,.64);
+  --aether-glass-strong:rgba(255,255,255,.82);
+  --aether-edge:rgba(255,255,255,.92);
+  --aether-outline:rgba(132,105,163,.19);
+  --aether-ink:#30283B;
+  --aether-muted:#71677D;
+  --aether-accent:#8C76AA;
+  --aether-lilac:#BDB0D0;
+  --aether-purple:#80699F;
+  --aether-shadow:0 18px 48px rgba(73,55,94,.11),inset 0 1px 0 rgba(255,255,255,.95);
+  --aether-glow:0 0 28px rgba(169,148,196,.22);
+}
+html[data-palette="lilac"] body{
+  background:
+    radial-gradient(ellipse at 8% 0%,rgba(189,176,208,.42),transparent 36%),
+    radial-gradient(ellipse at 94% 12%,rgba(219,207,232,.72),transparent 36%),
+    radial-gradient(ellipse at 50% 100%,rgba(169,148,196,.18),transparent 42%),
+    #F5F1F8!important;
+  background-attachment:fixed!important;color:var(--aether-ink)!important;
+}
+html[data-palette="lilac"] :is(
+  .app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,
+  .mock-preview-app,.mock-app,.admin-root,.profile-app,.auth-shell,
+  .ai-companion-app,.glimpses-app,.vault-app,.editorial-app,.editorial-detail-app,
+  .settings-app,.page-shell,.dashboard-shell
+){
+  background:transparent!important;color:var(--aether-ink)!important;
+}
+html[data-palette="lilac"] .app-shell{background:radial-gradient(ellipse at 50% 25%,rgba(189,176,208,.32),transparent 45%)!important}
+html[data-palette="lilac"] :is(
+  .topbar,.admin-topbar,.profile-top,.vault-topbar,.glimpses-top,.ai-companion-top,
+  .page-header,.section-header,.library-header,.drill-header,.editorial-header,
+  .syllabus-header,.mock-header,.profile-header
+){
+  color:var(--aether-muted)!important;border-color:var(--aether-outline)!important;
+}
+html[data-palette="lilac"] :is(
+  .admin-sidebar,.admin-main,.admin-builder,.admin-module,.admin-metric,
+  .admin-table-wrap,.admin-panel,.admin-card,.admin-content,.admin-widget,
+  .admin-inbox,.admin-overview,.admin-students,.admin-quiz-manager,
+  .admin-resource-manager,.admin-payments,.admin-faculty
+){
+  color:var(--aether-ink)!important;background:transparent!important;border-color:var(--aether-outline)!important;
+}
+html[data-palette="lilac"] :is(
+  .admin-sidebar,.admin-builder,.admin-module,.admin-metric,.admin-table-wrap,
+  .admin-panel,.admin-card,.admin-widget,.admin-inbox,.admin-overview,
+  .admin-students,.admin-quiz-manager,.admin-resource-manager,.admin-payments,
+  .admin-faculty
+){
+  background:var(--aether-glass)!important;border:1px solid var(--aether-edge)!important;
+  border-radius:22px!important;box-shadow:var(--aether-shadow)!important;
+  backdrop-filter:blur(24px) saturate(155%);-webkit-backdrop-filter:blur(24px) saturate(155%);
+}
+html[data-palette="lilac"] :is(
+  .card,.panel,.surface,.bento-card,.stat-card,.kpi-card,.topic-card,.resource-card,
+  .library-topic-card,.library-resource-card,.glimpse-card,.drill-archive-card,
+  .progress-kpi,.si-insight-card,.syllabus-paper,.syllabus-topic,.profile-panel,
+  .profile-goals,.profile-form-panel,.ai-companion-composer,.ai-companion-prompts,
+  .ai-companion-answer,.vault-state,.editorial-reading-card,.editorial-bento,
+  .quiz-card,.question-card,.answer-card,.mock-card,.course-card,.batch-card,
+  .student-card,.faculty-card,.resource-panel,.content-card,.dashboard-card,
+  .feature-card,.metric-card,.settings-card,.admin-table-wrap,.admin-stat-card,
+  .admin-chart-card,.admin-queue-card,.admin-section-card,.admin-form-card
+){
+  color:var(--aether-ink)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(239,233,245,.66))!important;
+  border:1px solid var(--aether-edge)!important;border-radius:22px!important;
+  box-shadow:var(--aether-shadow)!important;
+  backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);
+}
+html[data-palette="lilac"] :is(
+  .admin-sidebar,.admin-nav-item,.admin-nav-item:hover,.admin-nav-item.selected,
+  .admin-topbar,.admin-content,.admin-main,.admin-builder,.admin-module
+){color:var(--aether-ink)!important}
+html[data-palette="lilac"] :is(
+  .admin-nav-item:hover,.admin-nav-item.selected
+){background:linear-gradient(120deg,rgba(189,176,208,.56),rgba(255,255,255,.7))!important;color:#5F4C78!important;border:1px solid var(--aether-outline)!important}
+html[data-palette="lilac"] :is(
+  .auth-shell,.auth-layout,.auth-story,.auth-card,.auth-panel,
+  .auth-form,.auth-form-card,.login-card
+){color:var(--aether-ink)!important}
+html[data-palette="lilac"] :is(.auth-card,.auth-panel,.auth-form-card,.login-card){
+  background:linear-gradient(145deg,rgba(255,255,255,.86),rgba(232,224,239,.72))!important;
+  border:1px solid var(--aether-edge)!important;border-radius:28px!important;box-shadow:var(--aether-shadow)!important;
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+}
+html[data-palette="lilac"] :is(
+  h1,h2,h3,h4,h5,.admin-title,.profile-identity h1,.glimpses-hero h1,
+  .vault-title-row h1,.ai-companion-hero h1,.auth-story h1
+){color:var(--aether-ink)!important}
+html[data-palette="lilac"] :is(
+  p,.muted,.description,.admin-kicker,.admin-section-label,.admin-side-caption,
+  .admin-topbar,.profile-identity p,.profile-kicker,.glimpses-hero p,
+  .vault-eyebrow,.ai-companion-hero p,.auth-story>p
+){color:var(--aether-muted)!important}
+html[data-palette="lilac"] :is(
+  .brand-mark,.eyebrow,.section-kicker,.vertical-index,.hero-caption,
+  .editorial-kicker,.drill-heading,.target-icon,.admin-status-dot,
+  .admin-live-dot,.profile-kicker,.glimpses-kicker,.glimpse-category,
+  .vault-eyebrow,.ai-companion-kicker,.auth-eyebrow
+){color:var(--aether-accent)!important}
+html[data-palette="lilac"] :is(
+  a,.link,.profile-back,.auth-back,.glimpses-back,.vault-return a,
+  .vault-brand,.auth-brand,.ai-companion-top a
+){color:#765E98!important}
+html[data-palette="lilac"] :is(
+  input,textarea,select,.searchbox,.admin-input,.admin-select,
+  .admin-textarea,.auth-input,.form-control
+){
+  color:var(--aether-ink)!important;background:rgba(255,255,255,.76)!important;
+  border:1px solid var(--aether-outline)!important;border-radius:14px!important;
+  box-shadow:inset 0 1px 3px rgba(73,55,94,.045)!important;
+}
+html[data-palette="lilac"] :is(input,textarea,select)::placeholder{color:#93889E!important}
+html[data-palette="lilac"] :is(
+  .button-primary,.submit-drill,.auth-submit,.ai-companion-submit,.vault-mark,
+  .primary-button,.btn-primary,.admin-primary,.admin-save,.admin-action-primary,
+  .profile-save,.glimpses-action,.editorial-action
+){
+  color:#fff!important;background:linear-gradient(125deg,#A994C4,#8C76AA 58%,#765E98)!important;
+  border:1px solid rgba(255,255,255,.75)!important;border-radius:999px!important;
+  box-shadow:0 9px 24px rgba(125,98,155,.22),inset 0 1px 0 rgba(255,255,255,.35)!important;
+}
+html[data-palette="lilac"] :is(
+  .button-secondary,.btn-secondary,.admin-secondary,.admin-filter,.admin-tab,
+  .profile-tags span,.ai-companion-tags span,.vault-language,.glimpses-live
+){
+  color:#655477!important;background:rgba(255,255,255,.52)!important;
+  border:1px solid var(--aether-outline)!important;border-radius:999px!important;
+}
+html[data-palette="lilac"] :is(
+  .admin-table,.admin-table table,.data-table,.question-table
+){color:var(--aether-ink)!important;background:transparent!important}
+html[data-palette="lilac"] :is(
+  .admin-table th,.admin-table td,.data-table th,.data-table td,
+  .question-table th,.question-table td
+){border-color:var(--aether-outline)!important;color:var(--aether-ink)!important}
+html[data-palette="lilac"] :is(
+  .profile-stats,.admin-stats-grid,.admin-metrics-grid
+){background:transparent!important;gap:12px!important}
+html[data-palette="lilac"] .profile-stats article{
+  background:var(--aether-glass-strong)!important;border:1px solid var(--aether-edge)!important;
+  border-radius:18px!important;box-shadow:var(--aether-shadow)!important;color:var(--aether-ink)!important;
+}
+html[data-palette="lilac"] :is(
+  .profile-streak b,.profile-stats b,.vault-stat strong,.admin-metric strong
+){color:#765E98!important}
+html[data-palette="lilac"] :is(
+  .gk-studio-launcher,.gk-student-dock,.gk-navigation
+){background:rgba(250,247,252,.78)!important;border:1px solid var(--aether-edge)!important;box-shadow:var(--aether-shadow)!important}
+html[data-palette="lilac"] .gk-student-dock .gk-dock-item{color:#756A80!important}
+html[data-palette="lilac"] .gk-student-dock .gk-dock-item.is-active{color:#765E98!important}
+html[data-palette="lilac"] :is(
+  .vault-app,.glimpses-app,.ai-companion-app,.profile-app,.admin-root,.auth-shell
+){background:transparent!important}
+html[data-palette="lilac"] :is(
+  .vault-app,.glimpses-app,.ai-companion-app,.profile-app,.admin-root,.auth-shell
+) :is(.topbar,.top,.header){border-color:var(--aether-outline)!important}
+html[data-palette="lilac"] :is(
+  .vault-app .vault-brand>span,.glimpses-orbit>span,.profile-avatar,
+  .auth-brand span,.admin-avatar
+){background:linear-gradient(135deg,#D9CDE5,#A994C4 60%,#80699F)!important;color:#fff!important;box-shadow:var(--aether-glow)!important}
+html[data-palette="lilac"] :is(
+  .vault-language button.active,.admin-status-dot,.admin-live-dot
+){background:#8C76AA!important;color:#fff!important}
+html[data-palette="lilac"] .cosmos-noise{opacity:.10!important;filter:sepia(.2) hue-rotate(220deg)}
+html[data-palette="lilac"] ::selection{background:#BDB0D0;color:#30283B}
+@media(max-width:760px){
+ html[data-palette="lilac"] :is(.card,.panel,.surface,.bento-card,.admin-card,.admin-panel,.profile-panel){border-radius:19px!important}
+}
+@media(prefers-reduced-transparency:reduce){
+ html[data-palette="lilac"] :is(.card,.panel,.surface,.bento-card,.gk-navigation,.gk-student-dock,.gk-studio-panel){backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:#EEE8F4!important}
+}
