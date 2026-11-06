@@ -96,3 +96,14 @@ button:not(:disabled):active,[role="button"]:active{transform:scale(.975);transi
  .gk-skeleton{animation:none;background:rgba(255,255,255,.07)}
  .gk-feedback{animation:none}
 }
+
+
+/* Editorial reading journey — lightweight, accessible completion motion. */
+.editorial-reading-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:90;pointer-events:none;background:rgba(255,255,255,.06)}
+.editorial-reading-progress>div{height:100%;background:linear-gradient(90deg,#e66bb0,#f3a4cf,#75d2dc);box-shadow:0 0 12px rgba(230,107,176,.35)}
+.editorial-finish{display:flex;align-items:center;gap:17px;margin:30px 0 24px;padding:22px;border:1px solid rgba(230,107,176,.32);border-radius:20px;background:linear-gradient(120deg,rgba(177,49,122,.17),rgba(65,153,174,.13));box-shadow:0 16px 38px rgba(0,0,0,.16)}
+.editorial-finish-icon{display:grid;place-items:center;flex:none;width:58px;height:58px;border-radius:50%;font-size:28px;color:#ffe0f1;background:radial-gradient(circle at 35% 30%,#f4b2d8,#b83b88 75%);box-shadow:0 0 0 6px rgba(230,107,176,.08),0 0 30px rgba(230,107,176,.24)}
+.editorial-finish strong{display:block;font-size:19px;letter-spacing:-.025em;color:#fff}
+.editorial-finish p{margin:5px 0 0;font-size:13px;line-height:1.5;color:#d7c4d5}
+@media(max-width:480px){.editorial-finish{padding:16px;gap:12px}.editorial-finish-icon{width:46px;height:46px;font-size:22px}.editorial-finish strong{font-size:17px}}
+@media(prefers-reduced-motion:reduce){.editorial-reading-progress>div{transition:none!important}}
