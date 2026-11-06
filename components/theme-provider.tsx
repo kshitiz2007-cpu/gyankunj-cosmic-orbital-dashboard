@@ -15,24 +15,22 @@ const DEFAULTS: Preferences = { style: "cosmic", theme: "dark", density: "comfor
 function valid<T extends string>(value: unknown, values: readonly T[], fallback: T): T {
   return typeof value === "string" && values.includes(value as T) ? value as T : fallback;
 }
-
-function readPreferences(): Preferences {
-  try {
-    const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "null");
-    return {
-      // Cosmic Orbital is the single supported identity. Ignore legacy style values.
-      style: "cosmic",
-      theme: "dark",
-      density: valid(saved?.density, ["compact", "comfortable", "spacious"], DEFAULTS.density),
-      motion: valid(saved?.motion, ["minimal", "dynamic", "expressive"], DEFAULTS.motion),
-      palette: valid(saved?.palette, ["nebula","rose","ocean","aurora","coral"], DEFAULTS.palette),
-      glass: valid(saved?.glass, ["frosted","clear","chromatic","liquid"], DEFAULTS.glass),
-      glassIntensity: typeof saved?.glassIntensity === "number" ? Math.min(100,Math.max(20,saved.glassIntensity)) : DEFAULTS.glassIntensity,
-    };
-  } catch { return DEFAULTS; }
+function normalize(raw: any): Preferences {
+  return {
+    style: "cosmic", theme: "dark",
+    density: valid(raw?.density, ["compact","comfortable","spacious"], DEFAULTS.density),
+    motion: valid(raw?.motion, ["minimal","dynamic","expressive"], DEFAULTS.motion),
+    palette: valid(raw?.palette, ["nebula","rose","ocean","aurora","coral"], DEFAULTS.palette),
+    glass: valid(raw?.glass, ["frosted","clear","chromatic","liquid"], DEFAULTS.glass),
+    glassIntensity: typeof raw?.glassIntensity === "number" && Number.isFinite(raw.glassIntensity)
+      ? Math.min(100, Math.max(20, raw.glassIntensity)) : DEFAULTS.glassIntensity,
+  };
 }
-
-function applyPreferences(value: Preferences, persist = true) {
+function readLocalPreferences(): Preferences {
+  try { return normalize(JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "null")); }
+  catch { return DEFAULTS; }
+}
+function applyPreferences(value: Preferences, persistLocal = true) {
   const root = document.documentElement;
   root.dataset.theme = "dark";
   root.dataset.style = "cosmic";
@@ -42,8 +40,8 @@ function applyPreferences(value: Preferences, persist = true) {
   root.dataset.glass = value.glass;
   root.style.setProperty("--gk-glass-intensity", String(value.glassIntensity / 100));
   root.style.colorScheme = "dark";
-  if (persist) {
-    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...value, style: "cosmic", theme: "dark" })); } catch { /* tab remains usable */ }
+  if (persistLocal) {
+    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(value)); } catch { /* server remains source of truth */ }
   }
 }
 
@@ -56,66 +54,98 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   useEffect(() => {
     let active = true;
     const supabase = getSupabaseBrowserClient();
-    if (!supabase) return;
+    const apply = (raw: unknown) => {
+      const next = normalize(raw);
+      if (!active) return;
+      setPrefs(next);
+      applyPreferences(next);
+      setReady(true);
+    };
+
+    // Local cache is only a fast first paint. Supabase is the shared source of truth.
+    const cached = readLocalPreferences();
+    setPrefs(cached);
+    applyPreferences(cached);
+    setReady(true);
+
+    if (!supabase) return () => { active = false; };
+
+    const loadSharedTheme = async () => {
+      const { data, error } = await supabase
+        .from("app_theme_settings")
+        .select("settings")
+        .eq("id", "global")
+        .maybeSingle();
+      if (active && !error && data?.settings) apply(data.settings);
+    };
+    void loadSharedTheme();
+
+    const channel = supabase.channel("global-app-theme")
+      .on("postgres_changes", { event: "*", schema: "public", table: "app_theme_settings", filter: "id=eq.global" },
+        (payload) => {
+          const record = payload.new as { settings?: unknown } | undefined;
+          if (record?.settings) apply(record.settings);
+        })
+      .subscribe();
+
     const verifyAdmin = async () => {
       const { data: { user }, error: authError } = await supabase.auth.getUser();
       if (!active) return;
       if (authError || !user) { setIsAdmin(false); setOpen(false); return; }
       const { data: profile, error: profileError } = await supabase
-        .from("profiles")
-        .select("role,is_active")
-        .eq("id", user.id)
-        .maybeSingle();
+        .from("profiles").select("role,is_active").eq("id", user.id).maybeSingle();
       if (!active) return;
       setIsAdmin(!profileError && profile?.role === "admin" && profile.is_active === true);
     };
     void verifyAdmin();
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session?.user) { setIsAdmin(false); setOpen(false); return; }
-      void verifyAdmin();
+      if (!session?.user) { setIsAdmin(false); setOpen(false); }
+      else void verifyAdmin();
     });
-    return () => { active = false; subscription.unsubscribe(); };
-  }, []);
 
-  useEffect(() => {
-    const initial = readPreferences();
-    setPrefs(initial);
-    applyPreferences(initial);
-    setReady(true);
-
-    const sync = (event: StorageEvent) => {
-      if (event.key !== STORAGE_KEY || !event.newValue) return;
-      try {
-        const raw = JSON.parse(event.newValue);
-        const next: Preferences = {
-          style: "cosmic",
-          theme: "dark",
-          density: valid(raw.density, ["compact", "comfortable", "spacious"], DEFAULTS.density),
-          motion: valid(raw.motion, ["minimal", "dynamic", "expressive"], DEFAULTS.motion),
-          palette: valid(raw.palette, ["nebula","rose","ocean","aurora","coral"], DEFAULTS.palette),
-          glass: valid(raw.glass, ["frosted","clear","chromatic","liquid"], DEFAULTS.glass),
-          glassIntensity: typeof raw.glassIntensity === "number" ? Math.min(100,Math.max(20,raw.glassIntensity)) : DEFAULTS.glassIntensity,
-        };
-        setPrefs(next);
-        applyPreferences(next, false);
-      } catch { /* ignore malformed cross-tab values */ }
+    return () => {
+      active = false;
+      subscription.unsubscribe();
+      void supabase.removeChannel(channel);
     };
-    window.addEventListener("storage", sync);
-    return () => window.removeEventListener("storage", sync);
   }, []);
 
-  function update<K extends keyof Preferences>(key: K, value: Preferences[K]) {
-    if (key === "style") return;
-    setPrefs(current => {
-      const next: Preferences = { ...current, [key]: value, style: "cosmic" };
-      applyPreferences(next);
-      return next;
-    });
+  async function update<K extends keyof Preferences>(key: K, value: Preferences[K]) {
+    if (key === "style" || !isAdmin) return;
+    const next = normalize({ ...prefs, [key]: value });
+    setPrefs(next);
+    applyPreferences(next);
+    const supabase = getSupabaseBrowserClient();
+    if (!supabase) return;
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    const { error } = await supabase.from("app_theme_settings").upsert({
+      id: "global", settings: next, updated_at: new Date().toISOString(), updated_by: user.id,
+    }, { onConflict: "id" });
+    if (error) {
+      console.error("Unable to publish shared theme settings:", error.message);
+      // Restore the last server-published value instead of leaving an admin-only preview.
+      const { data } = await supabase.from("app_theme_settings").select("settings").eq("id","global").maybeSingle();
+      if (data?.settings) {
+        const restored = normalize(data.settings);
+        setPrefs(restored);
+        applyPreferences(restored);
+      }
+    }
   }
 
-  const reset = () => {
+  const reset = async () => {
+    if (!isAdmin) return;
     setPrefs(DEFAULTS);
     applyPreferences(DEFAULTS);
+    const supabase = getSupabaseBrowserClient();
+    if (!supabase) return;
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    const { error } = await supabase.from("app_theme_settings").upsert({
+      id: "global", settings: DEFAULTS, updated_at: new Date().toISOString(), updated_by: user.id,
+    }, { onConflict: "id" });
+    if (error) console.error("Unable to reset shared theme settings:", error.message);
   };
 
   return <>
@@ -127,44 +157,39 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
       {open && <div className="gk-studio-backdrop" onClick={() => setOpen(false)}>
         <section id="gk-design-studio" className="gk-studio-panel" role="dialog" aria-modal="true" aria-labelledby="gk-studio-title" onClick={e => e.stopPropagation()}>
           <header className="gk-studio-header">
-            <div><span className="gk-studio-kicker">GYANKUNJ / APPEARANCE LAB</span><h2 id="gk-studio-title">Design Studio</h2><p>One consistent visual identity for the entire learning universe.</p><a className="gk-studio-preview-link" href="/design-system-preview">OPEN FULL DESIGN SYSTEM LAB ↗</a></div>
+            <div><span className="gk-studio-kicker">GYANKUNJ / APPEARANCE LAB</span><h2 id="gk-studio-title">Design Studio</h2><p>One published visual identity for every student and device.</p><a className="gk-studio-preview-link" href="/design-system-preview">OPEN FULL DESIGN SYSTEM LAB ↗</a></div>
             <button className="gk-studio-close" onClick={() => setOpen(false)} aria-label="Close design studio">×</button>
           </header>
 
           <div className="gk-studio-section">
             <div className="gk-studio-section-title"><span>01 / APP DESIGN</span><small>ONLY DESIGN SYSTEM</small></div>
-            <div className="gk-style-grid">
-              <div className="gk-style-option is-active" aria-current="true" style={{ "--style-accent": "#d9b56b" } as React.CSSProperties}>
-                <span className="gk-style-swatch gk-style-swatch--cosmic"><i/><i/><i/></span>
-                <strong>Cosmic Orbital</strong>
-                <small>Radial · cinematic · spatial · premium glass</small>
-                <span className="gk-style-check">✓ DEFAULT · LOCKED</span>
-              </div>
-            </div>
+            <div className="gk-style-grid"><div className="gk-style-option is-active" aria-current="true" style={{ "--style-accent": "#d9b56b" } as React.CSSProperties}>
+              <span className="gk-style-swatch gk-style-swatch--cosmic"><i/><i/><i/></span><strong>Cosmic Orbital</strong><small>Radial · cinematic · spatial · premium glass</small><span className="gk-style-check">✓ DEFAULT · LOCKED</span>
+            </div></div>
           </div>
 
           <div className="gk-studio-section">
-            <div className="gk-studio-section-title"><span>02 / COLOR PALETTES</span><small>LIVE APP-WIDE</small></div>
+            <div className="gk-studio-section-title"><span>02 / COLOR PALETTES</span><small>LIVE · ALL STUDENTS</small></div>
             <div className="gk-palette-grid">
-              {([{id:"nebula",name:"Nebula",colors:["#0c1020","#8b5cf6","#c084fc","#ec4899"]},{id:"rose",name:"Rose Quartz",colors:["#160d1b","#db2777","#f9a8d4","#a855f7"]},{id:"ocean",name:"Deep Ocean",colors:["#071521","#0e7490","#38bdf8","#818cf8"]},{id:"aurora",name:"Aurora",colors:["#10172b","#14b8a6","#8b5cf6","#a3e635"]},{id:"coral",name:"Coral Waves",colors:["#26152a","#fb7185","#fdba9a","#fbbf24"]}] as const).map(item => <button key={item.id} className={"gk-palette-option "+(prefs.palette===item.id?"is-active":"")} onClick={()=>update("palette",item.id)} aria-pressed={prefs.palette===item.id}><span className="gk-palette-swatches">{item.colors.map(color=><i key={color} style={{background:color}} />)}</span><strong>{item.name}</strong><small>{prefs.palette===item.id?"ACTIVE PALETTE":"APPLY PALETTE"}</small></button>)}
+              {([{id:"nebula",name:"Nebula",colors:["#0c1020","#8b5cf6","#c084fc","#ec4899"]},{id:"rose",name:"Rose Quartz",colors:["#160d1b","#db2777","#f9a8d4","#a855f7"]},{id:"ocean",name:"Deep Ocean",colors:["#071521","#0e7490","#38bdf8","#818cf8"]},{id:"aurora",name:"Aurora",colors:["#10172b","#14b8a6","#8b5cf6","#a3e635"]},{id:"coral",name:"Coral Waves",colors:["#26152a","#fb7185","#fdba9a","#fbbf24"]}] as const).map(item => <button key={item.id} className={"gk-palette-option "+(prefs.palette===item.id?"is-active":"")} onClick={()=>void update("palette",item.id)} aria-pressed={prefs.palette===item.id}><span className="gk-palette-swatches">{item.colors.map(color=><i key={color} style={{background:color}} />)}</span><strong>{item.name}</strong><small>{prefs.palette===item.id?"PUBLISHED PALETTE":"APPLY TO ALL STUDENTS"}</small></button>)}
             </div>
           </div>
           <div className="gk-studio-section">
             <div className="gk-studio-section-title"><span>03 / LIQUID GLASS STYLE</span><small>LIVE MATERIAL PREVIEW</small></div>
             <div className="gk-glass-grid">
-              {([{id:"frosted",name:"Frosted panes",desc:"Soft blur · layered depth"},{id:"clear",name:"Clear lenses",desc:"Sharper · transparent"},{id:"chromatic",name:"Chromatic",desc:"Prismatic color edges"},{id:"liquid",name:"Liquid glass",desc:"Lens glow · fluid highlights"}] as const).map(item=><button key={item.id} className={"gk-glass-option "+(prefs.glass===item.id?"is-active":"")} onClick={()=>update("glass",item.id)} aria-pressed={prefs.glass===item.id}><span className={"gk-glass-demo gk-glass-demo--"+item.id}><i/></span><strong>{item.name}</strong><small>{item.desc}</small></button>)}
+              {([{id:"frosted",name:"Frosted panes",desc:"Soft blur · layered depth"},{id:"clear",name:"Clear lenses",desc:"Sharper · transparent"},{id:"chromatic",name:"Chromatic",desc:"Prismatic color edges"},{id:"liquid",name:"Liquid glass",desc:"Lens glow · fluid highlights"}] as const).map(item=><button key={item.id} className={"gk-glass-option "+(prefs.glass===item.id?"is-active":"")} onClick={()=>void update("glass",item.id)} aria-pressed={prefs.glass===item.id}><span className={"gk-glass-demo gk-glass-demo--"+item.id}><i/></span><strong>{item.name}</strong><small>{item.desc}</small></button>)}
             </div>
-            <label className="gk-glass-intensity"><span>Glass intensity</span><output>{prefs.glassIntensity}%</output><input type="range" min="20" max="100" step="1" value={prefs.glassIntensity} onChange={e=>update("glassIntensity",Number(e.target.value))}/></label>
+            <label className="gk-glass-intensity"><span>Glass intensity</span><output>{prefs.glassIntensity}%</output><input type="range" min="20" max="100" step="1" value={prefs.glassIntensity} onChange={e=>void update("glassIntensity",Number(e.target.value))}/></label>
           </div>
           <div className="gk-studio-section">
             <div className="gk-studio-section-title"><span>04 / CONTENT DENSITY</span></div>
-            <div className="gk-studio-segment">{(["compact","comfortable","spacious"] as Density[]).map(v => <button key={v} className={prefs.density === v ? "is-active" : ""} onClick={() => update("density",v)} aria-pressed={prefs.density === v}>{v[0].toUpperCase()+v.slice(1)}</button>)}</div>
+            <div className="gk-studio-segment">{(["compact","comfortable","spacious"] as Density[]).map(v => <button key={v} className={prefs.density === v ? "is-active" : ""} onClick={() => void update("density",v)} aria-pressed={prefs.density === v}>{v[0].toUpperCase()+v.slice(1)}</button>)}</div>
           </div>
           <div className="gk-studio-section">
-            <div className="gk-studio-section-title"><span>04 / MOTION INTENSITY</span></div>
-            <div className="gk-studio-segment">{(["minimal","dynamic","expressive"] as Motion[]).map(v => <button key={v} className={prefs.motion === v ? "is-active" : ""} onClick={() => update("motion",v)} aria-pressed={prefs.motion === v}>{v[0].toUpperCase()+v.slice(1)}</button>)}</div>
+            <div className="gk-studio-section-title"><span>05 / MOTION INTENSITY</span></div>
+            <div className="gk-studio-segment">{(["minimal","dynamic","expressive"] as Motion[]).map(v => <button key={v} className={prefs.motion === v ? "is-active" : ""} onClick={() => void update("motion",v)} aria-pressed={prefs.motion === v}>{v[0].toUpperCase()+v.slice(1)}</button>)}</div>
           </div>
-          <footer className="gk-studio-footer"><span>Cosmic Orbital · palette and glass settings saved on this device</span><button onClick={reset}>RESET DEFAULTS ↺</button></footer>
+          <footer className="gk-studio-footer"><span>Shared app theme · published to every student session</span><button onClick={() => void reset()}>RESET GLOBAL THEME ↺</button></footer>
         </section>
       </div>}
     </>}
