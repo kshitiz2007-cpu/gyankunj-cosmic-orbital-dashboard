@@ -5,12 +5,12 @@ import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 
 type Density = "compact" | "comfortable" | "spacious";
 type Motion = "minimal" | "dynamic" | "expressive";
-type Palette = "nebula" | "rose" | "ocean" | "aurora" | "coral";
+type Palette = "lilac" | "nebula" | "rose" | "ocean" | "aurora" | "coral";
 type Glass = "frosted" | "clear" | "chromatic" | "liquid";
 type Preferences = { style: "cosmic"; theme: "dark"; density: Density; motion: Motion; palette: Palette; glass: Glass; glassIntensity: number };
 
 const STORAGE_KEY = "gyankunj-design-studio-v1";
-const DEFAULTS: Preferences = { style: "cosmic", theme: "dark", density: "comfortable", motion: "dynamic", palette: "nebula", glass: "frosted", glassIntensity: 72 };
+const DEFAULTS: Preferences = { style: "cosmic", theme: "dark", density: "comfortable", motion: "dynamic", palette: "lilac", glass: "frosted", glassIntensity: 72 };
 
 function valid<T extends string>(value: unknown, values: readonly T[], fallback: T): T {
   return typeof value === "string" && values.includes(value as T) ? value as T : fallback;
@@ -22,7 +22,7 @@ function normalize(raw: unknown): Preferences {
     style: "cosmic", theme: "dark",
     density: valid(value.density, ["compact","comfortable","spacious"], DEFAULTS.density),
     motion: valid(value.motion, ["minimal","dynamic","expressive"], DEFAULTS.motion),
-    palette: valid(value.palette, ["nebula","rose","ocean","aurora","coral"], DEFAULTS.palette),
+    palette: valid(value.palette, ["lilac","nebula","rose","ocean","aurora","coral"], DEFAULTS.palette),
     glass: valid(value.glass, ["frosted","clear","chromatic","liquid"], DEFAULTS.glass),
     glassIntensity: typeof intensity === "number" && Number.isFinite(intensity)
       ? Math.min(100, Math.max(20, intensity)) : DEFAULTS.glassIntensity,
@@ -173,7 +173,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
           <div className="gk-studio-section">
             <div className="gk-studio-section-title"><span>02 / COLOR PALETTES</span><small>LIVE · ALL STUDENTS</small></div>
             <div className="gk-palette-grid">
-              {([{id:"nebula",name:"Nebula",colors:["#0c1020","#8b5cf6","#c084fc","#ec4899"]},{id:"rose",name:"Rose Quartz",colors:["#160d1b","#db2777","#f9a8d4","#a855f7"]},{id:"ocean",name:"Deep Ocean",colors:["#071521","#0e7490","#38bdf8","#818cf8"]},{id:"aurora",name:"Aurora",colors:["#10172b","#14b8a6","#8b5cf6","#a3e635"]},{id:"coral",name:"Coral Waves",colors:["#26152a","#fb7185","#fdba9a","#fbbf24"]}] as const).map(item => <button key={item.id} className={"gk-palette-option "+(prefs.palette===item.id?"is-active":"")} onClick={()=>void update("palette",item.id)} aria-pressed={prefs.palette===item.id}><span className="gk-palette-swatches">{item.colors.map(color=><i key={color} style={{background:color}} />)}</span><strong>{item.name}</strong><small>{prefs.palette===item.id?"PUBLISHED PALETTE":"APPLY TO ALL STUDENTS"}</small></button>)}
+              {([{id:"lilac",name:"Pastel Lilac",colors:["#BDB0D0","#E6DDF0","#A994C4","#8C76AA"]},{id:"nebula",name:"Nebula",colors:["#0c1020","#8b5cf6","#c084fc","#ec4899"]},{id:"rose",name:"Rose Quartz",colors:["#160d1b","#db2777","#f9a8d4","#a855f7"]},{id:"ocean",name:"Deep Ocean",colors:["#071521","#0e7490","#38bdf8","#818cf8"]},{id:"aurora",name:"Aurora",colors:["#10172b","#14b8a6","#8b5cf6","#a3e635"]},{id:"coral",name:"Coral Waves",colors:["#26152a","#fb7185","#fdba9a","#fbbf24"]}] as const).map(item => <button key={item.id} className={"gk-palette-option "+(prefs.palette===item.id?"is-active":"")} onClick={()=>void update("palette",item.id)} aria-pressed={prefs.palette===item.id}><span className="gk-palette-swatches">{item.colors.map(color=><i key={color} style={{background:color}} />)}</span><strong>{item.name}</strong><small>{prefs.palette===item.id?"PUBLISHED PALETTE":"APPLY TO ALL STUDENTS"}</small></button>)}
             </div>
           </div>
           <div className="gk-studio-section">
