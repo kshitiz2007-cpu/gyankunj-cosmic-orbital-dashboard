@@ -460,3 +460,72 @@ html[data-palette="lilac"] .app-shell .learning-intelligence__grid{grid-template
 html[data-palette="lilac"] .app-shell .subject-strip{overflow-x:auto}
 }
 @media(prefers-reduced-motion:reduce){html[data-palette="lilac"] .app-shell .orb-node{transition:none!important}}
+
+
+/* ── AETHER SHARED UI CONTRACT: consistent surfaces across every route ── */
+:root{
+  --gk-surface-1:rgba(35,29,65,.78);
+  --gk-surface-2:rgba(25,20,49,.88);
+  --gk-surface-border:rgba(205,184,255,.22);
+  --gk-surface-highlight:rgba(255,255,255,.075);
+  --gk-control-radius:14px;
+}
+:where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app){
+  color:var(--gk-text)!important;
+  background:
+    radial-gradient(ellipse at 84% 4%,rgba(192,132,252,.13),transparent 35%),
+    radial-gradient(ellipse at 8% 78%,rgba(236,72,153,.09),transparent 34%),
+    var(--gk-bg)!important;
+  font-family:"DM Sans","Noto Sans Devanagari",sans-serif!important;
+}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(.card,.panel,.admin-metric,.admin-module,.profile-panel,.profile-form-panel,.profile-stats article,.profile-goals,.progress-kpi,.library-topic-card,.library-resource-card,.glimpse-card,.drill-archive-card,.syllabus-paper,.syllabus-topic,.ai-companion-composer,.ai-companion-prompts,.ai-companion-answer,.vault-state,.editorial-reading-card){
+  border:1px solid var(--gk-surface-border)!important;
+  border-radius:var(--gk-radius-card,22px)!important;
+  background:linear-gradient(145deg,var(--gk-surface-1),var(--gk-surface-2))!important;
+  color:var(--gk-text)!important;
+  box-shadow:var(--gk-shadow),inset 0 1px 0 var(--gk-surface-highlight)!important;
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(input,textarea,select,.admin-workspace-tools label){
+  border:1px solid var(--gk-surface-border)!important;
+  border-radius:var(--gk-control-radius)!important;
+  background:rgba(18,15,38,.78)!important;
+  color:var(--gk-text)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important;
+}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(input,textarea,select)::placeholder{color:var(--gk-subtle)!important}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(.button-primary,.submit-drill,.vault-mark,.auth-submit,.ai-companion-submit,.profile-form-actions button,.admin-workspace-tools>button){
+  border:1px solid rgba(237,210,255,.25)!important;
+  border-radius:999px!important;
+  background:var(--gk-gradient-brand)!important;
+  color:#fff!important;
+  box-shadow:0 9px 26px rgba(139,92,246,.22),0 0 22px rgba(236,72,153,.12)!important;
+  transition:transform var(--gk-motion-base,240ms) var(--gk-ease-standard,cubic-bezier(.2,.8,.2,1)),box-shadow var(--gk-motion-base,240ms) ease!important;
+}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(.button-primary,.submit-drill,.vault-mark,.auth-submit,.ai-companion-submit,.profile-form-actions button,.admin-workspace-tools>button):hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 32px rgba(139,92,246,.3),0 0 28px rgba(236,72,153,.18)!important;
+}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(header,.profile-top,.progress-top,.syllabus-top,.drill-topbar,.library-top,.editorial-top,.glimpses-top,.vault-topbar,.ai-companion-top,.admin-topbar){
+  border-color:var(--gk-surface-border)!important;
+  color:var(--gk-muted)!important;
+}
+.admin-root :is(.admin-sidebar,.admin-main,.admin-content){background:transparent!important}
+.admin-root :is(.admin-nav-item:hover,.admin-nav-item.selected){background:rgba(167,139,250,.16)!important;color:var(--gk-accent-soft)!important}
+:where(.profile-app,.admin-root) :is(h1,h2,h3,h4,.profile-kicker,.admin-kicker,.admin-section-label){color:var(--gk-text)!important}
+:where(.profile-app,.admin-root) :is(.profile-identity h1 em,.profile-panel h2 em,.profile-goals h2 em,.profile-form-panel h2 em,.admin-hero h1 em,.admin-title-period){color:var(--gk-accent-soft)!important}
+.gk-student-dock{border-color:var(--gk-surface-border)!important;background:linear-gradient(120deg,rgba(36,28,65,.94),rgba(20,17,43,.96))!important;box-shadow:var(--gk-shadow),0 0 28px rgba(167,139,250,.12)!important}
+.gk-dock-item{color:var(--gk-muted)!important}
+.gk-dock-item.is-active{color:var(--gk-accent-soft)!important}
+.gk-dock-item.is-active .gk-dock-icon{background:var(--gk-gradient-brand)!important;color:#fff!important}
+.gk-orb-core{background:radial-gradient(circle at 35% 25%,#f5eaff,#c084fc 42%,#7c3aed 78%)!important;border-color:rgba(237,210,255,.7)!important}
+@media(prefers-reduced-motion:reduce){
+  :where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
