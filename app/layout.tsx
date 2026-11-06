@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./design-system.css";
+import "./study-focus-theme.css";
 import ThemeProvider from "@/components/theme-provider";
 import StudentFloatingNavigation from "@/components/student-floating-navigation";
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#071521",
+  themeColor: "#0c1020",
 };
 const themeBootstrap = `(function(){try{var k="gyankunj-design-studio-v1",p=JSON.parse(localStorage.getItem(k)||"null"),d=p&&["compact","comfortable","spacious"].includes(p.density)?p.density:"comfortable",m=p&&["minimal","dynamic","expressive"].includes(p.motion)?p.motion:"dynamic",r=document.documentElement;r.dataset.theme="dark";r.dataset.style="cosmic";r.dataset.density=d;r.dataset.motion=m;r.style.colorScheme="dark";localStorage.setItem(k,JSON.stringify({style:"cosmic",theme:"dark",density:d,motion:m}));}catch(e){var r=document.documentElement;r.dataset.theme="dark";r.dataset.style="cosmic";r.dataset.density="comfortable";r.dataset.motion="dynamic";r.style.colorScheme="dark";}})();`;
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
