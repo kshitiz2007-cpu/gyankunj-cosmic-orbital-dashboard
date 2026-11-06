@@ -256,3 +256,30 @@ html[data-palette] .gk-navigation__link.is-active,html[data-palette] .gk-tabs bu
 html[data-palette] .gk-progress__track i{background:var(--gk-gradient-brand)!important}
 html[data-palette] .gk-palette-option.is-active,html[data-palette] .gk-glass-option.is-active{border-color:var(--gk-accent)!important;box-shadow:0 0 0 1px var(--gk-accent),0 0 25px color-mix(in srgb,var(--gk-accent) 25%,transparent)!important}
 html[data-palette] .gk-palette-option.is-active small{color:var(--gk-accent-soft)!important}
+
+
+/* Palette-aware studio chrome and student dock: remove the fixed rose-only surfaces. */
+html[data-palette] .gk-studio-panel{
+  background:radial-gradient(ellipse at 92% 0%,color-mix(in srgb,var(--gk-accent) 17%,transparent),transparent 48%),linear-gradient(145deg,color-mix(in srgb,var(--gk-panel) 94%,var(--gk-accent)),var(--gk-bg))!important;
+  border-color:var(--gk-line)!important;
+  box-shadow:var(--gk-shadow),var(--gk-shadow-glow)!important;
+}
+html[data-palette] .gk-studio-panel .gk-studio-section{border-color:var(--gk-line)!important}
+html[data-palette] .gk-studio-panel .gk-studio-kicker,
+html[data-palette] .gk-studio-panel .gk-studio-section-title,
+html[data-palette] .gk-studio-panel .gk-studio-section-title small{color:var(--gk-accent-soft)!important}
+html[data-palette] .gk-studio-panel .gk-studio-preview-link,
+html[data-palette] .gk-studio-panel .gk-studio-close{border-color:var(--gk-line)!important;background:var(--gk-glass)!important;color:var(--gk-accent-soft)!important}
+html[data-palette] .gk-student-dock{
+  background:linear-gradient(115deg,color-mix(in srgb,var(--gk-panel) 94%,var(--gk-accent)),color-mix(in srgb,var(--gk-bg) 96%,var(--gk-panel)))!important;
+  border-color:var(--gk-line)!important;box-shadow:var(--gk-shadow),var(--gk-shadow-glow)!important;
+}
+html[data-palette] .gk-student-dock .gk-dock-item.is-active,
+html[data-palette] .gk-student-dock .gk-orb-core{color:#fff!important}
+html[data-palette] .gk-student-dock .gk-dock-item.is-active .gk-dock-icon,
+html[data-palette] .gk-student-dock .gk-orb-core{background:var(--gk-gradient-brand)!important;box-shadow:var(--gk-shadow-glow)!important}
+html[data-palette="ocean"] .app-shell .orbit{border-color:rgba(56,189,248,.3)!important}
+html[data-palette="ocean"] .app-shell .orb-node__arrow{color:#38bdf8!important}
+html[data-palette="rose"] .app-shell .orbit{border-color:rgba(249,168,212,.3)!important}
+html[data-palette="aurora"] .app-shell .orbit{border-color:rgba(45,212,191,.3)!important}
+html[data-palette="coral"] .app-shell .orbit{border-color:rgba(251,113,133,.3)!important}
