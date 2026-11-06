@@ -10,7 +10,7 @@ type Glass = "frosted" | "clear" | "chromatic" | "liquid";
 type Preferences = { style: "cosmic"; theme: "light"; density: Density; motion: Motion; palette: Palette; glass: Glass; glassIntensity: number };
 
 const STORAGE_KEY = "gyankunj-design-studio-v1";
-const DEFAULTS: Preferences = { style: "cosmic", theme: "dark", density: "comfortable", motion: "dynamic", palette: "lilac", glass: "frosted", glassIntensity: 72 };
+const DEFAULTS: Preferences = { style: "cosmic", theme: "light", density: "comfortable", motion: "dynamic", palette: "lilac", glass: "frosted", glassIntensity: 72 };
 
 function valid<T extends string>(value: unknown, values: readonly T[], fallback: T): T {
   return typeof value === "string" && values.includes(value as T) ? value as T : fallback;
@@ -19,7 +19,7 @@ function normalize(raw: unknown): Preferences {
   const value = raw && typeof raw === "object" ? raw as Record<string, unknown> : {};
   const intensity = value.glassIntensity;
   return {
-    style: "cosmic", theme: "dark",
+    style: "cosmic", theme: "light",
     density: valid(value.density, ["compact","comfortable","spacious"], DEFAULTS.density),
     motion: valid(value.motion, ["minimal","dynamic","expressive"], DEFAULTS.motion),
     palette: valid(value.palette, ["lilac","nebula","rose","ocean","aurora","coral"], DEFAULTS.palette),
