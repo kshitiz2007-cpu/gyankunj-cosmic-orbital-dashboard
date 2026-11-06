@@ -206,3 +206,53 @@ html[data-glass="liquid"] .gk-bento-card,html[data-glass="liquid"] .gk-surface{b
 .gk-glass-intensity input{grid-column:1/-1;width:100%;accent-color:var(--gk-accent)}
 .gk-glass-intensity output{color:var(--gk-accent-soft);font-variant-numeric:tabular-nums}
 @media(max-width:720px){.gk-palette-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.gk-glass-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* ── Strong palette propagation: override legacy hard-coded dashboard surfaces ── */
+html[data-palette]{
+  --gk-shadow-glow:0 0 22px color-mix(in srgb,var(--gk-accent) 28%,transparent),0 0 46px color-mix(in srgb,var(--gk-cyan) 15%,transparent);
+  --gk-button-secondary-border:color-mix(in srgb,var(--gk-accent) 30%,transparent);
+  --gk-bg-aurora:radial-gradient(ellipse at 18% 8%,color-mix(in srgb,var(--gk-accent) 25%,transparent),transparent 38%),radial-gradient(ellipse at 86% 18%,color-mix(in srgb,var(--gk-cyan) 18%,transparent),transparent 36%),radial-gradient(ellipse at 52% 88%,color-mix(in srgb,var(--gk-accent) 16%,transparent),transparent 40%),var(--gk-bg);
+}
+html[data-palette] body{background:var(--gk-bg-aurora)!important;background-color:var(--gk-bg)!important;color:var(--gk-text)!important}
+html[data-palette] .app-shell{
+  background:radial-gradient(ellipse at 50% 28%,color-mix(in srgb,var(--gk-accent) 24%,transparent),transparent 40%),radial-gradient(ellipse at 10% 72%,color-mix(in srgb,var(--gk-cyan) 15%,transparent),transparent 32%),radial-gradient(ellipse at 90% 72%,color-mix(in srgb,var(--gk-accent) 14%,transparent),transparent 34%),var(--gk-bg)!important;
+  color:var(--gk-text)!important;
+}
+html[data-palette] .app-shell .core{
+  border-color:color-mix(in srgb,var(--gk-accent-soft) 65%,transparent)!important;
+  background:radial-gradient(circle at 35% 25%,color-mix(in srgb,var(--gk-accent) 40%,var(--gk-panel)),var(--gk-bg) 72%)!important;
+  box-shadow:0 0 0 8px color-mix(in srgb,var(--gk-accent) 8%,transparent),0 0 42px color-mix(in srgb,var(--gk-accent) 35%,transparent),inset 0 0 34px color-mix(in srgb,var(--gk-cyan) 16%,transparent)!important;
+}
+html[data-palette] .app-shell .orb-node{
+  background:radial-gradient(circle at 34% 22%,color-mix(in srgb,var(--node) 24%,var(--gk-panel)),color-mix(in srgb,var(--gk-bg) 90%,transparent) 78%)!important;
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--node) 10%,transparent),0 0 28px color-mix(in srgb,var(--node) 30%,transparent),inset 0 0 24px color-mix(in srgb,var(--gk-accent) 15%,transparent),inset 0 1px 1px #fff5!important;
+}
+html[data-palette] .app-shell .editorial{
+  background:radial-gradient(ellipse at 92% 18%,color-mix(in srgb,var(--gk-accent) 25%,transparent),transparent 42%),linear-gradient(145deg,color-mix(in srgb,var(--gk-panel) 94%,var(--gk-accent)),color-mix(in srgb,var(--gk-bg) 96%,var(--gk-panel)))!important;
+  border-color:color-mix(in srgb,var(--gk-accent) 36%,var(--gk-line))!important;
+}
+html[data-palette] .app-shell .drill-panel{
+  background:radial-gradient(circle at 82% 18%,color-mix(in srgb,var(--gk-cyan) 16%,transparent),transparent 44%),linear-gradient(145deg,color-mix(in srgb,var(--gk-panel) 95%,var(--gk-accent)),var(--gk-bg))!important;
+  border-color:var(--gk-line)!important;
+}
+html[data-palette] .app-shell :is(.brand-mark,.brand small,.eyebrow,.vertical-index,.hero-caption,.section-kicker,.editorial-kicker,.drill-heading,.target-icon){color:var(--gk-accent-soft)!important}
+html[data-palette] .app-shell :is(.searchbox,.icon-button){border-color:var(--gk-line)!important}
+html[data-palette] .app-shell .searchbox{background:var(--gk-glass)!important}
+html[data-palette] .app-shell .avatar{background:var(--gk-gradient-brand)!important;box-shadow:0 0 22px color-mix(in srgb,var(--gk-accent) 32%,transparent)!important}
+html[data-palette] .app-shell .round-action{background:var(--gk-gradient-brand)!important;border-color:var(--gk-line)!important}
+html[data-palette] :is(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app){
+  background:radial-gradient(ellipse at 88% 5%,color-mix(in srgb,var(--gk-accent) 17%,transparent),transparent 38%),var(--gk-bg)!important;
+  color:var(--gk-text)!important;
+}
+html[data-palette] :is(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.card,.panel,.library-topic-card,.library-resource-card,.glimpse-card,.drill-archive-card,.progress-kpi,.si-insight-card,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-goals,.profile-form-panel,.ai-companion-composer,.ai-companion-prompts,.ai-companion-answer,.vault-state,.editorial-reading-card){
+  background:var(--gk-glass)!important;border-color:var(--gk-line)!important;color:var(--gk-text)!important;
+}
+html[data-palette] :is(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.button-primary,.submit-drill,.vault-mark,.auth-submit,.ai-companion-submit){
+  background:var(--gk-gradient-brand)!important;box-shadow:0 8px 26px color-mix(in srgb,var(--gk-accent) 25%,transparent)!important;
+}
+html[data-palette] .gk-navigation{background:color-mix(in srgb,var(--gk-panel) 88%,transparent)!important;border-color:var(--gk-line)!important}
+html[data-palette] .gk-navigation__link.is-active,html[data-palette] .gk-tabs button.is-active{background:var(--gk-gradient-brand)!important;box-shadow:var(--gk-shadow-glow)!important}
+html[data-palette] .gk-progress__track i{background:var(--gk-gradient-brand)!important}
+html[data-palette] .gk-palette-option.is-active,html[data-palette] .gk-glass-option.is-active{border-color:var(--gk-accent)!important;box-shadow:0 0 0 1px var(--gk-accent),0 0 25px color-mix(in srgb,var(--gk-accent) 25%,transparent)!important}
+html[data-palette] .gk-palette-option.is-active small{color:var(--gk-accent-soft)!important}
