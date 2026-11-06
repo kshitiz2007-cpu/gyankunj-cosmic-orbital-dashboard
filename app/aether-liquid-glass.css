@@ -1,0 +1,136 @@
+/* AETHER / LIQUID GLASS — clean route-wide visual system
+   Structural page layouts remain owned by their components; this file owns appearance. */
+:root{
+ --aether-canvas:#eee8f6;--aether-canvas-2:#f8f4fc;--aether-ink:#30243b;--aether-ink-2:#51445e;
+ --aether-muted:#756881;--aether-faint:#9588a2;--aether-line:rgba(126,96,153,.18);
+ --aether-glass:rgba(255,255,255,.72);--aether-glass-strong:rgba(255,255,255,.88);
+ --aether-shadow:0 14px 38px rgba(67,43,88,.12),inset 0 1px 0 rgba(255,255,255,.94);
+ --aether-shadow-hover:0 20px 46px rgba(67,43,88,.17),inset 0 1px 0 #fff;
+ --aether-violet:#9563c7;--aether-violet-deep:#7146a5;--aether-pink:#d96ba8;--aether-cyan:#42b9c7;
+ --aether-gradient:linear-gradient(115deg,#b98ce2 0%,#9b70cf 48%,#dc83b7 100%);
+ --aether-radius:26px;--aether-radius-sm:17px;
+}
+html,body{min-height:100%;background:var(--aether-canvas)!important;color:var(--aether-ink)!important;color-scheme:light!important}
+html{scroll-behavior:smooth}
+body{
+ background:
+  radial-gradient(ellipse at 8% 5%,rgba(255,255,255,.88),transparent 38%),
+  radial-gradient(ellipse at 92% 18%,rgba(221,190,239,.62),transparent 42%),
+  radial-gradient(ellipse at 50% 100%,rgba(248,213,233,.45),transparent 42%),
+  linear-gradient(135deg,#f4eef9,#e9e1f2 60%,#f8eff7)!important;
+ background-attachment:fixed!important;
+ color:var(--aether-ink)!important;
+ font-family:"DM Sans","Noto Sans Devanagari",sans-serif!important;
+}
+button,input,textarea,select{font:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #9c70ce!important;outline-offset:3px}
+::selection{background:#d9b9f1;color:#38244b}
+/* Common page canvas */
+html body :is(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app){
+ color:var(--aether-ink)!important;
+ background:transparent!important;
+ font-family:"DM Sans","Noto Sans Devanagari",sans-serif!important;
+}
+/* Universal typography: readable ink, no washed-out white-on-white text */
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(h1,h2,h3,h4,h5,strong,b){color:var(--aether-ink)!important}
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(p,small,label,.muted,.description,.eyebrow,.kicker){color:var(--aether-muted)!important}
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(a){color:var(--aether-violet-deep)}
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(header,.topbar,.drill-topbar,.vault-topbar,.progress-top,.syllabus-top,.profile-top,.glimpses-top,.library-top){
+ color:var(--aether-ink-2)!important;border-color:var(--aether-line)!important;
+}
+/* One consistent frosted-glass surface across all routes */
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(
+.card,.panel,.library-subject-card,.library-topic-card,.library-resource-card,.library-reader,.library-published-resource,
+.question-card,.drill-progress-card,.question-rail,.result-card,.progress-kpis>div,.si-insight-card,.progress-panel,
+.syllabus-sidebar,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-form-panel,.profile-stats article,.profile-goals,
+.admin-metric,.admin-module,.admin-panel,.admin-card,.glimpse-card,.drill-archive-card,.vault-state,.vault-flashcard,
+.editorial-reading-card,.ai-companion-composer,.ai-companion-prompts,.ai-companion-answer){
+ background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(250,246,253,.68))!important;
+ color:var(--aether-ink)!important;border:1px solid rgba(255,255,255,.88)!important;
+ border-radius:var(--aether-radius)!important;box-shadow:var(--aether-shadow)!important;
+ backdrop-filter:blur(24px) saturate(145%)!important;-webkit-backdrop-filter:blur(24px) saturate(145%)!important;
+}
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(
+.card,.panel,.library-subject-card,.library-topic-card,.library-resource-card,.library-reader,.question-card,.drill-progress-card,
+.question-rail,.result-card,.progress-panel,.syllabus-sidebar,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-form-panel,
+.profile-stats article,.profile-goals,.admin-metric,.admin-module,.admin-panel,.admin-card,.glimpse-card,.drill-archive-card,
+.vault-state,.vault-flashcard,.editorial-reading-card) :is(h1,h2,h3,h4,strong,b){color:var(--aether-ink)!important}
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(
+.card,.panel,.library-subject-card,.library-topic-card,.library-resource-card,.library-reader,.question-card,.drill-progress-card,
+.question-rail,.result-card,.progress-panel,.syllabus-sidebar,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-form-panel,
+.profile-stats article,.profile-goals,.admin-metric,.admin-module,.admin-panel,.admin-card,.glimpse-card,.drill-archive-card,
+.vault-state,.vault-flashcard,.editorial-reading-card) p{color:var(--aether-ink-2)!important}
+/* Shared inputs */
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(input,textarea,select){
+ color:var(--aether-ink)!important;background:rgba(255,255,255,.86)!important;
+ border:1px solid rgba(133,99,163,.24)!important;border-radius:15px!important;box-shadow:inset 0 1px 2px rgba(70,40,90,.04)!important;
+}
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(input,textarea,select)::placeholder{color:#9a8ca5!important}
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(input,textarea,select):focus{border-color:#a77bd1!important;box-shadow:0 0 0 3px rgba(167,123,209,.15)!important;outline:0!important}
+/* Unified primary actions */
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(
+.button-primary,.submit-drill,.vault-mark,.vault-controls>button,.auth-submit,.ai-companion-submit,
+.profile-form-actions button,.admin-workspace-tools>button,.drill-archive-start,.glimpse-card-foot a,.next-question){
+ background:var(--aether-gradient)!important;color:#fff!important;border:1px solid rgba(255,255,255,.6)!important;
+ border-radius:999px!important;box-shadow:0 9px 22px rgba(139,92,170,.2)!important;
+ transition:transform .2s ease,box-shadow .2s ease!important;
+}
+html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(
+.button-primary,.submit-drill,.vault-mark,.auth-submit,.ai-companion-submit,.profile-form-actions button,.admin-workspace-tools>button,.drill-archive-start,.next-question):active{transform:scale(.98)}
+/* Daily Drill — repair contrast in the exact screen shown */
+html body .drill-app .drill-intro :is(h1,h2){color:#30243b!important}
+html body .drill-app .drill-kicker,html body .drill-app .drill-session-label,html body .drill-app .drill-back,html body .drill-app .drill-archive-link{color:#735b86!important}
+html body .drill-app .question-card{background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(248,242,252,.88))!important}
+html body .drill-app .question-card :is(h1,h2,h3,p,span,small,label,.question-topic,.question-number){color:#382b45!important}
+html body .drill-app .option-list :is(button,[role=button]){
+ background:linear-gradient(110deg,rgba(248,226,242,.96),rgba(241,230,250,.94))!important;
+ color:#493451!important;border:1px solid rgba(192,135,187,.22)!important;border-radius:18px!important;
+}
+html body .drill-app .option-list :is(button,[role=button]) *{color:#493451!important}
+html body .drill-app .option-list :is(button,[role=button]).selected,
+html body .drill-app .option-list :is(button,[role=button][aria-pressed=true]){background:linear-gradient(110deg,#d8c0f0,#f2c8e2)!important;border-color:#a879cb!important}
+html body .drill-app .drill-progress-card,html body .drill-app .question-rail{background:rgba(255,255,255,.78)!important}
+html body .drill-app .question-rail :is(*),html body .drill-app .drill-progress-card :is(*){color:#665775!important}
+html body .drill-app .drill-topbar{background:rgba(255,255,255,.78)!important;border:1px solid #fff!important;border-radius:999px!important;box-shadow:var(--aether-shadow)!important}
+/* Daily Glimpses */
+html body .glimpses-app .glimpses-hero :is(h1,p,.glimpses-kicker,.glimpses-date){color:#51445e!important}
+html body .glimpses-app .glimpses-jump a{background:rgba(255,255,255,.78)!important;color:#51405f!important;border:1px solid #fff!important;border-radius:17px!important;box-shadow:var(--aether-shadow)!important}
+html body .glimpses-app .glimpse-card{background:linear-gradient(145deg,rgba(255,255,255,.91),rgba(248,242,252,.78))!important}
+html body .glimpses-app .glimpse-card :is(h2,p,strong,span,small,.glimpse-card-head,.glimpse-card-foot){color:#403249!important}
+html body .glimpses-app .glimpse-card-head,html body .glimpses-app .glimpse-card-foot{border-color:var(--aether-line)!important}
+/* Vault */
+html body .vault-app .vault-title-row :is(h1,p),html body .vault-app .vault-brand,html body .vault-app .vault-return{color:#51445e!important}
+html body .vault-app .vault-flashcard :is(*),html body .vault-app .vault-state :is(*){color:#403249!important}
+html body .vault-app .vault-categories button,html body .vault-app .vault-language{background:rgba(255,255,255,.78)!important;color:#665775!important;border:1px solid #fff!important;border-radius:999px!important}
+html body .vault-app .vault-categories button.active{background:var(--aether-gradient)!important;color:#fff!important}
+/* Progress, syllabus, library, profile and admin */
+html body .progress-app .progress-hero :is(h1,h2,p,.progress-kicker){color:#fff!important}
+html body .progress-app .progress-hero{background:linear-gradient(135deg,#6f548d,#4d6072)!important;border:1px solid rgba(255,255,255,.55)!important}
+html body .syllabus-app .syllabus-orbit-inner{background:linear-gradient(145deg,#8c6db0,#566b7d)!important;color:#fff!important}
+html body .syllabus-app .syllabus-sidebar{background:rgba(255,255,255,.76)!important}
+html body .syllabus-app .syllabus-sidebar :is(a,button,span,p){color:#51445e!important}
+html body .library-app .library-hero :is(h1,p,.library-kicker,.library-stats){color:#51445e!important}
+html body .library-app :is(.library-subject-card,.library-resource-card) :is(h2,h3,h4,p,small,a,span){color:#493b55!important}
+html body .profile-app .profile-identity h1,html body .profile-app .profile-identity p,html body .profile-app .profile-top,html body .profile-app .profile-footer{color:#51445e!important}
+html body .admin-root{background:transparent!important;color:#403249!important}
+html body .admin-root :is(.admin-sidebar,.admin-main,.admin-content){background:transparent!important}
+html body .admin-root :is(.admin-nav-item,.admin-topbar,.admin-kicker,.admin-section-label){color:#665775!important}
+html body .admin-root :is(.admin-nav-item:hover,.admin-nav-item.selected){background:rgba(184,140,226,.22)!important;color:#7146a5!important}
+/* Shared floating navigation */
+html body .gk-student-dock{
+ background:rgba(250,247,253,.91)!important;border:1px solid rgba(255,255,255,.94)!important;
+ box-shadow:0 14px 38px rgba(67,43,88,.18),inset 0 1px 0 #fff!important;
+ backdrop-filter:blur(26px) saturate(150%)!important;-webkit-backdrop-filter:blur(26px) saturate(150%)!important;
+}
+html body .gk-student-dock .gk-dock-item{color:#82738e!important}
+html body .gk-student-dock .gk-dock-item.is-active{color:#754ba0!important}
+html body .gk-student-dock .gk-dock-item.is-active .gk-dock-icon{background:var(--aether-gradient)!important;color:#fff!important}
+html body .gk-student-dock .gk-orb-core{background:radial-gradient(circle at 35% 25%,#fff,#d9b9f1 42%,#9865c5 78%)!important;border-color:#fff!important;box-shadow:0 0 0 5px rgba(255,255,255,.9),0 8px 25px rgba(133,89,172,.35)!important}
+html body .gk-quick-panel,html body .gk-orb-panel{background:rgba(250,247,253,.97)!important;border:1px solid #fff!important;color:#403249!important;box-shadow:var(--aether-shadow)!important}
+html body .gk-quick-panel *,html body .gk-orb-panel *{color:#51445e!important}
+@media(max-width:700px){
+ html body :is(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.glimpses-app,.vault-app) :is(.card,.panel,.question-card,.drill-progress-card,.question-rail,.glimpse-card,.vault-flashcard,.syllabus-paper,.syllabus-topic,.profile-panel){border-radius:22px!important}
+ html body .drill-app .question-card{padding:18px!important}
+ html body .gk-student-dock{width:calc(100% - 18px)!important;bottom:max(9px,env(safe-area-inset-bottom))!important}
+}
+@media(prefers-reduced-motion:reduce){html body *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
