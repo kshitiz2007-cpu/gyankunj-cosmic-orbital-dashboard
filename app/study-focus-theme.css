@@ -1,0 +1,149 @@
+/* Gyankunj Focus Nebula — study-first glassmorphism theme
+   Visual intent: calm midnight indigo canvas, violet focus accent, rose action glow,
+   restrained cyan information states and warm amber progress markers. */
+:root{
+  color-scheme:dark;
+  --gk-bg:#0c1020;
+  --gk-bg-elevated:#131a31;
+  --gk-panel:#18213d;
+  --gk-panel-2:#202b4b;
+  --gk-text:#f4f5ff;
+  --gk-muted:#c2c9e0;
+  --gk-subtle:#929bb9;
+  --gk-accent:#a78bfa;
+  --gk-accent-strong:#8b5cf6;
+  --gk-accent-soft:#d8ccff;
+  --gk-cyan:#7dd3fc;
+  --gk-line:rgba(190,181,255,.18);
+  --gk-glass:linear-gradient(145deg,rgba(33,42,75,.82),rgba(17,23,45,.88));
+  --gk-gradient-brand:linear-gradient(120deg,#8b5cf6 0%,#c084fc 48%,#ec4899 100%);
+  --gk-gradient:var(--gk-gradient-brand);
+  --gk-bg-aurora:radial-gradient(ellipse at 18% 8%,rgba(99,102,241,.25),transparent 38%),radial-gradient(ellipse at 86% 18%,rgba(192,132,252,.18),transparent 36%),radial-gradient(ellipse at 52% 88%,rgba(236,72,153,.12),transparent 40%),#0c1020;
+  --gk-shadow:0 18px 52px rgba(3,6,20,.42);
+  --gk-shadow-glow:0 0 22px rgba(167,139,250,.24),0 0 46px rgba(236,72,153,.12);
+  --gk-radius:22px;
+  --gk-radius-card:22px;
+  --gk-radius-pill:999px;
+  --gk-button-primary:var(--gk-gradient-brand);
+  --gk-button-secondary-bg:rgba(255,255,255,.055);
+  --gk-button-secondary-border:rgba(190,181,255,.24);
+  --gk-focus-ring:rgba(192,132,252,.42);
+}
+html,body{background:var(--gk-bg)!important;color:var(--gk-text)}
+body{background-image:var(--gk-bg-aurora)!important;background-attachment:fixed}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--gk-accent-soft)!important;outline-offset:3px}
+:where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app){
+  color:var(--gk-text)!important;
+  background:radial-gradient(ellipse at 82% 4%,rgba(129,140,248,.13),transparent 34%),radial-gradient(ellipse at 8% 76%,rgba(192,132,252,.09),transparent 32%),var(--gk-bg)!important;
+}
+.app-shell{
+  --gold:#f4c879;
+  --line:var(--gk-line);
+  background:radial-gradient(ellipse at 50% 28%,rgba(99,102,241,.23),transparent 40%),radial-gradient(ellipse at 10% 72%,rgba(192,132,252,.14),transparent 32%),radial-gradient(ellipse at 90% 72%,rgba(236,72,153,.11),transparent 34%),#0c1020!important;
+}
+.app-shell .cosmos-noise{opacity:.22!important;filter:hue-rotate(20deg) saturate(.8)}
+.app-shell .brand-mark{color:#d8ccff!important;text-shadow:0 0 24px rgba(167,139,250,.72)!important}
+.app-shell .brand small{color:#c4b5fd!important}
+.app-shell .eyebrow,.app-shell .vertical-index,.app-shell .hero-caption,.app-shell .section-kicker{color:#c4b5fd!important}
+.app-shell .streak{color:#f4c879!important}
+.app-shell .searchbox,.app-shell .icon-button,.app-shell .avatar{
+  border-color:rgba(190,181,255,.24)!important;
+}
+.app-shell .searchbox{
+  background:linear-gradient(120deg,rgba(38,48,85,.76),rgba(18,25,49,.82))!important;
+  backdrop-filter:blur(20px) saturate(145%);
+  -webkit-backdrop-filter:blur(20px) saturate(145%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 14px 36px rgba(2,5,18,.3)!important;
+}
+.app-shell .avatar{background:linear-gradient(135deg,#8b5cf6,#c084fc 55%,#db2777)!important;box-shadow:0 0 20px rgba(167,139,250,.25)}
+.app-shell .orbit{border-color:rgba(196,181,253,.26)!important}
+.app-shell .orbit--one{box-shadow:0 0 28px rgba(139,92,246,.16),inset 0 0 22px rgba(192,132,252,.07)!important}
+.app-shell .orbit--two{border-color:rgba(125,211,252,.16)!important}
+.app-shell .orbit--three{border-color:rgba(196,181,253,.16)!important}
+.app-shell .core{
+  border-color:rgba(216,204,255,.52)!important;
+  background:radial-gradient(circle at 35% 25%,rgba(82,79,145,.94),rgba(15,20,43,.97) 60%,#090d1c)!important;
+  box-shadow:0 0 0 8px rgba(167,139,250,.055),0 0 38px rgba(139,92,246,.3),inset 0 0 34px rgba(125,211,252,.1)!important;
+}
+.app-shell .core-star{color:#e9ddff!important;text-shadow:0 0 18px #a78bfa!important}
+.app-shell .orb-node{
+  border-color:color-mix(in srgb,var(--node) 72%,rgba(210,205,255,.35))!important;
+  background:radial-gradient(circle at 34% 22%,color-mix(in srgb,var(--node) 22%,rgba(255,255,255,.08)),rgba(15,21,43,.94) 70%)!important;
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--node) 7%,transparent),0 0 25px color-mix(in srgb,var(--node) 25%,transparent),inset 0 0 24px color-mix(in srgb,var(--node) 12%,transparent),inset 0 1px 1px #fff5!important;
+  backdrop-filter:blur(16px) saturate(145%);
+  -webkit-backdrop-filter:blur(16px) saturate(145%);
+}
+.app-shell .orb-node--drill{--node:#c4b5fd!important}
+.app-shell .orb-node--editorial{--node:#f0abfc!important}
+.app-shell .orb-node--mock{--node:#93c5fd!important}
+.app-shell .orb-node--library{--node:#a5b4fc!important}
+.app-shell .orb-node--progress{--node:#f4c879!important}
+.app-shell .orb-node--live{--node:#7dd3fc!important}
+.app-shell .orb-node--ai{--node:#f9a8d4!important}
+.app-shell .orb-node--syllabus{--node:#a7f3d0!important}
+.app-shell .orb-node__title{color:#f5f3ff!important}
+.app-shell .orb-node__sub{color:#c5cbe0!important}
+.app-shell .orb-node__arrow{color:var(--node)!important}
+.app-shell .planet{filter:hue-rotate(22deg) saturate(.8)}
+/* Feature content uses one calm, readable glass family rather than a paper card beside glass. */
+.app-shell .editorial{
+  border:1px solid rgba(190,181,255,.22)!important;border-radius:22px!important;
+  background:radial-gradient(ellipse at 92% 18%,rgba(236,72,153,.14),transparent 42%),linear-gradient(145deg,rgba(39,48,83,.88),rgba(16,23,45,.94))!important;
+  color:var(--gk-text)!important;box-shadow:var(--gk-shadow),inset 0 1px 0 rgba(255,255,255,.07)!important;
+  backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+}
+.app-shell .editorial:after{background:radial-gradient(ellipse at 88% 55%,rgba(139,92,246,.16),transparent 48%)!important}
+.app-shell .editorial-kicker{color:#d8ccff!important}
+.app-shell .editorial-kicker i{background:#c4b5fd!important;box-shadow:0 0 12px rgba(167,139,250,.6)}
+.app-shell .editorial h1{color:#f7f5ff!important}
+.app-shell .editorial p{color:#c8cde1!important}
+.app-shell .editorial-meta{color:#d9d6ed!important}
+.app-shell .editorial-meta b{border-color:rgba(196,181,253,.35)!important;color:#e9ddff!important;border-radius:999px!important}
+.app-shell .chip-art{border-color:#a78bfa!important;background:linear-gradient(135deg,#26335a,#11182e)!important;box-shadow:0 15px 30px rgba(3,6,20,.45),0 0 24px rgba(139,92,246,.2)!important}
+.app-shell .chip-art:before{border-color:#c4b5fd!important}.app-shell .chip-art:after{border-color:#7dd3fc!important}
+.app-shell .chip-core{background:linear-gradient(135deg,#f4c879,#c084fc)!important;box-shadow:0 0 24px rgba(192,132,252,.4)!important}
+.app-shell .round-action{border-color:rgba(196,181,253,.4)!important;background:linear-gradient(135deg,#7c3aed,#be185d)!important;box-shadow:0 0 20px rgba(139,92,246,.25)}
+.app-shell .drill-panel{
+  border:1px solid rgba(190,181,255,.22)!important;border-radius:22px!important;
+  background:radial-gradient(circle at 82% 18%,rgba(125,211,252,.1),transparent 44%),linear-gradient(145deg,rgba(35,45,78,.9),rgba(14,21,43,.96))!important;
+  box-shadow:var(--gk-shadow),inset 0 1px 0 rgba(255,255,255,.07)!important;
+  backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+}
+.app-shell .drill-heading{color:#e9ddff!important}
+.app-shell .target-icon{color:#d8ccff!important;background:rgba(167,139,250,.13)!important}
+.app-shell .drill-heading button{border-color:rgba(196,181,253,.4)!important;background:rgba(255,255,255,.045)!important}
+.app-shell .feature-card,.app-shell .editorial-bento,.app-shell .quick-card,.app-shell .dashboard-card{
+  border-color:var(--gk-line)!important;box-shadow:var(--gk-shadow)!important;
+}
+/* Student routes: glass for navigation and summary cards; dense reading/data surfaces stay opaque. */
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(.card,.panel,.library-topic-card,.library-resource-card,.glimpse-card,.drill-archive-card,.progress-kpi,.si-insight-card,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-goals,.profile-form-panel,.ai-companion-composer,.ai-companion-prompts,.ai-companion-answer,.vault-state,.editorial-reading-card){
+  border-color:var(--gk-line)!important;border-radius:var(--gk-radius-card)!important;
+  background:var(--gk-glass)!important;color:var(--gk-text)!important;
+  box-shadow:var(--gk-shadow),inset 0 1px 0 rgba(255,255,255,.045)!important;
+  backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%);
+}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(.library-reader,.editorial-article,.drill-question-card,.result-card,.admin-table-wrap){background:rgba(14,20,40,.94)!important}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(h1,h2,h3,h4){color:var(--gk-text)}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(p,.muted,.description){color:var(--gk-muted)}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(input,textarea,select){background:rgba(12,16,32,.88)!important;color:var(--gk-text)!important;border-color:var(--gk-line)!important}
+:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.button-primary,.submit-drill,.vault-mark,.vault-controls>button,.auth-submit,.ai-companion-submit){background:var(--gk-gradient-brand)!important;box-shadow:0 8px 26px rgba(139,92,246,.24),0 0 28px rgba(236,72,153,.13)!important}
+.admin-root :is(.admin-sidebar,.admin-main,.admin-builder,.admin-module,.admin-metric,.admin-table-wrap,.admin-panel,.admin-card){background:var(--gk-glass)!important;border-color:var(--gk-line)!important;color:var(--gk-text)!important}
+.gk-bento-card,.gk-surface,.gk-stat-card{border-color:var(--gk-line-strong,var(--gk-line))!important;background:var(--gk-glass)!important;box-shadow:var(--gk-shadow),inset 0 1px 0 rgba(255,255,255,.05)!important}
+.gk-bento-card--rose,.gk-stat-card--rose,.gk-surface--rose{background:radial-gradient(ellipse at 90% 0%,rgba(236,72,153,.12),transparent 48%),var(--gk-glass)!important}
+.gk-bento-card--plum,.gk-stat-card--plum,.gk-surface--plum{background:radial-gradient(ellipse at 90% 0%,rgba(139,92,246,.16),transparent 48%),var(--gk-glass)!important}
+.gk-input-wrap,.gk-select-wrap{background:rgba(12,16,32,.82)!important;border-color:var(--gk-line)!important}
+.gk-navigation{background:rgba(18,24,47,.86)!important;border-color:var(--gk-line)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.gk-navigation__link.is-active,.gk-tabs button.is-active{background:var(--gk-gradient-brand)!important;box-shadow:var(--gk-shadow-glow)!important}
+.gk-eyebrow,.gk-field__label,.gk-section-heading .gk-eyebrow{color:var(--gk-accent-soft)!important}
+.gk-progress__track i{background:linear-gradient(90deg,#8b5cf6,#c084fc,#ec4899)!important;box-shadow:0 0 14px rgba(167,139,250,.35)!important}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .app-shell .orb-node,.app-shell .editorial,.app-shell .drill-panel,:where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.profile-app,.glimpses-app,.vault-app) .card{background:rgba(20,27,52,.96)!important}
+}
+@media(max-width:700px){
+  .app-shell .editorial,.app-shell .drill-panel{border-radius:18px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .app-shell .orb-node,.app-shell .editorial,.app-shell .drill-panel{transition:none!important}
+}
