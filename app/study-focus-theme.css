@@ -529,3 +529,103 @@ html[data-palette="lilac"] .app-shell .subject-strip{overflow-x:auto}
 @media(prefers-reduced-motion:reduce){
   :where(.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
+
+
+/* AETHER V1 — unified mobile-first design tokens and route surfaces */
+:root{
+ --gk-bg:#eee8f6;--gk-bg-elevated:#f8f4fc;--gk-panel:#302441;--gk-panel-2:#3b2d50;
+ --gk-text:#fffaff;--gk-muted:#e2d9eb;--gk-subtle:#b9abc9;
+ --gk-accent:#b879ec;--gk-accent-strong:#9256cb;--gk-accent-soft:#ead8ff;--gk-cyan:#78d6df;
+ --gk-line:rgba(221,199,246,.24);--gk-glass:linear-gradient(145deg,rgba(61,47,80,.97),rgba(43,54,69,.97));
+ --gk-gradient-brand:linear-gradient(115deg,#b879ec 0%,#9b68d5 48%,#dc79b4 100%);
+ --gk-bg-aurora:radial-gradient(ellipse at 12% 8%,rgba(216,187,240,.55),transparent 40%),radial-gradient(ellipse at 88% 24%,rgba(244,204,229,.42),transparent 40%),#eee8f6;
+ --gk-shadow:0 16px 38px rgba(52,34,73,.16);--gk-shadow-glow:0 0 22px rgba(167,139,250,.2);
+ --gk-radius:24px;--gk-radius-card:24px;--gk-control-radius:14px;
+}
+html,body{color-scheme:light!important;background:#eee8f6!important;color:#30213f!important}
+body{background:var(--gk-bg-aurora)!important;background-attachment:fixed!important}
+:where(.app-shell,.utility-page,.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app){
+ background:var(--gk-bg-aurora)!important;color:#30213f!important;
+ font-family:"DM Sans","Noto Sans Devanagari",sans-serif!important;
+}
+/* Shared glass panels: consistent dark plum/slate material across every learning route. */
+:where(.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(.card,.panel,.library-subject-card,.library-topic-card,.library-resource-card,.library-reader,.library-published-resource,.question-card,.drill-progress-card,.question-rail,.result-card,.progress-kpis>div,.si-insight-card,.progress-panel,.syllabus-sidebar,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-form-panel,.profile-stats article,.profile-goals,.admin-metric,.admin-module,.admin-panel,.admin-card,.glimpse-card,.drill-archive-card,.vault-state,.vault-flashcard,.editorial-reading-card){
+ background:linear-gradient(145deg,#3c304e 0%,#344655 100%)!important;
+ color:#fffaff!important;border:1px solid rgba(231,213,248,.28)!important;border-radius:24px!important;
+ box-shadow:0 18px 42px rgba(48,30,66,.18),inset 0 1px 0 rgba(255,255,255,.10)!important;
+ backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+}
+:where(.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(.card,.panel,.library-subject-card,.library-topic-card,.library-resource-card,.library-reader,.library-published-resource,.question-card,.drill-progress-card,.question-rail,.result-card,.progress-kpis>div,.si-insight-card,.progress-panel,.syllabus-sidebar,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-form-panel,.profile-stats article,.profile-goals,.admin-metric,.admin-module,.admin-panel,.admin-card,.glimpse-card,.drill-archive-card,.vault-state,.vault-flashcard,.editorial-reading-card)
+:is(h1,h2,h3,h4,strong,b,label){color:#fffaff!important}
+:where(.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app)
+:is(.card,.panel,.library-subject-card,.library-topic-card,.library-resource-card,.library-reader,.library-published-resource,.question-card,.drill-progress-card,.question-rail,.result-card,.progress-kpis>div,.si-insight-card,.progress-panel,.syllabus-sidebar,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-form-panel,.profile-stats article,.profile-goals,.admin-metric,.admin-module,.admin-panel,.admin-card,.glimpse-card,.drill-archive-card,.vault-state,.vault-flashcard,.editorial-reading-card) p{color:#e7deef!important}
+:where(.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(h1,h2,h3,h4){letter-spacing:-.035em}
+:where(.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.kicker,.eyebrow,.library-kicker,.drill-kicker,.progress-kicker,.syllabus-kicker,.profile-kicker,.glimpses-kicker,.vault-eyebrow){color:#82629e!important}
+/* Inputs remain light for readability, with one shared shape and focus state. */
+:where(.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(input,textarea,select){
+ background:rgba(255,255,255,.94)!important;color:#30213f!important;border:1px solid #d7c6e7!important;border-radius:14px!important;
+}
+:where(.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(input,textarea,select)::placeholder{color:#82718f!important}
+:where(.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(input,textarea,select):focus{outline:2px solid #b879ec!important;outline-offset:2px}
+/* Buttons, links and navigation share one action language. */
+:where(.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.button-primary,.submit-drill,.vault-mark,.auth-submit,.ai-companion-submit,.profile-form-actions button,.admin-workspace-tools>button,.drill-archive-start,.glimpse-card-foot a){
+ background:var(--gk-gradient-brand)!important;color:#fff!important;border:1px solid rgba(255,255,255,.24)!important;border-radius:999px!important;
+ box-shadow:0 9px 26px rgba(139,92,246,.22)!important;transition:transform .2s ease,box-shadow .2s ease!important;
+}
+:where(.library-app,.drill-app,.progress-app,.syllabus-app,.mock-preview-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.button-primary,.submit-drill,.vault-mark,.auth-submit,.ai-companion-submit,.profile-form-actions button,.admin-workspace-tools>button,.drill-archive-start,.glimpse-card-foot a):active{transform:scale(.98)}
+/* Correct washed-out light text and legacy route-specific palettes. */
+.glimpses-app{background:var(--gk-bg-aurora)!important;color:#30213f!important}
+.glimpses-hero :is(h1,p,.glimpses-kicker,.glimpses-date){color:#554365!important}
+.glimpses-jump a{background:linear-gradient(145deg,#3c304e,#344655)!important;color:#fff!important;border:1px solid rgba(221,199,246,.3)!important;border-radius:17px!important}
+.glimpse-card,.glimpse-mains{background:linear-gradient(145deg,#3c304e,#344655)!important;color:#fff!important}
+.glimpse-card :is(h2,p,.glimpse-category,.glimpse-card-head,.glimpse-card-foot,.glimpse-empty strong,.glimpse-empty p){color:#f8f3fc!important}
+.glimpse-card-head,.glimpse-card-foot{border-color:rgba(255,255,255,.2)!important}
+.vault-app{background:var(--gk-bg-aurora)!important;color:#30213f!important}
+.vault-brand,.vault-title-row h1,.vault-card-index strong{color:#30213f!important}
+.vault-title-row p,.vault-return,.vault-stats,.vault-eyebrow,.vault-top-label{color:#665775!important}
+.vault-language,.vault-categories button{background:rgba(255,255,255,.75)!important;border-color:#d8c6e8!important;color:#554365!important}
+.vault-categories button.active{background:var(--gk-gradient-brand)!important;color:#fff!important}
+.vault-flashcard{background:linear-gradient(145deg,#3c304e,#344655)!important;color:#fff!important}
+.vault-card-content :is(strong,em),.vault-answer p,.vault-card-foot{color:#f8f3fc!important}
+.drill-app{background:var(--gk-bg-aurora)!important}
+.drill-app .drill-topbar{background:rgba(248,244,252,.9)!important;border-color:#d8c9e6!important}
+.drill-app :is(.drill-back,.drill-session-label){color:#58476a!important}
+.drill-app :is(.question-card,.drill-progress-card,.question-rail,.result-card){background:linear-gradient(145deg,#3c304e,#344655)!important;color:#fff!important}
+.drill-app .question-card :is(h1,h2,h3,p,.question-topic,.question-number){color:#f8f3fc!important}
+.drill-app .answer-option{background:rgba(255,255,255,.10)!important;border:1px solid rgba(224,205,245,.3)!important;color:#fff!important}
+.drill-app .answer-option.selected{border-color:#d7a9fa!important;background:rgba(192,132,252,.25)!important}
+.drill-app :is(.drill-progress-meta,.drill-progress-foot,.rail-heading,.rail-tip,.palette-legend){color:#e7deef!important}
+.progress-app :is(.progress-top,.progress-footer,.progress-kicker,.progress-status,.si-period,.si-chart-note,.progress-legend){color:#695778!important}
+.progress-app .progress-hero{background:linear-gradient(145deg,#3c304e,#344655)!important;border:1px solid rgba(221,199,246,.28)!important;border-radius:26px!important;padding:24px!important}
+.progress-app .progress-hero :is(h1,h2,p,.progress-kicker){color:#fff!important}
+.progress-app :is(.progress-bar,.si-trend-bar-track){background:rgba(255,255,255,.16)!important}
+.syllabus-app{background:var(--gk-bg-aurora)!important;color:#30213f!important}
+.syllabus-app :is(.syllabus-top,.syllabus-brand,.syllabus-kicker,.syllabus-hero-meta,.syllabus-footer){color:#665775!important}
+.syllabus-app .syllabus-orbit-inner{background:linear-gradient(145deg,#3c304e,#29213d)!important;color:#fff!important}
+.syllabus-app .syllabus-sidebar{background:linear-gradient(145deg,#3c304e,#29213d)!important}
+.syllabus-app .syllabus-sidebar :is(a,button,span,p){color:#eee6f6!important}
+.syllabus-app :is(.syllabus-paper-head,.syllabus-topic-head){color:#fff!important;border-color:rgba(255,255,255,.2)!important}
+.library-app{background:var(--gk-bg-aurora)!important}
+.library-app .library-hero :is(h1,p,.library-kicker,.library-stats){color:#554365!important}
+.library-app :is(.library-subject-card,.library-topic-card,.library-resource-card) :is(h3,h4,p,.library-subject-index,.library-subject-meta,a,.library-resource-type){color:#f5effb!important}
+.admin-root{background:var(--gk-bg-aurora)!important;color:#30213f!important}
+.admin-root :is(.admin-sidebar,.admin-main,.admin-content){background:transparent!important}
+.admin-root :is(.admin-topbar,.admin-side-caption,.admin-section-label,.admin-kicker){color:#665775!important;border-color:#d7c6e7!important}
+.admin-root .admin-nav-item{color:#695878!important}
+.admin-root :is(.admin-nav-item:hover,.admin-nav-item.selected){background:rgba(167,139,250,.2)!important;color:#6f3e9e!important}
+.profile-app{background:var(--gk-bg-aurora)!important;color:#30213f!important}
+.profile-app :is(.profile-top,.profile-footer,.profile-kicker,.profile-identity p,.profile-activity small){color:#665775!important}
+.profile-app .profile-identity h1{color:#30213f!important}
+.profile-app :is(.profile-panel,.profile-form-panel,.profile-stats article,.profile-goals){background:linear-gradient(145deg,#3c304e,#344655)!important;color:#fff!important}
+.profile-app .profile-form-panel :is(input,select){background:#fff!important;color:#30213f!important}
+/* Floating dock is the same pale-lilac glass component on every route. */
+.gk-student-dock{background:rgba(249,245,253,.94)!important;border:1px solid rgba(194,171,218,.7)!important;box-shadow:0 12px 36px rgba(65,44,83,.18),inset 0 1px 0 #fff!important}
+.gk-dock-item{color:#766783!important}.gk-dock-item.is-active{color:#7d42b2!important}
+.gk-dock-item.is-active .gk-dock-icon{background:var(--gk-gradient-brand)!important;color:#fff!important}
+.gk-orb-core{background:radial-gradient(circle at 35% 25%,#f5eaff,#c084fc 42%,#7c3aed 78%)!important;border-color:rgba(237,210,255,.7)!important}
+@media(max-width:700px){
+ :where(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) :is(.card,.panel,.library-subject-card,.library-topic-card,.library-resource-card,.library-reader,.question-card,.drill-progress-card,.question-rail,.progress-panel,.syllabus-sidebar,.syllabus-paper,.syllabus-topic,.profile-panel,.profile-form-panel,.glimpse-card,.drill-archive-card,.vault-flashcard){border-radius:20px!important}
+}
+@media(prefers-reduced-motion:reduce){:where(.library-app,.drill-app,.progress-app,.syllabus-app,.admin-root,.profile-app,.auth-shell,.ai-companion-app,.glimpses-app,.vault-app,.editorial-detail-app) *{transition:none!important;animation:none!important}}
