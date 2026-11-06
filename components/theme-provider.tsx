@@ -7,7 +7,7 @@ type Density = "compact" | "comfortable" | "spacious";
 type Motion = "minimal" | "dynamic" | "expressive";
 type Palette = "lilac" | "nebula" | "rose" | "ocean" | "aurora" | "coral";
 type Glass = "frosted" | "clear" | "chromatic" | "liquid";
-type Preferences = { style: "cosmic"; theme: "dark"; density: Density; motion: Motion; palette: Palette; glass: Glass; glassIntensity: number };
+type Preferences = { style: "cosmic"; theme: "light"; density: Density; motion: Motion; palette: Palette; glass: Glass; glassIntensity: number };
 
 const STORAGE_KEY = "gyankunj-design-studio-v1";
 const DEFAULTS: Preferences = { style: "cosmic", theme: "dark", density: "comfortable", motion: "dynamic", palette: "lilac", glass: "frosted", glassIntensity: 72 };
@@ -34,14 +34,14 @@ function readLocalPreferences(): Preferences {
 }
 function applyPreferences(value: Preferences, persistLocal = true) {
   const root = document.documentElement;
-  root.dataset.theme = "dark";
+  root.dataset.theme = "light";
   root.dataset.style = "cosmic";
   root.dataset.density = value.density;
   root.dataset.motion = value.motion;
   root.dataset.palette = value.palette;
   root.dataset.glass = value.glass;
   root.style.setProperty("--gk-glass-intensity", String(value.glassIntensity / 100));
-  root.style.colorScheme = "dark";
+  root.style.colorScheme = "light";
   if (persistLocal) {
     try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(value)); } catch { /* server remains source of truth */ }
   }
