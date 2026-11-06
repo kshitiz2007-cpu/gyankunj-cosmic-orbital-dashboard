@@ -414,3 +414,49 @@ html[data-palette="lilac"] ::selection{background:#BDB0D0;color:#292333}
 @media(prefers-reduced-transparency:reduce){
  html[data-palette="lilac"] :is(.card,.panel,.surface,.bento-card,.gk-navigation,.gk-student-dock,.gk-studio-panel){backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:#EEE8F4!important}
 }
+
+
+/* Aether Liquid Glass: lilac exterior, immersive plum interior, reusable glass surfaces. */
+html[data-palette="lilac"]{--aether-ink:#faf5ff;--aether-muted:#e0d1f2;--aether-glow:#d9a3ff}
+html[data-palette="lilac"] body{background:radial-gradient(ellipse at 10% 10%,#edc9f4,transparent 38%),radial-gradient(ellipse at 90% 90%,#d4c2f1,transparent 42%),#bdb0d0!important}
+html[data-palette="lilac"] .app-shell{color:var(--aether-ink)!important;background:radial-gradient(ellipse at 52% 24%,rgba(177,104,255,.37),transparent 42%),radial-gradient(ellipse at 90% 75%,rgba(242,122,227,.25),transparent 44%),linear-gradient(150deg,#120a28,#271047 64%,#32155c)!important;border:1px solid rgba(255,255,255,.35);border-radius:34px;box-shadow:0 22px 80px #3c225b55,inset 0 1px 0 #ffffff55}
+html[data-palette="lilac"] .app-shell :is(.brand,.brand strong,.hero-copy,.hero-copy p,.hero-caption,.eyebrow,.section-heading,.learning-intelligence__heading h2,.learning-intelligence__heading p){color:#faf5ff!important}
+html[data-palette="lilac"] .app-shell :is(.brand small,.orb-node__sub,.learning-metric small){color:#e0d1f2!important}
+html[data-palette="lilac"] .app-shell :is(.searchbox,.avatar,.icon-button){background:#ffffff20!important;border:1px solid #ffffff55!important;color:#fff!important;backdrop-filter:blur(22px) saturate(150%)}
+html[data-palette="lilac"] .app-shell .searchbox input{color:#fff!important}
+html[data-palette="lilac"] .app-shell .searchbox input::placeholder{color:#ded0ee!important}
+html[data-palette="lilac"] .app-shell .core{background:radial-gradient(circle at 30% 20%,#ffffff55,#9d63dd77 45%,#241041 85%)!important;border:1px solid #ffffff88!important;box-shadow:0 0 52px #b770ff77,inset 0 1px 0 #ffffff99!important}
+html[data-palette="lilac"] .app-shell .orbit{border-color:#dbb5ff55!important;box-shadow:0 0 25px #b16dfb33}
+html[data-palette="lilac"] .app-shell .orb-node{background:linear-gradient(145deg,#ffffff44,#b17dfb33 48%,#250e47bb)!important;border:1px solid #ffffff88!important;border-radius:28px!important;box-shadow:0 10px 32px #14082488,0 0 25px color-mix(in srgb,var(--node) 30%,transparent),inset 0 1px 0 #ffffff99!important;backdrop-filter:blur(26px) saturate(170%)}
+html[data-palette="lilac"] .app-shell :is(.orb-node__title,.orb-node__icon){color:#fff!important}
+html[data-palette="lilac"] .app-shell :is(.editorial-bento,.drill-panel,.learning-intelligence,.learning-metric,.learning-activity,.learning-next-step,.subject-pill){background:linear-gradient(145deg,#ffffff35,#ffffff12)!important;color:#fff!important;border:1px solid #ffffff55!important;border-radius:26px!important;box-shadow:0 18px 44px #10062466,inset 0 1px 0 #ffffff66!important;backdrop-filter:blur(25px) saturate(165%)}
+html[data-palette="lilac"] .app-shell :is(.editorial-bento__copy h1,.editorial-bento__copy p,.editorial-bento__top,.editorial-bento__eyebrow,.editorial-bento__bottom,.drill-stats,.drill-foot,.learning-metric strong,.learning-metric span,.learning-activity__top,.subject-pill){color:#fff!important}
+html[data-palette="lilac"] .app-shell .progress-ring{background:conic-gradient(#f7a6ec calc(var(--progress)*1%),#ffffff33 0)!important}
+html[data-palette="lilac"] .app-shell .progress-ring span{background:#281249!important;color:#fff!important}
+html[data-palette="lilac"] .app-shell .learning-bars i{background:linear-gradient(#f5b0f4,#a17aff)!important}
+html[data-palette="lilac"] .app-shell .cosmos-noise{opacity:.18!important}
+@media(max-width:760px){
+html[data-palette="lilac"] .app-shell{margin:8px;border-radius:28px;padding:18px 14px 115px}
+html[data-palette="lilac"] .app-shell .topbar{grid-template-columns:1fr auto;gap:12px}
+html[data-palette="lilac"] .app-shell .searchbox{grid-column:1/-1;grid-row:2;height:42px}
+html[data-palette="lilac"] .app-shell .hero{display:flex;flex-direction:column;min-height:0;gap:10px;padding:16px 0}
+html[data-palette="lilac"] .app-shell .hero-copy--left{order:0;margin:0;padding:0;border:0}
+html[data-palette="lilac"] .app-shell .hero-copy--left p{font:600 20px/1.3 "DM Sans",sans-serif}
+html[data-palette="lilac"] .app-shell :is(.vertical-index,.hero-caption,.hero-copy--right p){display:none}
+html[data-palette="lilac"] .app-shell .hero-copy--right{order:1;position:relative;margin:0;padding:0;border:0;text-align:left}
+html[data-palette="lilac"] .app-shell .streak{justify-content:flex-start}
+html[data-palette="lilac"] .app-shell .universe{order:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;max-height:none;aspect-ratio:auto;filter:none}
+html[data-palette="lilac"] .app-shell .universe :is(.orbit,.orbit-dash,.core,.planet){display:none}
+html[data-palette="lilac"] .app-shell .orb-node{position:relative;left:auto;top:auto;width:100%;min-height:120px;aspect-ratio:auto;transform:none!important;padding:14px 8px;border-radius:24px!important}
+html[data-palette="lilac"] .app-shell .orb-node__icon{margin-bottom:7px}
+html[data-palette="lilac"] .app-shell .orb-node__title{font-size:12px}
+html[data-palette="lilac"] .app-shell .orb-node__sub{font-size:8px}
+html[data-palette="lilac"] .app-shell .orb-node--drill{grid-column:1/-1;min-height:110px;flex-direction:row;gap:15px;justify-content:flex-start;padding:20px;border-radius:36px!important;background:linear-gradient(110deg,#9658ebcc,#e27cd688,#ffffff33)!important;box-shadow:0 0 35px #c67aff88,inset 0 1px 0 #ffffffbb!important}
+html[data-palette="lilac"] .app-shell .orb-node--drill .orb-node__title{font-size:18px}
+html[data-palette="lilac"] .app-shell .feature-row{display:flex;flex-direction:column;gap:14px}
+html[data-palette="lilac"] .app-shell .drill-panel{order:0}
+html[data-palette="lilac"] .app-shell .editorial-bento{order:1}
+html[data-palette="lilac"] .app-shell .learning-intelligence__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+html[data-palette="lilac"] .app-shell .subject-strip{overflow-x:auto}
+}
+@media(prefers-reduced-motion:reduce){html[data-palette="lilac"] .app-shell .orb-node{transition:none!important}}
