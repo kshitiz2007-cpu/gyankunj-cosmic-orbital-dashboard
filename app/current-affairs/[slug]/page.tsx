@@ -2,6 +2,7 @@
 import Link from "next/link";
 import {useParams,useRouter} from "next/navigation";
 import {useEffect,useState} from "react";
+import {AnimatePresence,motion,useReducedMotion} from "motion/react";
 import {getSupabaseBrowserClient} from "@/lib/supabase/client";
 import {HugeiconsIcon} from "@hugeicons/react";
 import {ArrowLeft01Icon,ArrowUpRight01Icon,Clock01Icon,Bookmark01Icon,CheckmarkCircle02Icon} from "@hugeicons/core-free-icons";
@@ -36,13 +37,15 @@ function EditorialContent({content}:{content:string}) {
 }
 
 export default function EditorialDetail(){
- const [saved,setSaved]=useState(false),[article,setArticle]=useState<EditorialRecord|null>(null),[loading,setLoading]=useState(true),[error,setError]=useState("");
+ const [saved,setSaved]=useState(false),[readingProgress,setReadingProgress]=useState(0),[readingComplete,setReadingComplete]=useState(false),[article,setArticle]=useState<EditorialRecord|null>(null),[loading,setLoading]=useState(true),[error,setError]=useState("");
  const params=useParams<{slug:string}>(),router=useRouter();
+ const reducedMotion=useReducedMotion();
+ useEffect(()=>{const update=()=>{const articleEl=document.querySelector(".editorial-article");if(!articleEl)return;const rect=articleEl.getBoundingClientRect();const distance=Math.max(1,articleEl.clientHeight-window.innerHeight);const progress=Math.max(0,Math.min(100,Math.round(-rect.top/distance*100)));setReadingProgress(progress);if(progress>=98)setReadingComplete(true);};window.addEventListener("scroll",update,{passive:true});window.addEventListener("resize",update);update();return()=>{window.removeEventListener("scroll",update);window.removeEventListener("resize",update);};},[article]);
  useEffect(()=>{let active=true;const load=async()=>{const supabase=getSupabaseBrowserClient();if(!supabase){setError("Editorial service is unavailable.");setLoading(false);return;}const {data:{user},error:authError}=await supabase.auth.getUser();if(authError||!user){router.replace("/login");return;}const {data,error}=await supabase.from("editorial_articles").select("*").eq("slug",params.slug).eq("is_published",true).maybeSingle();if(!active)return;if(error){setError(error.message);setLoading(false);return;}setArticle(data as EditorialRecord|null);setLoading(false);};void load();return()=>{active=false;};},[params.slug,router]);
  if(loading)return <main className="editorial-detail-app"><Link href="/current-affairs">← Back to editorials</Link><p>Loading published editorial…</p></main>;
  if(error||!article)return <main className="editorial-detail-app"><Link href="/current-affairs">← Back to editorials</Link><h1>{error?"Unable to load editorial":"Editorial not found"}</h1><p>{error||"This editorial may be unpublished or no longer available."}</p></main>;
  const dateLabel=new Date(article.published_at||article.created_at).toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"});
- return <main className="editorial-detail-app editorial-detail-app--premium">
+ return <main className="editorial-detail-app editorial-detail-app--premium"><div className="editorial-reading-progress" role="progressbar" aria-label="Editorial reading progress" aria-valuenow={readingProgress} aria-valuemin={0} aria-valuemax={100}><motion.div animate={{width:readingProgress+"%"}} transition={reducedMotion?{duration:0}:{duration:.3,ease:"easeOut"}}/></div>
   <header className="editorial-top editorial-top--premium"><Link href="/current-affairs" className="editorial-back"><HugeiconsIcon icon={ArrowLeft01Icon}/> ALL EDITORIALS</Link><span className="editorial-top-brand">GYANKUNJ <i>/</i> DAILY BRIEF</span><button className={"editorial-save "+(saved?"saved":"")} onClick={()=>setSaved(v=>!v)}><HugeiconsIcon icon={saved?CheckmarkCircle02Icon:Bookmark01Icon}/>{saved?"SAVED":"SAVE ARTICLE"}</button></header>
   <article className="editorial-article editorial-article--premium">
    <div className="editorial-article-head editorial-article-head--premium">
@@ -60,7 +63,7 @@ export default function EditorialDetail(){
      <EditorialContent content={article.content_hi||article.content_en}/>
      {article.content_hi&&article.content_en&&article.content_hi!==article.content_en&&<details className="editorial-english-version"><summary>Read English version <span>＋</span></summary><div className="editorial-english-copy"><EditorialContent content={article.content_en}/></div></details>}
      {article.mains_question&&<section className="editorial-mains editorial-mains--premium"><span className="editorial-kicker">MAINS ANSWER PRACTICE</span><h2>अब विचार को उत्तर में बदलें।</h2><p>{article.mains_question}</p><div><span>150 WORDS</span><span>ANALYTICAL APPROACH</span></div></section>}
-     <div className="editorial-next editorial-next--premium"><Link href="/current-affairs"><HugeiconsIcon icon={ArrowLeft01Icon}/> ALL EDITORIALS</Link><Link href="/practice/daily">PRACTICE TODAY&apos;S DRILL <HugeiconsIcon icon={ArrowUpRight01Icon}/></Link></div>
+     <AnimatePresence>{readingComplete&&<motion.div className="editorial-finish" initial={reducedMotion?false:{opacity:0,y:22,scale:.95}} animate={{opacity:1,y:0,scale:1}} transition={{type:"spring",stiffness:160,damping:19}} role="status"><motion.span className="editorial-finish-icon" initial={reducedMotion?false:{scale:0,rotate:-40}} animate={{scale:1,rotate:0}} transition={{type:"spring",stiffness:220,damping:13}}>✦</motion.span><div><strong>Reading complete.</strong><p>Great work. Turn today&apos;s insights into exam-ready recall.</p></div></motion.div>}</AnimatePresence><div className="editorial-next editorial-next--premium"><Link href="/current-affairs"><HugeiconsIcon icon={ArrowLeft01Icon}/> ALL EDITORIALS</Link><Link href="/practice/daily">PRACTICE TODAY&apos;S DRILL <HugeiconsIcon icon={ArrowUpRight01Icon}/></Link></div>
     </div>
    </div>
   </article>
