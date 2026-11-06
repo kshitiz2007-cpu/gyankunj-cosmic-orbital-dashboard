@@ -15,15 +15,17 @@ const DEFAULTS: Preferences = { style: "cosmic", theme: "dark", density: "comfor
 function valid<T extends string>(value: unknown, values: readonly T[], fallback: T): T {
   return typeof value === "string" && values.includes(value as T) ? value as T : fallback;
 }
-function normalize(raw: any): Preferences {
+function normalize(raw: unknown): Preferences {
+  const value = raw && typeof raw === "object" ? raw as Record<string, unknown> : {};
+  const intensity = value.glassIntensity;
   return {
     style: "cosmic", theme: "dark",
-    density: valid(raw?.density, ["compact","comfortable","spacious"], DEFAULTS.density),
-    motion: valid(raw?.motion, ["minimal","dynamic","expressive"], DEFAULTS.motion),
-    palette: valid(raw?.palette, ["nebula","rose","ocean","aurora","coral"], DEFAULTS.palette),
-    glass: valid(raw?.glass, ["frosted","clear","chromatic","liquid"], DEFAULTS.glass),
-    glassIntensity: typeof raw?.glassIntensity === "number" && Number.isFinite(raw.glassIntensity)
-      ? Math.min(100, Math.max(20, raw.glassIntensity)) : DEFAULTS.glassIntensity,
+    density: valid(value.density, ["compact","comfortable","spacious"], DEFAULTS.density),
+    motion: valid(value.motion, ["minimal","dynamic","expressive"], DEFAULTS.motion),
+    palette: valid(value.palette, ["nebula","rose","ocean","aurora","coral"], DEFAULTS.palette),
+    glass: valid(value.glass, ["frosted","clear","chromatic","liquid"], DEFAULTS.glass),
+    glassIntensity: typeof intensity === "number" && Number.isFinite(intensity)
+      ? Math.min(100, Math.max(20, intensity)) : DEFAULTS.glassIntensity,
   };
 }
 function readLocalPreferences(): Preferences {
