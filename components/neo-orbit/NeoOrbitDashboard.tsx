@@ -14,6 +14,7 @@ import "./neo-orbit.css";
 type Stats = { streak:number; quizzes:number; mocks:number; accuracy:number|null; answered:number; loading:boolean };
 type Drill = { count:number; title:string; href:string };
 type Editorial = { slug:string; title:string; category:string; read:number } | null;
+type Module = (typeof modules)[number];
 
 function Lotus({large=false}:{large?:boolean}) {
   return <span className={"neo-lotus"+(large?" neo-lotus--large":"")} aria-hidden="true">
@@ -45,6 +46,7 @@ export default function NeoOrbitDashboard() {
   const [drill,setDrill]=useState<Drill>({count:0,title:"Loading today's drill",href:"/practice/daily"});
   const [editorial,setEditorial]=useState<Editorial>(null);
   const [hasUser,setHasUser]=useState(false);
+  const [activeModule,setActiveModule]=useState<Module|null>(null);
 
   useEffect(()=>{
     let alive=true;
@@ -101,12 +103,26 @@ export default function NeoOrbitDashboard() {
 
       <section className="neo-greeting"><h1>{greeting}, {name} <span>👋</span></h1><p>Your UPSC Journey, Elevated</p></section>
 
-      <section className="neo-orbit" aria-label="Learning modules">
-        <div className="neo-orbit-track neo-orbit-track--outer"/><div className="neo-orbit-track neo-orbit-track--inner"/>
-        <div className="neo-orbit-hub"><Lotus large/></div>
-        {modules.map((item,index)=><Link key={item.label} href={item.href} className={"neo-module neo-module--"+item.slot} style={{"--module-index":index} as React.CSSProperties}>
-          <Icon icon={item.icon} size={34}/><strong>{item.label}</strong><small>{item.sub}</small>
-        </Link>)}
+      <section className={"neo-orbit clay-campus"+(activeModule?" has-focus":"")} aria-label="Interactive clay learning campus">
+        <div className="clay-campus-heading"><span>YOUR LEARNING WORLD</span><small>{activeModule?"CAMERA LOCKED · DESTINATION IN FOCUS":"TAP A DESTINATION TO EXPLORE"}</small></div>
+        <div className="clay-campus-scene" style={activeModule?({"--clay-zoom":"1.38","--clay-focus-x":activeModule.slot==="left-top"||activeModule.slot==="left-bottom"?"13%":activeModule.slot==="right-top"||activeModule.slot==="right-bottom"?"-13%":"0%","--clay-focus-y":activeModule.slot==="top"?"13%":activeModule.slot==="bottom"?"-13%":"0%"} as React.CSSProperties):undefined}>
+          <div className="clay-campus-world">
+            <div className="clay-campus-ground"/>
+            <div className="clay-campus-central"><Lotus large/><b>GYANKUNJ</b><small>KNOWLEDGE HUB</small></div>
+            {modules.map((item,index)=><button type="button" key={item.label} onClick={()=>setActiveModule(activeModule?.label===item.label?null:item)} className={"neo-module neo-module--"+item.slot+(activeModule?.label===item.label?" is-selected":"")} style={{"--module-index":index} as React.CSSProperties} aria-label={"Focus "+item.label}>
+              <span className={"clay-miniature clay-miniature--"+item.slot}><i/><i/><i/></span><Icon icon={item.icon} size={27}/><strong>{item.label}</strong><small>{item.sub}</small><span className="clay-zone-tag">{String(index+1).padStart(2,"0")} / EXPLORE</span>
+            </button>)}
+            <div className="clay-campus-tree clay-tree-left"/><div className="clay-campus-tree clay-tree-right"/>
+            <div className="clay-campus-stairs"/>
+          </div>
+        </div>
+        <div className="clay-campus-foot"><span>✦ 6 INTERACTIVE DESTINATIONS</span><button type="button" onClick={()=>setActiveModule(null)} disabled={!activeModule}>↺ RESET VIEW</button></div>
+        {activeModule&&<div className="clay-focus-panel" key={activeModule.label}>
+          <div className="clay-focus-icon"><Icon icon={activeModule.icon} size={28}/></div>
+          <div><small>DESTINATION {String(modules.findIndex(x=>x.label===activeModule.label)+1).padStart(2,"0")}</small><h2>{activeModule.label}</h2><p>{activeModule.sub} · Your dedicated learning space.</p></div>
+          <Link href={activeModule.href}>Explore section ↗</Link>
+          <button type="button" aria-label="Close focus" onClick={()=>setActiveModule(null)}>×</button>
+        </div>}
       </section>
 
       <Link href="/todays-glimpses" className="neo-glimpses">
