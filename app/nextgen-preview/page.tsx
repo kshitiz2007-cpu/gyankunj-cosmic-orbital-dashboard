@@ -73,7 +73,7 @@ export default function NextGenPreviewPage(){
     <section className={styles.welcomeRow}><div><span className={styles.eyebrow}>DAILY FOCUS · PERSONAL LEARNING</span><h2>Good morning, <em>{student}.</em></h2><p>{drill?`${drill.count} published questions · ${drill.title}`:"Your next milestone starts with one focused session."}</p></div><div className={styles.streak}><span>✦</span><strong>{metrics.streak} day<br/>learning streak</strong><small>DAILY CONSISTENCY</small></div></section>
     <section className={styles.stats}>
      <article className={styles.statCard}><span>LEARNING STREAK</span><strong>{loading?"—":metrics.streak} <small>days</small></strong><i>Keep showing up</i></article>
-     <article className={styles.statCard}><span>QUESTIONS ANSWERED</span><strong>{loading?"—":metrics.attempts}</strong><i>Submitted assessments · 30 days</i></article>
+     <article className={styles.statCard}><span>QUESTIONS ANSWERED</span><strong>{loading?"—":metrics.answered}</strong><i>Across {metrics.attempts} submitted assessments</i></article>
      <article className={styles.statCard}><span>TOPICS MASTERED</span><strong>{loading?"—":metrics.topics}</strong><i>Tracked UPSC topics</i></article>
     </section>
     <section className={styles.sectionHead}><div><span className={styles.eyebrow}>THE DAILY THREE / 01</span><h2>Today's <em>focus.</em></h2></div><Link href="/todays-glimpses">View daily bundle ↗</Link></section>
