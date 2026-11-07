@@ -1,5 +1,5 @@
-/* Keep the Atlas home independent from legacy global shell surfaces. */
-body:has(.gk2-home) .gk-student-nav-root{display:none!important}
-body:has(.gk2-home){background:#f3f0e8!important;color:#20231f!important}
-html:has(.gk2-home){background:#f3f0e8!important;color-scheme:light}
-.gk2-home{position:relative;z-index:1}
+/* Home-only light campus shell; all legacy routes retain their existing surfaces. */
+body:has(.gk2-campus){background:#f4e9dc!important;color:#342b2a!important;overflow-x:hidden}
+html:has(.gk2-campus){background:#f4e9dc!important;color-scheme:light}
+body:has(.gk2-campus) .gk-student-nav-root{display:none!important}
+.gk2-campus{position:relative;z-index:1}
