@@ -4716,3 +4716,104 @@ html[data-style="cosmic"] .app-shell .subject-pill:hover{border-color:#f9a8d4!im
 @media(prefers-contrast:more){
  .library-app :is(p,span,small,a,button),.progress-app :is(p,span,small,a,button){opacity:1!important;text-shadow:none!important}
 }
+
+
+/* Unified light-theme contrast system for every student-facing interface.
+   Keep the rose/lilac glass surfaces; replace low-contrast white-on-pastel copy. */
+:root{
+  --gk-light-ink:#29172f;
+  --gk-light-body:#514258;
+  --gk-light-muted:#6e5b73;
+  --gk-light-soft:#806e85;
+  --gk-light-accent:#a51d80;
+}
+:is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+.glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell,
+.editorial-content-flow,.editorial-detail-app,.library-app,.progress-app){
+  color:var(--gk-light-ink)!important;
+  --page-ink:var(--gk-light-ink);
+  --page-muted:var(--gk-light-muted);
+}
+/* Main copy, Hindi content, field labels and helper text */
+:is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+.glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell,
+.editorial-content-flow,.editorial-detail-app) :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,label,legend,figcaption,blockquote){
+  color:var(--gk-light-ink)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+:is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+.glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell,
+.editorial-content-flow,.editorial-detail-app) :is(small,.eyebrow,.kicker,[class*="meta"],[class*="label"],[class*="caption"],[class*="hint"],[class*="index"],[class*="eyebrow"],[class*="overline"]){
+  color:var(--gk-light-muted)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+/* Navigation and ordinary links remain readable on translucent white surfaces. */
+:is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+.glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell,
+.editorial-content-flow,.editorial-detail-app) a{
+  color:#84216f;
+  opacity:1;
+}
+:is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+.glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell) :is(input,textarea,select){
+  color:#29172f!important;
+  caret-color:#a51d80;
+}
+:is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+.glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell) :is(input,textarea,select)::placeholder{
+  color:#78677d!important;opacity:1!important;
+}
+/* Cards and panels used by the light redesign: retain tactile glass, add readable foreground. */
+:is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+.glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell) :is(
+  .question-card,.drill-progress-card,.question-rail,.answer-option,.result-card,
+  .vault-card,.vault-panel,.vault-flashcard,.syllabus-card,.syllabus-panel,
+  .mock-card,.mock-panel,.glimpses-card,.glimpse-card,.profile-card,.profile-panel,
+  .ai-card,.ai-panel,.utility-card,.auth-card
+){
+  color:#29172f!important;
+}
+:is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+.glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell) :is(
+  .question-card,.drill-progress-card,.question-rail,.answer-option,.result-card,
+  .vault-card,.vault-panel,.vault-flashcard,.syllabus-card,.syllabus-panel,
+  .mock-card,.mock-panel,.glimpses-card,.glimpse-card,.profile-card,.profile-panel,
+  .ai-card,.ai-panel,.utility-card,.auth-card
+) :is(h1,h2,h3,h4,p,span,small,label,b,strong,em){
+  color:#35223b!important;opacity:1!important;text-shadow:none!important;
+}
+/* Selected / branded controls keep their white foreground against saturated fills. */
+:is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+.glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell) :is(
+  button[class*="primary"],a[class*="primary"],button[class*="submit"],button[class*="next"],
+  a[class*="action"],button[class*="brand"],.is-active,.active
+){
+  opacity:1!important;
+}
+:is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+.glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell) :is(
+  button[class*="primary"],a[class*="primary"],button[class*="submit"],button[class*="next"],
+  a[class*="action"],button[class*="brand"]
+){
+  color:#fff!important;
+}
+/* Editorial reader: force body text to a legible ink on the paper panels. */
+.editorial-content-flow :is(p,li,span,small,strong,b,em){opacity:1!important;text-shadow:none!important}
+.editorial-content-flow .editorial-content-paragraph{color:#493747!important}
+.editorial-content-flow .editorial-content-point{color:#493747!important;background:rgba(255,255,255,.88)!important;border-color:rgba(91,48,91,.16)!important}
+.editorial-content-flow .editorial-content-point :is(p,span,b,strong){color:#493747!important}
+.editorial-content-flow .editorial-content-heading{color:#29172f!important}
+.editorial-content-flow .editorial-content-heading span{color:#8e2479!important}
+/* Ensure no opacity utility or inherited white token fades small text on pale glass. */
+:is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+.glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell,
+.editorial-content-flow,.editorial-detail-app) :is(.text-white,[class*="text-white"],[style*="color: white"],[style*="color:#fff"]){
+  color:#514258!important;opacity:1!important;
+}
+@media(prefers-contrast:more){
+ :is(.drill-app,.drill-archive-app,.vault-app,.syllabus-app,.mock-app,.mock-preview-app,
+ .glimpses-app,.profile-app,.ai-companion-app,.utility-page,.auth-shell,
+ .editorial-content-flow,.editorial-detail-app) :is(p,span,small,label,a,button){opacity:1!important;text-shadow:none!important}
+}
