@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import "./clay-world.css";
 import "./design-system.css";
 import "./study-focus-theme.css";
 import "./student-experience.css";
 import "./gyankunj-foundation.css";
+import "./clay-world.css";
 import ThemeProvider from "@/components/theme-provider";
 import StudentFloatingNavigation from "@/components/student-floating-navigation";
 
