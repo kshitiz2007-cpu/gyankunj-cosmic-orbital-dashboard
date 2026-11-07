@@ -119,3 +119,95 @@
 }
 :is(.mock-preview-app) .preview-submit{background:linear-gradient(135deg,#ed68c1,#cf299f 48%,#982c9e)!important;color:#fff!important}
 @media(max-width:700px){:is(.editorial-article,.preview-question,.preview-result,.library-reader,.library-reader-body,.drill-archive-card){border-radius:18px!important}}
+
+
+/* HIGH-SPECIFICITY FINAL LAYER
+   The earlier design-system.css contains html[data-style="cosmic"] rules with
+   greater specificity. These explicit route selectors intentionally win. */
+html[data-style="cosmic"]{
+ color-scheme:light;
+ --gk-bg:#f8eaf5;--gk-bg-elevated:#fff8fd;--gk-surface:#fff8fd;--gk-surface-raised:#f8e7f4;
+ --gk-text:#321b39;--gk-text-secondary:#654d6c;--gk-muted:#806a85;--gk-subtle:#967f99;
+ --gk-line:rgba(176,119,165,.22);--gk-line-strong:rgba(196,91,161,.42);
+ --gk-gradient-panel:linear-gradient(145deg,rgba(255,255,255,.92),rgba(255,244,252,.78) 58%,rgba(238,225,247,.82));
+ --gk-shadow-sm:0 14px 30px rgba(128,75,139,.13),inset 0 1px 0 #fff;
+ --gk-shadow:0 18px 42px rgba(128,75,139,.16),inset 0 1px 0 #fff;
+}
+html[data-style="cosmic"] body,
+html[data-style="cosmic"] html{
+ background:#f8eaf5!important;color:#321b39!important;color-scheme:light!important;
+}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app){
+ background:
+  radial-gradient(ellipse 78% 34% at 48% -4%,rgba(255,184,226,.62),transparent 75%),
+  radial-gradient(ellipse 45% 38% at 100% 42%,rgba(197,174,241,.36),transparent 78%),
+  linear-gradient(150deg,#fceef7 0%,#f2e9f8 52%,#fceef7 100%)!important;
+ color:#321b39!important;
+}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ .syllabus-hero,.syllabus-stats,.syllabus-sidebar,.syllabus-content,.syllabus-paper-head,.syllabus-topic,
+ .editorial-featured,.editorial-list-card,.editorial-visual,.editorial-chip,.library-subject-card,.library-resource-card,
+ .library-topic-card,.library-reader,.library-reader-head,.library-reader-body,.library-published-resource,
+ .glimpse-card,.profile-panel,.profile-form-panel,.profile-stats article,.profile-goals,.progress-panel,.si-insight-card,
+ .progress-kpis>*,.vault-card,.vault-categories,.question-card,.drill-progress-card,.result-card,.drill-archive-card,
+ .mock-test-card,.mock-guidelines,.preview-question,.preview-result,.preview-layout,.preview-palette,
+ .utility-panel,.live-session-list>*,.syllabus-paper-foot
+){
+ background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(255,247,253,.82) 55%,rgba(239,227,247,.88))!important;
+ border:1px solid rgba(255,255,255,.98)!important;border-radius:23px!important;
+ color:#321b39!important;box-shadow:0 15px 34px rgba(128,75,139,.14),0 4px 12px rgba(174,102,164,.08),inset 0 1px 0 #fff!important;
+}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ h1,h2,h3,h4,.syllabus-paper-head,.syllabus-topic-head,.editorial-featured-copy,.editorial-list-copy,
+ .library-subject-card h2,.library-topic-card h2,.library-resource-card h2,.glimpse-card h2,
+ .profile-panel h2,.progress-panel h2,.vault-card-content,.question-card h2,.mock-test-card h2,
+ .preview-title,.editorial-article h1,.editorial-article h2,.library-reader h1,.library-reader h2
+){color:#321b39!important}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ p,li,small,label,.syllabus-topic-items,.editorial-deck,.editorial-article-body,.library-reader-body,
+ .library-reader-lead,.profile-identity p,.progress-empty,.drill-archive-meta,.glimpse-empty p
+){color:#654d6c!important}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ .syllabus-top,.editorial-top,.library-top,.glimpses-top,.profile-top,.progress-top,.drill-topbar,.mock-top,.vault-topbar,.preview-top
+){background:transparent!important;color:#795c80!important;border-color:rgba(176,119,165,.24)!important}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ .syllabus-kicker,.syllabus-side-label,.editorial-kicker,.library-kicker,.glimpses-kicker,.glimpse-category,
+ .profile-kicker,.progress-kicker,.vault-eyebrow,.drill-kicker,.mock-kicker
+){color:#a32d89!important}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ .syllabus-hero h1,.editorial-hero h1,.library-hero h1,.glimpses-hero h1,.profile-identity h1,
+ .progress-hero h1,.vault-title-row h1,.drill-intro h1,.mock-hero h1,.editorial-article h1
+){color:#321b39!important}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ .syllabus-hero h1 em,.editorial-hero h1 em,.library-hero h1 em,.glimpses-hero h1 em,
+ .profile-identity h1 em,.progress-hero h1 em,.vault-title-row h1 em,.mock-hero h1 em
+){color:#bd3997!important}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ button,input,select,textarea,.editorial-search,.library-tools input,.profile-form-panel input,.profile-form-panel select
+){color:#432849!important}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ input,select,textarea,.editorial-search,.profile-form-panel input,.profile-form-panel select
+){background:rgba(255,255,255,.86)!important;border:1px solid rgba(199,147,190,.42)!important;border-radius:14px!important;box-shadow:inset 3px 4px 9px rgba(166,112,166,.10),inset -3px -3px 9px #fff!important}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ .editorial-cta,.editorial-card-foot a,.glimpse-card-foot a,.mock-card-foot a,.submit-drill,
+ .profile-form-actions button,.vault-controls button,.utility-actions a,.preview-submit,.syllabus-cta
+){background:linear-gradient(135deg,#ed68c1 0%,#cf299f 48%,#982c9e 100%)!important;color:#fff!important;border:1px solid rgba(255,255,255,.82)!important;border-radius:999px!important;box-shadow:0 9px 20px rgba(185,43,145,.27),inset 0 2px 3px rgba(255,255,255,.4)!important}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ .syllabus-nav-group button,.syllabus-topic-head,.editorial-filters button,.library-tools button,.profile-tabs button,
+ .si-period button,.vault-categories button,.glimpses-jump a,.preview-options button,.preview-controls button,.preview-palette button
+){background:rgba(255,255,255,.76)!important;color:#765b7d!important;border:1px solid rgba(255,255,255,.96)!important;border-radius:14px!important;box-shadow:0 5px 12px rgba(136,84,143,.09),inset 0 1px 0 #fff!important}
+html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app) :is(
+ .syllabus-nav-group button.active,.editorial-filters button.active,.library-tools button.active,.profile-tabs button.active,
+ .si-period button.active,.vault-categories button.active,.glimpses-jump a.available
+){background:linear-gradient(145deg,#fff,#f8dff1)!important;color:#a51c83!important;border-color:#efb7dc!important}
+html[data-style="cosmic"] .gk-student-dock{
+ background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(255,242,252,.86) 55%,rgba(238,222,247,.9))!important;
+ border:1px solid #fff!important;box-shadow:0 18px 38px rgba(112,67,130,.2),inset 0 2px 3px #fff!important;
+}
+html[data-style="cosmic"] .gk-dock-item{color:#775e80!important}
+html[data-style="cosmic"] .gk-dock-item.is-active .gk-dock-icon{background:radial-gradient(circle at 30% 12%,#ffafe5,#e73bb5 43%,#bb1497 78%,#83288f)!important;color:#fff!important}
+html[data-style="cosmic"] :is(.gk-quick-panel,.gk-orb-panel){background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(250,232,248,.94))!important;color:#321b39!important;border:1px solid #fff!important}
+@media(max-width:700px){
+ html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app){padding-bottom:calc(116px + env(safe-area-inset-bottom))!important}
+ html[data-style="cosmic"] :is(.syllabus-hero,.editorial-featured,.editorial-list-card,.library-subject-card,.library-topic-card,.library-resource-card,.glimpse-card,.profile-panel,.progress-panel,.vault-card,.question-card,.mock-test-card,.utility-panel){border-radius:19px!important}
+}
