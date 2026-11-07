@@ -722,3 +722,102 @@ html[data-style="cosmic"] .ed-dispatch-card h3,html[data-style="cosmic"] .ed-dis
  html[data-style="cosmic"] .er-content-body .editorial-content-point{padding:12px!important}
  html[data-style="cosmic"] .er-content-body .editorial-content-point p{font-size:13px!important;line-height:1.9!important}
 }
+
+
+/* READER REPAIR v2 — one continuous paper-like reading column.
+   Reset inherited legacy article/grid rules instead of layering another card theme. */
+html body:has(.editorial-reader-redesign){background:#f7edf7!important;color:#321b39!important}
+html body:has(.editorial-reader-redesign) .editorial-reader-redesign,
+html body:has(.editorial-reader-redesign) .er-wrap,
+html body:has(.editorial-reader-redesign) .er-reading-grid,
+html body:has(.editorial-reader-redesign) .er-content-column{
+ background:transparent!important;background-color:transparent!important;color:#321b39!important;
+}
+html body:has(.editorial-reader-redesign) .er-reading-grid{
+ display:grid!important;grid-template-columns:210px minmax(0,760px)!important;
+ align-items:start!important;align-content:start!important;justify-content:center!important;
+ gap:28px!important;min-height:0!important;height:auto!important;
+}
+html body:has(.editorial-reader-redesign) .er-content-column{
+ display:block!important;min-width:0!important;min-height:0!important;height:auto!important;
+ align-self:start!important;justify-self:stretch!important;
+}
+html body:has(.editorial-reader-redesign) .er-content-body{
+ display:block!important;position:relative!important;
+ width:100%!important;max-width:100%!important;min-width:0!important;
+ min-height:0!important;height:auto!important;max-height:none!important;
+ margin:18px 0!important;padding:clamp(20px,3vw,36px)!important;
+ overflow:visible!important;overflow-y:visible!important;
+ border:1px solid rgba(255,255,255,.98)!important;border-radius:24px!important;
+ background:linear-gradient(155deg,#fffaff 0%,#fff7fd 58%,#f8edf8 100%)!important;
+ background-color:#fff8fe!important;color:#49334f!important;
+ box-shadow:0 14px 32px rgba(128,75,139,.12),inset 0 1px 0 #fff!important;
+}
+html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-flow{
+ display:block!important;position:static!important;
+ width:100%!important;min-height:0!important;height:auto!important;max-height:none!important;
+ padding:0!important;margin:0!important;overflow:visible!important;
+ background:transparent!important;background-color:transparent!important;
+ align-content:initial!important;justify-content:initial!important;
+ grid-template-columns:none!important;grid-template-rows:none!important;
+}
+html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-flow>*{
+ position:static!important;float:none!important;
+ width:auto!important;min-width:0!important;min-height:0!important;
+ height:auto!important;max-height:none!important;
+ flex:none!important;align-self:auto!important;justify-self:auto!important;
+ margin-block:0!important;opacity:1!important;transform:none!important;
+}
+html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-paragraph{
+ display:block!important;margin:0 0 19px!important;padding:0!important;
+ color:#49334f!important;background:transparent!important;border:0!important;border-radius:0!important;
+ font:450 15px/2.05 "Noto Sans Devanagari",sans-serif!important;
+}
+html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-heading{
+ display:flex!important;align-items:baseline!important;gap:12px!important;
+ margin:28px 0 15px!important;padding:0 0 10px!important;
+ color:#38213f!important;background:transparent!important;border:0!important;
+ border-bottom:1px solid #d9bfd7!important;border-radius:0!important;
+ font:800 21px/1.55 "Noto Serif Devanagari",serif!important;
+}
+html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-heading span{
+ display:inline-grid!important;place-items:center!important;flex:0 0 28px!important;
+ width:28px!important;height:28px!important;border-radius:9px!important;
+ background:#f2d9ed!important;color:#a42d87!important;font:700 10px "Space Grotesk",sans-serif!important;
+}
+html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-point{
+ display:grid!important;grid-template-columns:24px minmax(0,1fr)!important;
+ align-items:start!important;gap:10px!important;
+ width:100%!important;margin:12px 0!important;padding:13px 15px!important;
+ min-height:0!important;height:auto!important;max-height:none!important;overflow:visible!important;
+ border:1px solid #f0ddec!important;border-radius:14px!important;
+ background:#fff!important;background-color:#fff!important;
+ box-shadow:0 4px 12px rgba(128,75,139,.07)!important;
+}
+html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-point p{
+ display:block!important;width:auto!important;min-height:0!important;height:auto!important;
+ margin:0!important;padding:0!important;border:0!important;border-radius:0!important;
+ background:transparent!important;color:#49334f!important;
+ font:450 14px/1.95 "Noto Sans Devanagari",sans-serif!important;
+}
+html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-point i{
+ display:grid!important;place-items:center!important;width:23px!important;height:23px!important;
+ margin:0!important;border-radius:8px!important;background:#f5e2f0!important;
+ color:#a42d87!important;font-style:normal!important;
+}
+html body:has(.editorial-reader-redesign) .er-content-body :is(p,span,li,strong,b,i){
+ opacity:1!important;text-shadow:none!important;
+}
+html body:has(.editorial-reader-redesign) .er-context-card,
+html body:has(.editorial-reader-redesign) .er-english,
+html body:has(.editorial-reader-redesign) .er-mains-card{
+ min-height:0!important;height:auto!important;max-height:none!important;overflow:visible!important;
+}
+@media(max-width:760px){
+ html body:has(.editorial-reader-redesign) .er-reading-grid{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+ html body:has(.editorial-reader-redesign) .er-content-body{margin:12px 0!important;padding:19px 16px!important;border-radius:19px!important}
+ html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-paragraph{font-size:14px!important;line-height:2!important;margin-bottom:16px!important}
+ html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-heading{font-size:19px!important;margin-top:23px!important}
+ html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-point{padding:12px!important;margin:10px 0!important}
+ html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-point p{font-size:13px!important;line-height:1.95!important}
+}
