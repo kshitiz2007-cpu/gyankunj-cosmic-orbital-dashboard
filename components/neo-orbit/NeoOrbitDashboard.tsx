@@ -91,13 +91,6 @@ export default function NeoOrbitDashboard() {
   },[]);
 
   const greeting=useMemo(()=>{const h=Number(new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Kolkata",hour:"2-digit",hourCycle:"h23"}).format(new Date()));return h<12?"Good Morning":h<17?"Good Afternoon":"Good Evening";},[]);
-  const nav=[
-    {label:"Home",href:"/",icon:Home01Icon},
-    {label:"Study",href:"/syllabus",icon:Notebook01Icon},
-    {label:"Glimpses",href:"/todays-glimpses",icon:Compass01Icon},
-    {label:"Library",href:"/library",icon:BookOpen01Icon},
-    {label:"Profile",href:"/profile",icon:UserGroupIcon}
-  ];
   return <main className="neo-orbit-page">
     <div className="neo-orbit-glow neo-orbit-glow--one"/><div className="neo-orbit-glow neo-orbit-glow--two"/>
     <div className="neo-orbit-shell">
@@ -137,9 +130,6 @@ export default function NeoOrbitDashboard() {
       </section>
 
       {!hasUser&&<p className="neo-signin-note">Sign in to see your personal streak and learning progress.</p>}
-      <nav className="neo-bottom-nav" aria-label="Main navigation">
-        {nav.map((item,index)=><Link key={item.label} href={item.href} className={"neo-nav-item"+(index===0?" is-active":"")} aria-current={index===0?"page":undefined}><Icon icon={item.icon} size={22}/><span>{item.label}</span></Link>)}
-      </nav>
-    </div>
+   </div>
   </main>;
 }
