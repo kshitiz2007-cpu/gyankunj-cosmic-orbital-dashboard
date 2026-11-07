@@ -6,7 +6,7 @@ import {HugeiconsIcon} from "@hugeicons/react";
 import {
  Home01Icon,Notebook01Icon,NewspaperIcon,Brain01Icon,Layers01Icon,
  ChartLineData01Icon,Compass01Icon,SparklesIcon,ArrowUpRight01Icon,
- Clock01Icon,Bookmark01Icon,PenTool01Icon
+ Clock01Icon,PenTool01Icon
 } from "@hugeicons/core-free-icons";
 import "./student-floating-navigation.css";
 
