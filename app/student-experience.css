@@ -211,3 +211,38 @@ html[data-style="cosmic"] :is(.gk-quick-panel,.gk-orb-panel){background:linear-g
  html[data-style="cosmic"] :is(.syllabus-app,.editorial-app,.library-app,.glimpses-app,.profile-app,.progress-app,.vault-app,.drill-app,.mock-app,.utility-page,.editorial-detail-app,.mock-preview-app){padding-bottom:calc(116px + env(safe-area-inset-bottom))!important}
  html[data-style="cosmic"] :is(.syllabus-hero,.editorial-featured,.editorial-list-card,.library-subject-card,.library-topic-card,.library-resource-card,.glimpse-card,.profile-panel,.progress-panel,.vault-card,.question-card,.mock-test-card,.utility-panel){border-radius:19px!important}
 }
+
+
+/* AI Companion and Design Studio are also part of the student experience. */
+html[data-style="cosmic"] .ai-companion-app{
+ min-height:100vh!important;color:#321b39!important;
+ background:radial-gradient(ellipse 72% 34% at 50% 0%,rgba(255,190,230,.52),transparent 76%),linear-gradient(150deg,#fceef7,#f2e9f8 52%,#fceef7)!important;
+}
+html[data-style="cosmic"] .ai-companion-app :is(.ai-companion-top,.ai-companion-wrap){color:#321b39!important}
+html[data-style="cosmic"] .ai-companion-app :is(.ai-companion-top,.ai-companion-top a){color:#795c80!important;border-color:rgba(176,119,165,.24)!important}
+html[data-style="cosmic"] .ai-companion-app :is(.ai-companion-kicker,.ai-companion-tags span){color:#a32d89!important}
+html[data-style="cosmic"] .ai-companion-app :is(.ai-companion-composer,.ai-companion-prompts,.ai-companion-answer,.ai-companion-sources){
+ background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(255,247,253,.82) 55%,rgba(239,227,247,.88))!important;
+ color:#321b39!important;border:1px solid #fff!important;border-radius:23px!important;
+ box-shadow:0 15px 34px rgba(128,75,139,.14),inset 0 1px 0 #fff!important;
+}
+html[data-style="cosmic"] .ai-companion-app :is(h1,h2,h3,strong,b,label){color:#321b39!important}
+html[data-style="cosmic"] .ai-companion-app :is(p,small){color:#654d6c!important}
+html[data-style="cosmic"] .ai-companion-app :is(textarea,input){
+ color:#432849!important;background:rgba(255,255,255,.86)!important;border:1px solid rgba(199,147,190,.42)!important;border-radius:15px!important;
+ box-shadow:inset 3px 4px 9px rgba(166,112,166,.10),inset -3px -3px 9px #fff!important;
+}
+html[data-style="cosmic"] .ai-companion-app :is(button,.ai-companion-prompts button){
+ color:#fff!important;background:linear-gradient(135deg,#ed68c1,#cf299f 48%,#982c9e)!important;border:1px solid #fff!important;border-radius:999px!important;
+}
+html[data-style="cosmic"] :is(.gk-studio-panel,.gk-studio-header,.gk-studio-section,.gk-style-option,.gk-palette-grid,.gk-glass-grid){
+ color:#321b39!important;
+}
+html[data-style="cosmic"] .gk-studio-panel{
+ background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(250,232,248,.96))!important;
+ border:1px solid #fff!important;box-shadow:0 25px 70px rgba(94,47,105,.24),inset 0 2px 3px #fff!important;
+}
+html[data-style="cosmic"] :is(.gk-studio-panel,.gk-studio-panel *) :is(h1,h2,h3,p,span,label,button){color:#51365a}
+html[data-style="cosmic"] .gk-studio-panel button.is-active,
+html[data-style="cosmic"] .gk-studio-panel .is-active{background:linear-gradient(135deg,#f7d8ed,#efbce0)!important;color:#982c83!important;border-color:#e7a8d0!important}
+@media(max-width:700px){html[data-style="cosmic"] .ai-companion-app{padding:0 15px 120px!important}html[data-style="cosmic"] .ai-companion-workspace{grid-template-columns:1fr!important}}
