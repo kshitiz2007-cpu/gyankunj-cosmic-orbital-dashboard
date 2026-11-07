@@ -8,11 +8,11 @@ type Editorial = { slug: string; title: string; category: string; read: number }
 type Pulse = { streak: number; attempts: number; accuracy: number | null };
 type Zone = { id:string; title:string; subtitle:string; tag:string; href:string; tone:string; panX:string; panY:string; zoom:number; object:string; detail:string };
 const zones:Zone[]=[
-{id:"study",title:"Study Studio",subtitle:"Subjects · Syllabus · Notes",tag:"01 / STUDY",href:"/study",tone:"sage",panX:"15%",panY:"9%",zoom:1.65,object:"books",detail:"Your structured space for subjects, syllabus mapping and focused study."},
+{id:"study",title:"Study Studio",subtitle:"Subjects · Syllabus · Notes",tag:"01 / STUDY",href:"/syllabus",tone:"sage",panX:"15%",panY:"9%",zoom:1.65,object:"books",detail:"Your structured space for subjects, syllabus mapping and focused study."},
 {id:"library",title:"Knowledge Library",subtitle:"Books · Resources · Reading",tag:"02 / LIBRARY",href:"/library",tone:"blue",panX:"-17%",panY:"7%",zoom:1.62,object:"library",detail:"Explore curated study resources, notes, documents and reference material."},
 {id:"crux",title:"Daily Crux",subtitle:"Editorial · Current affairs",tag:"03 / DAILY CRUX",href:"/todays-glimpses",tone:"coral",panX:"14%",panY:"-15%",zoom:1.72,object:"newspaper",detail:"Read the day's most important issues with context, facts and exam relevance."},
 {id:"drill",title:"Daily Drill",subtitle:"Recall · Practice · Accuracy",tag:"04 / DAILY DRILL",href:"/practice/daily",tone:"violet",panX:"-13%",panY:"-12%",zoom:1.72,object:"target",detail:"Strengthen recall with daily questions and track your practice."},
-{id:"mains",title:"Mains Atelier",subtitle:"Answer writing · Analysis",tag:"05 / MAINS",href:"/mains-practice",tone:"amber",panX:"0%",panY:"19%",zoom:1.72,object:"notebook",detail:"Turn understanding into structured, analytical mains answers."},
+{id:"mains",title:"Mains Atelier",subtitle:"Answer writing · Analysis",tag:"05 / MAINS",href:"/todays-glimpses",tone:"amber",panX:"0%",panY:"19%",zoom:1.72,object:"notebook",detail:"Turn understanding into structured, analytical mains answers."},
 {id:"mock",title:"Examination Hall",subtitle:"Mock tests · Timed practice",tag:"06 / MOCK TESTS",href:"/mock-test",tone:"rose",panX:"-22%",panY:"17%",zoom:1.62,object:"exam",detail:"Attempt full-length tests in a focused examination environment."},
 {id:"progress",title:"Progress Observatory",subtitle:"Streak · Accuracy · Growth",tag:"07 / PROGRESS",href:"/progress",tone:"mint",panX:"20%",panY:"14%",zoom:1.62,object:"chart",detail:"Understand your learning rhythm, performance and improvement areas."}
 ];
