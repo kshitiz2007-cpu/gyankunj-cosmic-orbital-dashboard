@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Notification01Icon, Target01Icon, NewspaperIcon,
-  Notebook01Icon, BookOpen01Icon, Layers01Icon, UserGroupIcon,
+  Notebook01Icon, BookOpen01Icon, UserGroupIcon,
   Home01Icon, Compass01Icon, GraduationScrollIcon, FireIcon,
   CheckmarkCircle02Icon, ArrowUpRight01Icon, Clock01Icon
 } from "@hugeicons/core-free-icons";
@@ -78,7 +78,6 @@ export default function NeoOrbitDashboard() {
       let cursor=active.has(today)?today:active.has(yesterday)?yesterday:""; let streak=0;
       while(cursor&&active.has(cursor)){streak++;const [y,m,d]=cursor.split("-").map(Number);cursor=todayKey(new Date(Date.UTC(y,m-1,d)-86400000));}
       const mockIds=new Set<string>();
-      const drillIds=new Set<string>();
       for(const row of rows){if(row.assessment_id)mockIds.add(row.assessment_id);}
       if(assessment.data){
         const {count}=await supabase.from("assessment_questions").select("question_id",{count:"exact",head:true}).eq("assessment_id",assessment.data.id);
@@ -119,7 +118,7 @@ export default function NeoOrbitDashboard() {
 
       <Link href="/todays-glimpses" className="neo-glimpses">
         <span className="neo-glimpses-icon"><Icon icon={Compass01Icon} size={24}/></span>
-        <span className="neo-glimpses-copy"><strong>Today's Glimpses</strong><span><i>▣ Editorial</i><b/> <i>◎ Drill</i><b/> <i>✎ Mains Q.</i></span></span>
+        <span className="neo-glimpses-copy"><strong>Today&apos;s Glimpses</strong><span><i>▣ Editorial</i><b/> <i>◎ Drill</i><b/> <i>✎ Mains Q.</i></span></span>
         <span className="neo-glimpses-arrow"><Icon icon={ArrowUpRight01Icon} size={22}/></span>
       </Link>
 
@@ -134,7 +133,7 @@ export default function NeoOrbitDashboard() {
 
       <section className="neo-lower-cards">
         <Link href={drill.href} className="neo-lower-card"><span className="neo-lower-kicker">PICK UP WHERE YOU LEFT OFF</span><strong>{drill.title}</strong><small>{drill.count?drill.count+" questions available":"Open daily practice"} <Icon icon={ArrowUpRight01Icon} size={15}/></small></Link>
-        <Link href={editorial?"/current-affairs/"+editorial.slug:"/current-affairs"} className="neo-lower-card"><span className="neo-lower-kicker">TODAY'S EDITORIAL</span><strong>{editorial?.title||"Explore current affairs"}</strong><small>{editorial?editorial.category+" · "+editorial.read+" min read":"Read the latest analysis"} <Icon icon={ArrowUpRight01Icon} size={15}/></small></Link>
+        <Link href={editorial?"/current-affairs/"+editorial.slug:"/current-affairs"} className="neo-lower-card"><span className="neo-lower-kicker">TODAY&apos;S EDITORIAL</span><strong>{editorial?.title||"Explore current affairs"}</strong><small>{editorial?editorial.category+" · "+editorial.read+" min read":"Read the latest analysis"} <Icon icon={ArrowUpRight01Icon} size={15}/></small></Link>
       </section>
 
       {!hasUser&&<p className="neo-signin-note">Sign in to see your personal streak and learning progress.</p>}
