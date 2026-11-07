@@ -1,7 +1,7 @@
 name: Build verification
 on:
   push:
-    branches: ["main", "feature/**", "experiment/canva-design-system-preview"]
+    branches: ["main", "feature/**", "experiment/canva-design-system-preview", "rebuild/**"]
   pull_request:
     branches: ["main"]
 jobs:
