@@ -308,3 +308,134 @@ html[data-style="cosmic"] .gk-studio-launcher{
  box-shadow:0 8px 20px rgba(130,39,122,.3)!important;
 }
 html[data-style="cosmic"] .gk-studio-launcher *{color:#fff!important;opacity:1!important}
+
+
+/* Editorial-specific contrast and surface correction (listing + article reader).
+   These selectors intentionally target every premium editorial sub-component. */
+html[data-style="cosmic"] .editorial-app,
+html[data-style="cosmic"] .editorial-detail-app{
+ color:#321b39!important;
+ background:
+  radial-gradient(ellipse 78% 34% at 50% 0%,rgba(255,186,226,.54),transparent 75%),
+  radial-gradient(ellipse 45% 38% at 100% 46%,rgba(196,170,238,.32),transparent 78%),
+  linear-gradient(150deg,#fceef7 0%,#f3e9f8 52%,#fceef7 100%)!important;
+}
+html[data-style="cosmic"] .editorial-app :is(.editorial-top,.editorial-wrap,.editorial-hero,.editorial-library,.editorial-footer),
+html[data-style="cosmic"] .editorial-detail-app :is(.editorial-top,.editorial-wrap,.editorial-article,.editorial-reading-layout,.editorial-reading-rail,.editorial-detail-footer){
+ color:#321b39!important;background:transparent!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-hero h1,
+html[data-style="cosmic"] .editorial-app .editorial-section-heading h2,
+html[data-style="cosmic"] .editorial-detail-app .editorial-article-head h1{
+ color:#2e1935!important;font-weight:900!important;
+ text-shadow:none!important;
+}
+html[data-style="cosmic"] .editorial-app :is(.editorial-hero h1 em,.editorial-section-heading h2 em),
+html[data-style="cosmic"] .editorial-detail-app :is(.editorial-kicker,.editorial-issue-line){
+ color:#b62c91!important;
+}
+html[data-style="cosmic"] .editorial-app :is(.editorial-hero-copy>p,.editorial-hero-meta,.editorial-section-heading>span,.editorial-footer),
+html[data-style="cosmic"] .editorial-detail-app :is(.editorial-deck,.editorial-article-meta,.editorial-detail-footer,.editorial-reading-rail){
+ color:#654d6c!important;
+}
+html[data-style="cosmic"] .editorial-app :is(.editorial-visual,.editorial-featured,.editorial-list-card),
+html[data-style="cosmic"] .editorial-detail-app :is(.editorial-article,.editorial-article--premium,.editorial-article-head,.editorial-article-body,.editorial-mains,.editorial-next){
+ color:#321b39!important;
+ background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(255,246,253,.88) 55%,rgba(239,226,247,.92))!important;
+ border:1px solid rgba(255,255,255,.98)!important;
+ border-radius:25px!important;
+ box-shadow:0 18px 38px rgba(128,75,139,.15),0 4px 12px rgba(174,102,164,.08),inset 0 1px 0 #fff!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-visual{
+ background:radial-gradient(circle at 50% 48%,rgba(227,85,181,.18),transparent 43%),linear-gradient(145deg,rgba(255,255,255,.95),rgba(245,226,247,.88))!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-visual :is(.editorial-chip,.editorial-chip-mini){
+ background:linear-gradient(145deg,#fffaff,#f2dff1 60%,#e7d3ef)!important;
+ border:1px solid #fff!important;box-shadow:0 18px 30px rgba(130,75,139,.20),inset 0 2px 3px #fff!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-visual .editorial-chip :is(span,strong,small),
+html[data-style="cosmic"] .editorial-app .editorial-featured-art :is(span,small),
+html[data-style="cosmic"] .editorial-app .editorial-chip-mini{
+ color:#63366f!important;text-shadow:none!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-featured{
+ display:grid!important;overflow:hidden;
+}
+html[data-style="cosmic"] .editorial-app .editorial-featured-art{
+ background:radial-gradient(circle at 50% 45%,rgba(222,66,177,.24),transparent 45%),linear-gradient(145deg,#f7e4f3,#e8d9f0)!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-featured-copy{
+ background:transparent!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-featured-copy .editorial-kicker,
+html[data-style="cosmic"] .editorial-app .editorial-featured-copy h2,
+html[data-style="cosmic"] .editorial-app .editorial-featured-copy>p,
+html[data-style="cosmic"] .editorial-app .editorial-featured-copy .editorial-card-foot,
+html[data-style="cosmic"] .editorial-app .editorial-featured-copy .editorial-card-foot a{
+ color:#321b39!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-list-card{
+ background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(249,235,249,.91))!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-list-card :is(.editorial-list-number,.editorial-list-copy>span,.editorial-list-copy h3,.editorial-list-copy p,.editorial-list-copy small,.editorial-list-card>a){
+ color:#432849!important;
+}
+html[data-style="cosmic"] .editorial-app :is(.editorial-search,.editorial-search input){
+ background:rgba(255,255,255,.9)!important;color:#432849!important;border-color:rgba(184,126,175,.38)!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-filters button{
+ background:rgba(255,255,255,.86)!important;color:#654d6c!important;border:1px solid rgba(255,255,255,.98)!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-filters button.active{
+ background:linear-gradient(145deg,#fbe0f1,#f1c9e7)!important;color:#941d79!important;border-color:#e9a8d2!important;
+}
+html[data-style="cosmic"] .editorial-detail-app .editorial-article-head{
+ text-align:left!important;padding:34px 26px 28px!important;
+}
+html[data-style="cosmic"] .editorial-detail-app .editorial-article-head h1{
+ max-width:900px!important;font-family:"Noto Serif Devanagari","Noto Sans Devanagari",serif!important;
+ font-size:clamp(28px,6vw,48px)!important;line-height:1.48!important;letter-spacing:-.025em!important;
+}
+html[data-style="cosmic"] .editorial-detail-app .editorial-deck{
+ color:#594361!important;font-size:15px!important;line-height:1.9!important;
+}
+html[data-style="cosmic"] .editorial-detail-app .editorial-article-body{
+ max-width:820px!important;padding:26px!important;
+}
+html[data-style="cosmic"] .editorial-detail-app :is(.editorial-body-intro,.editorial-content-paragraph,.editorial-content-flow p,.editorial-english-copy,.editorial-mains p){
+ color:#49334f!important;opacity:1!important;font-size:15px!important;line-height:2!important;
+}
+html[data-style="cosmic"] .editorial-detail-app :is(.editorial-content-heading,.editorial-content-heading--1,.editorial-content-heading--2,.editorial-content-heading--3,.editorial-content-heading--4){
+ color:#38213f!important;font-weight:850!important;
+}
+html[data-style="cosmic"] .editorial-detail-app :is(.editorial-content-heading span,.editorial-content-point i,.editorial-kicker){
+ color:#ad2d8b!important;
+}
+html[data-style="cosmic"] .editorial-detail-app .editorial-mains{
+ background:linear-gradient(145deg,#f9e6f4,#f0e2f5)!important;border-left:4px solid #ce3a9e!important;
+}
+html[data-style="cosmic"] .editorial-detail-app .editorial-mains :is(h2,p,span){color:#432849!important}
+html[data-style="cosmic"] .editorial-detail-app .editorial-english-version{
+ background:rgba(255,255,255,.72)!important;border:1px solid rgba(255,255,255,.95)!important;border-radius:18px!important;
+}
+html[data-style="cosmic"] .editorial-detail-app .editorial-save{
+ background:rgba(255,255,255,.86)!important;color:#63366f!important;border:1px solid #fff!important;
+}
+html[data-style="cosmic"] .editorial-detail-app .editorial-finish{
+ color:#654d6c!important;
+}
+html[data-style="cosmic"] .editorial-app .editorial-cta,
+html[data-style="cosmic"] .editorial-app .editorial-card-foot a,
+html[data-style="cosmic"] .editorial-detail-app .editorial-next a{
+ color:#fff!important;background:linear-gradient(135deg,#e95ab8,#c72a9c 55%,#91318f)!important;
+ border:1px solid rgba(255,255,255,.88)!important;border-radius:999px!important;
+ box-shadow:0 9px 20px rgba(185,43,145,.25),inset 0 2px 3px rgba(255,255,255,.38)!important;
+}
+@media(max-width:700px){
+ html[data-style="cosmic"] .editorial-app,.editorial-detail-app{padding-left:14px!important;padding-right:14px!important}
+ html[data-style="cosmic"] .editorial-app .editorial-featured{grid-template-columns:1fr!important}
+ html[data-style="cosmic"] .editorial-app .editorial-featured-art{min-height:150px!important}
+ html[data-style="cosmic"] .editorial-app .editorial-featured-copy{padding:20px!important}
+ html[data-style="cosmic"] .editorial-detail-app .editorial-article-head{padding:28px 18px 20px!important}
+ html[data-style="cosmic"] .editorial-detail-app .editorial-article-body{padding:20px 17px!important}
+}
