@@ -74,9 +74,6 @@
 @media(max-width:390px){.neo-orbit-shell{padding:20px 15px;border-radius:32px}.neo-brand-mark{width:58px;height:58px}.neo-brand strong{font-size:22px}.neo-brand small{font-size:17px}.neo-orbit{height:405px}.neo-module{width:96px}.neo-module small{font-size:8px}.neo-module svg{width:30px;height:30px}.neo-glimpses-copy strong{font-size:15px}.neo-glimpses-copy>span{gap:5px;font-size:9px}.neo-progress-ring{width:98px}.neo-progress-stats{gap:13px}.neo-progress-stats strong{font-size:11px}.neo-lower-cards{gap:9px}.neo-lower-card{padding:13px}}
 @media(prefers-reduced-motion:reduce){.neo-orbit-page *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 /* The new home has its own reference-matched dock. Avoid rendering the legacy global dock twice. */
-body:has(.neo-orbit-page) .gk-student-nav-root{display:none}
-
-
 /* Liquid-glass / sculpted 3D refinement */
 .neo-orbit-page{
   --neo-glass:rgba(255,250,255,.58);
