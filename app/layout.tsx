@@ -4,6 +4,10 @@ import "./design-system.css";
 import "./study-focus-theme.css";
 import "./student-experience.css";
 import "./gyankunj-foundation.css";
+// UI 2.0 is namespaced under .gk2-app and remains visually isolated until route migration.
+import "@/components/ui2/tokens.css";
+import "@/components/ui2/primitives.css";
+import "./ui-2-preview/preview.css";
 import ThemeProvider from "@/components/theme-provider";
 import StudentFloatingNavigation from "@/components/student-floating-navigation";
 
