@@ -1,0 +1,1 @@
+/* UI 2.0 home owns its navigation; prevent the legacy floating dock from duplicating it. */\nbody:has(.gk2-home) .gk-student-nav-root{display:none!important}\n
