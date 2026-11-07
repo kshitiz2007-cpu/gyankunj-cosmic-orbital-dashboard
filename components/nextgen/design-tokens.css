@@ -1,0 +1,57 @@
+/* Gyankunj Next — semantic Aether Liquid Glass design tokens.
+   Intentionally isolated: import only from NextGen preview/shell until approved. */
+:root{
+  --gn-canvas:#f0e9f7;--gn-canvas-soft:#faf6fc;--gn-canvas-deep:#e7dcef;
+  --gn-surface:rgba(255,255,255,.68);--gn-surface-strong:rgba(255,255,255,.88);
+  --gn-surface-dark:rgba(39,27,57,.88);--gn-surface-dark-2:rgba(52,37,72,.92);
+  --gn-ink:#30243b;--gn-ink-soft:#574765;--gn-muted:#766783;--gn-on-dark:#fffaff;
+  --gn-violet:#9868c5;--gn-violet-deep:#70459c;--gn-lilac:#c7a7e6;
+  --gn-rose:#df83b7;--gn-cyan:#65cbd4;--gn-gold:#d6b66d;
+  --gn-success:#278b70;--gn-warning:#b77a32;--gn-danger:#c45e75;
+  --gn-line:rgba(126,96,153,.2);--gn-line-strong:rgba(126,96,153,.34);
+  --gn-gradient:linear-gradient(118deg,#b88ce0 0%,#9870ca 48%,#df83b7 100%);
+  --gn-aurora:
+    radial-gradient(ellipse at 8% 4%,rgba(255,255,255,.92),transparent 38%),
+    radial-gradient(ellipse at 92% 20%,rgba(218,188,239,.62),transparent 42%),
+    linear-gradient(135deg,#f5eff9,#eae1f3 60%,#fbf0f7);
+  --gn-glass-blur:24px;--gn-shadow:0 14px 38px rgba(67,43,88,.12),inset 0 1px 0 rgba(255,255,255,.9);
+  --gn-shadow-raised:0 22px 54px rgba(67,43,88,.18),inset 0 1px 0 rgba(255,255,255,.95);
+  --gn-radius-sm:14px;--gn-radius-md:20px;--gn-radius-lg:28px;--gn-radius-pill:999px;
+  --gn-space-1:4px;--gn-space-2:8px;--gn-space-3:12px;--gn-space-4:16px;--gn-space-5:20px;--gn-space-6:24px;--gn-space-8:32px;--gn-space-10:40px;--gn-space-12:48px;
+  --gn-font-display:"DM Serif Display","Noto Serif Devanagari",Georgia,serif;
+  --gn-font-body:"DM Sans","Noto Sans Devanagari",system-ui,sans-serif;
+  --gn-text-xs:12px;--gn-text-sm:14px;--gn-text-md:16px;--gn-text-lg:19px;--gn-text-xl:24px;--gn-text-2xl:32px;--gn-text-display:clamp(38px,8vw,76px);
+  --gn-motion-fast:150ms;--gn-motion-base:220ms;--gn-motion-slow:360ms;
+  --gn-ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:light;
+}
+[data-gn-theme="violet-night"]{
+  --gn-canvas:#171121;--gn-canvas-soft:#21182d;--gn-canvas-deep:#110c1b;
+  --gn-surface:rgba(48,35,66,.72);--gn-surface-strong:rgba(57,42,77,.9);
+  --gn-ink:#fffaff;--gn-ink-soft:#e6d9f1;--gn-muted:#c0b0cf;
+  --gn-line:rgba(225,204,246,.18);--gn-line-strong:rgba(225,204,246,.3);
+  --gn-aurora:radial-gradient(ellipse at 12% 0%,rgba(130,83,170,.28),transparent 38%),linear-gradient(145deg,#171121,#21182d 65%,#171522);
+  --gn-shadow:0 16px 42px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.08);
+  color-scheme:dark;
+}
+[data-gn-theme="editorial-ivory"]{
+  --gn-canvas:#f5efe3;--gn-canvas-soft:#fffaf1;--gn-canvas-deep:#ece1d1;
+  --gn-surface:rgba(255,252,245,.78);--gn-surface-strong:rgba(255,252,245,.94);
+  --gn-ink:#352b2a;--gn-ink-soft:#66514b;--gn-muted:#806d64;
+  --gn-violet:#a36c75;--gn-violet-deep:#784653;--gn-line:rgba(112,77,65,.2);
+  --gn-aurora:radial-gradient(ellipse at 10% 0%,#fffaf2,transparent 40%),linear-gradient(135deg,#f5efe3,#eee4dc);
+}
+[data-gn-theme="focus-dark"]{
+  --gn-canvas:#171b25;--gn-canvas-soft:#202736;--gn-canvas-deep:#111620;
+  --gn-surface:rgba(35,44,60,.8);--gn-surface-strong:rgba(42,53,72,.95);
+  --gn-ink:#f6f7fb;--gn-ink-soft:#d5dbea;--gn-muted:#aebbd0;
+  --gn-violet:#9c8be9;--gn-violet-deep:#c3b6ff;--gn-line:rgba(196,205,226,.18);
+  --gn-aurora:radial-gradient(ellipse at 10% 0%,rgba(85,102,153,.24),transparent 40%),linear-gradient(145deg,#171b25,#202736);
+}
+.gn-app{min-height:100dvh;background:var(--gn-aurora);background-attachment:fixed;color:var(--gn-ink);font-family:var(--gn-font-body)}
+.gn-glass{background:var(--gn-surface);border:1px solid rgba(255,255,255,.78);border-radius:var(--gn-radius-md);box-shadow:var(--gn-shadow);backdrop-filter:blur(var(--gn-glass-blur)) saturate(145%);-webkit-backdrop-filter:blur(var(--gn-glass-blur)) saturate(145%)}
+.gn-glass-strong{background:var(--gn-surface-strong);border:1px solid var(--gn-line);border-radius:var(--gn-radius-lg);box-shadow:var(--gn-shadow)}
+.gn-display{font-family:var(--gn-font-display);font-size:var(--gn-text-display);line-height:.98;letter-spacing:-.045em}
+.gn-gradient-text{background:var(--gn-gradient);background-clip:text;-webkit-background-clip:text;color:transparent}
+.gn-focus-ring:focus-visible{outline:3px solid var(--gn-violet);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.gn-app *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
