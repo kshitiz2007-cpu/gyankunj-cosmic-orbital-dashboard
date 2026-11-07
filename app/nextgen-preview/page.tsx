@@ -67,7 +67,7 @@ export default function NextGenPreviewPage(){
    <div className={styles.content}>
     <section className={styles.hero}>
      <div className={styles.heroCopy}><span className={styles.eyebrow}>YOUR LEARNING, IN MOTION <i/></span><h1>Make today<br/> <em>count.</em></h1><p>{editorial?.title_hi||editorial?.title_en||"A little progress every day becomes extraordinary preparation."}</p><Link href={drill?"/practice/daily":"/library"} className={styles.heroButton}>{drill?"Start daily drill":"Continue learning"} <span>↗</span></Link></div>
-     <div className={styles.heroOrb}><div className={styles.orbit orbitOne}/><div className={styles.orbit orbitTwo}/><div className={styles.orbCore}><span>GK</span><small>YOUR<br/>UNIVERSE</small></div><span className={styles.orbitDot}/></div>
+     <div className={styles.heroOrb}><div className={`${styles.orbit} ${styles.orbitOne}`}/><div className={`${styles.orbit} ${styles.orbitTwo}`}/><div className={styles.orbCore}><span>GK</span><small>YOUR<br/>UNIVERSE</small></div><span className={styles.orbitDot}/></div>
      <span className={styles.heroIndex}>01 <i/> LEARNING COMMAND CENTRE</span>
     </section>
     <section className={styles.welcomeRow}><div><span className={styles.eyebrow}>DAILY FOCUS · PERSONAL LEARNING</span><h2>Good morning, <em>{student}.</em></h2><p>{drill?`${drill.count} published questions · ${drill.title}`:"Your next milestone starts with one focused session."}</p></div><div className={styles.streak}><span>✦</span><strong>{metrics.streak} day<br/>learning streak</strong><small>DAILY CONSISTENCY</small></div></section>
