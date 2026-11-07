@@ -1,0 +1,58 @@
+/* Gyankunj Foundation v1
+ * Canonical tokens and browser normalization.
+ * Component/page layouts belong in route-scoped stylesheets or CSS Modules.
+ * Do not add page-specific selectors here.
+ */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@500;600;700;800&display=swap');
+
+:root{
+  color-scheme:light;
+  --gk-canvas:#f7edf7;
+  --gk-canvas-soft:#fff8fe;
+  --gk-canvas-raised:#fffaff;
+  --gk-ink:#2e1935;
+  --gk-ink-soft:#49334f;
+  --gk-muted:#765f7c;
+  --gk-faint:#927b97;
+  --gk-rose:#d83caa;
+  --gk-magenta:#b92b98;
+  --gk-violet:#8d56b4;
+  --gk-cyan:#55bdc9;
+  --gk-gold:#d5ad68;
+  --gk-line:rgba(139,91,143,.18);
+  --gk-line-strong:rgba(139,91,143,.3);
+  --gk-glass:rgba(255,250,255,.78);
+  --gk-glass-strong:rgba(255,252,255,.94);
+  --gk-shadow-soft:0 8px 22px rgba(105,65,115,.09),inset 0 1px 0 rgba(255,255,255,.96);
+  --gk-shadow-raised:0 18px 38px rgba(105,65,115,.16),inset 0 1px 0 rgba(255,255,255,.98);
+  --gk-shadow-inset:inset 3px 4px 10px rgba(136,91,143,.1),inset -3px -3px 10px rgba(255,255,255,.95);
+  --gk-radius-sm:12px;
+  --gk-radius-md:18px;
+  --gk-radius-lg:26px;
+  --gk-radius-xl:34px;
+  --gk-radius-pill:999px;
+  --gk-font-body:"DM Sans","Noto Sans Devanagari",system-ui,sans-serif;
+  --gk-font-display:"Space Grotesk","Noto Sans Devanagari",system-ui,sans-serif;
+  --gk-font-editorial:"Playfair Display","Noto Serif Devanagari",serif;
+  --gk-font-hindi:"Noto Sans Devanagari",sans-serif;
+  --gk-font-hindi-display:"Noto Serif Devanagari",serif;
+  --gk-space-1:4px;--gk-space-2:8px;--gk-space-3:12px;--gk-space-4:16px;
+  --gk-space-5:20px;--gk-space-6:24px;--gk-space-8:32px;--gk-space-10:40px;
+  --gk-motion-fast:140ms;--gk-motion-base:220ms;--gk-motion-slow:360ms;
+  --gk-ease:cubic-bezier(.2,.8,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{min-height:100%;scroll-behavior:smooth;text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{min-height:100%;margin:0;font-family:var(--gk-font-body);font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed}
+img,svg,video,canvas{max-width:100%}
+img,video{height:auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gk-rose);outline-offset:3px}
+::selection{background:rgba(216,60,170,.2);color:var(--gk-ink)}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
