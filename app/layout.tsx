@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./clay-world.css";
 import "./design-system.css";
 import "./study-focus-theme.css";
 import "./student-experience.css";
