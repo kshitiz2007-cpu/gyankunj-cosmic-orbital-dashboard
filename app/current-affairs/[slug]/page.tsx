@@ -50,7 +50,7 @@ export default function EditorialDetail(){
   <header className="er-masthead"><Link href="/current-affairs" className="er-back"><HugeiconsIcon icon={ArrowLeft01Icon}/> <span>EDITORIAL JOURNAL</span></Link><Link href="/" className="er-brand"><b>G</b> GYANKUNJ <small>DAILY BRIEF</small></Link><button className={saved?"is-saved":""} onClick={()=>setSaved(v=>!v)}><HugeiconsIcon icon={saved?CheckmarkCircle02Icon:Bookmark01Icon}/>{saved?"SAVED":"SAVE"}</button></header>
   <div className="er-wrap">
    <section className="er-article-hero">
-    <div className="er-issue"><span>THE DAILY EDITORIAL</span><i/ ><span>{dateLabel}</span></div>
+    <div className="er-issue"><span>THE DAILY EDITORIAL</span><i /><span>{dateLabel}</span></div>
     <div className="er-category">{article.category}</div>
     <h1>{article.title_hi||article.title_en}</h1>
     <p className="er-deck">{article.summary_hi||article.summary_en}</p>
