@@ -5,19 +5,12 @@ import { useEffect, useState } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 
 type Editorial = { slug: string; title: string; category: string; read: number } | null;
-type Pulse = { streak: number; attempts: number; accuracy: number | null; answered: number };
-
-const destinations = [
-  { number: "01", title: "Daily Drill", detail: "Practice today's questions", href: "/practice/daily", tone: "blue" },
-  { number: "02", title: "Editorial", detail: "Ideas, context & analysis", href: "/current-affairs", tone: "red" },
-  { number: "03", title: "Study Library", detail: "Notes and learning resources", href: "/library", tone: "green" },
-  { number: "04", title: "Today's Glimpses", detail: "Your daily learning brief", href: "/todays-glimpses", tone: "sand" },
-];
+type Pulse = { streak: number; attempts: number; accuracy: number | null };
 
 export default function UI2HomeDashboard() {
   const [name, setName] = useState("Learner");
   const [editorial, setEditorial] = useState<Editorial>(null);
-  const [pulse, setPulse] = useState<Pulse>({ streak: 0, attempts: 0, accuracy: null, answered: 0 });
+  const [pulse, setPulse] = useState<Pulse>({ streak: 0, attempts: 0, accuracy: null });
   const [signedIn, setSignedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -32,7 +25,7 @@ export default function UI2HomeDashboard() {
       if (!user) { setLoading(false); return; }
       const [profile, attempts, activity, article] = await Promise.all([
         supabase.from("profiles").select("full_name").eq("id", user.id).maybeSingle(),
-        supabase.from("assessment_attempts").select("answered_count,correct_count,submitted_at,assessment_id").eq("student_id", user.id).not("submitted_at", "is", null).gte("submitted_at", new Date(Date.now() - 30 * 86400000).toISOString()).order("submitted_at", { ascending: false }).limit(300),
+        supabase.from("assessment_attempts").select("answered_count,correct_count,submitted_at").eq("student_id", user.id).not("submitted_at", "is", null).gte("submitted_at", new Date(Date.now() - 30 * 86400000).toISOString()).order("submitted_at", { ascending: false }).limit(300),
         supabase.from("student_activity").select("created_at").eq("student_id", user.id).gte("created_at", new Date(Date.now() - 366 * 86400000).toISOString()),
         supabase.from("editorial_articles").select("slug,title_hi,title_en,category,read_minutes").eq("is_published", true).order("published_at", { ascending: false, nullsFirst: false }).order("created_at", { ascending: false }).limit(1).maybeSingle()
       ]);
@@ -55,7 +48,7 @@ export default function UI2HomeDashboard() {
         const [year, month, day] = cursor.split("-").map(Number);
         cursor = dateKey(new Date(Date.UTC(year, month - 1, day) - 86400000));
       }
-      setPulse({ streak, attempts: rows.length, accuracy: answered ? Math.round(correct / answered * 100) : null, answered });
+      setPulse({ streak, attempts: rows.length, accuracy: answered ? Math.round(correct / answered * 100) : null });
       if (article.data) setEditorial({ slug: article.data.slug, title: article.data.title_hi || article.data.title_en || "Today's Editorial", category: article.data.category || "Daily Crux", read: Number(article.data.read_minutes) || 0 });
       setLoading(false);
     }
@@ -69,27 +62,39 @@ export default function UI2HomeDashboard() {
   return <main className="gk2-app gk2-home" data-gk2-theme="paper">
     <div className="gk2-wrap">
       <header className="gk2-header">
-        <Link className="gk2-brand" href="/"><span className="gk2-brand-mark">G.</span><span><strong>GYANKUNJ</strong><small>ACADEMY · FIELD NOTES FOR THE CURIOUS</small></span></Link>
-        <nav aria-label="Primary navigation"><Link href="/study">Study</Link><Link href="/practice/daily">Practice</Link><Link href="/current-affairs">Editorial</Link><Link href="/progress">Progress</Link></nav>
-        <Link className="gk2-account" href={signedIn ? "/profile" : "/login"}>{signedIn ? "My account ↗" : "Sign in ↗"}</Link>
+        <Link className="gk2-brand" href="/"><span className="gk2-brand-mark">G.</span><span><strong>GYANKUNJ</strong><small>ACADEMY · LEARNING, WITH INTENT</small></span></Link>
+        <nav aria-label="Primary navigation"><Link href="/study">Syllabus</Link><Link href="/todays-glimpses">Daily brief</Link><Link href="/progress">My progress</Link></nav>
+        <Link className="gk2-account" href={signedIn ? "/profile" : "/login"}>{signedIn ? name : "Sign in"} ↗</Link>
       </header>
 
       <section className="gk2-hero">
         <div className="gk2-hero-copy">
-          <p className="gk2-kicker"><span/> YOUR LEARNING, IN FOCUS <span className="gk2-date">{new Intl.DateTimeFormat("en-IN", { dateStyle: "long", timeZone: "Asia/Kolkata" }).format(new Date())}</span></p>
-          <h1>Make<br/><em>knowledge</em><br/>count.</h1>
-          <div className="gk2-hero-bottom"><p>{greeting}, {name}. A clearer space to read deeply, practise deliberately and move forward every day.</p><Link href="/todays-glimpses" className="gk2-primary">Open today’s briefing <span>↗</span></Link></div>
+          <p className="gk2-kicker">YOUR STUDY DESK <span className="gk2-date">{new Intl.DateTimeFormat("en-IN", { dateStyle: "long", timeZone: "Asia/Kolkata" }).format(new Date())}</span></p>
+          <h1>{greeting},<br/><em>{name}.</em></h1>
+          <p className="gk2-intro">A focused place for today's preparation. Start with the brief, then follow the subject that needs your attention.</p>
+          <Link href="/todays-glimpses" className="gk2-primary">Go to today's brief <span>↗</span></Link>
         </div>
-        <aside className="gk2-field-note"><div className="gk2-note-top"><span>FIELD NOTE / 001</span><span>GYANKUNJ JOURNAL</span></div><div className="gk2-note-art"><span>ज्ञान</span><i/><b/></div><p className="gk2-note-caption">THE PRACTICE OF UNDERSTANDING</p><h2>Learn with intent.<br/>Think beyond facts.</h2><p className="gk2-note-body">Build the habit of connecting ideas, questioning assumptions and seeing the larger picture.</p><Link href="/study">Explore your syllabus ↗</Link></aside>
+        <aside className="gk2-focus">
+          <div className="gk2-focus-head"><span>ON THE DESK TODAY</span><span>01 / DAILY FOCUS</span></div>
+          <div className="gk2-focus-feature"><span className="gk2-focus-index">A</span><div><small>EDITORIAL · {editorial?.read || 8} MIN READ</small><h2>{editorial?.title || "Read today's analysis"}</h2><p>{editorial?.category || "Current affairs · Context and perspective"}</p></div><Link href={editorial ? "/current-affairs/" + editorial.slug : "/current-affairs"} aria-label="Open editorial">↗</Link></div>
+          <div className="gk2-focus-row"><span>B</span><div><strong>Daily Drill</strong><small>Test recall with today's questions</small></div><Link href="/practice/daily">Start ↗</Link></div>
+          <div className="gk2-focus-row"><span>C</span><div><strong>Mains Practice</strong><small>Turn understanding into an answer</small></div><Link href="/mains-practice">Write ↗</Link></div>
+        </aside>
       </section>
 
-      <section className="gk2-pulse"><div><span className="gk2-kicker">YOUR LEARNING PULSE</span><h2>Small steps.<br/><em>Real momentum.</em></h2></div><div className="gk2-metric"><strong>{loading ? "—" : pulse.streak}</strong><span>DAY STREAK</span></div><div className="gk2-metric"><strong>{loading ? "—" : pulse.attempts}</strong><span>SUBMITTED · 30 DAYS</span></div><div className="gk2-metric"><strong>{loading || pulse.accuracy === null ? "—" : pulse.accuracy + "%"}</strong><span>ANSWER ACCURACY</span></div></section>
+      <section className="gk2-study">
+        <div className="gk2-study-heading"><div><span className="gk2-kicker">PICK UP A SUBJECT</span><h2>What are you working on?</h2></div><Link href="/syllabus">View full syllabus ↗</Link></div>
+        <div className="gk2-subject-list">
+          <Link href="/syllabus"><span>01</span><strong>Polity & Governance</strong><small>Constitution · Institutions · Rights</small><b>↗</b></Link>
+          <Link href="/syllabus"><span>02</span><strong>Economy</strong><small>Growth · Banking · Public finance</small><b>↗</b></Link>
+          <Link href="/syllabus"><span>03</span><strong>History & Culture</strong><small>Ancient · Medieval · Modern India</small><b>↗</b></Link>
+          <Link href="/syllabus"><span>04</span><strong>Environment & Geography</strong><small>Ecology · Mapping · Climate</small><b>↗</b></Link>
+        </div>
+      </section>
 
-      <section className="gk2-work"><div className="gk2-section-head"><div><span className="gk2-kicker">THE DAILY WORK</span><h2>Choose your next step.</h2></div><span>01 — 04</span></div><div className="gk2-card-grid">{destinations.map(item => <Link href={item.href} className={"gk2-work-card gk2-"+item.tone} key={item.number}><span className="gk2-card-number">{item.number} / WORKSPACE</span><span className="gk2-card-symbol">{item.number === "01" ? "◎" : item.number === "02" ? "¶" : item.number === "03" ? "▤" : "↗"}</span><h3>{item.title}</h3><p>{item.detail}</p><span className="gk2-card-link">OPEN SECTION ↗</span></Link>)}</div></section>
-
-      <section className="gk2-briefing"><div><span className="gk2-kicker">LATEST EDITORIAL</span><h2>{editorial?.title || "Ideas worth spending time with."}</h2><p>{editorial ? editorial.category + " · " + editorial.read + " min read" : "Explore current affairs through context, evidence and analysis."}</p></div><Link href={editorial ? "/current-affairs/" + editorial.slug : "/current-affairs"}>Read the analysis ↗</Link></section>
-      <footer className="gk2-footer"><span>GYANKUNJ ACADEMY</span><span>READ · REFLECT · REPEAT</span><Link href="/profile">STUDENT SPACE ↗</Link></footer>
+      <section className="gk2-progress-line"><div><span className="gk2-kicker">YOUR LAST 30 DAYS</span><strong>{loading ? "—" : pulse.streak + " day streak"}</strong></div><div><strong>{loading ? "—" : pulse.attempts}</strong><small>Submitted tests</small></div><div><strong>{loading || pulse.accuracy === null ? "—" : pulse.accuracy + "%"}</strong><small>Answer accuracy</small></div><Link href="/progress">View progress ↗</Link></section>
+      <footer className="gk2-footer"><span>GYANKUNJ ACADEMY</span><span>STUDY WITH CLARITY</span><Link href="/library">RESOURCE LIBRARY ↗</Link></footer>
     </div>
-    <nav className="gk2-mobile-nav" aria-label="Mobile navigation"><Link href="/">Home</Link><Link href="/study">Study</Link><Link href="/todays-glimpses">Today</Link><Link href="/progress">Progress</Link></nav>
+    <nav className="gk2-mobile-nav" aria-label="Mobile navigation"><Link href="/">Desk</Link><Link href="/syllabus">Syllabus</Link><Link href="/todays-glimpses">Today</Link><Link href="/profile">Account</Link></nav>
   </main>;
 }
