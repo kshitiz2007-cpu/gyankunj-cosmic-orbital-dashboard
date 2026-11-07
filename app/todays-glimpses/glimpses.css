@@ -66,3 +66,18 @@ html[data-style="cosmic"] .glimpses-app .glimpses-footer{color:#806687!important
  html[data-style="cosmic"] .glimpses-app .glimpse-empty p{font-size:13px!important;line-height:1.95!important}
  html[data-style="cosmic"] .glimpses-app .glimpse-empty strong{font-size:14px!important;line-height:1.7!important}
 }
+
+
+/* Route-local fallback: these critical contrast rules must not depend on a theme attribute. */
+.glimpses-app .glimpses-hero h1,.glimpses-app .glimpse-card h2,.glimpses-app .glimpse-empty strong{color:#321b39!important;opacity:1!important;text-shadow:none!important}
+.glimpses-app .glimpses-hero h1 em{color:#bd3997!important}
+.glimpses-app .glimpses-hero p,.glimpses-app .glimpse-card>p,.glimpses-app .glimpse-empty p,.glimpses-app .glimpse-drill-title p{color:#594361!important;opacity:1!important}
+.glimpses-app .glimpse-card-head,.glimpses-app .glimpse-card-head>b,.glimpses-app .glimpse-card-foot,.glimpses-app .glimpse-card-foot>span{color:#654d6c!important;opacity:1!important}
+.glimpses-app .glimpse-card{background:linear-gradient(145deg,#fffaff,#fff6fc 58%,#f0e5f5)!important;color:#321b39!important;border:1px solid #fff!important}
+.glimpses-app .glimpse-drill{background:linear-gradient(145deg,#fffaff,#f7e9f5 58%,#eee2f5)!important;color:#321b39!important}
+.glimpses-app .glimpse-drill .glimpse-card-head,.glimpses-app .glimpse-drill .glimpse-card-head>b,.glimpses-app .glimpse-drill h2,.glimpses-app .glimpse-drill .glimpse-card-foot{color:#49334f!important}
+.glimpses-app .glimpse-question-list p{color:#49334f!important}
+.glimpses-app .glimpse-question-list small,.glimpses-app .glimpse-category{color:#9b2e83!important}
+.glimpses-app .glimpse-archive-cta a{color:#a12b83!important}
+.glimpses-app .glimpse-empty :is(strong,p){opacity:1!important}
+.glimpses-app :is(.glimpses-kicker,.glimpses-date,.glimpses-top,.glimpses-live){color:#654d6c!important;opacity:1!important}
