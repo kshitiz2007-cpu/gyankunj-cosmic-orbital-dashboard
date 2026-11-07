@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./preview.module.css";
-import "../../../components/nextgen/design-tokens.css";
+import "../../components/nextgen/design-tokens.css";
 
 const modules = [
   { n:"01", title:"Daily Editorial", detail:"Read · Analyse · Connect", href:"/current-affairs", tone:"rose", tag:"TODAY'S INSIGHT" },
