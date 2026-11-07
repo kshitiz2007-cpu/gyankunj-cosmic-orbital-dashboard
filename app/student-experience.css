@@ -821,3 +821,45 @@ html body:has(.editorial-reader-redesign) .er-mains-card{
  html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-point{padding:12px!important;margin:10px 0!important}
  html body:has(.editorial-reader-redesign) .er-content-body .editorial-content-point p{font-size:13px!important;line-height:1.95!important}
 }
+
+
+/* Memory Vault: explicit contrast contract for the flashcard surface.
+   The card is light glass in the rose theme, so every text layer must be dark.
+   Scope this tightly to the Vault card; do not recolor other page components. */
+html[data-style="cosmic"] .vault-app .vault-flashcard{
+ background:
+  radial-gradient(ellipse at 88% 8%,rgba(226,164,211,.20),transparent 42%),
+  linear-gradient(145deg,rgba(255,255,255,.98),rgba(255,247,253,.97) 58%,rgba(242,229,248,.98))!important;
+ color:#321b39!important;
+ border:1px solid rgba(255,255,255,.98)!important;
+ box-shadow:0 18px 42px rgba(112,68,125,.16),inset 0 2px 4px rgba(255,255,255,.98),inset 0 -1px 3px rgba(166,111,164,.12)!important;
+}
+html[data-style="cosmic"] .vault-app .vault-flashcard :is(.vault-card-top,.vault-card-top span,.vault-card-content,.vault-card-content small,.vault-card-content strong,.vault-card-content em,.vault-card-content p,.vault-card-foot,.vault-card-foot span){
+ color:#392342!important;opacity:1!important;text-shadow:none!important;
+}
+html[data-style="cosmic"] .vault-app .vault-flashcard .vault-card-top span:last-child,
+html[data-style="cosmic"] .vault-app .vault-flashcard .vault-card-content small,
+html[data-style="cosmic"] .vault-app .vault-flashcard .vault-card-foot{color:#765b7d!important}
+html[data-style="cosmic"] .vault-app .vault-flashcard .vault-card-content strong{
+ color:#2e1935!important;font-weight:700!important;
+}
+html[data-style="cosmic"] .vault-app .vault-flashcard .vault-card-content em{
+ color:#65466b!important;font-weight:500!important;
+}
+html[data-style="cosmic"] .vault-app .vault-flashcard .vault-answer strong{color:#176b70!important}
+html[data-style="cosmic"] .vault-app .vault-flashcard .vault-answer p{color:#51365a!important}
+html[data-style="cosmic"] .vault-app .vault-flashcard .vault-card-foot{
+ border-top-color:rgba(139,91,143,.2)!important;
+}
+html[data-style="cosmic"] .vault-app .vault-flashcard .vault-card-foot span:first-child{color:#9b347b!important}
+html[data-style="cosmic"] .vault-app .vault-flashcard .vault-card-image-wrap{
+ background:rgba(255,255,255,.72)!important;border-color:rgba(139,91,143,.2)!important;
+}
+html[data-style="cosmic"] .vault-app .vault-controls>button,
+html[data-style="cosmic"] .vault-app .vault-mark,
+html[data-style="cosmic"] .vault-app .vault-mastered{color:#fff!important}
+html[data-style="cosmic"] .vault-app .vault-controls small{color:#fff!important}
+@media(max-width:700px){
+ html[data-style="cosmic"] .vault-app .vault-flashcard{min-height:390px;padding:24px 22px}
+ .vault-app .vault-controls{margin-bottom:38px}
+}
