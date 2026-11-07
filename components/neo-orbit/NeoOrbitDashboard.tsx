@@ -6,7 +6,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Notification01Icon, Target01Icon, NewspaperIcon,
   Notebook01Icon, BookOpen01Icon, UserGroupIcon,
-  Home01Icon, Compass01Icon, GraduationScrollIcon, FireIcon,
+  Home01Icon, GraduationScrollIcon, FireIcon,
   CheckmarkCircle02Icon, ArrowUpRight01Icon, Clock01Icon
 } from "@hugeicons/core-free-icons";
 import "./neo-orbit.css";
