@@ -1,0 +1,5 @@
+/* Keep the Atlas home independent from legacy global shell surfaces. */
+body:has(.gk2-home) .gk-student-nav-root{display:none!important}
+body:has(.gk2-home){background:#f3f0e8!important;color:#20231f!important}
+html:has(.gk2-home){background:#f3f0e8!important;color-scheme:light}
+.gk2-home{position:relative;z-index:1}
