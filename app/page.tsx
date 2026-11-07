@@ -1,5 +1,5 @@
-import NeoOrbitDashboard from "@/components/neo-orbit/NeoOrbitDashboard";
+import UI2HomeDashboard from "@/components/ui2/UI2HomeDashboard";
 
 export default function HomePage() {
-  return <NeoOrbitDashboard />;
+  return <UI2HomeDashboard />;
 }
