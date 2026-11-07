@@ -95,3 +95,85 @@
 .vault-mark:active,.vault-controls>button:active{filter:brightness(1.12)}
 @keyframes vault-notice-glow{0%{box-shadow:0 0 0 0 #d84b9d00}35%{box-shadow:0 0 0 5px #d84b9d20}100%{box-shadow:0 0 0 0 #d84b9d00}}
 @media(prefers-reduced-motion:reduce){.vault-notice,.vault-xp-pop{animation:none!important}}
+
+
+/* Memory Vault card typography & intrinsic layout.
+   Content determines card height; no fixed-height flex distribution or text squeezing. */
+.vault-flashcard{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  align-items:stretch!important;
+  gap:clamp(20px,3.2vw,32px)!important;
+  width:calc(100% - 32px)!important;
+  min-height:0!important;
+  height:auto!important;
+  padding:clamp(22px,3.8vw,38px)!important;
+  overflow:visible!important;
+  text-align:left!important;
+}
+.vault-card-top{
+  width:100%;align-items:flex-start;line-height:1.55;
+  letter-spacing:.09em;overflow-wrap:anywhere;
+}
+.vault-card-top span:first-child{flex:1;min-width:0;max-width:72%}
+.vault-card-top span:last-child{flex:0 1 140px;min-width:0;line-height:1.5}
+.vault-card-content{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  gap:clamp(12px,2vw,19px)!important;
+  width:100%!important;max-width:none!important;min-width:0!important;
+  margin:0!important;padding:0!important;
+}
+.vault-card-content small{
+  display:block;color:#765b7d!important;opacity:1!important;
+  font-size:clamp(9px,1.1vw,11px)!important;line-height:1.5!important;
+  letter-spacing:.14em!important;
+}
+.vault-card-content strong{
+  display:block;width:100%;max-width:100%;
+  color:#2e1935!important;opacity:1!important;
+  font-family:"DM Sans","Noto Sans Devanagari",sans-serif!important;
+  font-size:clamp(21px,3.2vw,31px)!important;
+  font-weight:700!important;line-height:1.42!important;
+  letter-spacing:-.025em!important;
+  overflow-wrap:break-word;word-break:normal;hyphens:auto;
+}
+.vault-card-content em{
+  display:block;width:100%;max-width:100%;
+  color:#51375a!important;opacity:1!important;
+  font-family:"Noto Sans Devanagari","DM Sans",sans-serif!important;
+  font-size:clamp(18px,2.5vw,24px)!important;
+  font-weight:500!important;font-style:normal!important;
+  line-height:1.7!important;letter-spacing:0!important;
+  overflow-wrap:break-word;word-break:normal;
+}
+.vault-answer p{
+  width:100%;max-width:none!important;margin:0!important;
+  color:#51375a!important;opacity:1!important;
+  font-family:"Noto Sans Devanagari","DM Sans",sans-serif!important;
+  font-size:clamp(14px,1.8vw,16px)!important;line-height:1.85!important;
+  overflow-wrap:break-word;word-break:normal;
+}
+.vault-card-foot{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:10px 18px;width:100%;margin-top:clamp(4px,1vw,12px);
+  padding-top:16px;line-height:1.6;
+}
+.vault-card-foot span{min-width:0;overflow-wrap:anywhere}
+.vault-card-foot span:last-child{text-align:right}
+@media(max-width:700px){
+  .vault-flashcard{
+    width:100%!important;min-height:0!important;height:auto!important;
+    padding:22px 20px!important;gap:22px!important;border-radius:25px!important;
+  }
+  .vault-card-top{gap:12px;font-size:8px;letter-spacing:.075em}
+  .vault-card-top span:first-child{max-width:none;flex:1 1 58%}
+  .vault-card-top span:last-child{flex:0 1 100px;font-size:7px}
+  .vault-card-content{gap:13px!important}
+  .vault-card-content strong{font-size:clamp(20px,5.6vw,25px)!important;line-height:1.48!important;letter-spacing:-.02em!important}
+  .vault-card-content em{font-size:clamp(17px,4.8vw,21px)!important;line-height:1.75!important}
+  .vault-answer p{font-size:14px!important;line-height:1.85!important}
+  .vault-card-foot{margin-top:2px;padding-top:14px;gap:8px}
+  .vault-card-foot span:first-child{flex:0 0 auto}
+  .vault-card-foot span:last-child{flex:1 1 145px;text-align:right}
+}
