@@ -66,3 +66,10 @@
 }
 @media(max-width:380px){.campus-viewport{height:390px}.campus-world{width:165%;transform:rotateX(52deg) rotateZ(-34deg) scale(.64)}.campus-welcome h1{font-size:32px}.campus-scene-heading small{max-width:125px}}
 @media(prefers-reduced-motion:reduce){.campus-camera,.campus-world,.campus-focus-card{animation:none!important;transition:none!important}}
+
+/* Cinematic focus: quiet the surrounding campus as the selected destination approaches. */
+.campus-experience.has-focus .campus-zone:not(.is-selected){opacity:.22;filter:saturate(.55);pointer-events:none}
+.campus-experience.has-focus .campus-central-hub,.campus-experience.has-focus .campus-tree,.campus-experience.has-focus .campus-lamp,.campus-experience.has-focus .campus-steps{opacity:.28;transition:opacity .55s ease}
+.campus-experience.has-focus .campus-zone.is-selected{z-index:18;filter:brightness(1.1) drop-shadow(0 0 28px #fff);pointer-events:none}
+.campus-experience.has-focus .campus-viewport:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 34%,rgba(106,75,54,.10) 100%);animation:camera-vignette 1s ease both}
+@keyframes camera-vignette{from{opacity:0}to{opacity:1}}
