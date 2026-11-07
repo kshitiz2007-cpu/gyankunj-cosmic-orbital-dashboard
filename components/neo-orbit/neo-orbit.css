@@ -346,3 +346,8 @@
  .neo-module{width:clamp(94px,27vw,108px)}
  .neo-orbit-hub{width:clamp(124px,35vw,140px)}
 }
+
+
+/* Shared fixed dock clearance: dashboard content scrolls above the global dock. */
+.neo-orbit-page{padding-bottom:calc(126px + env(safe-area-inset-bottom))!important}
+.neo-orbit-shell{padding-bottom:30px}
