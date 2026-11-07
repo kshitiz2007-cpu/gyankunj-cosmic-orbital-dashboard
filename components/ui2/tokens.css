@@ -1,0 +1,73 @@
+/* Gyankunj UI 2.0 — Atlas / Fieldwork visual foundation.
+   Isolated from all legacy tokens. Import only inside the UI 2.0 shell. */
+.gk2-app{
+  color-scheme:light;
+  --gk2-canvas:#F2F0E9;
+  --gk2-surface:#FBFAF6;
+  --gk2-surface-raised:#FFFFFF;
+  --gk2-surface-muted:#E9E9E2;
+  --gk2-ink:#17212B;
+  --gk2-ink-secondary:#43515C;
+  --gk2-muted:#68757D;
+  --gk2-faint:#879198;
+  --gk2-rule:#D6D8D2;
+  --gk2-rule-strong:#B9C0BD;
+  --gk2-cobalt:#2457D6;
+  --gk2-cobalt-deep:#173D9B;
+  --gk2-cobalt-tint:#E7EDFC;
+  --gk2-vermilion:#D6533C;
+  --gk2-moss:#39735D;
+  --gk2-amber:#A86B18;
+  --gk2-error:#B33A42;
+  --gk2-on-signal:#FFFFFF;
+  --gk2-font-display:"Space Grotesk",system-ui,sans-serif;
+  --gk2-font-body:"DM Sans","Noto Sans Devanagari",system-ui,sans-serif;
+  --gk2-font-editorial:"DM Serif Display","Noto Serif Devanagari",Georgia,serif;
+  --gk2-font-hi:"Noto Sans Devanagari",system-ui,sans-serif;
+  --gk2-font-hi-editorial:"Noto Serif Devanagari",Georgia,serif;
+  --gk2-text-xs:clamp(11px,.72rem,12px);
+  --gk2-text-sm:14px;
+  --gk2-text-md:16px;
+  --gk2-text-lg:clamp(18px,1.5vw,21px);
+  --gk2-text-xl:clamp(22px,2.4vw,30px);
+  --gk2-text-2xl:clamp(30px,4vw,48px);
+  --gk2-text-display:clamp(40px,7vw,88px);
+  --gk2-space-1:4px;--gk2-space-2:8px;--gk2-space-3:12px;--gk2-space-4:16px;
+  --gk2-space-5:20px;--gk2-space-6:24px;--gk2-space-8:32px;--gk2-space-10:40px;
+  --gk2-space-12:48px;--gk2-space-16:64px;--gk2-space-20:80px;
+  --gk2-radius-control:10px;--gk2-radius-panel:16px;--gk2-radius-feature:22px;
+  --gk2-shadow-paper:0 1px 2px rgba(23,33,43,.05),0 8px 22px rgba(23,33,43,.045);
+  --gk2-shadow-raised:0 3px 8px rgba(23,33,43,.07),0 18px 36px rgba(23,33,43,.08);
+  --gk2-shadow-focus:0 0 0 3px rgba(36,87,214,.18);
+  --gk2-motion-fast:140ms;--gk2-motion-base:220ms;--gk2-motion-page:380ms;
+  --gk2-ease:cubic-bezier(.2,.7,.2,1);
+  min-height:100dvh;
+  background:var(--gk2-canvas);
+  color:var(--gk2-ink);
+  font-family:var(--gk2-font-body);
+  font-synthesis:none;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+.gk2-app[data-gk2-theme="ink"]{
+  color-scheme:dark;
+  --gk2-canvas:#111923;--gk2-surface:#192430;--gk2-surface-raised:#202E3B;
+  --gk2-surface-muted:#263541;--gk2-ink:#F2F4F1;--gk2-ink-secondary:#CFD7D9;
+  --gk2-muted:#A7B4B9;--gk2-faint:#84949B;--gk2-rule:#354651;--gk2-rule-strong:#50616A;
+  --gk2-cobalt:#83A5FF;--gk2-cobalt-deep:#A8BEFF;--gk2-cobalt-tint:#253653;
+  --gk2-vermilion:#FF927B;--gk2-moss:#82C5A5;--gk2-amber:#E5B66D;--gk2-error:#FF8D95;
+  --gk2-on-signal:#101923;
+  --gk2-shadow-paper:0 1px 2px rgba(0,0,0,.16),0 8px 22px rgba(0,0,0,.14);
+  --gk2-shadow-raised:0 4px 10px rgba(0,0,0,.22),0 20px 42px rgba(0,0,0,.2);
+}
+.gk2-app *,.gk2-app *::before,.gk2-app *::after{box-sizing:border-box}
+.gk2-app :is(button,input,select,textarea){font:inherit}
+.gk2-app :is(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid var(--gk2-cobalt);outline-offset:3px}
+.gk2-app ::selection{background:var(--gk2-cobalt);color:#fff}
+.gk2-app .gk2-display{font-family:var(--gk2-font-display);font-size:var(--gk2-text-display);font-weight:600;letter-spacing:-.065em;line-height:.98}
+.gk2-app .gk2-editorial{font-family:var(--gk2-font-editorial);font-weight:500;letter-spacing:-.035em}
+.gk2-app .gk2-hindi{font-family:var(--gk2-font-hi);line-height:1.8}
+.gk2-app .gk2-hindi-display{font-family:var(--gk2-font-hi-editorial);line-height:1.5}
+.gk2-app .gk2-eyebrow{color:var(--gk2-muted);font-size:var(--gk2-text-xs);font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.gk2-app .gk2-muted{color:var(--gk2-muted)}
+@media(prefers-reduced-motion:reduce){.gk2-app,.gk2-app *,.gk2-app *::before,.gk2-app *::after{scroll-behavior:auto!important;animation:none!important;transition-duration:.01ms!important}}
