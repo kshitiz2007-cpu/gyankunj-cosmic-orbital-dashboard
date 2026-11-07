@@ -226,3 +226,126 @@ body:has(.neo-orbit-page) .gk-student-nav-root{display:none}
 @media(prefers-reduced-motion:reduce){
   .neo-module,.neo-nav-item,.neo-glimpses-arrow{transition:none!important}
 }
+
+
+/* Reference pass: Neo-Morphic Orbit — vivid rose glass, concentric orbital stage */
+.neo-orbit-page{
+  --neo-pink:#dc239f;
+  --neo-purple:#7436b7;
+  background:
+    radial-gradient(ellipse 75% 32% at 50% 25%,rgba(255,191,231,.55),transparent 75%),
+    radial-gradient(ellipse 48% 30% at 3% 56%,rgba(255,196,234,.62),transparent 78%),
+    radial-gradient(ellipse 48% 32% at 98% 64%,rgba(191,169,244,.55),transparent 78%),
+    linear-gradient(150deg,#fce8f5 0%,#f4e7f7 47%,#fbeaf5 100%);
+}
+.neo-orbit-shell{
+  background:
+    radial-gradient(ellipse at 50% 24%,rgba(255,255,255,.86),transparent 54%),
+    linear-gradient(145deg,rgba(255,248,254,.86),rgba(250,232,248,.70));
+  box-shadow:0 30px 70px rgba(115,64,130,.19),0 8px 24px rgba(171,80,155,.13),inset 0 2px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(255,255,255,.72);
+}
+.neo-brand-mark{
+  width:68px;height:68px;
+  background:radial-gradient(circle at 34% 20%,#ffb8e9 0%,#e83ab5 38%,#b70c92 75%,#76258d 100%);
+  box-shadow:0 12px 22px rgba(183,30,146,.36),0 3px 8px rgba(112,32,119,.2),inset 0 3px 5px rgba(255,255,255,.9),inset 0 -8px 13px rgba(80,17,105,.28);
+}
+.neo-greeting{margin-top:32px}
+.neo-greeting h1{font-size:clamp(22px,5.5vw,27px);font-weight:900;letter-spacing:-1px}
+.neo-greeting p{font-size:14px;font-weight:750;color:#715778}
+.neo-orbit{
+  height:clamp(440px,116vw,530px);
+  max-width:440px;
+  margin:12px auto 18px;
+  isolation:isolate;
+}
+.neo-orbit:before{
+  content:"";position:absolute;z-index:-1;inset:4% 0 4%;
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.02) 0 24%,rgba(241,164,222,.18) 25% 43%,rgba(255,255,255,.1) 44% 56%,transparent 70%),
+    radial-gradient(circle at 50% 50%,rgba(222,66,177,.18),rgba(255,255,255,0) 66%);
+  filter:blur(2px);
+}
+.neo-orbit:after{
+  content:"";position:absolute;z-index:-1;left:50%;top:50%;
+  width:62%;aspect-ratio:1;transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(226,65,181,.22),rgba(224,144,216,.12) 55%,transparent 74%);
+  filter:blur(13px);
+}
+.neo-orbit-track--outer{
+  width:100%;
+  border:1px solid rgba(255,255,255,.96);
+  box-shadow:0 0 0 1px rgba(203,126,194,.16),0 15px 28px rgba(154,95,154,.11),inset 0 2px 9px rgba(255,255,255,.95),inset 0 -9px 20px rgba(178,121,177,.08);
+}
+.neo-orbit-track--inner{
+  width:77%;
+  border:2px solid rgba(255,255,255,.72);
+  background:radial-gradient(circle,rgba(235,111,199,.13),rgba(255,255,255,.12) 65%,transparent 70%);
+  box-shadow:0 0 0 8px rgba(241,192,230,.10),inset 0 0 26px rgba(255,255,255,.92),0 8px 20px rgba(155,86,160,.08);
+}
+.neo-orbit-hub{
+  width:clamp(132px,36vw,160px);
+  border:6px solid rgba(255,255,255,.96);
+  background:
+    radial-gradient(ellipse at 28% 13%,rgba(255,255,255,.98) 0,rgba(255,255,255,.5) 13%,transparent 34%),
+    radial-gradient(circle at 70% 80%,rgba(103,25,151,.56),transparent 48%),
+    radial-gradient(circle at 38% 27%,#ff9ce0 0%,#ed3eb8 33%,#c819a0 67%,#77268f 100%);
+  box-shadow:
+    0 0 0 3px rgba(245,165,222,.38),
+    0 0 0 11px rgba(255,255,255,.30),
+    0 22px 42px rgba(146,44,143,.40),
+    0 7px 15px rgba(105,35,120,.22),
+    inset 0 4px 8px rgba(255,255,255,.95),
+    inset 0 -15px 22px rgba(67,15,104,.40);
+}
+.neo-module{
+  width:clamp(104px,29vw,132px);
+  border:1px solid rgba(255,255,255,.98);
+  background:
+    radial-gradient(ellipse at 28% 9%,rgba(255,255,255,1) 0,rgba(255,255,255,.56) 20%,transparent 45%),
+    linear-gradient(145deg,#fffaff 0%,rgba(255,242,253,.96) 42%,rgba(226,211,244,.96) 100%);
+  box-shadow:
+    0 19px 30px rgba(121,68,139,.23),
+    0 7px 13px rgba(177,92,163,.16),
+    -7px -8px 18px rgba(255,255,255,.98),
+    inset 0 3px 5px rgba(255,255,255,1),
+    inset 0 -7px 12px rgba(147,90,166,.17);
+}
+.neo-module:before{
+  inset:5px;border:1px solid rgba(255,255,255,.9);
+  box-shadow:inset 0 2px 5px rgba(255,255,255,.9),inset 0 -2px 5px rgba(180,116,185,.08);
+}
+.neo-module svg{
+  color:#7933a8;
+  filter:drop-shadow(0 2px 0 #fff) drop-shadow(0 4px 5px rgba(96,39,140,.25));
+}
+.neo-module strong{font-size:clamp(14px,3.8vw,17px);font-weight:900;color:#24152d;letter-spacing:-.35px}
+.neo-module small{font-size:9px;color:#765d80;font-weight:750}
+.neo-glimpses,.neo-progress,.neo-lower-card,.neo-bottom-nav{
+  background:linear-gradient(145deg,rgba(255,255,255,.84),rgba(255,244,253,.68) 52%,rgba(242,226,248,.76));
+  border:1px solid rgba(255,255,255,.98);
+  box-shadow:0 17px 30px rgba(130,75,140,.15),0 5px 12px rgba(169,99,160,.08),inset 0 2px 3px rgba(255,255,255,.98),inset 0 -2px 5px rgba(182,122,177,.08);
+}
+.neo-progress-ring{
+  background:conic-gradient(from -90deg,#f26ac4 0%,#d322a1 calc(var(--value)*1%),#d8c6ec calc(var(--value)*1%) 100%);
+  box-shadow:0 10px 22px rgba(190,42,151,.22),0 0 0 5px rgba(255,255,255,.66),inset 0 2px 3px rgba(255,255,255,.95);
+}
+.neo-lower-card{min-height:190px}
+.neo-lower-card:nth-child(2) strong{
+  font-family:"Noto Serif Devanagari","Noto Sans Devanagari",serif;
+  font-size:15px;line-height:1.52;font-weight:850;
+}
+.neo-bottom-nav{
+  background:rgba(255,250,255,.82);
+  box-shadow:0 18px 32px rgba(129,76,138,.18),inset 0 2px 3px rgba(255,255,255,.98);
+}
+.neo-nav-item.is-active{
+  background:radial-gradient(circle at 30% 12%,#ffafe5,#e73bb5 43%,#bb1497 78%,#83288f);
+  box-shadow:0 10px 18px rgba(188,28,144,.38),inset 0 3px 5px rgba(255,255,255,.82),inset 0 -7px 12px rgba(78,17,104,.28);
+}
+@media(max-width:390px){
+ .neo-orbit{height:clamp(405px,112vw,465px)}
+ .neo-module{width:clamp(94px,27vw,108px)}
+ .neo-orbit-hub{width:clamp(124px,35vw,140px)}
+}
