@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0c1020",
+  themeColor: "#f8eaf5",
 };
 const themeBootstrap = `(function(){try{var k="gyankunj-design-studio-v1",p=JSON.parse(localStorage.getItem(k)||"null"),d=p&&["compact","comfortable","spacious"].includes(p.density)?p.density:"comfortable",m=p&&["minimal","dynamic","expressive"].includes(p.motion)?p.motion:"dynamic",c=p&&["lilac","nebula","rose","ocean","aurora","coral"].includes(p.palette)?p.palette:"lilac",g=p&&["frosted","clear","chromatic","liquid"].includes(p.glass)?p.glass:"frosted",i=p&&typeof p.glassIntensity==="number"?Math.min(100,Math.max(20,p.glassIntensity)):72,r=document.documentElement;r.dataset.theme="dark";r.dataset.style="cosmic";r.dataset.density=d;r.dataset.motion=m;r.dataset.palette=c;r.dataset.glass=g;r.style.setProperty("--gk-glass-intensity",String(i/100));r.style.colorScheme="dark";localStorage.setItem(k,JSON.stringify({style:"cosmic",theme:"dark",density:d,motion:m,palette:c,glass:g,glassIntensity:i}));}catch(e){var r=document.documentElement;r.dataset.theme="dark";r.dataset.style="cosmic";r.dataset.density="comfortable";r.dataset.motion="dynamic";r.style.colorScheme="dark";}})();`;
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
