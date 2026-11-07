@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  Notification01Icon, UserCircleIcon, Target01Icon, NewspaperIcon,
+  Notification01Icon, UserGroupIcon, Target01Icon, NewspaperIcon,
   Notebook01Icon, BookOpen01Icon, Layers01Icon, UserGroupIcon,
   Home01Icon, Compass01Icon, GraduationScrollIcon, FireIcon,
   CheckmarkCircle02Icon, ArrowUpRight01Icon, Clock01Icon
@@ -97,14 +97,14 @@ export default function NeoOrbitDashboard() {
     {label:"Study",href:"/syllabus",icon:Notebook01Icon},
     {label:"Glimpses",href:"/todays-glimpses",icon:Compass01Icon},
     {label:"Library",href:"/library",icon:BookOpen01Icon},
-    {label:"Profile",href:"/profile",icon:UserCircleIcon}
+    {label:"Profile",href:"/profile",icon:UserGroupIcon}
   ];
   return <main className="neo-orbit-page">
     <div className="neo-orbit-glow neo-orbit-glow--one"/><div className="neo-orbit-glow neo-orbit-glow--two"/>
     <div className="neo-orbit-shell">
       <header className="neo-header">
         <Link href="/" className="neo-brand"><span className="neo-brand-mark"><Lotus/></span><span><strong>Gyankunj</strong><small>Academy</small></span></Link>
-        <div className="neo-header-actions"><Link href="/todays-glimpses" aria-label="Notifications"><Icon icon={Notification01Icon} size={23}/></Link><Link href="/profile" aria-label="Profile"><Icon icon={UserCircleIcon} size={24}/></Link></div>
+        <div className="neo-header-actions"><Link href="/todays-glimpses" aria-label="Notifications"><Icon icon={Notification01Icon} size={23}/></Link><Link href="/profile" aria-label="Profile"><Icon icon={UserGroupIcon} size={24}/></Link></div>
       </header>
 
       <section className="neo-greeting"><h1>{greeting}, {name} <span>👋</span></h1><p>Your UPSC Journey, Elevated</p></section>
@@ -128,7 +128,7 @@ export default function NeoOrbitDashboard() {
         <div className="neo-progress-stats">
           <div><Icon icon={FireIcon} size={22}/><strong>{stats.loading?"—":stats.streak} Day Streak</strong></div>
           <div><Icon icon={CheckmarkCircle02Icon} size={21}/><strong>{stats.loading?"—":stats.quizzes} Quizzes</strong></div>
-          <div><Icon icon={Clock01Icon} size={21}/><strong>{stats.loading?"—":stats.mocks} Mocks</strong></div>
+          <div><Icon icon={Clock01Icon} size={21}/><strong>{stats.loading?"—":stats.mocks} Tests</strong></div>
         </div>
       </section>
 
