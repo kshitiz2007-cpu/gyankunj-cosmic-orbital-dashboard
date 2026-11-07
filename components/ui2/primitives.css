@@ -1,0 +1,40 @@
+/* UI 2.0 primitives. Every selector is namespaced to .gk2-app. */
+.gk2-app .gk2-shell{width:min(100% - 40px,1440px);margin-inline:auto}
+.gk2-app .gk2-reading{width:min(100% - 40px,800px);margin-inline:auto}
+.gk2-app .gk2-workspace{width:min(100% - 40px,1120px);margin-inline:auto}
+.gk2-app .gk2-page{min-height:100dvh;padding:32px 0 104px}
+.gk2-app .gk2-page-header{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px;padding:18px 0 28px;border-bottom:1px solid var(--gk2-rule)}
+.gk2-app .gk2-page-header h1{margin:10px 0 0;color:var(--gk2-ink);font:600 var(--gk2-text-2xl)/1.08 var(--gk2-font-display);letter-spacing:-.05em}
+.gk2-app .gk2-page-header p{max-width:660px;margin:12px 0 0;color:var(--gk2-ink-secondary);font-size:var(--gk2-text-md);line-height:1.75}
+.gk2-app .gk2-section{padding:28px 0;border-bottom:1px solid var(--gk2-rule)}
+.gk2-app .gk2-section-head{display:flex;justify-content:space-between;align-items:baseline;gap:18px;margin-bottom:18px}
+.gk2-app .gk2-section-head h2{margin:0;font:600 var(--gk2-text-xl)/1.15 var(--gk2-font-display);letter-spacing:-.04em}
+.gk2-app .gk2-section-index{color:var(--gk2-vermilion);font:600 12px var(--gk2-font-display);font-variant-numeric:tabular-nums}
+.gk2-app .gk2-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
+.gk2-app .gk2-span-3{grid-column:span 3}.gk2-app .gk2-span-4{grid-column:span 4}.gk2-app .gk2-span-6{grid-column:span 6}.gk2-app .gk2-span-8{grid-column:span 8}.gk2-app .gk2-span-12{grid-column:span 12}
+.gk2-app .gk2-panel{min-width:0;padding:22px;border:1px solid var(--gk2-rule);border-radius:var(--gk2-radius-panel);background:var(--gk2-surface);box-shadow:var(--gk2-shadow-paper)}
+.gk2-app .gk2-panel--raised{background:var(--gk2-surface-raised);box-shadow:var(--gk2-shadow-raised)}
+.gk2-app .gk2-panel--ink{background:var(--gk2-ink);color:var(--gk2-canvas);border-color:transparent}
+.gk2-app .gk2-panel--ink :is(h2,h3,p,small,span){color:inherit}
+.gk2-app .gk2-stat{display:flex;flex-direction:column;gap:8px;min-width:0}
+.gk2-app .gk2-stat strong{font:600 clamp(28px,3vw,42px)/1 var(--gk2-font-display);letter-spacing:-.055em;font-variant-numeric:tabular-nums}
+.gk2-app .gk2-stat span{color:var(--gk2-muted);font-size:12px}
+.gk2-app .gk2-rule{height:1px;border:0;background:var(--gk2-rule)}
+.gk2-app .gk2-button{display:inline-flex;min-height:44px;align-items:center;justify-content:center;gap:9px;padding:0 17px;border:1px solid transparent;border-radius:var(--gk2-radius-control);font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;transition:transform var(--gk2-motion-fast) var(--gk2-ease),background var(--gk2-motion-fast),box-shadow var(--gk2-motion-fast)}
+.gk2-app .gk2-button:active{transform:translateY(1px)}
+.gk2-app .gk2-button--primary{background:var(--gk2-cobalt);color:#fff;box-shadow:0 5px 12px color-mix(in srgb,var(--gk2-cobalt) 22%,transparent)}
+.gk2-app .gk2-button--primary:hover{background:var(--gk2-cobalt-deep)}
+.gk2-app .gk2-button--secondary{background:var(--gk2-surface-raised);color:var(--gk2-ink);border-color:var(--gk2-rule-strong)}
+.gk2-app .gk2-button--quiet{background:transparent;color:var(--gk2-cobalt);border-color:var(--gk2-rule)}
+.gk2-app .gk2-link{color:var(--gk2-cobalt);font-size:13px;font-weight:700;text-decoration-thickness:1px;text-underline-offset:3px}
+.gk2-app .gk2-tag{display:inline-flex;align-items:center;min-height:25px;padding:0 9px;border:1px solid var(--gk2-rule);border-radius:4px;color:var(--gk2-ink-secondary);font-size:10px;font-weight:700;letter-spacing:.06em}
+.gk2-app .gk2-field{display:grid;gap:7px}
+.gk2-app .gk2-field label{color:var(--gk2-ink-secondary);font-size:12px;font-weight:700}
+.gk2-app .gk2-input{width:100%;min-height:46px;padding:10px 13px;border:1px solid var(--gk2-rule-strong);border-radius:var(--gk2-radius-control);background:var(--gk2-surface-raised);color:var(--gk2-ink)}
+.gk2-app .gk2-input::placeholder{color:var(--gk2-muted);opacity:1}
+.gk2-app .gk2-story-row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:start;gap:16px;padding:17px 0;border-bottom:1px solid var(--gk2-rule)}
+.gk2-app .gk2-story-row__index{color:var(--gk2-vermilion);font:600 13px var(--gk2-font-display);font-variant-numeric:tabular-nums}
+.gk2-app .gk2-story-row h3{margin:0;color:var(--gk2-ink);font-size:17px;line-height:1.5}
+.gk2-app .gk2-story-row p{margin:6px 0 0;color:var(--gk2-ink-secondary);font-size:13px;line-height:1.7}
+@media(max-width:900px){.gk2-app .gk2-span-3,.gk2-app .gk2-span-4{grid-column:span 6}.gk2-app .gk2-span-8{grid-column:span 12}}
+@media(max-width:600px){.gk2-app .gk2-shell,.gk2-app .gk2-reading,.gk2-app .gk2-workspace{width:calc(100% - 36px)}.gk2-app .gk2-page{padding-top:18px;padding-bottom:92px}.gk2-app .gk2-page-header{grid-template-columns:1fr;gap:12px;padding-bottom:20px}.gk2-app .gk2-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.gk2-app .gk2-span-3,.gk2-app .gk2-span-4,.gk2-app .gk2-span-6,.gk2-app .gk2-span-8{grid-column:span 4}.gk2-app .gk2-panel{padding:17px}.gk2-app .gk2-story-row{grid-template-columns:32px minmax(0,1fr);gap:10px}.gk2-app .gk2-story-row>:last-child{grid-column:2}}
