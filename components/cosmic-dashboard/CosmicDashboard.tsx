@@ -64,42 +64,31 @@ function CircularProgress({ value }: { value: number }) {
 function OrbitalModule({ item, index, focused, onFocus }: {
   item: ModuleItem; index: number; focused: boolean; onFocus: (item: ModuleItem) => void;
 }) {
-  return <button
-    type="button"
-    className={`cosmic-planet cosmic-planet--${item.tone}${focused ? " is-focused" : ""}`}
-    style={{ "--planet-index": index } as React.CSSProperties}
-    onClick={() => onFocus(item)}
-    aria-pressed={focused}
-    aria-label={`Focus ${item.label}`}
-  >
-    <span className="cosmic-planet-halo" />
-    <span className="cosmic-planet-icon"><Icon icon={item.icon} size={31} /></span>
-    <strong>{item.label}</strong>
-    <small>{item.sub}</small>
-    <span className="cosmic-planet-arrow"><Icon icon={ArrowUpRight01Icon} size={17} /></span>
-  </button>;
+  const orbit = index % 3;
+  return <div className={`cosmic-orbit-track cosmic-orbit-track--${orbit}`}
+    style={{ "--orbit-duration": `${42 + orbit * 17}s`, "--orbit-radius": orbit === 0 ? "39%" : orbit === 1 ? "29%" : "19%", "--orbit-delay": `${-index * 5.25}s` } as React.CSSProperties}>
+    <button type="button" className={`cosmic-planet cosmic-planet--${item.tone}${focused ? " is-focused" : ""}`}
+      onClick={() => onFocus(item)} aria-pressed={focused} aria-label={`Focus ${item.label}`}>
+      <span className="cosmic-planet-face">
+        <span className="cosmic-planet-halo" />
+        <span className="cosmic-planet-icon"><Icon icon={item.icon} size={31} /></span>
+        <strong>{item.label}</strong><small>{item.sub}</small>
+        <span className="cosmic-planet-arrow"><Icon icon={ArrowUpRight01Icon} size={17} /></span>
+      </span>
+    </button>
+  </div>;
 }
 
 function OrbitalUniverse({ onNavigate }: { onNavigate: (href: string) => void }) {
   const [focused, setFocused] = useState<ModuleItem | null>(null);
   const focus = (item: ModuleItem) => setFocused(current => current?.id === item.id ? null : item);
   return <section className={`cosmic-universe${focused ? " has-focus" : ""}`} aria-label="Gyankunj learning universe">
-    <div className="cosmic-universe-copy">
-      <span>YOUR LEARNING UNIVERSE</span>
-      <small>{focused ? "DESTINATION IN FOCUS" : "SELECT A PLANET TO EXPLORE"}</small>
-    </div>
+    <div className="cosmic-universe-copy"><span>YOUR LEARNING UNIVERSE</span><small>{focused ? "DESTINATION IN FOCUS" : "SELECT A PLANET TO EXPLORE"}</small></div>
     <div className="cosmic-orbit-stage">
-      <div className="cosmic-orbit cosmic-orbit--outer" />
-      <div className="cosmic-orbit cosmic-orbit--middle" />
-      <div className="cosmic-orbit cosmic-orbit--inner" />
+      <div className="cosmic-orbit cosmic-orbit--outer" /><div className="cosmic-orbit cosmic-orbit--middle" /><div className="cosmic-orbit cosmic-orbit--inner" />
       <div className="cosmic-orbit-dots"><i /><i /><i /><i /></div>
-      <div className="cosmic-center-planet">
-        <span className="cosmic-center-glow" />
-        <span className="cosmic-center-star">✦</span>
-        <strong>GYANKUNJ</strong>
-        <small>YOUR KNOWLEDGE<br />UNIVERSE</small>
-      </div>
       {modules.map((item, index) => <OrbitalModule key={item.id} item={item} index={index} focused={focused?.id === item.id} onFocus={focus} />)}
+      <div className="cosmic-center-planet"><span className="cosmic-center-glow" /><span className="cosmic-center-star">✦</span><strong>GYANKUNJ</strong><small>YOUR KNOWLEDGE<br />UNIVERSE</small></div>
       <div className="cosmic-horizon"><span /><i /><b /></div>
     </div>
     {focused && <div className="cosmic-focus-card" key={focused.id}>
