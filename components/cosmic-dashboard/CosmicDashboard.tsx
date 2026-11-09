@@ -33,10 +33,10 @@ const modules: ModuleItem[] = [
 ];
 
 const subjects = [
-  { label: "Polity", icon: "▥", tone: "blue" },
-  { label: "Economy", icon: "▤", tone: "green" },
-  { label: "Environment", icon: "❧", tone: "emerald" },
-  { label: "Science & Tech", icon: "⌬", tone: "cyan" },
+  { label: "Polity", icon: Compass01Icon, tone: "blue" },
+  { label: "Economy", icon: ChartLineData01Icon, tone: "green" },
+  { label: "Environment", icon: FireIcon, tone: "emerald" },
+  { label: "Science & Tech", icon: Brain01Icon, tone: "cyan" },
 ];
 
 const demoEditorial = {
@@ -202,21 +202,21 @@ export default function CosmicDashboard({ demo = false }: { demo?: boolean }) {
       <OrbitalUniverse onNavigate={(href) => { window.location.href = href; }} />
       {demo && <div className="cosmic-preview-notice">PREVIEW MODE · SAMPLE DATA · NO STUDENT RECORDS CONNECTED</div>}
       <section className="cosmic-feature-row">
-        <Link href={editorial ? `/current-affairs/${editorial.slug}` : "/current-affairs"} className="cosmic-editorial-card">
-          <div className="cosmic-editorial-art"><span>INDIA</span><b>◈</b><i>SEMICONDUCTOR<br />MISSION</i></div>
-          <div className="cosmic-editorial-copy"><span className="cosmic-eyebrow">TODAY&apos;S EDITORIAL</span><h2>{editorial?.title || "आज का संपादकीय"}</h2><p>{editorial?.summary || "आज के महत्वपूर्ण मुद्दों का विश्लेषण पढ़ें।"}</p><small><Icon icon={BookOpen01Icon} size={16} /> {editorial?.read || 8} MIN READ <b /> {editorial?.category || "CURRENT AFFAIRS"}</small></div>
-          <span className="cosmic-card-arrow"><Icon icon={ArrowUpRight01Icon} size={20} /></span>
+        <Link href={editorial ? `/current-affairs/${editorial.slug}` : "/current-affairs"} className="cosmic-editorial-card cosmic-bento-card cosmic-editorial-bento">
+          <div className="cosmic-editorial-art"><span>INDIA · 2026</span><b>◈</b><i>SEMICONDUCTOR<br />MISSION</i><small>STRATEGIC TECHNOLOGY</small></div>
+          <div className="cosmic-editorial-copy"><span className="cosmic-eyebrow"><i /> TODAY&apos;S EDITORIAL <b>FEATURED</b></span><h2>{editorial?.title || "आज का संपादकीय"}</h2><p>{editorial?.summary || "आज के महत्वपूर्ण मुद्दों का विश्लेषण पढ़ें।"}</p><small><Icon icon={BookOpen01Icon} size={16} /> {editorial?.read || 8} MIN READ <b /> {editorial?.category || "CURRENT AFFAIRS"}</small></div>
+          <span className="cosmic-card-arrow"><Icon icon={ArrowUpRight01Icon} size={20} /></span><span className="cosmic-bento-glint" aria-hidden="true" />
         </Link>
-        <Link href="/practice/daily" className="cosmic-drill-card">
-          <div className="cosmic-drill-head"><span><Icon icon={Target01Icon} size={24} /> TODAY&apos;S DRILL</span><Icon icon={ArrowUpRight01Icon} size={20} /></div>
+        <Link href="/practice/daily" className="cosmic-drill-card cosmic-bento-card cosmic-drill-bento">
+          <div className="cosmic-drill-head"><span><i><Icon icon={Target01Icon} size={20} /></i><b>TODAY&apos;S DRILL<small>DAILY PRACTICE ARENA</small></b></span><Icon icon={ArrowUpRight01Icon} size={20} /></div>
           <div className="cosmic-drill-score">{loading ? "—" : stats.correct}<span> / {drillCount || 20}</span></div>
           <div className="cosmic-drill-bottom"><span>Questions</span><CircularProgress value={loading ? 0 : accuracy} /></div>
         </Link>
       </section>
-      <section className="cosmic-subjects" aria-label="Explore subjects">
-        {subjects.map(subject => <Link href="/library" key={subject.label} className={`cosmic-subject cosmic-subject--${subject.tone}`}><span>{subject.icon}</span>{subject.label}<Icon icon={ArrowUpRight01Icon} size={14} /></Link>)}
+      <section className="cosmic-subjects cosmic-subject-bento" aria-label="Explore subjects">
+        {subjects.map(subject => <Link href="/library" key={subject.label} className={`cosmic-subject cosmic-subject--${subject.tone}`}><span className="cosmic-subject-icon"><Icon icon={subject.icon} size={18} /></span><b>{subject.label}</b><Icon icon={ArrowUpRight01Icon} size={14} /></Link>)}
       </section>
-      <section className="cosmic-metrics">
+      <section className="cosmic-metrics cosmic-metrics-bento">
         <div><Icon icon={FireIcon} size={19} /><strong>{loading ? "—" : stats.streak}</strong><small>DAY STREAK</small></div>
         <div><Icon icon={CheckmarkCircle02Icon} size={19} /><strong>{loading ? "—" : stats.attempts}</strong><small>ASSESSMENTS</small></div>
         <div><Icon icon={ChartLineData01Icon} size={19} /><strong>{loading ? "—" : accuracy + "%"}</strong><small>ACCURACY</small></div>
