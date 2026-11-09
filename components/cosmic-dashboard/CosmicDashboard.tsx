@@ -6,7 +6,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Notification01Icon, Target01Icon, NewspaperIcon, Notebook01Icon,
   BookOpen01Icon, UserGroupIcon, Home01Icon, Compass01Icon,
-  GraduationScrollIcon, FireIcon, CheckmarkCircle02Icon,
+  FireIcon, CheckmarkCircle02Icon,
   ArrowUpRight01Icon, Clock01Icon, Brain01Icon,
   ChartLineData01Icon
 } from "@hugeicons/core-free-icons";
