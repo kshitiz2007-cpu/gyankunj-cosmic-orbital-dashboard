@@ -86,3 +86,40 @@
 @media(max-width:900px){.cosmic-orbit-stage{width:min(100%,690px);height:auto;aspect-ratio:1}.cosmic-planet{width:clamp(102px,16vw,142px)}}
 @media(max-width:620px){.cosmic-orbit-stage{width:min(100%,490px);height:auto;aspect-ratio:1;margin:8px auto 0;padding:0}.cosmic-orbit--outer{width:94%}.cosmic-orbit--middle{width:69%}.cosmic-orbit--inner{width:44%}.cosmic-planet{width:clamp(83px,23vw,108px)}.cosmic-planet-face{gap:4px;padding:7px 4px}.cosmic-planet-icon svg{width:21px;height:21px}.cosmic-planet strong{font-size:10px}.cosmic-planet small{font-size:4.5px;letter-spacing:.06em}.cosmic-planet-arrow{width:19px;height:19px}.cosmic-center-planet{width:clamp(105px,29vw,126px)}.cosmic-center-planet strong{font-size:15px}.cosmic-center-planet small{font-size:6px}}
 @media(prefers-reduced-motion:reduce){.cosmic-orbit-track,.cosmic-planet-face{animation:none!important}}
+
+
+/* Mobile orbital collision fix: reserve a clear inner safety zone around the core. */
+.cosmic-orbit-stage{width:min(100%,760px);aspect-ratio:1/1;height:auto;min-height:0;overflow:visible}
+.cosmic-orbit--outer{width:92%;aspect-ratio:1}
+.cosmic-orbit--middle{width:76%;aspect-ratio:1}
+.cosmic-orbit--inner{width:60%;aspect-ratio:1}
+.cosmic-center-planet{width:clamp(132px,18vw,190px)}
+.cosmic-planet{width:clamp(108px,13vw,154px)}
+.cosmic-orbit-track{will-change:transform}
+.cosmic-planet-face{backface-visibility:hidden;will-change:transform}
+@media(max-width:900px){
+  .cosmic-orbit-stage{width:min(100%,620px);aspect-ratio:1/1}
+  .cosmic-planet{width:clamp(100px,15vw,132px)}
+  .cosmic-center-planet{width:clamp(126px,19vw,166px)}
+}
+@media(max-width:620px){
+  .cosmic-universe{margin-top:16px}
+  .cosmic-universe-copy{position:relative;top:auto;margin-bottom:8px;text-align:center}
+  .cosmic-orbit-stage{width:min(100%,460px);aspect-ratio:1/1;margin:0 auto 12px;overflow:visible}
+  .cosmic-orbit--outer{width:92%}
+  .cosmic-orbit--middle{width:76%}
+  .cosmic-orbit--inner{width:60%}
+  .cosmic-planet{width:clamp(82px,22vw,98px)}
+  .cosmic-planet-face{gap:4px;padding:7px 4px}
+  .cosmic-planet-icon svg{width:19px;height:19px}
+  .cosmic-planet strong{font-size:10px;line-height:1.15}
+  .cosmic-planet small{font-size:4.5px;letter-spacing:.045em}
+  .cosmic-planet-arrow{width:18px;height:18px}
+  .cosmic-center-planet{width:clamp(104px,28vw,118px)}
+  .cosmic-center-planet strong{font-size:14px;letter-spacing:.05em}
+  .cosmic-center-planet small{font-size:5.5px;letter-spacing:.16em}
+  .cosmic-feature-row{margin-top:14px}
+  .cosmic-dashboard{padding-bottom:calc(104px + env(safe-area-inset-bottom))}
+  .cosmic-bottom-nav{bottom:calc(8px + env(safe-area-inset-bottom));}
+}
+@media(prefers-reduced-motion:reduce){.cosmic-orbit-track,.cosmic-planet-face{animation:none!important}}
