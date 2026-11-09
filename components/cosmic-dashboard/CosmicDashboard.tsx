@@ -8,7 +8,7 @@ import {
   BookOpen01Icon, UserGroupIcon, Home01Icon, Compass01Icon,
   GraduationScrollIcon, FireIcon, CheckmarkCircle02Icon,
   ArrowUpRight01Icon, Clock01Icon, Brain01Icon,
-  ChartLineData01Icon, SparklesIcon
+  ChartLineData01Icon
 } from "@hugeicons/core-free-icons";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import "./cosmic-dashboard.css";
@@ -216,11 +216,11 @@ export default function CosmicDashboard({ demo = false }: { demo?: boolean }) {
       <section className="cosmic-feature-row">
         <Link href={editorial ? `/current-affairs/${editorial.slug}` : "/current-affairs"} className="cosmic-editorial-card">
           <div className="cosmic-editorial-art"><span>INDIA</span><b>◈</b><i>SEMICONDUCTOR<br />MISSION</i></div>
-          <div className="cosmic-editorial-copy"><span className="cosmic-eyebrow">TODAY'S EDITORIAL</span><h2>{editorial?.title || "आज का संपादकीय"}</h2><p>{editorial?.summary || "आज के महत्वपूर्ण मुद्दों का विश्लेषण पढ़ें।"}</p><small><Icon icon={BookOpen01Icon} size={16} /> {editorial?.read || 8} MIN READ <b /> {editorial?.category || "CURRENT AFFAIRS"}</small></div>
+          <div className="cosmic-editorial-copy"><span className="cosmic-eyebrow">TODAY&apos;S EDITORIAL</span><h2>{editorial?.title || "आज का संपादकीय"}</h2><p>{editorial?.summary || "आज के महत्वपूर्ण मुद्दों का विश्लेषण पढ़ें।"}</p><small><Icon icon={BookOpen01Icon} size={16} /> {editorial?.read || 8} MIN READ <b /> {editorial?.category || "CURRENT AFFAIRS"}</small></div>
           <span className="cosmic-card-arrow"><Icon icon={ArrowUpRight01Icon} size={20} /></span>
         </Link>
         <Link href="/practice/daily" className="cosmic-drill-card">
-          <div className="cosmic-drill-head"><span><Icon icon={Target01Icon} size={24} /> TODAY'S DRILL</span><Icon icon={ArrowUpRight01Icon} size={20} /></div>
+          <div className="cosmic-drill-head"><span><Icon icon={Target01Icon} size={24} /> TODAY&apos;S DRILL</span><Icon icon={ArrowUpRight01Icon} size={20} /></div>
           <div className="cosmic-drill-score">{loading ? "—" : stats.correct}<span> / {drillCount || 20}</span></div>
           <div className="cosmic-drill-bottom"><span>Questions</span><CircularProgress value={loading ? 0 : accuracy} /></div>
         </Link>
