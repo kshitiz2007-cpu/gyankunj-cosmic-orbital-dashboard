@@ -66,7 +66,7 @@ function OrbitalModule({ item, index, focused, onFocus }: {
 }) {
   const orbit = index % 3;
   return <div className={`cosmic-orbit-track cosmic-orbit-track--${orbit}`}
-    style={{ "--orbit-duration": `${42 + orbit * 17}s`, "--orbit-radius": orbit === 0 ? "39%" : orbit === 1 ? "29%" : "19%", "--orbit-delay": `${-index * 5.25}s` } as React.CSSProperties}>
+    style={{ "--orbit-duration": `${42 + orbit * 17}s`, "--orbit-radius": orbit === 0 ? "43%" : orbit === 1 ? "37%" : "31.5%", "--orbit-delay": `${-index * 5.25}s` } as React.CSSProperties}>
     <button type="button" className={`cosmic-planet cosmic-planet--${item.tone}${focused ? " is-focused" : ""}`}
       onClick={() => onFocus(item)} aria-pressed={focused} aria-label={`Focus ${item.label}`}>
       <span className="cosmic-planet-face">
