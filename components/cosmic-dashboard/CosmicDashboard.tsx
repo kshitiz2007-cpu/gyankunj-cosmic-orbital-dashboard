@@ -64,7 +64,7 @@ function CircularProgress({ value }: { value: number }) {
 function OrbitalModule({ item, index, focused, onFocus }: {
   item: ModuleItem; index: number; focused: boolean; onFocus: (item: ModuleItem) => void;
 }) {
-  return <div className={`cosmic-orbit-track cosmic-orbit-track--${orbit}`}
+  return <div className="cosmic-orbit-track"
     style={{ "--orbit-duration": "72s", "--orbit-radius": "38%", "--orbit-delay": `${-index * 9}s` } as React.CSSProperties}>
     <button type="button" className={`cosmic-planet cosmic-planet--${item.tone}${focused ? " is-focused" : ""}`}
       onClick={() => onFocus(item)} aria-pressed={focused} aria-label={`Focus ${item.label}`}>
