@@ -243,3 +243,97 @@
 @media(prefers-reduced-motion:reduce){
   .cosmic-orbit-track,.cosmic-planet-face{animation:none!important}
 }
+
+
+/* ── Liquid Glass Bento 2.0: content hierarchy + mobile alignment ── */
+.cosmic-content{width:min(1240px,100%);padding-inline:clamp(16px,3.2vw,42px)}
+.cosmic-feature-row{grid-template-columns:minmax(0,1.55fr) minmax(280px,.85fr);gap:18px;align-items:stretch;margin-top:24px}
+.cosmic-bento-card{position:relative;isolation:isolate;overflow:hidden;border:1px solid #ffffff20;border-radius:26px;background:linear-gradient(145deg,#ffffff12,#ffffff04 45%,#ffffff08);box-shadow:0 18px 50px #0006,inset 0 1px 0 #ffffff24;backdrop-filter:blur(26px) saturate(150%);-webkit-backdrop-filter:blur(26px) saturate(150%);transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.cosmic-bento-card:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(125deg,#ffffff14,transparent 32%,transparent 68%,#ffffff09)}
+.cosmic-bento-card:hover{transform:translateY(-3px);border-color:#ffffff3d;box-shadow:0 24px 60px #0008,inset 0 1px 0 #ffffff35}
+.cosmic-editorial-bento{min-height:270px;border-radius:26px;background:linear-gradient(115deg,#172235ed,#101827e8 58%,#1d2c40ed);color:#f5f3ee}
+.cosmic-editorial-bento .cosmic-editorial-art{left:auto;right:0;width:43%;inset-block:0;border-left:1px solid #ffffff18;background:radial-gradient(ellipse at 52% 54%,#e6bb6840,transparent 35%),radial-gradient(ellipse at 65% 15%,#8ab9e52b,transparent 55%),linear-gradient(145deg,#ffffff0b,#ffffff02)}
+.cosmic-editorial-art:before{background:linear-gradient(145deg,#ffffff0c,transparent 48%),repeating-linear-gradient(115deg,transparent 0 24px,#ffffff08 25px,#ffffff08 26px)}
+.cosmic-editorial-art span{color:#e7d6a9;font-size:9px;letter-spacing:.28em}
+.cosmic-editorial-art b{font-size:clamp(64px,8vw,104px);color:#f4d38e;text-shadow:0 0 22px #e8bc6c88,0 0 55px #e8bc6c55}
+.cosmic-editorial-art i{color:#f5e4bc;font-size:12px;letter-spacing:.18em}
+.cosmic-editorial-art small{margin-top:12px;color:#aab8ca;font-size:7px;letter-spacing:.2em}
+.cosmic-editorial-copy{width:67%;padding:28px 30px}
+.cosmic-editorial-copy .cosmic-eyebrow{display:flex;align-items:center;gap:8px;color:#e7c77e;font-size:9px;letter-spacing:.18em}
+.cosmic-editorial-copy .cosmic-eyebrow i{width:6px;height:6px;border-radius:50%;background:#edc875;box-shadow:0 0 12px #edc875}
+.cosmic-editorial-copy .cosmic-eyebrow b{padding:4px 7px;border:1px solid #e9c97840;border-radius:20px;color:#e7c77e;font-size:7px;font-weight:600;letter-spacing:.12em}
+.cosmic-editorial-copy h2{color:#f7f5ef;font-size:clamp(22px,2.6vw,31px);line-height:1.28;text-wrap:pretty}
+.cosmic-editorial-copy p{color:#b6c0ce;font-size:12px;line-height:1.75}
+.cosmic-editorial-copy small{color:#b8c4d3}
+.cosmic-editorial-copy small b{background:#ffffff35}
+.cosmic-card-arrow{left:auto;right:calc(43% - 19px);top:50%;width:38px;height:38px;border:1px solid #ffffff35;background:#111b2bbd;color:#f5d68e;box-shadow:0 8px 22px #0007;backdrop-filter:blur(14px)}
+.cosmic-bento-glint{position:absolute;right:14%;top:-45%;width:130px;height:190%;transform:rotate(24deg);background:linear-gradient(90deg,transparent,#ffffff09,transparent);pointer-events:none}
+.cosmic-drill-bento{min-height:270px;padding:25px 26px;border-radius:26px;background:radial-gradient(ellipse at 80% 5%,#e8c36b20,transparent 48%),linear-gradient(145deg,#1b2638e8,#101725e8 60%,#0c1421f2)}
+.cosmic-drill-head{color:#e9cf91;font-size:10px;letter-spacing:.16em}
+.cosmic-drill-head>span{gap:12px}
+.cosmic-drill-head>span>i{display:grid;place-items:center;width:38px;height:38px;border:1px solid #e9cf9140;border-radius:13px;background:linear-gradient(145deg,#ffffff20,#ffffff05);box-shadow:inset 0 1px 0 #ffffff25;color:#f4d58e}
+.cosmic-drill-head>span>b{display:grid;gap:4px;font-size:10px;font-weight:700}
+.cosmic-drill-head>span small{color:#8e9db2;font-size:7px;letter-spacing:.17em}
+.cosmic-drill-head>svg{color:#d7c18b}
+.cosmic-drill-score{font-size:clamp(44px,5vw,62px);letter-spacing:-.03em}
+.cosmic-drill-score span{font-size:.58em;color:#9ba9bb}
+.cosmic-drill-bottom{align-items:center;color:#aebbd0}
+.cosmic-progress-ring{width:82px;border:1px solid #f1ca7355;background:conic-gradient(#f1ca73 calc(var(--progress)*1%),#ffffff14 0);box-shadow:0 0 28px #e8bc6326,inset 0 0 12px #fff2}
+.cosmic-progress-ring:before{inset:6px;background:linear-gradient(145deg,#263348,#101725)}
+.cosmic-subject-bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:18px 0 4px;overflow:visible}
+.cosmic-subject-bento .cosmic-subject{min-width:0;justify-content:flex-start;gap:10px;padding:14px 15px;border:1px solid #ffffff1c;border-radius:18px;background:linear-gradient(145deg,#ffffff12,#ffffff04);box-shadow:inset 0 1px 0 #ffffff1c,0 8px 22px #0003;backdrop-filter:blur(18px);font:600 13px "DM Sans",sans-serif;transition:transform .25s,border-color .25s,background .25s}
+.cosmic-subject-bento .cosmic-subject:hover{transform:translateY(-2px);border-color:#ffffff3b;background:linear-gradient(145deg,#ffffff1c,#ffffff08)}
+.cosmic-subject-icon{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border:1px solid #ffffff20;border-radius:12px;background:linear-gradient(145deg,#ffffff1b,#ffffff05);color:#9bd4ff!important}
+.cosmic-subject--green .cosmic-subject-icon,.cosmic-subject--emerald .cosmic-subject-icon{color:#8de5bd!important}
+.cosmic-subject--cyan .cosmic-subject-icon{color:#8be4f6!important}
+.cosmic-subject-bento .cosmic-subject b{overflow:hidden;color:#e6eaf2;font-weight:600;text-overflow:ellipsis;white-space:nowrap}
+.cosmic-subject-bento .cosmic-subject>svg{margin-left:auto;flex:none;color:#aab7ca;opacity:.75}
+.cosmic-metrics-bento{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+.cosmic-metrics-bento>div{position:relative;min-height:84px;grid-template-columns:38px 1fr;column-gap:11px;padding:16px;border:1px solid #ffffff18;border-radius:20px;background:linear-gradient(145deg,#ffffff10,#ffffff04);box-shadow:inset 0 1px 0 #ffffff18,0 12px 28px #0003;backdrop-filter:blur(18px)}
+.cosmic-metrics-bento>div:after{content:"";position:absolute;inset:1px;border-radius:19px;background:linear-gradient(120deg,#ffffff08,transparent 45%);pointer-events:none}
+.cosmic-metrics-bento svg{display:grid;place-self:center;width:36px;height:36px;padding:8px;border:1px solid #e9ca8140;border-radius:13px;background:#e9ca8110;color:#f0d28d}
+.cosmic-metrics-bento strong{font-size:18px;font-weight:700;letter-spacing:-.02em}
+.cosmic-metrics-bento small{font-size:8px;letter-spacing:.16em;color:#9eabc0}
+@media(max-width:900px){
+ .cosmic-feature-row{grid-template-columns:minmax(0,1.3fr) minmax(220px,.85fr);gap:12px}
+ .cosmic-editorial-bento,.cosmic-drill-bento{min-height:245px}
+ .cosmic-editorial-copy{width:68%;padding:22px 20px}
+ .cosmic-editorial-copy h2{font-size:22px}
+ .cosmic-subject-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cosmic-metrics-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:620px){
+ .cosmic-content{padding:0 16px}
+ .cosmic-feature-row{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:16px}
+ .cosmic-editorial-bento{min-height:230px;border-radius:22px}
+ .cosmic-editorial-bento .cosmic-editorial-art{width:36%;opacity:.9}
+ .cosmic-editorial-copy{width:75%;padding:20px 17px}
+ .cosmic-editorial-copy .cosmic-eyebrow{font-size:7px;gap:6px;letter-spacing:.13em}
+ .cosmic-editorial-copy .cosmic-eyebrow b{font-size:6px;padding:3px 5px}
+ .cosmic-editorial-copy h2{max-width:100%;margin:14px 0 8px;font-size:clamp(18px,5.2vw,22px);line-height:1.3}
+ .cosmic-editorial-copy p{max-width:100%;font-size:10px;line-height:1.65}
+ .cosmic-editorial-copy small{flex-wrap:wrap;gap:5px;font-size:7px}
+ .cosmic-editorial-art span{font-size:7px;letter-spacing:.18em}
+ .cosmic-editorial-art b{font-size:48px}
+ .cosmic-editorial-art i{font-size:8px}
+ .cosmic-editorial-art small{font-size:5px;letter-spacing:.1em;text-align:center}
+ .cosmic-card-arrow{right:calc(36% - 15px);width:30px;height:30px}
+ .cosmic-drill-bento{min-height:174px;padding:17px 18px;border-radius:22px}
+ .cosmic-drill-head>span>i{width:34px;height:34px;border-radius:11px}
+ .cosmic-drill-score{font-size:42px}
+ .cosmic-drill-bottom{font-size:11px}
+ .cosmic-progress-ring{width:66px}
+ .cosmic-progress-ring strong{font-size:18px}
+ .cosmic-subject-bento{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:14px 0 2px}
+ .cosmic-subject-bento .cosmic-subject{padding:10px 11px;border-radius:16px;gap:8px;font-size:11px}
+ .cosmic-subject-icon{width:30px;height:30px;flex-basis:30px;border-radius:10px}
+ .cosmic-metrics-bento{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
+ .cosmic-metrics-bento>div{min-height:76px;padding:12px 10px;grid-template-columns:32px 1fr;column-gap:8px;border-radius:17px}
+ .cosmic-metrics-bento>div:after{border-radius:16px}
+ .cosmic-metrics-bento svg{width:31px;height:31px;padding:7px;border-radius:11px}
+ .cosmic-metrics-bento strong{font-size:16px}
+ .cosmic-metrics-bento small{font-size:7px;letter-spacing:.12em}
+ .cosmic-dashboard{padding-bottom:calc(120px + env(safe-area-inset-bottom))}
+ .cosmic-bottom-nav{bottom:calc(9px + env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){.cosmic-bento-card,.cosmic-subject-bento .cosmic-subject{transition:none}}
