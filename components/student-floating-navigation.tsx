@@ -30,7 +30,7 @@ export default function StudentFloatingNavigation(){
  const pathname=usePathname()||"/";const router=useRouter();
  const [orbOpen,setOrbOpen]=useState(false);const [quickFor,setQuickFor]=useState<string|null>(null);
  const timer=useRef<ReturnType<typeof setTimeout>|null>(null);const suppressClick=useRef(false);
- const hidden=pathname.startsWith("/admin")||pathname==="/login"||pathname.startsWith("/auth/");
+ const hidden=pathname.startsWith("/admin")||pathname==="/login"||pathname==="/"||pathname==="/dashboard-preview"||pathname.startsWith("/auth/");
  const clearPress=()=>{if(timer.current){clearTimeout(timer.current);timer.current=null;}};
  useEffect(()=>{setOrbOpen(false);setQuickFor(null);},[pathname]);
  useEffect(()=>()=>{if(timer.current)clearTimeout(timer.current);},[]);

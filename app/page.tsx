@@ -1,5 +1,5 @@
-import NeoOrbitDashboard from "@/components/neo-orbit/NeoOrbitDashboard";
+import CosmicDashboard from "@/components/cosmic-dashboard/CosmicDashboard";
 
 export default function HomePage() {
-  return <NeoOrbitDashboard />;
+  return <CosmicDashboard />;
 }

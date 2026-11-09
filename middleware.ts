@@ -13,6 +13,10 @@ function safeNext(value: string | null, origin: string) {
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  // This route is deliberately public and uses local demo data only.
+  // It must remain reachable even when Supabase environment variables are absent.
+  if (pathname === "/dashboard-preview") return NextResponse.next();
+
   const isLoginRoute = pathname === "/login";
   const isAdminRoute = pathname.startsWith("/admin") || pathname.startsWith("/design-system-preview");
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -20,8 +24,7 @@ export async function middleware(request: NextRequest) {
 
   if (!supabaseUrl || !supabaseKey) {
     if (isLoginRoute) return NextResponse.next();
-    const destination = new URL("/login?reason=auth-config", request.url);
-    return NextResponse.redirect(destination);
+    return NextResponse.redirect(new URL("/login?reason=auth-config", request.url));
   }
 
   let response = NextResponse.next({ request });
@@ -37,7 +40,6 @@ export async function middleware(request: NextRequest) {
   });
 
   const { data: { user }, error: authError } = await supabase.auth.getUser();
-
   if (authError || !user) {
     if (isLoginRoute) return response;
     const destination = new URL("/login", request.url);
@@ -48,41 +50,30 @@ export async function middleware(request: NextRequest) {
   }
 
   const { data: profile, error: profileError } = await supabase
-    .from("profiles")
-    .select("role,is_active")
-    .eq("id", user.id)
-    .maybeSingle();
+    .from("profiles").select("role,is_active").eq("id", user.id).maybeSingle();
 
   if (profileError) {
-    // Keep the login page accessible if the optional account-security migration is pending.
     if (isLoginRoute) return response;
-    if (isAdminRoute) {
-      return NextResponse.redirect(new URL("/login?reason=security-migration", request.url));
-    }
-    // Authentication is verified; allow student routes while profile metadata is unavailable.
+    if (isAdminRoute) return NextResponse.redirect(new URL("/login?reason=security-migration", request.url));
     return response;
   }
-
   if (!profile || profile.is_active === false) {
     await supabase.auth.signOut();
     const redirect = NextResponse.redirect(new URL("/login?reason=account-disabled", request.url));
     response.cookies.getAll().forEach(cookie => redirect.cookies.set(cookie));
     return redirect;
   }
-
   if (isLoginRoute) {
     const destination = new URL(safeNext(request.nextUrl.searchParams.get("next"), request.nextUrl.origin), request.url);
     const redirect = NextResponse.redirect(destination);
     response.cookies.getAll().forEach(cookie => redirect.cookies.set(cookie));
     return redirect;
   }
-
   if (isAdminRoute && (profile.role !== "admin" || profile.is_active !== true)) {
     const redirect = NextResponse.redirect(new URL("/profile?access=denied", request.url));
     response.cookies.getAll().forEach(cookie => redirect.cookies.set(cookie));
     return redirect;
   }
-
   return response;
 }
 
